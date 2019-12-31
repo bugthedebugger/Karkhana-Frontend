@@ -23,6 +23,7 @@ export default {
   ** Global CSS
   */
   css: [
+    'styles/global.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -40,6 +41,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/font-awesome',
   ],
   /*
   ** Axios module configuration

@@ -1,0 +1,46 @@
+@import "setup/variables";
+@import "setup/typography";
+
+@import "basics/buttons.scss";
+
+// customize bootstrap
+$theme-colors: (
+  "primary": $k-red,
+  "success": $k-success,
+  "info": $k-blue,
+  "warning": $k-yellow
+);
+
+// card
+$card-bg: $k-red;
+$card-border-radius: 12px;
+$card-color: $k-white;
+$card-cap-color: $k-white;
+$card-spacer-y: 43px;
+$card-spacer-x: 37px;
+
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+// overwrite css
+
+// buttons
+.btn-warning, .btn-info{
+    color: $k-white;
+}
+.btn-warning:hover{
+    color: $k-white;
+}
+.btn-outline-warning:hover{
+    color: $k-white;
+}
+.btn-outline-info:hover{
+    color: $k-white;
+}
+.btn-warning:disabled{
+    color: $k-white;
+}
+.btn-info:disabled{
+    color: $k-white;
+}
