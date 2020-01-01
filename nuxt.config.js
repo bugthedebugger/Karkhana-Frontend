@@ -41,7 +41,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/font-awesome',
+    '@nuxtjs/auth'
   ],
   /*
   ** Axios module configuration

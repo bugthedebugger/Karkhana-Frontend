@@ -6,41 +6,44 @@
 // customize bootstrap
 $theme-colors: (
   "primary": $k-red,
-  "success": $k-success,
-  "info": $k-blue,
-  "warning": $k-yellow
+  "info": $k-info,
+  "warning": $k-warning,
+  "success": $k-success
 );
+$headings-font-family: museo, serif;
 
 // card
-$card-bg: $k-red;
+// $card-bg: $k-red;
 $card-border-radius: 12px;
-$card-color: $k-white;
-$card-cap-color: $k-white;
-$card-spacer-y: 43px;
-$card-spacer-x: 37px;
-
+// $card-color: $k-white;
+// $card-cap-color: $k-white;
+// $card-spacer-y: 43px;
+// $card-spacer-x: 37px;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "vendor/scss/fontawesome.scss";
+@import "vendor/scss/solid.scss";
+@import "vendor/scss/light.scss";
 
 
 // overwrite css
 
 // buttons
-.btn-warning, .btn-info{
-    color: $k-white;
-}
-.btn-warning:hover{
-    color: $k-white;
-}
-.btn-outline-warning:hover{
-    color: $k-white;
-}
-.btn-outline-info:hover{
-    color: $k-white;
-}
-.btn-warning:disabled{
-    color: $k-white;
-}
-.btn-info:disabled{
-    color: $k-white;
-}
+// .btn-warning, .btn-info{
+//     color: $k-white;
+// }
+// .btn-warning:hover{
+//     color: $k-white;
+// }
+// .btn-outline-warning:hover, .btn-outline-warning:active{
+//     color: $k-white;
+// }
+// .btn-outline-info:hover, .btn-outline-info:hover{
+//     color: $k-white;
+// }
+// .btn-warning:disabled{
+//     color: $k-white;
+// }
+// .btn-info:disabled{
+//     color: $k-white;
+// }
