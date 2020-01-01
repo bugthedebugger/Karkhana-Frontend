@@ -64,12 +64,9 @@
 </template>
 
 <script>
-import Logo from "~/components/Logo.vue";
-
 export default {
-  components: {
-    Logo
-  }
+  layout: "portfolio",
+  components: {}
 };
 </script>
 
