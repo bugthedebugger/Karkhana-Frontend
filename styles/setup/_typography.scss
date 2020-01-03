@@ -13,3 +13,8 @@
 $font-weight-medium: 500;
 $font-weight-regular: 400;
 $font-weight-bold: 700;
+
+@font-face {
+    font-family: 'museo';
+    src: url("/fonts/Museo300-Regular.otf") format("opentype");
+ }

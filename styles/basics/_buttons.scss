@@ -30,9 +30,11 @@ $btn-disabled-opacity: 0.75;
 }
 
 .btn-cta{
-  padding: 15px 48px !important;
-  font-size: 24px !important;
-  border-bottom: 3px solid $k-red-hover !important;
+  padding: 14px 74px !important;
+  font-size: 20px !important;
+  font-weight: $font-weight-medium;
+  border-bottom: 3px solid #C22928 !important;
+  line-height: 28px !important;
 }
 
 .icon {
