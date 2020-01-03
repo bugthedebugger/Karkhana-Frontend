@@ -1,0 +1,55 @@
+@import "@/styles/setup/_variables.scss";
+@import "@/styles/setup/_typography";
+
+.slides {
+  width: 100vw;
+  height: 100vh;
+
+  .slide {
+    position: relative;
+
+    .slide-title{
+      position: absolute;
+      bottom: 170px;
+      left: 140px;
+      color: $k-white;
+      font-weight: $font-weight-regular;
+      font-size: 64px;
+    }
+
+    .slide-cta{
+      position: absolute;
+      bottom: 84px;
+      left: 140px;
+    }
+
+    .slide-image {
+      width: 100vw;
+      height: 100vh;
+    }
+  }
+}
+
+// Arrows
+.slider-arrow {
+  position: absolute;
+  height: 57px;
+  width: 57px;
+  border-radius: 100%;
+  background-color: $k-white;
+  text-align: center;
+  line-height: 57px;
+  cursor: pointer;
+}
+
+.arrow-prev {
+  bottom: 159px;
+  right: 139px;
+}
+
+.arrow-next {
+  bottom: 80px;
+  right: 139px;
+}
+
+// slick-prev

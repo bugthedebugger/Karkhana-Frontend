@@ -3,6 +3,7 @@
 
 @import "basics/buttons.scss";
 
+
 // customize bootstrap
 $theme-colors: (
   "primary": $k-red,
@@ -47,3 +48,9 @@ $card-border-radius: 12px;
 // .btn-info:disabled{
 //     color: $k-white;
 // }
+
+body{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}

@@ -1,3 +1,6 @@
-p{
-    color: red;
+@import '@/styles/setup/_variables.scss';
+
+section.events{
+    background-color: $k-red;
+    padding: 20px;
 }

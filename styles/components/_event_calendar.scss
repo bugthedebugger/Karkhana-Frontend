@@ -1,0 +1,147 @@
+@import "@/styles/setup/_variables.scss";
+@import "@/styles/setup/_typography";
+
+$cal-border-radius: 10px;
+$cal-margin: 20px;
+$cal-padding: 60px;
+$cal-header-height: 50px;
+$cal-cell-min-size: 43px;
+$cal-font-family: "Lato", sans-serif;
+
+$evt-width: 308px;
+$evt-background-color: #efefef;
+
+.calendar-container {
+  display: flex;
+  border-radius: $cal-border-radius;
+  margin: $cal-margin;
+  background-color: white;
+  font-family: $cal-font-family;
+  // height: 500px;
+
+  .calendar {
+    flex-grow: 1;
+    padding: $cal-padding;
+    padding-right: $cal-padding/2;
+
+    .cal-header {
+      width: 100%;
+      height: $cal-header-height;
+      display: flex;
+
+      .cal-btn {
+        width: $cal-header-height;
+        height: $cal-header-height;
+        line-height: $cal-header-height;
+        cursor: pointer;
+      }
+
+      .current-month {
+        width: auto;
+        height: $cal-header-height;
+        line-height: $cal-header-height;
+        font-size: 16px;
+        font-weight: $font-weight-bold;
+      }
+    }
+
+    .cal-body {
+      table {
+        width: 100%;
+      }
+      .cell {
+        width: $cal-cell-min-size;
+        height: $cal-cell-min-size;
+        margin: 0 auto;
+        line-height: $cal-cell-min-size;
+        border: solid 1px transparent;
+        text-align: center;
+        transition: all 0.5s ease;
+      }
+
+      .cell-week {
+        font-size: 14px;
+        font-weight: $font-weight-medium;
+        color: #8395ac;
+      }
+
+      .cell-date {
+        font-size: 18px;
+        font-weight: $font-weight-medium;
+        color: #202e43;
+      }
+
+      .cell-empty {
+        // background-color: grey;
+        color: #e3e3e3;
+        cursor: default;
+      }
+
+      .cell-current {
+        background-color: #ffd369;
+        border-radius: 100%;
+      }
+
+      // .cell-active {
+      //   border-radius: 100%;
+      //   border: 1px solid grey;
+      // }
+    }
+  }
+
+  .events {
+    background-color: $evt-background-color;
+    border-top-right-radius: $cal-border-radius;
+    border-bottom-right-radius: $cal-border-radius;
+    width: $evt-width;
+    padding-top: $cal-padding;
+    padding-left: $cal-padding/2;
+    padding-right: $cal-padding/2;
+
+    .events-scroll-area {
+      position: relative;
+      height: 300px;
+    }
+
+    .event-list{
+      margin-top: 35px;
+    }
+
+    .event-list-item {
+      display: inline-block;
+
+      .event-date{
+        font-size: 12px;
+        font-weight: $font-weight-bold;
+        color: #8395AC;
+      }
+
+      .event-start-time {
+        width: 80px;
+        border-right: 3px solid #8395AC;
+        font-size: 14px;
+        font-weight: $font-weight-bold;
+
+      }
+
+      .event-title{
+        font-size: 14px;
+        font-weight: $font-weight-regular;
+        color: #8395AC;
+        padding-left: 15px;
+      }
+
+      .event-location{
+        padding-left: 15px;
+        font-size: 12px;
+        font-style: italic;
+        color: #1DC4AB;
+      }
+
+    }
+
+    .scroll-sign{
+      color: #8395AC;
+    }
+  }
+}
