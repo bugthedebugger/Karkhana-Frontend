@@ -56,39 +56,24 @@
     </div>
 
     <div class="events">
-      Public event | Private event
+      <span class="event-type-dot event-type-dot-public"></span>
+      <span class="event-type">Public event</span>
+      <span class="event-type-dot event-type-dot-private ml-4"></span>
+      <span class="event-type">Private event</span>
       <perfect-scrollbar class="events-scroll-area" v-if="events">
         <div class="event-list">
           <div v-for="(eventsData, date) in events" :key="date">
-            <div class="event-date">{{date}}</div>
+            <div class="event-date">{{date | tommorrow}}</div>
             <div class="event-list-item" v-for="(event, index) in eventsData" :key="index">
-              <!-- <template> -->
               <div class="event-start-time">{{event.startTime}}</div>
               <div class="event-title">{{event.title}}</div>
               <div class="event-location">{{event.location}}</div>
-              <!-- </template> -->
             </div>
-            <!-- <span class="event-date">{{date}}</span> -->
-            <!-- <table v-for="(event, index) in eventsData" :key="index">
-              <tr>
-                <td rowspan="2" style="vertical-align: top; height: 100%">
-                  <div class="event-start-time">{{event.startTime}}</div>
-                </td>
-                <td>
-                  <div class="event-title">{{event.title}}</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="event-location">{{event.location}}</div>
-                </td>
-              </tr>
-            </table>-->
           </div>
         </div>
       </perfect-scrollbar>
-      <div v-else-if="!events && !eventsLoading">No events found</div>
-      <div v-if="eventsLoading">Loading...</div>
+      <div v-else-if="!events && !eventsLoading" class="no-events text-center mt-5">No events found</div>
+      <div v-if="eventsLoading" class="events-loading text-center mt-5">Loading...</div>
       <div class="text-center mt-4 scroll-sign" v-if="events">
         <i class="fal fa-mouse-alt"></i>
       </div>
@@ -128,8 +113,8 @@ export default {
 
     next() {
       this.calendar.add(1, "month");
-      this.initCalendar();
       this.getEvents();
+      this.initCalendar();
     },
 
     previous() {
@@ -140,6 +125,7 @@ export default {
 
     getEvents() {
       this.eventsLoading = true;
+      this.events = null;
       this.$axios.get(calHelper.buildUrl(this.calendar)).then(resp => {
         this.eventsLoading = false;
         this.events = calHelper.formatEventsResonse(resp.data.items);
@@ -148,8 +134,17 @@ export default {
     }
   },
   filters: {
-    padZero: function(value) {
+    padZero: value => {
       return ("" + value).length == 1 ? "0" + value : value;
+    },
+
+    tommorrow: value => {
+      let isTommorrow =
+        value ===
+        moment(new Date())
+          .add(1, "days")
+          .format("D MMM");
+      return isTommorrow ? "Tommorrow, " + value : value;
     }
   }
 };

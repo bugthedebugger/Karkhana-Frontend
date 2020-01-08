@@ -2,14 +2,25 @@ import moment from "moment";
 
 export default {
     formatEventsResonse(eventsData) {
-        if(!eventsData.length) return null;
+        if (!eventsData.length) return null;
+
+        let dateFormat = "D MMM";
         let events = {};
         eventsData.forEach(event => {
-            let date = moment(event.start.dateTime).format("D MMM");
+            let date = moment(event.start.dateTime).format(dateFormat);
             if (events[date]) events[date].push(this.formatSingleEvent(event));
             else events[date] = [this.formatSingleEvent(event)];
         });
-        return events;
+
+        // sort events by date
+        let sortedEvents = {};
+        Object.keys(events).sort(function (a, b) {
+            return moment(a, dateFormat).toDate() - moment(b, dateFormat).toDate();
+        }).forEach(function (key) {
+            sortedEvents[key] = events[key];
+        })
+
+        return sortedEvents;
     },
 
     formatSingleEvent(event) {

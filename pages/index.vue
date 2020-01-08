@@ -4,6 +4,8 @@
       <HomeSlider />
     </section>
 
+    <HomeAbout />
+
     <section class="events">
       <div class="container">
         <h1 class="calendar-title">Event Calendar</h1>
@@ -25,6 +27,7 @@ import EventCalendar from "~/components/EventCalendar";
 import HomeSlider from "~/components/HomeSlider";
 import HomeContact from "~/components/HomeContact";
 import HomePartners from "~/components/HomePartners";
+import HomeAbout from "~/components/HomeAbout";
 import HomeFooter from "~/components/HomeFooter";
 
 export default {
@@ -34,6 +37,7 @@ export default {
     HomeSlider,
     HomeContact,
     HomePartners,
+    HomeAbout,
     HomeFooter
   },
   data() {

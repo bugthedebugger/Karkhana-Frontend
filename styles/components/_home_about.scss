@@ -1,0 +1,106 @@
+@import "@/styles/setup/_variables.scss";
+@import "@/styles/setup/_typography.scss";
+@import "@/styles/setup/_helpers.scss";
+
+.about {
+  position: relative;
+
+  .blob-home-about {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    width: 550px;
+    height: 550px;
+    background-image: url("/images/blob-home-about.svg");
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+
+  .content {
+    h5.about-karkhana {
+      @include k-font(
+        16px,
+        $k-red,
+        $font-weight-semi-bold,
+        28px,
+        $font-poppins
+      );
+    }
+
+    p.about-karkhana-detail {
+      margin-bottom: 230px;
+      @include k-font(
+        18px,
+        $k-black,
+        $font-weight-regular,
+        36px,
+        $font-raleway
+      );
+
+      .first-letter {
+        float: left;
+        margin-right: 13px;
+        @include k-font(
+          128px,
+          $k-black,
+          $font-weight-regular,
+          120px,
+          $font-museo
+        );
+      }
+    }
+    .learn-more {
+      display: inline-block;
+      width: 100%;
+      margin-top: 13px;
+      @include k-font(16px, $k-info, $font-weight-regular, 28px, $font-poppins);
+    }
+
+    .seperator {
+      height: 120px;
+      width: 100%;
+    }
+  }
+
+  .stat {
+    .stat-icon {
+      float: left;
+      width: 95px;
+      margin-right: 40px;
+      i {
+        position: relative;
+        font-size: 75px;
+        @include k-font(75px, $k-text-color-1);
+        img {
+          position: absolute;
+          left: -10px;
+          top: 5px;
+          width: 48px;
+          height: 54px;
+        }
+      }
+    }
+
+    .stat-detail {
+      float: left;
+      .stat-title {
+        @include k-font(
+          24px,
+          $k-black-2,
+          $font-weight-semi-bold,
+          36px,
+          $font-poppins
+        );
+      }
+      .stat-data {
+        @include k-font(
+          24px,
+          $k-grey,
+          $font-weight-semi-bold,
+          36px,
+          $font-poppins
+        );
+      }
+    }
+  }
+}

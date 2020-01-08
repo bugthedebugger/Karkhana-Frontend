@@ -1,19 +1,21 @@
 // Colors
-$k-red: #EE312F;
-$k-blue: #39C2D7;
+$k-red: #ee312f;
+$k-blue: #39c2d7;
 $k-black: #000000;
-$k-yellow: #FBB040;
-$k-white: #FFFFFF;
-$k-green: #6DC067;
-$k-red-hover: #F56E7A;
-$k-red-pressed: #CD2E5A;
+$k-black-2: #202e43;
+$k-yellow: #fbb040;
+$k-white: #ffffff;
+$k-green: #6dc067;
+$k-red-hover: #f56e7a;
+$k-red-pressed: #cd2e5a;
 $k-text-color-1: #444444;
 $k-text-color-2: #727272;
-$k-text-color-3: #BBBBBB;
-$k-success: #16CC74;
-$k-info: #3852F7;
-$k-warning: #FCCF2D;
-$k-calendar-grey: #EFEFEF;
+$k-text-color-3: #bbbbbb;
+$k-success: #16cc74;
+$k-info: #3852f7;
+$k-warning: #fccf2d;
+$k-calendar-grey: #efefef;
+$k-grey: #8395AC;
 $fa-font-path: "/webfonts";
 
 /// Container's maximum width
@@ -28,4 +30,3 @@ $breakpoints: (
   "medium": 768px,
   "large": 1024px
 ) !default;
-

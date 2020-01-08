@@ -1,12 +1,15 @@
-@import "@/styles/setup/_variables.scss";
+@import "@/styles/setup/_variables";
 @import "@/styles/setup/_typography";
+@import "@/styles/setup/_mixins";
 
 $cal-border-radius: 10px;
 $cal-margin: 20px;
 $cal-padding: 60px;
-$cal-header-height: 40px;
+$cal-header-height: 70px;
 $cal-cell-min-size: 43px;
 $cal-font-family: "Lato", sans-serif;
+$cal-text-color: #202e43;
+$cal-text-color-2: #8395ac;
 
 $evt-width: 308px;
 $evt-background-color: #efefef;
@@ -17,7 +20,6 @@ $evt-background-color: #efefef;
   margin: $cal-margin;
   background-color: white;
   font-family: $cal-font-family;
-  // height: 500px;
 
   .calendar {
     flex-grow: 1;
@@ -39,9 +41,13 @@ $evt-background-color: #efefef;
       .current-month {
         width: auto;
         height: $cal-header-height;
-        line-height: $cal-header-height;
-        font-size: 16px;
-        font-weight: $font-weight-bold;
+        @include k-font(
+          16px,
+          $cal-text-color,
+          $font-weight-bold,
+          28px,
+          $font-poppins
+        );
       }
     }
 
@@ -66,24 +72,31 @@ $evt-background-color: #efefef;
           margin-top: -10px;
         }
         .event-dot-public {
-          background-color: $k-red;
+          background-color: $k-success;
         }
       }
 
       .cell-week {
-        font-size: 14px;
-        font-weight: $font-weight-medium;
-        color: #8395ac;
+        @include k-font(
+          14px,
+          $cal-text-color-2,
+          $font-weight-medium,
+          28px,
+          $font-poppins
+        );
       }
 
       .cell-date {
-        font-size: 18px;
-        font-weight: $font-weight-medium;
-        color: #202e43;
+        @include k-font(
+          18px,
+          $cal-text-color,
+          $font-weight-medium,
+          false,
+          $font-poppins
+        );
       }
 
       .cell-empty {
-        // background-color: grey;
         color: #e3e3e3;
         cursor: default;
       }
@@ -92,11 +105,6 @@ $evt-background-color: #efefef;
         background-color: #ffd369;
         border-radius: 100%;
       }
-
-      // .cell-active {
-      //   border-radius: 100%;
-      //   border: 1px solid grey;
-      // }
     }
   }
 
@@ -108,6 +116,28 @@ $evt-background-color: #efefef;
     padding-top: $cal-padding;
     padding-left: $cal-padding/2;
     padding-right: $cal-padding/2;
+    padding-bottom: 10px;
+
+    .event-type {
+      @include k-font(12px, #202e43, $font-weight-bold, 28px, $font-lato);
+    }
+
+    .event-type-dot {
+      display: inline-block;
+      $size: 8px;
+      width: $size;
+      height: $size;
+      margin-right: 12px;
+      border-radius: 100%;
+    }
+
+    .event-type-dot-public {
+      background-color: $k-success;
+    }
+
+    .event-type-dot-private {
+      background-color: $k-warning;
+    }
 
     .events-scroll-area {
       position: relative;
@@ -152,40 +182,6 @@ $evt-background-color: #efefef;
         color: #1dc4ab;
       }
     }
-
-    // .event-list-item {
-    //   display: inline-block;
-
-    //   .event-date {
-    //     font-size: 12px;
-    //     font-weight: $font-weight-bold;
-    //     color: #8395ac;
-    //   }
-
-    //   .event-start-time {
-    //     width: 80px;
-    //     height: 100%;
-    //     border-right: 3px solid #8395ac;
-    //     font-size: 14px;
-    //     font-weight: $font-weight-bold;
-    //     margin-top: 4px;
-    //   }
-
-    //   .event-title {
-    //     font-size: 14px;
-    //     font-weight: $font-weight-regular;
-    //     color: #8395ac;
-    //     padding-left: 15px;
-    //   }
-
-    //   .event-location {
-    //     padding-left: 15px;
-    //     margin-top: 11px;
-    //     font-size: 12px;
-    //     font-style: italic;
-    //     color: #1dc4ab;
-    //   }
-    // }
 
     .scroll-sign {
       color: #8395ac;

@@ -10,11 +10,19 @@
       <div class="row">
         <div class="col">
           <div class="navlinks d-flex">
-            <div class="navlink-item">Products</div>
-            <div class="navlink-item">Blog</div>
-            <div class="navlink-item">About</div>
-            <div class="navlink-item">Contact</div>
-            <div class="navlink-item ml-auto mr-0">
+            <div class="navlink-item">
+              <a href="#">Products</a>
+            </div>
+            <div class="navlink-item">
+              <a href="#">Blog</a>
+            </div>
+            <div class="navlink-item">
+              <a href="#">About</a>
+            </div>
+            <div class="navlink-item">
+              <a href="#">Contact</a>
+            </div>
+            <div class="navlink-item ml-auto mr-0" @click="scrollToTop">
               Top
               <i class="fal fa-angle-up icon-up"></i>
             </div>
@@ -82,7 +90,12 @@
 
 <script>
 export default {
-  name: "HomeFooter"
+  name: "HomeFooter",
+  methods:{
+    scrollToTop(){
+      window.scrollTo(0, 0);
+    }
+  }
 };
 </script>
 

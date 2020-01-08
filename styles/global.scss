@@ -3,7 +3,6 @@
 
 @import "basics/buttons.scss";
 
-
 // customize bootstrap
 $theme-colors: (
   "primary": $k-red,
@@ -11,7 +10,7 @@ $theme-colors: (
   "warning": $k-warning,
   "success": $k-success
 );
-$headings-font-family: museo, serif;
+$headings-font-family: $font-museo;
 
 // card
 // $card-bg: $k-red;
@@ -20,7 +19,6 @@ $card-border-radius: 12px;
 // $card-cap-color: $k-white;
 // $card-spacer-y: 43px;
 // $card-spacer-x: 37px;
-
 
 // navbar
 $nav-link-padding-x: 30px;
@@ -31,31 +29,12 @@ $nav-link-padding-x: 30px;
 @import "vendor/scss/light.scss";
 @import "vendor/scss/brands.scss";
 
-
-// overwrite css
-
-// buttons
-// .btn-warning, .btn-info{
-//     color: $k-white;
-// }
-// .btn-warning:hover{
-//     color: $k-white;
-// }
-// .btn-outline-warning:hover, .btn-outline-warning:active{
-//     color: $k-white;
-// }
-// .btn-outline-info:hover, .btn-outline-info:hover{
-//     color: $k-white;
-// }
-// .btn-warning:disabled{
-//     color: $k-white;
-// }
-// .btn-info:disabled{
-//     color: $k-white;
-// }
-
-body{
+body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }
