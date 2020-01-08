@@ -1,6 +1,8 @@
-// -----------------------------------------------------------------------------
-// This file contains all application-wide Sass functions.
-// -----------------------------------------------------------------------------
+
+@function toRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
 
 /// Native `url(..)` function wrapper
 /// @param {String} $base - base URL for the asset

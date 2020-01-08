@@ -3,7 +3,7 @@
     <div class="blob-home-about"></div>
     <div class="container pt-5 pb-5">
       <div class="row">
-        <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12 content">
+        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 content">
           <h5 class="about-karkhana">ABOUT KARKHANA</h5>
           <p class="about-karkhana-detail">
             <span class="first-letter">K</span>
@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 pics"></div>
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 pics"></div>
       </div>
     </div>
   </section>

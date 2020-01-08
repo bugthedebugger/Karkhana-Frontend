@@ -1,10 +1,13 @@
-@import "@/styles/setup/_variables.scss";
+@import "@/styles/setup/_variables";
 @import "@/styles/setup/_typography";
+@import "@/styles/setup/_mixins";
+@import "@/styles/setup/_helpers";
+@import "@/styles/setup/_functions";
 
 .slides {
   width: 100vw;
   height: 100vh;
-  .overlay{
+  .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -18,18 +21,26 @@
   .slide {
     position: relative;
 
-    .slide-title{
+    .slide-title {
       position: absolute;
       bottom: 170px;
       left: 140px;
-      color: $k-white;
-      max-width: 1057px;
-      font-weight: $font-weight-regular;
-      font-size: 4rem;
+      max-width: toRem(1057px);
+      // font: Regular 64px/77px Museo 700;
+      @include k-font(
+        toRem(64px),
+        $k-white,
+        $font-weight-regular,
+        toRem(77px),
+        $font-museo
+      );
+      // color: $k-white;
+      // font-weight: $font-weight-regular;
+      // font-size: 4rem;
       z-index: 2;
     }
 
-    .slide-cta{
+    .slide-cta {
       position: absolute;
       bottom: 84px;
       left: 140px;

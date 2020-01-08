@@ -1,6 +1,8 @@
 @import "@/styles/setup/_variables.scss";
 @import "@/styles/setup/_typography.scss";
+@import "@/styles/setup/_mixins.scss";
 @import "@/styles/setup/_helpers.scss";
+@import "@/styles/setup/_functions";
 
 .about {
   position: relative;
@@ -20,7 +22,7 @@
     h5.about-karkhana {
       margin-top: 180px;
       @include k-font(
-        16px,
+        toRem(16px),
         $k-red,
         $font-weight-semi-bold,
         28px,
@@ -31,7 +33,7 @@
     p.about-karkhana-detail {
       margin-bottom: 190px;
       @include k-font(
-        18px,
+        toRem(18px),
         $k-black,
         $font-weight-regular,
         36px,
@@ -42,7 +44,7 @@
         float: left;
         margin-right: 13px;
         @include k-font(
-          128px,
+          toRem(128px),
           $k-black,
           $font-weight-regular,
           100px,
@@ -54,7 +56,7 @@
       display: inline-block;
       width: 100%;
       margin-top: 13px;
-      @include k-font(16px, $k-info, $font-weight-regular, 28px, $font-poppins);
+      @include k-font(toRem(16px), $k-info, $font-weight-regular, 28px, $font-poppins);
     }
 
     .seperator {
@@ -66,15 +68,13 @@
   .stat {
     .stat-icon {
       float: left;
-      width: 95px;
-      margin-right: 40px;
+      margin-right: toRem(30px);
       i {
         position: relative;
-        font-size: 75px;
-        @include k-font(75px, $k-text-color-1);
+        @include k-font(toRem(75px), $k-text-color-1);
         img {
           position: absolute;
-          left: -10px;
+          left: -15px;
           top: 5px;
           width: 48px;
           height: 54px;
@@ -85,8 +85,9 @@
     .stat-detail {
       float: left;
       .stat-title {
+        min-width: 100px;
         @include k-font(
-          24px,
+          toRem(24px),
           $k-black-2,
           $font-weight-semi-bold,
           36px,
@@ -95,7 +96,7 @@
       }
       .stat-data {
         @include k-font(
-          24px,
+          toRem(24px),
           $k-grey,
           $font-weight-semi-bold,
           36px,

@@ -4,12 +4,7 @@
 
     <HomeAbout />
 
-    <section class="events">
-      <div class="container">
-        <h1 class="calendar-title">Event Calendar</h1>
-        <EventCalendar />
-      </div>
-    </section>
+    <HomeEvents />
 
     <HomePartners />
 
@@ -21,21 +16,21 @@
 
 <script>
 import axios from "axios";
-import EventCalendar from "~/components/EventCalendar";
 import HomeSlider from "~/components/HomeSlider";
+import HomeAbout from "~/components/HomeAbout";
+import HomeEvents from "~/components/HomeEvents";
 import HomeContact from "~/components/HomeContact";
 import HomePartners from "~/components/HomePartners";
-import HomeAbout from "~/components/HomeAbout";
 import HomeFooter from "~/components/HomeFooter";
 
 export default {
   layout: "portfolio",
   components: {
-    EventCalendar,
     HomeSlider,
+    HomeAbout,
+    HomeEvents,
     HomeContact,
     HomePartners,
-    HomeAbout,
     HomeFooter
   },
   data() {

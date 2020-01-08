@@ -30,7 +30,6 @@ $line-color: #707070;
 
   .who-are-we {
     @include k-font(24px, $k-white, $font-weight-regular, 28px);
-    // font: Regular 16px/28px Raleway;
   }
 
   .who-are-we-content {
@@ -40,7 +39,7 @@ $line-color: #707070;
 
   .links-list {
     li {
-      @include k-font(16px, $k-white, $font-weight-medium, 48px, $font-poppins);
+      @include k-font(16px, $k-white, $font-weight-medium, 40px, $font-poppins);
     }
   }
 

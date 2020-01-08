@@ -38,7 +38,7 @@
             class="who-are-we-content"
           >We come from a spectrum of engineers, designers, artists, scientists, programmers; that turn the classroom into a lab for discovery!</p>
 
-          <p>
+          <p class="mb-0">
             <i class="fal fa-copyright"></i>
             2020. Copyright Karkhana Pvt Ltd. All Rights Reserved.
           </p>

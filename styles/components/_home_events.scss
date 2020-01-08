@@ -1,0 +1,18 @@
+@import "@/styles/setup/_variables";
+@import "@/styles/setup/_typography";
+@import "@/styles/setup/_mixins";
+
+section.events {
+  background-color: $k-red;
+  padding: 150px;
+  padding-bottom: 125px;
+
+  .calendar-title {
+    font-weight: $font-weight-regular;
+    font-size: 36px;
+    font-family: museo;
+    color: $k-white;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}

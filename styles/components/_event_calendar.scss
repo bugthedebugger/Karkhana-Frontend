@@ -11,6 +11,7 @@ $cal-font-family: "Lato", sans-serif;
 $cal-text-color: #202e43;
 $cal-text-color-2: #8395ac;
 $cal-disabled-cell-color: #e3e3e3;
+$cal-max-width: 1160px;
 
 $evt-width: 308px;
 $evt-background-color: #efefef;
@@ -19,6 +20,8 @@ $evt-background-color: #efefef;
   display: flex;
   border-radius: $cal-border-radius;
   margin: $cal-margin;
+  margin: 0 auto;
+  max-width: $cal-max-width;
   background-color: white;
   font-family: $cal-font-family;
   cursor: default;

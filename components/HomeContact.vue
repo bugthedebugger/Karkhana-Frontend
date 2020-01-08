@@ -16,7 +16,6 @@
                 Want to lean more about what we do and partner with us or just want to say Hello.
                 Our line is always open. We would love to hear from you.
                 <br />
-                <br />
                 <br />You can call us at:
                 <div class="pl-4">
                   +977 01 4444444
