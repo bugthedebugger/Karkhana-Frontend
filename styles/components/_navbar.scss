@@ -1,6 +1,25 @@
 @import "@/styles/setup/_variables.scss";
 @import "@/styles/setup/_typography";
 
-.nav-link{
+.nav-link {
   color: $k-white;
+  margin-right: 3.75rem;
+  padding-top: 48px;
+}
+
+.nav-link:hover {
+  color: $k-white;
+}
+
+.nav-item-social {
+  margin-right: 13px;
+  a {
+    color: $k-white;
+    margin-right: 20px;
+  }
+}
+
+
+.navbar-toggler{
+  color: white;
 }

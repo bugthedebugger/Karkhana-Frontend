@@ -1,0 +1,68 @@
+@mixin k-font(
+  $size: false,
+  $colour: false,
+  $weight: false,
+  $lh: false,
+  $family: false
+) {
+  @if $size {
+    font-size: $size;
+  }
+  @if $colour {
+    color: $colour;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $lh {
+    line-height: $lh;
+  }
+  @if $family {
+    font-family: $family;
+  }
+}
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+/// @link https://css-tricks.com/snippets/sass/simplifying-contexts-events/
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+/// Centers Vertically and Horizontally
+@mixin center-vertically-and-horizontally {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+//Centers vertically
+@mixin center-vertically {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

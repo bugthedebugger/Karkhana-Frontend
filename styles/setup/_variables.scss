@@ -1,21 +1,31 @@
+// Colors
 $k-red: #EE312F;
 $k-blue: #39C2D7;
 $k-black: #000000;
 $k-yellow: #FBB040;
 $k-white: #FFFFFF;
 $k-green: #6DC067;
-
 $k-red-hover: #F56E7A;
 $k-red-pressed: #CD2E5A;
 $k-text-color-1: #444444;
 $k-text-color-2: #727272;
 $k-text-color-3: #BBBBBB;
-
 $k-success: #16CC74;
 $k-info: #3852F7;
 $k-warning: #FCCF2D;
-
 $k-calendar-grey: #EFEFEF;
-
-// font awesome
 $fa-font-path: "/webfonts";
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  "small": 320px,
+  "medium": 768px,
+  "large": 1024px
+) !default;
+

@@ -6,9 +6,16 @@
 
     <section class="events">
       <div class="container">
+        <h1 class="calendar-title">Event Calendar</h1>
         <EventCalendar />
       </div>
     </section>
+
+    <HomePartners />
+
+    <HomeContact />
+
+    <HomeFooter />
   </div>
 </template>
 
@@ -16,9 +23,19 @@
 import axios from "axios";
 import EventCalendar from "~/components/EventCalendar";
 import HomeSlider from "~/components/HomeSlider";
+import HomeContact from "~/components/HomeContact";
+import HomePartners from "~/components/HomePartners";
+import HomeFooter from "~/components/HomeFooter";
+
 export default {
   layout: "portfolio",
-  components: { EventCalendar, HomeSlider },
+  components: {
+    EventCalendar,
+    HomeSlider,
+    HomeContact,
+    HomePartners,
+    HomeFooter
+  },
   data() {
     return {
       slickOptions: {

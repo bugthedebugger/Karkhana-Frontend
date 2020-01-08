@@ -1,20 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
-
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6 {
-//     font-family: museo;
-// }
-
+@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
 
 $font-weight-medium: 500;
 $font-weight-regular: 400;
 $font-weight-bold: 700;
+$font-weight-semi-bold: 600;
 
 @font-face {
-    font-family: 'museo';
-    src: url("/fonts/Museo300-Regular.otf") format("opentype");
- }
+  font-family: "museo";
+  src: url("/fonts/Museo300-Regular.otf") format("opentype");
+}
+
+$font-poppins: poppins;
+$font-museo: museo;
+$font-raleway: "Raleway", sans-serif;
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $font-museo;
+}
+
+a {
+  font-family: $font-poppins;
+  color: $k-white;
+}
+
+p {
+  font-family: $font-raleway;
+}

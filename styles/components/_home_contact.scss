@@ -1,0 +1,67 @@
+@import "@/styles/setup/_variables.scss";
+@import "@/styles/setup/_typography.scss";
+
+$text-color: #444444;
+
+section.contact {
+  position: relative;
+  margin-top: 200px;
+  padding-top: 150px;
+  background-color: $k-info;
+  color: $text-color;
+  .waves {
+    position: absolute;
+    left: 0;
+    top: -200px;
+    height: 340px;
+    width: 100%;
+    background-image: url("/images/wave.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .contact-card {
+    // padding-left: 56px;
+    // padding-bottom: 37px;
+    // padding-top: 72px;
+    // padding-right: 65px;
+
+    padding-left: 3.5rem;
+    padding-bottom: 2.3125rem;
+    padding-top: 4.5rem;
+    padding-right: 4.0625rem;
+  }
+
+  .card-icon {
+    padding-left: 20px;
+    margin-bottom: 50px;
+    i {
+      position: relative;
+      font-size: 75px;
+      img {
+        position: absolute;
+        left: -20px;
+        bottom: -20px;
+        width: 48px;
+        height: 54px;
+      }
+    }
+  }
+
+  .card-title {
+    margin-top: 50px;
+    font-weight: $font-weight-regular;
+    font-size: 36px;
+    font-family: museo;
+  }
+
+  .card-content {
+    font-weight: $font-weight-regular;
+    font-size: 16px;
+    font-family: $font-raleway;
+  }
+
+  .btn-take-a-tour {
+    margin-top: 41px;
+  }
+}

@@ -20,9 +20,13 @@ export default {
       { src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js' }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
+
+  env: {
+    CAL_API_KEY: "AIzaSyBepIVJdLIVOAHb2afbyVAxcF-sqJpy3dM",
+    CAL_BASE_URL: "https://www.googleapis.com/calendar/v3/calendars",
+    CAL_ID: "almighty569@gmail.com"
+  },
+
   loading: false,
   /*
   ** Global CSS

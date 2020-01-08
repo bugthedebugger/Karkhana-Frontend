@@ -4,6 +4,16 @@
 .slides {
   width: 100vw;
   height: 100vh;
+  .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+  }
 
   .slide {
     position: relative;
@@ -13,19 +23,23 @@
       bottom: 170px;
       left: 140px;
       color: $k-white;
+      max-width: 1057px;
       font-weight: $font-weight-regular;
-      font-size: 64px;
+      font-size: 4rem;
+      z-index: 2;
     }
 
     .slide-cta{
       position: absolute;
       bottom: 84px;
       left: 140px;
+      z-index: 2;
     }
 
     .slide-image {
       width: 100vw;
       height: 100vh;
+      background-size: cover;
     }
   }
 }

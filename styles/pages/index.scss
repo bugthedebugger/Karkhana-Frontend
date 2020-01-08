@@ -1,6 +1,16 @@
-@import '@/styles/setup/_variables.scss';
+@import "@/styles/setup/_variables.scss";
+@import "@/styles/setup/_typography.scss";
 
-section.events{
-    background-color: $k-red;
-    padding: 20px;
+section.events {
+  background-color: $k-red;
+  padding: 150px;
+  padding-bottom: 125px;
+
+  .calendar-title {
+    font-weight: $font-weight-regular;
+    font-size: 36px;
+    font-family: museo;
+    color: $k-white;
+    text-align: center;
+  }
 }
