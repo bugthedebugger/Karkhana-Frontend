@@ -3,25 +3,7 @@
 
 @import "basics/buttons.scss";
 
-// customize bootstrap
-$theme-colors: (
-  "primary": $k-red,
-  "info": $k-info,
-  "warning": $k-warning,
-  "success": $k-success
-);
-$headings-font-family: $font-museo;
-
-// card
-// $card-bg: $k-red;
-$card-border-radius: 12px;
-// $card-color: $k-white;
-// $card-cap-color: $k-white;
-// $card-spacer-y: 43px;
-// $card-spacer-x: 37px;
-
-// navbar
-$nav-link-padding-x: 30px;
+@import "setup/custom_bootstrap";
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "vendor/scss/fontawesome.scss";

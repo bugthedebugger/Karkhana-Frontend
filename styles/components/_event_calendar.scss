@@ -10,6 +10,7 @@ $cal-cell-min-size: 43px;
 $cal-font-family: "Lato", sans-serif;
 $cal-text-color: #202e43;
 $cal-text-color-2: #8395ac;
+$cal-disabled-cell-color: #e3e3e3;
 
 $evt-width: 308px;
 $evt-background-color: #efefef;
@@ -20,6 +21,7 @@ $evt-background-color: #efefef;
   margin: $cal-margin;
   background-color: white;
   font-family: $cal-font-family;
+  cursor: default;
 
   .calendar {
     flex-grow: 1;
@@ -97,8 +99,7 @@ $evt-background-color: #efefef;
       }
 
       .cell-empty {
-        color: #e3e3e3;
-        cursor: default;
+        color: $cal-disabled-cell-color;
       }
 
       .cell-current {

@@ -2,11 +2,11 @@
   <div class="calendar-container">
     <div class="calendar">
       <div class="cal-header">
-        <div class="cal-btn cal-btn-left mr-auto text-left" @click="previous">
+        <div class="cal-btn cal-btn-left mr-auto text-left pl-2" @click="previous">
           <i class="fal fa-chevron-left"></i>
         </div>
         <div class="current-month">{{calendar.format("MMM YYYY")}}</div>
-        <div class="cal-btn cal-btn-right ml-auto text-right" @click="next">
+        <div class="cal-btn cal-btn-right ml-auto text-right pr-2" @click="next">
           <i class="fal fa-chevron-right"></i>
         </div>
       </div>

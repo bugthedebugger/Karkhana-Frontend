@@ -1,8 +1,6 @@
 <template>
   <div>
-    <section class="home-slider">
-      <HomeSlider />
-    </section>
+    <HomeSlider />
 
     <HomeAbout />
 

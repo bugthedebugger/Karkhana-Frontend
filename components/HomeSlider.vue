@@ -1,20 +1,22 @@
 <template>
-  <section class="slides">
-    <div class="content">
-      <VueSlickCarousel v-bind="sliderSettings" ref="carousel">
-        <div class="slide" v-for="(slide, index) in slides" :key="index">
-          <h1 class="slide-title">{{slide.title}}</h1>
-          <div class="slide-image" :style="'background-image: url(' + slide.image + ')'"></div>
-          <div class="overlay"></div>
-          <button class="btn btn-primary btn-cta slide-cta">{{slide.cta}}</button>
-        </div>
-      </VueSlickCarousel>
+  <section class="home-slider">
+    <div class="slides">
+      <div class="content">
+        <VueSlickCarousel v-bind="sliderSettings" ref="carousel">
+          <div class="slide" v-for="(slide, index) in slides" :key="index">
+            <h1 class="slide-title">{{slide.title}}</h1>
+            <div class="slide-image" :style="'background-image: url(' + slide.image + ')'"></div>
+            <div class="overlay"></div>
+            <button class="btn btn-primary btn-cta slide-cta">{{slide.cta}}</button>
+          </div>
+        </VueSlickCarousel>
 
-      <div class="slider-arrow arrow-prev" @click="prev">
-        <i class="fas fa-chevron-left"></i>
-      </div>
-      <div class="slider-arrow arrow-next" @click="next">
-        <i class="fas fa-chevron-right"></i>
+        <div class="slider-arrow arrow-prev" @click="prev">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="slider-arrow arrow-next" @click="next">
+          <i class="fas fa-chevron-right"></i>
+        </div>
       </div>
     </div>
   </section>

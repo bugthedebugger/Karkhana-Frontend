@@ -1,0 +1,46 @@
+@import "setup/variables";
+@import "setup/typography";
+
+// customize bootstrap
+$theme-colors: (
+  "primary": $k-red,
+  "info": $k-info,
+  "warning": $k-warning,
+  "success": $k-success
+);
+$headings-font-family: $font-museo;
+
+/* set the overriding variables */
+$grid-breakpoints: (
+  xxxs: 0,
+  xxs: 320px,
+  xs: 568px,
+  sm: 667px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px,
+  xxxl: 1600px
+);
+$container-max-widths: (
+  xxxs: 0,
+  xxs: 320px,
+  xs: 568px,
+  sm: 667px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px,
+  xxxl: 1600px
+);
+
+// card
+// $card-bg: $k-red;
+$card-border-radius: 12px;
+// $card-color: $k-white;
+// $card-cap-color: $k-white;
+// $card-spacer-y: 43px;
+// $card-spacer-x: 37px;
+
+// navbar
+$nav-link-padding-x: 30px;
