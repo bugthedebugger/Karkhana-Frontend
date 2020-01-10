@@ -117,7 +117,7 @@ export default {
   },
 
   mounted() {
-    window.addEventListener("scroll", this.updateScroll);
+    // document.addEventListener("scroll", this.updateScroll);
   },
 
   methods: {
@@ -125,15 +125,16 @@ export default {
       this.selectedLocale = this.locales[index];
     },
     updateScroll() {
-      this.scrollPosition = window.scrollY;
-      console.log(this.scrollPosition);
+      // this.scrollPosition = document.scrollY;
+      // console.log(this.scrollPosition);
     }
   },
 
   computed: {
     opaqueNav() {
-      let navHeight = 90;
-      return this.scrollPosition > window.innerHeight - navHeight;
+      return false;
+      // let navHeight = 90;
+      // return this.scrollPosition > document.innerHeight - navHeight;
     }
   }
 };
