@@ -1,15 +1,12 @@
 <template>
-  <div class="container">
-    <div>
-      <h1>About</h1>
-    </div>
-  </div>
+  <AboutHistory />
 </template>
 
 <script>
-
+import AboutHistory from "~/components/AboutHistory";
 export default {
   components: {
+    AboutHistory
   }
 };
 </script>

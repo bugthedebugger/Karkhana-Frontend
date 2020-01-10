@@ -1,10 +1,49 @@
 @import "@/styles/setup/_variables.scss";
 @import "@/styles/setup/_typography";
+@import "@/styles/setup/_mixins";
+
+.navbar-scroll {
+  background-color: $k-white;
+  padding-top: 0;
+  padding-bottom: 0;
+  .nav-link {
+    padding-top: 28px;
+    margin-bottom: 28px;
+    padding-bottom: 0;
+    color: $k-text-color-2;
+  }
+
+  .logo-nav {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  a:hover {
+    color: $k-text-color-2;
+  }
+
+  .nav-item-social {
+    a {
+      color: $k-text-color-2;
+    }
+
+    a:hover {
+      color: $k-text-color-2;
+    }
+  }
+}
+
+.logo-nav {
+  width: 120px;
+  height: 40px;
+  margin-top: 33px;
+}
 
 .nav-link {
   color: $k-white;
   margin-right: 3.75rem;
   padding-top: 48px;
+  margin-bottom: 30px;
 }
 
 .nav-link:hover {
@@ -19,7 +58,88 @@
   }
 }
 
-
-.navbar-toggler{
-  color: white;
+.navbar-toggler {
+  color: $k-white;
 }
+
+.locale-img {
+  width: 24px;
+  margin-right: 12px;
+}
+
+.locale-img-selected {
+  width: 24px;
+}
+
+.products-menu {
+  width: 670px !important;
+
+  .product-category {
+    // margin-right: 78px;
+  }
+
+  .product-circle {
+    $size: 60px;
+    height: $size;
+    width: $size;
+    margin: 0 auto;
+    margin-top: 43px;
+    border-radius: 100%;
+  }
+
+  .product-category-name {
+    text-align: center;
+    @include k-font(
+      toRem(16px),
+      false,
+      $font-weight-medium,
+      toRem(84px),
+      $font-poppins
+    );
+  }
+
+  .product-category-science {
+    .product-circle {
+      background-color: $k-blue;
+    }
+
+    .product-category-name {
+      color: $k-blue;
+    }
+  }
+
+  .product-category-computing {
+    .product-circle {
+      background-color: $k-success;
+    }
+
+    .product-category-name {
+      color: $k-success;
+    }
+  }
+
+  .product-category-make {
+    .product-circle {
+      background-color: $k-warning;
+    }
+
+    .product-category-name {
+      color: $k-warning;
+    }
+  }
+}
+
+// Chevron down instead of caret for dropdown
+[data-toggle="dropdown"]:after {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: $font-weight-regular;
+  padding-left: 8px;
+  content: "\f078";
+}
+.dropdown-toggle {
+  display: flex;
+}
+.dropdown-toggle:after {
+  border: none;
+}
+//-----------END-------------------------------
