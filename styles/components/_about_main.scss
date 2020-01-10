@@ -1,0 +1,128 @@
+@import "@/styles/setup/_variables.scss";
+@import "@/styles/setup/_typography.scss";
+@import "@/styles/setup/_mixins.scss";
+@import "@/styles/setup/_helpers.scss";
+@import "@/styles/setup/_functions";
+
+.about-main {
+  position: relative;
+  margin-top: 90px;
+
+  .karkhana-team {
+    color: $k-white;
+    background-color: $k-red;
+
+    h1.title {
+      margin-top: 140px;
+      @include k-font(
+        toRem(64px),
+        $k-white,
+        $font-weight-regular,
+        toRem(77px),
+        $font-museo
+      );
+    }
+
+    p.description {
+      width: 555px;
+      margin-top: 26px;
+      @include k-font(
+        toRem(24px),
+        $k-white,
+        $font-weight-medium,
+        36px,
+        $font-poppins
+      );
+    }
+
+    .about-video-thumbnail {
+      position: relative;
+      width: 630px;
+      height: 354px;
+      margin-top: 90px;
+      border-radius: 5px;
+      background-image: url("/images/karkhana-team.png");
+      box-shadow: 1px 17px 17px -6px rgba(71, 71, 71, 0.75);
+
+      .play {
+        font-size: toRem(70px);
+        z-index: 2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .about-video-thumbnail::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 630px;
+      height: 354px;
+      background-color: $k-black;
+      opacity: 0.3;
+      z-index: 1;
+    }
+  }
+
+  .red-wave {
+    width: 100vw;
+    height: 430px;
+    background-image: url("/images/red-wave.svg");
+    background-repeat: no-repeat;
+    margin-top: -5px;
+  }
+
+  .company-ethics {
+    .card {
+      margin-top: -430px;
+      border: none;
+      .card-img-top {
+        width: 100%;
+      }
+
+      .card-body {
+        padding: 56px 69px 69px 69px;
+        box-shadow: 0px 19px 70px 0px rgba(70, 69, 69, 0.75);
+      }
+    }
+
+    .more-content{
+      margin-top: -50px;
+      margin-left: 50px;
+    }
+
+    .title {
+      @include k-font(
+        toRem(36px),
+        $k-text-color-1,
+        $font-weight-regular,
+        toRem(43px),
+        $font-museo
+      );
+    }
+
+    .subtitle {
+      font: Medium 24px/36px Raleway;
+      @include k-font(
+        toRem(24px),
+        $k-text-color-1,
+        $font-weight-medium,
+        toRem(36px),
+        $font-raleway
+      );
+    }
+
+    .content {
+      @include k-font(
+        toRem(18px),
+        $k-text-color-4,
+        $font-weight-regular,
+        toRem(36px),
+        $font-raleway
+      );
+    }
+  }
+}

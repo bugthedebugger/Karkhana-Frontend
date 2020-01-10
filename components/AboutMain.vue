@@ -1,0 +1,101 @@
+<template>
+  <section class="about-main">
+    <div class="karkhana-team">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1 class="title">The Karkhana Team</h1>
+            <p
+              class="description"
+            >Behind every small and mid-size business are great people. Meet the people behind ours.</p>
+          </div>
+          <div class="col">
+            <div class="ml-auto about-video-thumbnail">
+              <i class="fal fa-play-circle play"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="red-wave"></div>
+
+    <div class="company-ethics">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <img
+                class="card-img-top"
+                src="https://images.unsplash.com/photo-1430990480609-2bf7c02a6b1a"
+              />
+              <div class="card-body">
+                <h2 class="title mt-4">Our Vision</h2>
+                <p class="content">
+                  We created Karkhana to nurture a spirit of innovating locally so as to make a
+                  global impact. We want to empower people with the skills &amp; attitudes that will
+                  help them build their future and the future of their community.
+                </p>
+
+                <h2 class="title mt-5">Our Mission</h2>
+                <h3 class="subtitle mb-3">How will we achieve our vision? We will make learning fun!</h3>
+                <p class="content">
+                  We will do this by showing children creative ways of using science and technology.
+                  Children will learn how science and technology can help them solve the problems in
+                  their own lives, in their community, in their country, and globally.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="more-content">
+              <h2 class="title mb-5">Our Values</h2>
+              <h3 class="subtitle">We exist for our people</h3>
+              <p class="content">
+                Karkhana’s first and biggest responsibility is to its own team. Only with an honest
+                understanding of individual aspirations can we achieve our collective mission.
+              </p>
+
+              <h3 class="subtitle">We push boundaries in everything we do</h3>
+              <p class="content">
+                In our work we try to go past what we already know and break new ground.
+                We have a commitment to relentlessly looking for the real edge of what is
+                possible within our geographical and socio-economic constraints.
+              </p>
+
+              <h3 class="subtitle">We evoke emotions through our work</h3>
+              <p class="content">
+                The best learning happens when our learning experiences are emotionally rich and meaningful.
+                The best learning experiences are created by people who feel emotionally engaged with their work.
+              </p>
+
+              <h3 class="subtitle">We share beyond to catalyze change</h3>
+              <p class="content">
+                Realizing our vision requires more than our effort.
+                So we share our knowledge and enthusiasm freely to catalyze other institutions
+                and individuals that want to walk the same path as us.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pt-5 pb-5">
+      <div class="col-md-12"></div>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "AboutMain",
+  data() {
+    return {};
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/styles/components/_about_main.scss";
+</style>

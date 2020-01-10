@@ -1,9 +1,9 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg" :class="{'navbar-scroll': opaqueNav}">
+  <nav class="navbar fixed-top navbar-expand-lg" :class="{'navbar-scroll': opaque}">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <nuxt-link to="/" class="navbar-brand">
         <img src="/images/logo-nav.png" class="logo-nav" />
-      </a>
+      </nuxt-link>
 
       <button
         class="navbar-toggler"
@@ -110,12 +110,14 @@ export default {
         { name: "English(UK)", image: "locale-en.svg", locale: "en" },
         { name: "Nepali", image: "locale-np.svg", locale: "np" }
       ],
-      scrollPosition: null
+      scrollPosition: null,
+      opaque: false
     };
   },
 
   created() {
     this.selectedLocale = this.locales[0];
+    this.opaque = this.$route.name !== "index";
   },
 
   mounted() {
@@ -138,6 +140,12 @@ export default {
       return false;
       // let navHeight = 90;
       // return this.scrollPosition > document.innerHeight - navHeight;
+    }
+  },
+
+  watch: {
+    $route(to, from) {
+      this.opaque = to.name !== "index";
     }
   }
 };

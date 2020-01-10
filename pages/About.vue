@@ -1,12 +1,18 @@
 <template>
-  <AboutHistory />
+  <div>
+    <AboutMain />
+    <AboutHistory />
+  </div>
 </template>
 
 <script>
+import AboutMain from "~/components/AboutMain";
 import AboutHistory from "~/components/AboutHistory";
 export default {
+  layout: "portfolio",
   components: {
-    AboutHistory
+    AboutHistory,
+    AboutMain
   }
 };
 </script>
