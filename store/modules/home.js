@@ -2,9 +2,12 @@ import axios from 'axios';
 
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-const state = {
-    sliderData: [],
-    lastUpdatedAt: null
+const state = () => {
+    return {
+        sliderData: [],
+        lastUpdatedAt: null
+    }
+
 };
 
 const getters = {

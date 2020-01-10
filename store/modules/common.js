@@ -2,9 +2,11 @@ import axios from 'axios';
 
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-const state = {
-    locale: "en",
-    lastUpdatedAt: null
+const state = () => {
+    return {
+        locale: "en",
+        lastUpdatedAt: null
+    }
 };
 
 const getters = {

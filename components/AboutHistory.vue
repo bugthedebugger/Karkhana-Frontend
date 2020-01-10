@@ -1,69 +1,40 @@
 <template>
   <section class="about-history">
-    <div class="active-history" :style="'background-image: url(' + activeSlide.image + ')'"></div>
-    <div class="history-list">
-      <VueSlickCarousel v-bind="sliderSettings" ref="carousel" @beforeChange="handleChange">
-        <div class="history-list-item" v-for="(slide, index) in slides" :key="index">
+    <div class="active-history">
+      <div class="loading" v-if="imageLoading">Loading...</div>
+      <img ref="active_history_image" />
+    </div>
+
+    <div class="container">
+      <div class="history-list" ref="slider">
+        <div
+          class="history-list-item"
+          :class="{'history-list-item-active': activeSlide === slide}"
+          v-for="(slide, index) in slides"
+          :key="index"
+          @click="setActiveSlide(index)"
+          :ref="'slider_' + index"
+        >
           <p class="date">
             <span class="month">{{slide.date.month}}</span>
             <span class="year">{{slide.date.year}}</span>
           </p>
           <p class="title">{{slide.title}}</p>
         </div>
-      </VueSlickCarousel>
+        <div class="history-list-item-spacer"></div>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import VueSlickCarousel from "vue-slick-carousel";
-import "vue-slick-carousel/dist/vue-slick-carousel.css";
-import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+import anime from "animejs/lib/anime.min.js";
 
 export default {
   name: "AboutHistory",
-  components: { VueSlickCarousel },
+  components: {},
   data() {
     return {
-      sliderSettings: {
-        dots: false,
-        focusOnSelect: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 1,
-        prevArrow: false,
-        nextArrow: false,
-        swipeToSlide: true,
-        touchMove: true,
-        draggable: true,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 4
-            }
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 3
-            }
-          },
-          {
-            breakpoint: 660,
-            settings: {
-              slidesToShow: 2
-            }
-          },
-          {
-            breakpoint: 570,
-            settings: {
-              slidesToShow: 1
-            }
-          }
-        ]
-      },
       slides: [
         {
           title: "Karkhana was established",
@@ -91,7 +62,7 @@ export default {
         },
         {
           title: "Made 10 partners",
-          image: "https://i.imgur.com/jGBNTLO.jpg",
+          image: "https://images.unsplash.com/photo-1516542076529-1ea3854896f2",
           date: {
             month: "Dec",
             year: 2007
@@ -99,7 +70,7 @@ export default {
         },
         {
           title: "Shifted to a new building",
-          image: "https://i.imgur.com/jGBNTLO.jpg",
+          image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a",
           date: {
             month: "Apr",
             year: 2010
@@ -107,23 +78,90 @@ export default {
         },
         {
           title: "Bibhuti joined the company",
-          image: "https://i.imgur.com/jGBNTLO.jpg",
+          image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
           date: {
             month: "Feb",
             year: 2012
           }
         }
       ],
-      activeSlide: null
+      activeSlide: null,
+      imageLoading: false
     };
   },
-  created(){
+  created() {
     this.activeSlide = this.slides[0];
   },
+
+  mounted() {
+    const slider = this.$refs.slider;
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    function handleDown(e) {
+      isDown = true;
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    }
+
+    function handleLeave(e) {
+      isDown = false;
+    }
+
+    function handleUp(e) {
+      isDown = false;
+    }
+
+    function handleMove(e) {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 3; //scroll-fast
+      slider.scrollLeft = scrollLeft - walk;
+    }
+
+    slider.addEventListener("mousedown", handleDown);
+    slider.addEventListener("mouseleave", handleLeave);
+    slider.addEventListener("mouseup", handleUp);
+    slider.addEventListener("mousemove", handleMove);
+    slider.addEventListener("touchstart", handleDown);
+    slider.addEventListener("touchleave", handleLeave);
+    slider.addEventListener("touchend", handleUp);
+    slider.addEventListener("touchmove", handleMove);
+  },
+
   methods: {
-    handleChange(oldIndex, newIndex) {
-      this.activeSlide = this.slides[newIndex];
-      console.log(newIndex);
+    setActiveSlide(index) {
+      this.activeSlide = this.slides[index];
+
+      let currentSL = this.$refs.slider.scrollLeft;
+      let targetSL = this.$refs["slider_" + index][0].offsetLeft;
+      let obj = { scroll: currentSL };
+      anime({
+        targets: obj,
+        scroll: targetSL,
+        round: 1,
+        duration: 500,
+        easing: "cubicBezier(.5, .05, .1, .3)",
+        update: () => {
+          this.$refs.slider.scrollLeft = obj.scroll;
+        }
+      });
+
+      // set image
+      this.imageLoading = true;
+      this.$refs.active_history_image.src = null;
+      let image = new Image();
+      image.addEventListener(
+        "load",
+        () => {
+          this.$refs.active_history_image.src = image.src;
+          this.imageLoading = false;
+        },
+        false
+      );
+      image.src = this.activeSlide.image;
     }
   }
 };
