@@ -63,7 +63,7 @@
       <perfect-scrollbar class="events-scroll-area" v-if="events">
         <div class="event-list">
           <div v-for="(eventsData, date) in events" :key="date">
-            <div class="event-date">{{date | tommorrow}}</div>
+            <div class="event-date">{{date | tommorrow | today}}</div>
             <div class="event-list-item" v-for="(event, index) in eventsData" :key="index">
               <div class="event-start-time">{{event.startTime}}</div>
               <div class="event-title">{{event.title}}</div>
@@ -145,6 +145,11 @@ export default {
           .add(1, "days")
           .format("D MMM");
       return isTommorrow ? "Tommorrow, " + value : value;
+    },
+
+    today: value => {
+      let isToday = value === moment(new Date()).format("D MMM");
+      return isToday ? "Today, " + value : value;
     }
   }
 };

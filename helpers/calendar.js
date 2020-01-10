@@ -32,7 +32,7 @@ export default {
     },
 
     buildUrl(calendar) {
-        const timeMin = calendar.startOf("month").toISOString();
+        const timeMin = new Date().toISOString();
         const timeMax = calendar.endOf("month").toISOString();
         return `${process.env.CAL_BASE_URL}/${process.env.CAL_ID}/events?timeMin=${timeMin}&timeMax=${timeMax}&key=${process.env.CAL_API_KEY}`;
     },

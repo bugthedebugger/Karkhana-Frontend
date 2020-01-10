@@ -49,7 +49,7 @@
             </div>
           </li>
           <a class="nav-item nav-link" href="#">Blog</a>
-          <a class="nav-item nav-link" href="#">About</a>
+          <nuxt-link to="/about" class="nav-item nav-link">About</nuxt-link>
           <a class="nav-item nav-link" href="#">Contact</a>
 
           <!-- Locale dropdown -->
@@ -99,14 +99,16 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Navbar",
   data() {
     return {
       selectedLocale: null,
       locales: [
-        { name: "English(UK)", image: "locale-en.svg" },
-        { name: "Nepali", image: "locale-np.svg" }
+        { name: "English(UK)", image: "locale-en.svg", locale: "en" },
+        { name: "Nepali", image: "locale-np.svg", locale: "np" }
       ],
       scrollPosition: null
     };
@@ -123,6 +125,7 @@ export default {
   methods: {
     selectLocale(index) {
       this.selectedLocale = this.locales[index];
+      this.$axios.defaults.headers.common["LANG"] = this.selectedLocale.locale;
     },
     updateScroll() {
       // this.scrollPosition = document.scrollY;

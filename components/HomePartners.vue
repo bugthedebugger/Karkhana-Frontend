@@ -2,7 +2,9 @@
   <section class="our-partners">
     <div class="container pt-5 pb-5">
       <div class="row">
-        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 logos">Logos here..</div>
+        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 logos">
+          <img src="/images/partners.png" />
+        </div>
         <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 content">
           <div class="align-middle">
             <p class="work-with-us">WORK WITH US</p>

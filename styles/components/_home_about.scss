@@ -7,17 +7,6 @@
 .about {
   position: relative;
 
-  .blob-home-about {
-    position: absolute;
-    left: -100px;
-    top: -100px;
-    width: 550px;
-    height: 550px;
-    background-image: url("/images/blob-home-about.svg");
-    background-repeat: no-repeat;
-    z-index: -1;
-  }
-
   .content {
     h5.about-karkhana {
       margin-top: 180px;
@@ -56,7 +45,13 @@
       display: inline-block;
       width: 100%;
       margin-top: 13px;
-      @include k-font(toRem(16px), $k-info, $font-weight-regular, 28px, $font-poppins);
+      @include k-font(
+        toRem(16px),
+        $k-info,
+        $font-weight-regular,
+        28px,
+        $font-poppins
+      );
     }
 
     .seperator {
@@ -103,6 +98,55 @@
           $font-poppins
         );
       }
+    }
+  }
+
+  .pics {
+    position: relative;
+    padding-left: 150px;
+
+    img {
+      height: 400px;
+      width: 400px;
+    }
+
+    .blob-pic {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+
+    .blob-pic-1 {
+      margin-left: -150px;
+      background-image: url("/images/blob-about-gallery-pic-1.svg");
+    }
+
+    .blob-pic-2 {
+      margin-left: -150px;
+      background-image: url("/images/blob-about-gallery-pic-2.svg");
+    }
+
+    .blob-pic-3 {
+      margin-left: -150px;
+      background-image: url("/images/blob-about-gallery-pic-3.svg");
+    }
+
+    .pic-1 {
+      margin-top: 100px;
+      z-index: 1;
+    }
+
+    .pic-2 {
+      margin-top: -100px;
+      margin-left: -100px;
+      z-index: 2;
+    }
+
+    .pic-3 {
+      margin-top: -100px;
+      z-index: 3;
     }
   }
 }

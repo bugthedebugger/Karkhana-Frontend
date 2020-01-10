@@ -1,6 +1,5 @@
 <template>
   <section class="about">
-    <div class="blob-home-about"></div>
     <div class="container pt-5 pb-5">
       <div class="row">
         <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 content">
@@ -13,8 +12,8 @@
             field of education for the past five years
             designing learning experiences for middle school students.
             We believe that the world is malleable and this is the insight we want our students to gain.
-            <br>
-            <a href="#" class="learn-more ml-auto text-right">LEARN MORE</a>
+            <br />
+            <a href="#" class="learn-more">LEARN MORE</a>
           </p>
 
           <div class="row">
@@ -77,7 +76,24 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 pics"></div>
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 pics">
+          <div class="gallery">
+            <ul class="no-bullets">
+              <li>
+                <div class="blob-pic blob-pic-1"></div>
+                <img src="/images/gallery-pic-1.png" class="pic-1" />
+              </li>
+              <li>
+                <div class="blob-pic blob-pic-2"></div>
+                <img src="/images/gallery-pic-2.png" class="pic-2" />
+              </li>
+              <li>
+                <div class="blob-pic blob-pic-3"></div>
+                <img src="/images/gallery-pic-3.png" class="pic-3" />
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -87,19 +103,11 @@
 export default {
   name: "HomeAbout",
   data() {
-    return {
-      stats: [
-        {
-          title: "Students Reached",
-          icon: "blob-students-reached",
-          data: "10,000+"
-        }
-      ]
-    };
+    return {};
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/styles/components/_home_about.scss";
 </style>

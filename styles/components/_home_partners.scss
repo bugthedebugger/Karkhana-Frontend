@@ -6,10 +6,19 @@ $text-color: #444444;
 
 section.our-partners {
   .logos {
+    img {
+      width: 90%;
+      margin-right: 90px;
+    }
   }
 
   .content {
-    padding-top: 100px;
+    position: relative;
+    .align-middle {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-25%);
+    }
   }
 
   p.work-with-us {
