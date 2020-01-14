@@ -1,0 +1,116 @@
+@import "@/styles/setup/_variables";
+@import "@/styles/setup/_typography";
+@import "@/styles/setup/_mixins";
+@import "@/styles/setup/_helpers";
+@import "@/styles/setup/_functions";
+
+.about-team {
+  margin-top: 160px;
+  .title {
+    @include k-font(
+      toRem(72px),
+      $k-text-color-1,
+      $font-weight-regular,
+      toRem(87px),
+      $font-museo
+    );
+  }
+
+  .subtitle {
+    @include k-font(
+      toRem(16px),
+      #989898,
+      $font-weight-regular,
+      toRem(87px),
+      $font-museo
+    );
+  }
+
+  .team-image {
+    position: relative;
+    width: 100vw;
+    height: 783px;
+    background-image: url("/images/karkhana-team.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .team-info {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 40%;
+      padding: 80px 160px 80px 110px;
+      background-color: $k-white;
+      transform: translateY(50%);
+
+      .title {
+        @include k-font(
+          toRem(36px),
+          $k-text-color-1,
+          $font-weight-regular,
+          toRem(43px),
+          $font-museo
+        );
+      }
+
+      .subtitle {
+        margin-top: 30px;
+        @include k-font(
+          toRem(20px),
+          $k-text-color-1,
+          $font-weight-regular,
+          toRem(28px),
+          $font-poppins
+        );
+      }
+
+      .content {
+        margin-top: 30px;
+        @include k-font(
+          toRem(16px),
+          $k-text-color-4,
+          $font-weight-regular,
+          toRem(28px),
+          $font-raleway
+        );
+      }
+    }
+  }
+
+  .team-data {
+    margin-top: 50px;
+    text-align: center;
+    @include k-font(
+      toRem(14px),
+      $k-text-color-5,
+      $font-weight-bold,
+      toRem(28px),
+      $font-raleway
+    );
+    .number {
+      @include k-font(
+        toRem(72px),
+        $k-red,
+        $font-weight-regular,
+        toRem(87px),
+        $font-museo
+      );
+    }
+  }
+
+  .team-members {
+    $border-color: #e2e2e2;
+    @include k-border(2px, solid, $border-color);
+    border-left: none;
+    margin-top: 20px;
+
+    .image-circle-background{
+      $size: 600px;
+      width: $size;
+      height: $size;
+      background-color: #EE312F;
+      opacity: 0.2;
+      border-radius: 100%;
+    }
+  }
+}

@@ -11,7 +11,7 @@
           </div>
           <div class="col">
             <div class="ml-auto about-video-thumbnail">
-              <i class="fal fa-play-circle play"></i>
+              <i class="fal fa-play-circle play cursor-pointer"></i>
             </div>
           </div>
         </div>
