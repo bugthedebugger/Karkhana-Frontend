@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:12.13.1-alpine
 
 WORKDIR /app
 
@@ -6,4 +6,4 @@ COPY . /app/
 
 RUN npm install
 RUN npm build
-EXPOSE 80
+EXPOSE 3333

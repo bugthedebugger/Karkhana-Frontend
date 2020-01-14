@@ -9,6 +9,6 @@ services:
     # volumes:
     #   - /home/bugthedebugger/Documents/Karkhana/Rebranding/Karkhana-Frontend/:/app
     ports:
-      - 80:80
+      - 80:3333
     command: "npm run start"
     # entrypoint: "npm run start"
