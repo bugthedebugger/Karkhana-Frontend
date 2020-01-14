@@ -1,0 +1,14 @@
+version: "3.6"
+
+services:
+  app:
+    container_name: karkhana-frontend
+    build:
+      context: .
+      dockerfile: local.dockerfile
+    # volumes:
+    #   - /home/bugthedebugger/Documents/Karkhana/Rebranding/Karkhana-Frontend/:/app
+    ports:
+      - 80:80
+    command: "npm run start"
+    # entrypoint: "npm run start"
