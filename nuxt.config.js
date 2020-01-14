@@ -24,7 +24,7 @@ export default {
   env: {
     CAL_API_KEY: "AIzaSyBepIVJdLIVOAHb2afbyVAxcF-sqJpy3dM",
     CAL_BASE_URL: "https://www.googleapis.com/calendar/v3/calendars",
-    CAL_ID: "almighty569@gmail.com"
+    CAL_ID: "karkhana.asia_mdt3kr5jmvh1ld77g0fqfldc0k@group.calendar.google.com",
   },
 
   loading: false,

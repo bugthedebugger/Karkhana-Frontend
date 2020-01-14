@@ -22,6 +22,18 @@
   }
 }
 
+@mixin k-border($size: false, $style: false, $color: false) {
+  @if $size {
+    border-width: $size;
+  }
+  @if $color {
+    border-color: $color;
+  }
+  @if $style {
+    border-style: $style;
+  }
+}
+
 /// Event wrapper
 /// @author Harry Roberts
 /// @param {Bool} $self [false] - Whether or not to include current selector

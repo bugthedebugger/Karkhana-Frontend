@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import HomeSlider from "~/components/HomeSlider";
 import HomeAbout from "~/components/HomeAbout";
 import HomeEvents from "~/components/HomeEvents";
@@ -34,16 +33,9 @@ export default {
     HomeFooter
   },
   data() {
-    return {
-      slickOptions: {
-        slidesToShow: 3
-        // Any other options that can be got from plugin documentation
-      }
-    };
+    return {};
   },
-  created() {
-    // console.log(axios);
-  }
+  created() {}
 };
 </script>
 

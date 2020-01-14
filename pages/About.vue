@@ -2,17 +2,20 @@
   <div>
     <AboutMain />
     <AboutHistory />
+    <AboutTeam />
   </div>
 </template>
 
 <script>
 import AboutMain from "~/components/AboutMain";
 import AboutHistory from "~/components/AboutHistory";
+import AboutTeam from "~/components/AboutTeam";
 export default {
   layout: "portfolio",
   components: {
     AboutHistory,
-    AboutMain
+    AboutMain,
+    AboutTeam
   }
 };
 </script>
