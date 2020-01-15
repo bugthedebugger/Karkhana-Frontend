@@ -100,15 +100,15 @@
   }
 
   .employee-list {
-    position: relative;
-    z-index: 5;
+    width: 500px;
     .employee-list-item {
       display: block !important;
       width: 125px !important;
       height: 125px;
       padding: 10px 5px 0px 5px;
+      // margin: 5px;
       @include k-border(2px, solid, #e8e8e8);
-      transform: translateY(-50%);
+      // transform: translateY(-50%);
 
       .employee-image {
         width: 100%;

@@ -66,7 +66,11 @@ export default {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-    }
+    },
+
+    loaders: {
+      scss: { sourceMap: false }
+    },
   },
 
   // Auth configs

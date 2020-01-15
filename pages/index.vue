@@ -10,7 +10,7 @@
 
     <HomeContact />
 
-    <HomeFooter />
+    <Footer />
   </div>
 </template>
 
@@ -20,7 +20,7 @@ import HomeAbout from "~/components/HomeAbout";
 import HomeEvents from "~/components/HomeEvents";
 import HomeContact from "~/components/HomeContact";
 import HomePartners from "~/components/HomePartners";
-import HomeFooter from "~/components/HomeFooter";
+import Footer from "~/components/Footer";
 
 export default {
   layout: "portfolio",
@@ -30,7 +30,7 @@ export default {
     HomeEvents,
     HomeContact,
     HomePartners,
-    HomeFooter
+    Footer
   },
   data() {
     return {};

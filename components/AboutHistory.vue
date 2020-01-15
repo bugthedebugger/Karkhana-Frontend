@@ -26,7 +26,7 @@
           </p>
           <p class="title">{{slide.title}}</p>
         </div>
-        <div class="history-list-item-spacer"></div>
+        <!-- <div class="history-list-item-spacer"></div> -->
       </div>
     </div>
   </section>
@@ -93,11 +93,35 @@ export default {
           }
         },
         {
+          title: "Appointed development team",
+          image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+          date: {
+            month: "Nov",
+            year: 2012
+          }
+        },
+        {
+          title: "Some another event in history",
+          image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+          date: {
+            month: "Mar",
+            year: 2013
+          }
+        },
+        {
+          title: "Painted the building",
+          image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+          date: {
+            month: "Jun",
+            year: 2014
+          }
+        },
+        {
           title: "Bibhuti joined the company",
           image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
           date: {
             month: "Feb",
-            year: 2012
+            year: 2015
           }
         }
       ],

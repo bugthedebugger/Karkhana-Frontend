@@ -1,6 +1,6 @@
 <template>
   <section class="about-employees">
-    <div class="container mt-5">
+    <div class="container mt-5 position-relative">
       <div class="team-members">
         <div class="container">
           <div class="row">
@@ -52,9 +52,8 @@
             </div>
           </div>
         </div>
-
-        <!-- Employees carousel -->
       </div>
+      <!-- Employees carousel -->
       <div class="employee-list">
         <VueSlickCarousel
           v-bind="employeesSliderSettings"
@@ -65,8 +64,6 @@
           </div>
         </VueSlickCarousel>
       </div>
-      <br />
-      <br />
     </div>
   </section>
 </template>
@@ -90,6 +87,27 @@ export default {
       },
 
       employees: [
+        {
+          name: "Pavitra Gautam",
+          designation: "Cheaf Executive Officer",
+          quote:
+            "<< I am pretty sure cheese is the greatest invention in history >>",
+          image:
+            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          skills: [
+            "Leadership",
+            "Marketing",
+            "Public Relations",
+            "Making Coffee"
+          ],
+          backgrounds: ["Electrical Eng.(TU)", "Nepal Robotocs Association"],
+          socialLinks: {
+            facebook: "",
+            twitter: "",
+            email: "",
+            instagram: ""
+          }
+        },
         {
           name: "Pavitra Gautam",
           designation: "Cheaf Executive Officer",

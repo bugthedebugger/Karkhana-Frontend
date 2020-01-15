@@ -90,9 +90,9 @@
 
 <script>
 export default {
-  name: "HomeFooter",
-  methods:{
-    scrollToTop(){
+  name: "Footer",
+  methods: {
+    scrollToTop() {
       window.scrollTo(0, 0);
     }
   }
@@ -100,5 +100,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/components/_home_footer.scss";
+@import "@/styles/components/_footer.scss";
 </style>

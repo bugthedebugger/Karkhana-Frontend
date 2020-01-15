@@ -1,0 +1,43 @@
+@import "@/styles/setup/_variables";
+@import "@/styles/setup/_typography";
+@import "@/styles/setup/_mixins";
+@import "@/styles/setup/_helpers";
+@import "@/styles/setup/_functions";
+
+.about-careers {
+  position: relative;
+  padding-top: 230px;
+  padding-bottom: 140px;
+  .career-image {
+    width: auto;
+    background-image: url("/images/careers.png");
+    height: 450px;
+    position: relative;
+    .career-notice {
+      position: absolute;
+      padding: 70px 60px 60px 60px;
+      background-color: $k-white;
+      transform: translate(-50%, -25%);
+      box-shadow: 0px 19px 70px 0px rgba(70, 69, 69, 0.75);
+      .title {
+        @include k-font(
+          toRem(16px),
+          $k-red,
+          $font-weight-semi-bold,
+          toRem(28px),
+          $font-poppins
+        );
+      }
+      .description {
+        width: 280px;
+        @include k-font(
+          toRem(24px),
+          $k-text-color-1,
+          $font-weight-regular,
+          toRem(36px),
+          $font-museo
+        );
+      }
+    }
+  }
+}

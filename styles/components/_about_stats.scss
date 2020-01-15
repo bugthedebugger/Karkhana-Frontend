@@ -1,0 +1,48 @@
+@import "@/styles/setup/_variables";
+@import "@/styles/setup/_typography";
+@import "@/styles/setup/_mixins";
+@import "@/styles/setup/_helpers";
+@import "@/styles/setup/_functions";
+
+.about-stats {
+  position: relative;
+  background-color: $k-red;
+  color: $k-white;
+  padding: 220px 0px 200px 0px;
+  text-align: center;
+
+  .stat-number {
+    @include k-font(
+      toRem(72px),
+      false,
+      $font-weight-regular,
+      toRem(87px),
+      $font-museo
+    );
+  }
+
+  .stat-text {
+    max-width: 160px;
+    margin: 0 auto;
+    @include k-font(
+      toRem(14px),
+      false,
+      $font-weight-semi-bold,
+      toRem(28px),
+      $font-raleway
+    );
+  }
+
+  .map{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 500px;
+    height: 450px;
+    background-image: url("/images/nepal-map.svg");
+    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+  }
+}
