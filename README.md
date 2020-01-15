@@ -2,7 +2,7 @@
 
 Welcome to Karkhana frontend project. It's a vuejs based project which utilizes the Backend API.
 
-#Project setup
+# Project setup
 
 ## Normal setup
 
