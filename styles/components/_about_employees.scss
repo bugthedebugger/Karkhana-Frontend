@@ -1,0 +1,121 @@
+@import "@/styles/setup/_variables";
+@import "@/styles/setup/_typography";
+@import "@/styles/setup/_mixins";
+@import "@/styles/setup/_helpers";
+@import "@/styles/setup/_functions";
+
+.about-employees {
+  .team-members {
+    $border-color: #e2e2e2;
+    @include k-border(2px, solid, $border-color);
+    border-left: none;
+    margin-top: 20px;
+    position: relative;
+    z-index: 3;
+
+    .selected-employee {
+      position: relative;
+      $size: 600px;
+      width: $size;
+      height: $size;
+      margin: 35px;
+      .image-circle-background {
+        width: $size;
+        height: $size;
+        background-color: $k-red;
+        opacity: 0.2;
+        border-radius: 100%;
+        text-align: center;
+      }
+      img {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 393px;
+      }
+    }
+
+    .person-description {
+      padding-top: 100px;
+      .designation {
+        @include k-font(
+          toRem(16px),
+          $k-red,
+          $font-weight-bold,
+          toRem(28px),
+          $font-poppins
+        );
+      }
+
+      .name {
+        @include k-font(
+          toRem(36px),
+          $k-text-color-1,
+          $font-weight-regular,
+          toRem(43px),
+          $font-museo
+        );
+      }
+
+      .quote {
+        @include k-font(
+          toRem(20px),
+          $k-text-color-1,
+          $font-weight-bold,
+          toRem(28px),
+          $font-poppins
+        );
+      }
+
+      .characteristics-title {
+        margin-top: 60px;
+        @include k-font(
+          toRem(14px),
+          $k-text-color-5,
+          $font-weight-bold,
+          toRem(28px),
+          $font-raleway
+        );
+      }
+
+      .characteristics-list li {
+        margin-top: 19px;
+        @include k-font(
+          toRem(14px),
+          $k-text-color-1,
+          $font-weight-bold,
+          toRem(28px),
+          $font-raleway
+        );
+      }
+
+      .social-links {
+        i {
+          color: $k-text-color-5;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
+  .employee-list {
+    position: relative;
+    z-index: 5;
+    .employee-list-item {
+      display: block !important;
+      width: 125px !important;
+      height: 125px;
+      padding: 10px 5px 0px 5px;
+      @include k-border(2px, solid, #e8e8e8);
+      transform: translateY(-50%);
+
+      .employee-image {
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}

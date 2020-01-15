@@ -29,17 +29,6 @@
       <span class="number">50</span>
       <br />Employees
     </p>
-
-    <div class="team-members">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="image-circle-background"></div>
-          </div>
-          <div class="col">Description</div>
-        </div>
-      </div>
-    </div>
   </section>
 </template>
 

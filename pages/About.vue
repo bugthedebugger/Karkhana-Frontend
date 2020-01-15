@@ -3,6 +3,7 @@
     <AboutMain />
     <AboutHistory />
     <AboutTeam />
+    <AboutEmployees />
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 import AboutMain from "~/components/AboutMain";
 import AboutHistory from "~/components/AboutHistory";
 import AboutTeam from "~/components/AboutTeam";
+import AboutEmployees from "~/components/AboutEmployees";
 export default {
   layout: "portfolio",
   components: {
     AboutHistory,
     AboutMain,
-    AboutTeam
+    AboutTeam,
+    AboutEmployees
   }
 };
 </script>

@@ -39,7 +39,7 @@
       right: 0;
       bottom: 0;
       width: 40%;
-      padding: 80px 160px 80px 110px;
+      padding: 80px 160px 30px 110px;
       background-color: $k-white;
       transform: translateY(50%);
 
@@ -95,22 +95,6 @@
         toRem(87px),
         $font-museo
       );
-    }
-  }
-
-  .team-members {
-    $border-color: #e2e2e2;
-    @include k-border(2px, solid, $border-color);
-    border-left: none;
-    margin-top: 20px;
-
-    .image-circle-background{
-      $size: 600px;
-      width: $size;
-      height: $size;
-      background-color: #EE312F;
-      opacity: 0.2;
-      border-radius: 100%;
     }
   }
 }
