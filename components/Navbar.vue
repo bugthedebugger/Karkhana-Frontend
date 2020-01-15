@@ -107,7 +107,7 @@ export default {
     return {
       selectedLocale: null,
       locales: [
-        { name: "English(UK)", image: "locale-en.svg", locale: "en" },
+        { name: "English(US)", image: "locale-en.svg", locale: "en" },
         { name: "Nepali", image: "locale-np.svg", locale: "np" }
       ],
       scrollPosition: null,
@@ -121,7 +121,8 @@ export default {
   },
 
   mounted() {
-    // document.addEventListener("scroll", this.updateScroll);
+    console.log(window);
+    document.body.addEventListener("scroll", this.updateScroll);
   },
 
   methods: {
@@ -130,7 +131,7 @@ export default {
       this.$axios.defaults.headers.common["LANG"] = this.selectedLocale.locale;
     },
     updateScroll() {
-      // this.scrollPosition = document.scrollY;
+      this.scrollPosition = document.body.scrollY;
       // console.log(this.scrollPosition);
     }
   },
@@ -138,8 +139,8 @@ export default {
   computed: {
     opaqueNav() {
       return false;
-      // let navHeight = 90;
-      // return this.scrollPosition > document.innerHeight - navHeight;
+      let navHeight = 90;
+      return this.scrollPosition > document.body.innerHeight - navHeight;
     }
   },
 
