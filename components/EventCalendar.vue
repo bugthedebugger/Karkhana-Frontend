@@ -56,10 +56,12 @@
     </div>
 
     <div class="events">
-      <span class="event-type-dot event-type-dot-public"></span>
+      <!-- <span class="event-type-dot event-type-dot-public"></span>
       <span class="event-type">Public event</span>
       <span class="event-type-dot event-type-dot-private ml-4"></span>
-      <span class="event-type">Private event</span>
+      <span class="event-type">Private event</span> -->
+      <p class="event-type text-center">Events</p>
+
       <perfect-scrollbar class="events-scroll-area" v-if="events">
         <div class="event-list">
           <div v-for="(eventsData, date) in events" :key="date">
