@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HomeSlider />
+    <HomeSlider :sliderImages="sliderImages" />
 
     <HomeAbout />
 
@@ -33,12 +33,21 @@ export default {
     Footer
   },
   data() {
-    return {};
+    return {
+      // slides: []
+    };
   },
-  created() {}
+  created() {
+    this.$store.dispatch("home/fetchData");
+  },
+  computed: {
+    sliderImages() {
+      return this.$store.getters["home/data"].sliderImages;
+    }
+  }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/styles/pages/index.scss";
 </style>

@@ -81,15 +81,24 @@
             <ul class="no-bullets">
               <li>
                 <div class="blob-pic blob-pic-1"></div>
-                <img src="/images/gallery-pic-1.png" class="pic-1" />
+                <div
+                  style="background-image: url(/images/gallery-pic-1.png)"
+                  class="gallery-img pic-1"
+                ></div>
               </li>
               <li>
                 <div class="blob-pic blob-pic-2"></div>
-                <img src="/images/gallery-pic-2.png" class="pic-2" />
+                <div
+                  style="background-image: url(/images/gallery-pic-2.png)"
+                  class="gallery-img pic-2"
+                ></div>
               </li>
               <li>
                 <div class="blob-pic blob-pic-3"></div>
-                <img src="/images/gallery-pic-3.png" class="pic-3" />
+                <div
+                  style="background-image: url(/images/gallery-pic-3.png)"
+                  class="gallery-img pic-3"
+                ></div>
               </li>
             </ul>
           </div>

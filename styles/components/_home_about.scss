@@ -105,9 +105,11 @@
     position: relative;
     padding-left: 150px;
 
-    img {
+    .gallery-img {
       height: 400px;
       width: 400px;
+      background-size: cover;
+      background-position: center;
     }
 
     .blob-pic {

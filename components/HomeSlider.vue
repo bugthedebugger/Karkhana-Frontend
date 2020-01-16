@@ -3,7 +3,7 @@
     <div class="slides">
       <div class="content">
         <VueSlickCarousel v-bind="sliderSettings" ref="carousel">
-          <div class="slide" v-for="(slide, index) in slides" :key="index">
+          <div class="slide" v-for="(slide, index) in sliderImages" :key="index">
             <h1 class="slide-title">{{slide.title}}</h1>
             <div class="slide-image" :style="'background-image: url(' + slide.image + ')'"></div>
             <div class="overlay"></div>
@@ -33,6 +33,7 @@ import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 export default {
   name: "HomeSlider",
   components: { VueSlickCarousel },
+  props: ["sliderImages"],
   data() {
     return {
       sliderSettings: {
@@ -43,19 +44,19 @@ export default {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000
-      },
-      slides: [
-        {
-          title: "The best way to predict the future is to invent it.",
-          image: "https://i.imgur.com/jGBNTLO.jpg",
-          cta: "Discover classes"
-        },
-        {
-          title: "Some other quote here...",
-          image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
-          cta: "Find more"
-        }
-      ]
+      }
+      // slides: [
+      //   {
+      //     title: "The best way to predict the future is to invent it.",
+      //     image: "https://i.imgur.com/jGBNTLO.jpg",
+      //     cta: "Discover classes"
+      //   },
+      //   {
+      //     title: "Some other quote here...",
+      //     image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
+      //     cta: "Find more"
+      //   }
+      // ]
     };
   },
   methods: {
