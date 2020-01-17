@@ -5,7 +5,7 @@ services:
     container_name: karkhana-frontend
     build:
       context: .
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     # volumes:
     #   - /home/bugthedebugger/Documents/Karkhana/Rebranding/Karkhana-Frontend/:/app
     ports:
