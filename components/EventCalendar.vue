@@ -1,6 +1,8 @@
 <template>
   <div class="calendar-container">
-    <div class="calendar">
+
+    <!-- Shown only from md -->
+    <div class="calendar d-none d-md-block">
       <div class="cal-header">
         <div class="cal-btn cal-btn-left mr-auto text-left pl-2" @click="previous">
           <i class="fal fa-chevron-left"></i>

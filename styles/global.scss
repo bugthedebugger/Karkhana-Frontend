@@ -1,15 +1,18 @@
-@import "setup/variables";
-@import "setup/typography";
+@import "@/styles/setup/_variables";
+@import "@/styles/setup/_typography";
+@import "@/styles/setup/_mixins";
+@import "@/styles/setup/_helpers";
+@import "@/styles/setup/_functions";
 
-@import "basics/buttons.scss";
+@import "@/styles/basics/_buttons.scss";
 
-@import "setup/custom_bootstrap";
+@import "@/styles/setup/_custom_bootstrap.scss";
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import "vendor/scss/fontawesome.scss";
-@import "vendor/scss/solid.scss";
-@import "vendor/scss/light.scss";
-@import "vendor/scss/brands.scss";
+@import "@/node_modules/bootstrap/scss/bootstrap.scss";
+@import "@/styles/vendor/scss/fontawesome.scss";
+@import "@/styles/vendor/scss/solid.scss";
+@import "@/styles/vendor/scss/light.scss";
+@import "@/styles/vendor/scss/brands.scss";
 
 body {
   margin: 0;

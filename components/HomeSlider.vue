@@ -10,11 +10,12 @@
             <button class="btn btn-primary btn-cta slide-cta">{{slide.cta}}</button>
           </div>
         </VueSlickCarousel>
-
-        <div class="slider-arrow arrow-prev" @click="prev">
+        
+        <!-- shown only from md -->
+        <div class="slider-arrow arrow-prev d-none d-md-block" @click="prev">
           <i class="fas fa-chevron-left"></i>
         </div>
-        <div class="slider-arrow arrow-next" @click="next">
+        <div class="slider-arrow arrow-next d-none d-md-block" @click="next">
           <i class="fas fa-chevron-right"></i>
         </div>
       </div>

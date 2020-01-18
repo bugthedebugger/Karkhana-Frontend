@@ -1,6 +1,7 @@
 <template>
   <section class="about">
-    <div class="container pt-5 pb-5">
+    <div class="pt-5 d-none d-md-block"></div>
+    <div class="container pb-5">
       <div class="row">
         <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 content">
           <h5 class="about-karkhana">ABOUT KARKHANA</h5>
@@ -76,7 +77,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 pics">
+
+        <!-- Hidden <= sm -->
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 pics d-none d-md-block">
           <div class="gallery">
             <ul class="no-bullets">
               <li>

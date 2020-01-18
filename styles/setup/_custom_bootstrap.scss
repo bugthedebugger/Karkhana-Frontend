@@ -1,5 +1,5 @@
-@import "setup/variables";
-@import "setup/typography";
+@import "@/styles/setup/_variables.scss";
+@import "@/styles/setup/_typography.scss";
 
 // customize bootstrap
 $theme-colors: (

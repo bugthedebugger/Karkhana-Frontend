@@ -1,8 +1,4 @@
-@import "@/styles/setup/_variables.scss";
-@import "@/styles/setup/_typography.scss";
-@import "@/styles/setup/_mixins.scss";
-@import "@/styles/setup/_helpers.scss";
-@import "@/styles/setup/_functions";
+@import "@/styles/global.scss";
 
 .about {
   position: relative;
@@ -10,6 +6,11 @@
   .content {
     h5.about-karkhana {
       margin-top: 180px;
+
+      @include media-breakpoint-down(md) {
+        margin-top: 10px;
+      }
+
       @include k-font(
         toRem(16px),
         $k-red,
@@ -21,6 +22,9 @@
 
     p.about-karkhana-detail {
       margin-bottom: 190px;
+      @include media-breakpoint-down(md) {
+        margin-bottom: 50px;
+      }
       @include k-font(
         toRem(18px),
         $k-black,
@@ -56,11 +60,19 @@
 
     .seperator {
       height: 120px;
+      @include media-breakpoint-down(md) {
+        height: 20px;
+      }
+      
       width: 100%;
     }
   }
 
   .stat {
+    @include media-breakpoint-down(md) {
+      margin: 0 auto;
+    }
+
     .stat-icon {
       float: left;
       margin-right: toRem(30px);
@@ -75,6 +87,7 @@
           height: 54px;
         }
       }
+      margin-bottom: 3rem;
     }
 
     .stat-detail {
