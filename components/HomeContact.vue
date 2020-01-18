@@ -3,7 +3,7 @@
     <div class="waves"></div>
     <div class="container pb-5">
       <div class="row">
-        <div class="col">
+        <div class="col-md-6 col-sm-12">
           <div class="card contact-card">
             <div class="card-body">
               <h1 class="card-icon">
@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6 col-sm-12">
           <div class="card contact-card">
             <div class="card-body">
               <h1 class="card-icon">

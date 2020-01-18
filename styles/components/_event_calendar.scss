@@ -1,6 +1,7 @@
-@import "@/styles/setup/_variables";
-@import "@/styles/setup/_typography";
-@import "@/styles/setup/_mixins";
+// @import "@/styles/setup/_variables";
+// @import "@/styles/setup/_typography";
+// @import "@/styles/setup/_mixins";
+@import "@/styles/global.scss";
 
 $cal-border-radius: 10px;
 $cal-margin: 20px;
@@ -116,6 +117,14 @@ $evt-background-color: #efefef;
     background-color: $evt-background-color;
     border-top-right-radius: $cal-border-radius;
     border-bottom-right-radius: $cal-border-radius;
+
+    @include media-breakpoint-down(md) {
+      border-radius: $cal-border-radius;
+      width: 100%;
+    }
+
+
+
     width: $evt-width;
     padding-top: $cal-padding;
     padding-left: $cal-padding/2;

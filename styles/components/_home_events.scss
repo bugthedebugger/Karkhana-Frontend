@@ -1,11 +1,16 @@
-@import "@/styles/setup/_variables";
-@import "@/styles/setup/_typography";
-@import "@/styles/setup/_mixins";
+// @import "@/styles/setup/_variables";
+// @import "@/styles/setup/_typography";
+// @import "@/styles/setup/_mixins";
+@import "@/styles/global.scss";
 
 section.events {
   background-color: $k-red;
   padding: 150px;
   padding-bottom: 125px;
+  @include media-breakpoint-down(md) {
+    padding: 10%;
+    padding-bottom: 5%;
+  }
 
   .calendar-title {
     font-weight: $font-weight-regular;
