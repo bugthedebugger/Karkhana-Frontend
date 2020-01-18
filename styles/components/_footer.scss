@@ -1,7 +1,8 @@
-@import "@/styles/setup/_variables.scss";
-@import "@/styles/setup/_typography.scss";
-@import "@/styles/setup/_helpers.scss";
-@import "@/styles/setup/_mixins.scss";
+// @import "@/styles/setup/_variables.scss";
+// @import "@/styles/setup/_typography.scss";
+// @import "@/styles/setup/_helpers.scss";
+// @import "@/styles/setup/_mixins.scss";
+@import "@/styles/global.scss";
 
 $background-color: #272727;
 $line-color: #707070;
@@ -9,15 +10,36 @@ $line-color: #707070;
 .footer {
   padding-top: 113px;
   padding-bottom: 106px;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
   background-color: $background-color;
   color: $k-white;
+
+  a {
+    color: $k-white;
+  }
 
   .navlinks {
     padding-left: 0;
     list-style-type: none;
     .navlink-item {
       margin-right: 94px;
-      @include k-font(16px, $k-white, $font-weight-medium, 84px, $font-poppins);
+      @include media-breakpoint-down(md) {
+        margin-right: 1rem;
+      }
+      a {
+        @include k-font(
+          16px,
+          $k-white,
+          $font-weight-medium,
+          84px,
+          $font-poppins
+        );
+      }
     }
 
     .icon-up {
@@ -43,8 +65,7 @@ $line-color: #707070;
     }
   }
 
-  .social-icons a i{
+  .social-icons a i {
     margin-right: 30px;
   }
-
 }

@@ -9,7 +9,7 @@
       <!-- NavLinks -->
       <div class="row">
         <div class="col">
-          <div class="navlinks d-flex">
+          <div class="navlinks d-flex flex-wrap">
             <div class="navlink-item">
               <a href="#">Products</a>
             </div>
@@ -32,7 +32,7 @@
 
       <!-- Contents -->
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-12">
           <h5 class="who-are-we">Who are we ?</h5>
           <p
             class="who-are-we-content"
@@ -46,7 +46,7 @@
 
         <div class="col-md-2"></div>
 
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-12">
           <ul class="links-list no-bullets">
             <li>
               <a href>FAQs</a>
@@ -63,11 +63,11 @@
           </ul>
         </div>
 
-        <div class="col-md-2 text-right">
+        <div class="col-md-2 text-right col-sm-12">
           <ul class="links-list no-bullets">
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
+            <li class="d-none d-md-block">&nbsp;</li>
+            <li class="d-none d-md-block">&nbsp;</li>
+            <li class="d-none d-md-block">&nbsp;</li>
             <li>
               <div class="d-flex social-icons">
                 <a href="#">

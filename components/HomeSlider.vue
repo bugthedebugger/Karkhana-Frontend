@@ -1,23 +1,21 @@
 <template>
   <section class="home-slider">
     <div class="slides">
-      <div class="content">
-        <VueSlickCarousel v-bind="sliderSettings" ref="carousel">
-          <div class="slide" v-for="(slide, index) in sliderImages" :key="index">
-            <h1 class="slide-title">{{slide.title}}</h1>
-            <div class="slide-image" :style="'background-image: url(' + slide.image + ')'"></div>
-            <div class="overlay"></div>
-            <button class="btn btn-primary btn-cta slide-cta">{{slide.cta}}</button>
-          </div>
-        </VueSlickCarousel>
-        
-        <!-- shown only from md -->
-        <div class="slider-arrow arrow-prev d-none d-md-block" @click="prev">
-          <i class="fas fa-chevron-left"></i>
+      <VueSlickCarousel v-bind="sliderSettings" ref="carousel">
+        <div class="slide" v-for="(slide, index) in sliderImages" :key="index">
+          <h1 class="slide-title">{{slide.title}}</h1>
+          <div class="slide-image" :style="'background-image: url(' + slide.image + ')'"></div>
+          <div class="overlay"></div>
+          <button class="btn btn-primary btn-cta slide-cta">{{slide.cta}}</button>
         </div>
-        <div class="slider-arrow arrow-next d-none d-md-block" @click="next">
-          <i class="fas fa-chevron-right"></i>
-        </div>
+      </VueSlickCarousel>
+
+      <!-- shown only from md -->
+      <div class="slider-arrow arrow-prev d-none d-md-block" @click="prev">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="slider-arrow arrow-next d-none d-md-block" @click="next">
+        <i class="fas fa-chevron-right"></i>
       </div>
     </div>
   </section>

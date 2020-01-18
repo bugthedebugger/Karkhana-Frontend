@@ -1,6 +1,8 @@
-@import "@/styles/setup/_variables.scss";
-@import "@/styles/setup/_typography";
-@import "@/styles/setup/_mixins";
+// @import "@/styles/setup/_variables.scss";
+// @import "@/styles/setup/_typography";
+// @import "@/styles/setup/_mixins";
+
+@import "@/styles/global.scss";
 
 .navbar-scroll {
   background-color: $k-white;
