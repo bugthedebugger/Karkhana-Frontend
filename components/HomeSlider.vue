@@ -42,20 +42,16 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 2000,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              arrows: false
+            }
+          }
+        ]
       }
-      // slides: [
-      //   {
-      //     title: "The best way to predict the future is to invent it.",
-      //     image: "https://i.imgur.com/jGBNTLO.jpg",
-      //     cta: "Discover classes"
-      //   },
-      //   {
-      //     title: "Some other quote here...",
-      //     image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
-      //     cta: "Find more"
-      //   }
-      // ]
     };
   },
   methods: {

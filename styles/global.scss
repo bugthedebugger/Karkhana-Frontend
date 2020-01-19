@@ -25,3 +25,18 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+// Chevron down instead of caret for dropdown
+[data-toggle="dropdown"]:after {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: $font-weight-regular;
+  padding-left: 8px;
+  content: "\f078";
+}
+.dropdown-toggle {
+  display: flex;
+}
+.dropdown-toggle:after {
+  border: none;
+}
+//-----------END-------------------------------

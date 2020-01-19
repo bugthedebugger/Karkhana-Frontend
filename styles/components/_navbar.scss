@@ -1,13 +1,16 @@
-// @import "@/styles/setup/_variables.scss";
-// @import "@/styles/setup/_typography";
-// @import "@/styles/setup/_mixins";
-
 @import "@/styles/global.scss";
+
+.navbar {
+  width: 100vw;
+  transition: all 0.5s;
+}
 
 .navbar-scroll {
   background-color: $k-white;
   padding-top: 0;
   padding-bottom: 0;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+
   .nav-link {
     padding-top: 28px;
     margin-bottom: 28px;
@@ -18,6 +21,15 @@
   .logo-nav {
     margin-bottom: 20px;
     margin-top: 20px;
+
+    @include media-breakpoint-down(md) {
+      margin-top: 5px;
+      margin-bottom: 0px;
+    }
+  }
+
+  .navbar-toggler {
+    color: $k-black !important;
   }
 
   a:hover {
@@ -39,6 +51,29 @@
   width: 120px;
   height: 40px;
   margin-top: 33px;
+
+  @include media-breakpoint-down(md) {
+    margin-top: 0px;
+  }
+}
+
+#navbar-links {
+  @include media-breakpoint-down(md) {
+    background-color: $k-white;
+    color: $k-black;
+
+    .nav-item {
+      padding: 1rem;
+    }
+
+    .nav-link {
+      color: $k-black;
+    }
+
+    .nav-link:hover {
+      color: $k-black;
+    }
+  }
 }
 
 .nav-link {
@@ -46,6 +81,11 @@
   margin-right: 3.75rem;
   padding-top: 48px;
   margin-bottom: 30px;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 5px;
+    margin-bottom: 5px;
+  }
 }
 
 .nav-link:hover {
@@ -130,18 +170,3 @@
     }
   }
 }
-
-// Chevron down instead of caret for dropdown
-[data-toggle="dropdown"]:after {
-  font-family: "Font Awesome 5 Pro";
-  font-weight: $font-weight-regular;
-  padding-left: 8px;
-  content: "\f078";
-}
-.dropdown-toggle {
-  display: flex;
-}
-.dropdown-toggle:after {
-  border: none;
-}
-//-----------END-------------------------------

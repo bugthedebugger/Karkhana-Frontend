@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg" :class="{'navbar-scroll': opaque}">
+  <nav class="navbar fixed-top navbar-expand-lg" :class="{'navbar-scroll': opaqueNav}">
     <div class="container">
       <nuxt-link to="/" class="navbar-brand">
         <img src="/images/logo-nav.png" class="logo-nav" />
@@ -118,11 +118,15 @@ export default {
   created() {
     this.selectedLocale = this.locales[0];
     this.opaque = this.$route.name !== "index";
+    if (process.browser) {
+      window.addEventListener("scroll", this.updateScroll);
+    }
   },
 
-  mounted() {
-    console.log(window);
-    document.body.addEventListener("scroll", this.updateScroll);
+  destroyed() {
+    if (process.browser) {
+      window.removeEventListener("scroll", this.updateScroll);
+    }
   },
 
   methods: {
@@ -131,16 +135,13 @@ export default {
       this.$axios.defaults.headers.common["LANG"] = this.selectedLocale.locale;
     },
     updateScroll() {
-      this.scrollPosition = document.body.scrollY;
-      // console.log(this.scrollPosition);
+      if (process.browser) this.scrollPosition = window.scrollY;
     }
   },
 
   computed: {
     opaqueNav() {
-      return false;
-      let navHeight = 90;
-      return this.scrollPosition > document.body.innerHeight - navHeight;
+      if (process.browser) return this.scrollPosition > window.innerHeight / 4;
     }
   },
 
@@ -152,6 +153,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/styles/components/_navbar.scss";
 </style>
