@@ -1,0 +1,35 @@
+@import "@/styles/global.scss";
+
+.product-item {
+  .product-logo-circle {
+    width: 167px;
+    height: 167px;
+  }
+
+  .title {
+    @include k-font(
+      toRem(24px),
+      false,
+      $font-weight-regular,
+      toRem(28px),
+      $font-museo
+    );
+  }
+
+  .attribute-value{
+    @include k-font(
+      toRem(18px),
+      $text-color-1,
+      $font-weight-medium,
+      false,
+      $font-poppins
+    );
+    width: 100%;
+    height: 81px;
+    text-align: center;
+  }
+
+  .btn-action {
+    width: 100%;
+  }
+}

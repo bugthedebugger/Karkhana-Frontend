@@ -3,16 +3,19 @@
     <div class="karkhana-team">
       <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col-md-6 col-sm-12">
             <h1 class="title">The Karkhana Team</h1>
             <p
               class="description"
             >Behind every small and mid-size business are great people. Meet the people behind ours.</p>
           </div>
-          <div class="col">
+          <div class="col-md-6 col-sm-12">
             <div class="ml-auto about-video-thumbnail">
               <i class="fal fa-play-circle play cursor-pointer"></i>
             </div>
+
+            <!-- display gap on mobile -->
+            <div class="mb-5 d-md-none"></div>
           </div>
         </div>
       </div>

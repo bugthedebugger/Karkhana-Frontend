@@ -52,29 +52,38 @@
             </div>
           </div>
         </div>
+        <div class="scroll-stat">
+          <span class="current-employee">0{{employees.indexOf(activeEmployee) + 1}}</span>
+          /
+          0{{employees.length}}
+        </div>
       </div>
+
       <!-- Employees carousel -->
-      <div class="employee-list">
-        <VueSlickCarousel
-          v-bind="employeesSliderSettings"
-          @beforeChange="(p1, p2) => setActiveEmployee(p2)"
-        >
-          <div v-for="(employee, index) in employees" :key="index" class="employee-list-item">
+      <perfect-scrollbar class="employees-list-wrapper">
+        <div class="employee-list">
+          <div
+            v-for="(employee, index) in employees"
+            :key="index"
+            class="employee-list-item"
+            :class="{'employee-list-item-selected': employee === activeEmployee}"
+            @click="setActiveEmployee(index)"
+          >
             <div class="employee-image" :style="'background-image: url(' + employee.image + ')'"></div>
           </div>
-        </VueSlickCarousel>
-      </div>
+        </div>
+      </perfect-scrollbar>
     </div>
   </section>
 </template>
 
 <script>
-import VueSlickCarousel from "vue-slick-carousel";
-import "vue-slick-carousel/dist/vue-slick-carousel.css";
+import { PerfectScrollbar } from "vue2-perfect-scrollbar";
+import "vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css";
 
 export default {
   name: "AboutEmployees",
-  components: { VueSlickCarousel },
+  components: { PerfectScrollbar },
   data() {
     return {
       employeesSliderSettings: {
@@ -128,6 +137,111 @@ export default {
             email: "",
             instagram: ""
           }
+        },
+        {
+          name: "Aakash Raj Dahal",
+          designation: "Cheaf Executive Officer",
+          quote:
+            "<< I am pretty sure cheese is the greatest invention in history >>",
+          image:
+            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          skills: [
+            "Leadership",
+            "Marketing",
+            "Public Relations",
+            "Making Coffee"
+          ],
+          backgrounds: ["Electrical Eng.(TU)", "Nepal Robotocs Association"],
+          socialLinks: {
+            facebook: "",
+            twitter: "",
+            email: "",
+            instagram: ""
+          }
+        },
+        {
+          name: "Pavitra Gautam",
+          designation: "Cheaf Executive Officer",
+          quote:
+            "<< I am pretty sure cheese is the greatest invention in history >>",
+          image:
+            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          skills: [
+            "Leadership",
+            "Marketing",
+            "Public Relations",
+            "Making Coffee"
+          ],
+          backgrounds: ["Electrical Eng.(TU)", "Nepal Robotocs Association"],
+          socialLinks: {
+            facebook: "",
+            twitter: "",
+            email: "",
+            instagram: ""
+          }
+        },
+        {
+          name: "Pavitra Gautam",
+          designation: "Cheaf Executive Officer",
+          quote:
+            "<< I am pretty sure cheese is the greatest invention in history >>",
+          image:
+            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          skills: [
+            "Leadership",
+            "Marketing",
+            "Public Relations",
+            "Making Coffee"
+          ],
+          backgrounds: ["Electrical Eng.(TU)", "Nepal Robotocs Association"],
+          socialLinks: {
+            facebook: "",
+            twitter: "",
+            email: "",
+            instagram: ""
+          }
+        },
+        {
+          name: "Pavitra Gautam",
+          designation: "Cheaf Executive Officer",
+          quote:
+            "<< I am pretty sure cheese is the greatest invention in history >>",
+          image:
+            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          skills: [
+            "Leadership",
+            "Marketing",
+            "Public Relations",
+            "Making Coffee"
+          ],
+          backgrounds: ["Electrical Eng.(TU)", "Nepal Robotocs Association"],
+          socialLinks: {
+            facebook: "",
+            twitter: "",
+            email: "",
+            instagram: ""
+          }
+        },
+        {
+          name: "Pavitra Gautam",
+          designation: "Cheaf Executive Officer",
+          quote:
+            "<< I am pretty sure cheese is the greatest invention in history >>",
+          image:
+            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          skills: [
+            "Leadership",
+            "Marketing",
+            "Public Relations",
+            "Making Coffee"
+          ],
+          backgrounds: ["Electrical Eng.(TU)", "Nepal Robotocs Association"],
+          socialLinks: {
+            facebook: "",
+            twitter: "",
+            email: "",
+            instagram: ""
+          }
         }
       ],
       activeEmployee: null
@@ -139,7 +253,11 @@ export default {
 
   mounted() {},
 
-  methods: {}
+  methods: {
+    setActiveEmployee(index) {
+      this.activeEmployee = this.employees[index];
+    }
+  }
 };
 </script>
 

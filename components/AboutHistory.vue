@@ -10,6 +10,13 @@
       </div>
     </VueSlickCarousel>
 
+    <button class="slider-btn btn-next" @click="next">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <button class="slider-btn btn-prev" @click="prev">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
     <div class="container">
       <div class="history-list" ref="slider">
         <div
@@ -193,6 +200,12 @@ export default {
           this.$refs.slider.scrollLeft = obj.scroll;
         }
       });
+    },
+    next() {
+      this.$refs.active_history.next();
+    },
+    prev() {
+      this.$refs.active_history.prev();
     }
   }
 };

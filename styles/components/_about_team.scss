@@ -1,8 +1,9 @@
-@import "@/styles/setup/_variables";
-@import "@/styles/setup/_typography";
-@import "@/styles/setup/_mixins";
-@import "@/styles/setup/_helpers";
-@import "@/styles/setup/_functions";
+// @import "@/styles/setup/_variables";
+// @import "@/styles/setup/_typography";
+// @import "@/styles/setup/_mixins";
+// @import "@/styles/setup/_helpers";
+// @import "@/styles/setup/_functions";
+@import "@/styles/global.scss";
 
 .about-team {
   margin-top: 160px;
@@ -14,6 +15,10 @@
       toRem(87px),
       $font-museo
     );
+    @include media-breakpoint-down(md) {
+      font-size: toRem(48px);
+      text-align: center;
+    }
   }
 
   .subtitle {
@@ -24,6 +29,10 @@
       toRem(87px),
       $font-museo
     );
+    @include media-breakpoint-down(md) {
+      text-align: center;
+      line-height: normal;
+    }
   }
 
   .team-image {
@@ -33,6 +42,7 @@
     background-image: url("/images/karkhana-team.png");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
 
     .team-info {
       position: absolute;
@@ -42,6 +52,12 @@
       padding: 5%;
       background-color: $k-white;
       transform: translateY(50%);
+
+      @include media-breakpoint-down(md) {
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 90%;
+      }
 
       .title {
         @include k-font(

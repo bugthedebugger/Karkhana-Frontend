@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg" :class="{'navbar-scroll': opaqueNav}">
+  <nav class="navbar fixed-top navbar-expand-lg" :class="{'navbar-scroll': opaqueNav || opaque}">
     <div class="container">
       <nuxt-link to="/" class="navbar-brand">
         <img src="/images/logo-nav.png" class="logo-nav" />

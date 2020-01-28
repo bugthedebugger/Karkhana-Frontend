@@ -4,104 +4,127 @@
 @import "@/styles/setup/_helpers";
 @import "@/styles/setup/_functions";
 
-.active-history {
+.about-history {
   position: relative;
-  width: 100%;
-  height: 660px;
-  background-color: $k-grey;
-
-  .slide-image {
+  .active-history {
+    position: relative;
     width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-}
+    height: 660px;
+    background-color: $k-grey;
 
-.history-list {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  width: 100%;
-  padding-right: calc(100vw - 190px);
-  height: 250px;
-  margin-top: -80px;
-  overflow: hidden;
-
-  .history-list-item {
-    flex-shrink: 0;
-    width: 190px;
-    height: 160px;
-    border-radius: 5px;
-    margin-left: 60px;
-    margin-bottom: 60px;
-    padding: 28px 15px 0px 28px;
-    background-color: $k-white;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-
-    box-shadow: 1px 17px 17px -6px rgba(138, 138, 138, 0.75);
-    -webkit-box-shadow: 1px 17px 17px -6px rgba(138, 138, 138, 0.75);
-    -moz-box-shadow: 1px 17px 17px -6px rgba(138, 138, 138, 0.75);
-    p.title {
-      @include k-font(
-        toRem(16px),
-        $k-black,
-        $font-weight-regular,
-        28px,
-        $font-raleway
-      );
+    .slide-image {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
+  }
 
-    p.date {
-      .month {
-        margin-right: 12px;
+  .history-list {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-right: calc(100vw - 190px);
+    height: 250px;
+    margin-top: -80px;
+    overflow: hidden;
+
+    .history-list-item {
+      flex-shrink: 0;
+      width: 190px;
+      height: 160px;
+      border-radius: 5px;
+      margin-left: 60px;
+      margin-bottom: 60px;
+      padding: 28px 15px 0px 28px;
+      background-color: $k-white;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+
+      box-shadow: 1px 17px 17px -6px rgba(138, 138, 138, 0.75);
+      -webkit-box-shadow: 1px 17px 17px -6px rgba(138, 138, 138, 0.75);
+      -moz-box-shadow: 1px 17px 17px -6px rgba(138, 138, 138, 0.75);
+      p.title {
         @include k-font(
-          toRem(14px),
+          toRem(16px),
           $k-black,
           $font-weight-regular,
-          toRem(28px),
-          $font-poppins
+          28px,
+          $font-raleway
         );
       }
 
-      .year {
-        @include k-font(
-          toRem(36px),
-          $k-black,
-          $font-weight-regular,
-          toRem(43px),
-          $font-museo
-        );
+      p.date {
+        .month {
+          margin-right: 12px;
+          @include k-font(
+            toRem(14px),
+            $k-black,
+            $font-weight-regular,
+            toRem(28px),
+            $font-poppins
+          );
+        }
+
+        .year {
+          @include k-font(
+            toRem(36px),
+            $k-black,
+            $font-weight-regular,
+            toRem(43px),
+            $font-museo
+          );
+        }
       }
     }
-  }
 
-  .history-list-item-active {
-    height: 220px;
-    padding-top: 60px;
-    background-color: $k-red;
-    color: $k-white !important;
+    .history-list-item-active {
+      height: 220px;
+      padding-top: 60px;
+      background-color: $k-red;
+      color: $k-white !important;
 
-    p.title {
-      color: $k-white;
-    }
-
-    p.date {
-      .year {
+      p.title {
         color: $k-white;
       }
 
-      .month {
-        color: $k-white;
+      p.date {
+        .year {
+          color: $k-white;
+        }
+
+        .month {
+          color: $k-white;
+        }
       }
+    }
+
+    .history-list-item-spacer {
+      flex-shrink: 0;
+      width: 100vw;
+      height: 10px;
     }
   }
 
-  .history-list-item-spacer {
-    flex-shrink: 0;
-    width: 100vw;
-    height: 10px;
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    // transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: $k-white;
+    font-size: 48px;
+    outline: none;
+  }
+
+  .btn-next {
+    right: 10%;
+  }
+
+  .btn-prev {
+    left: 10%;
   }
 }
