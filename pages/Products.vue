@@ -1,36 +1,67 @@
 <template>
-  <div class="container products">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="attribute-name">Grade</div>
-        <div class="attribute-name">Type</div>
-        <div class="attribute-name">Product</div>
-        <div class="attribute-name">School Services</div>
-        <div class="attribute-name">Student Services</div>
-      </div>
-      <div class="col-md-3">
-        <div class="product-item">
-          <div class="product-logo-circle">
-            <img src />
-          </div>
-          <p class="title"></p>
-          <div class="attribute-value">6 to 8</div>
-          <div class="attribute-value">Curricular</div>
-          <div class="attribute-value">Science Kit Online Support Platform Workbook</div>
-          <div class="attribute-value">Teacher Training</div>
-          <div class="attribute-value">Karkhana Teachers</div>
+  <div class="products">
+    <div class="container mb-4">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="v-spacer"></div>
+          <div class="attribute-name">Grade</div>
+          <div class="attribute-name">Type</div>
+          <div class="attribute-name">Product</div>
+          <div class="attribute-name">School Services</div>
+          <div class="attribute-name">Student Services</div>
+        </div>
+        <div class="col-md-3">
+          <ProductsItem :product_info="products.science" category="science" />
+        </div>
+        <div class="col-md-3">
+          <ProductsItem :product_info="products.computing" category="computing" />
+        </div>
+        <div class="col-md-3">
+          <ProductsItem :product_info="products.make" category="make" />
         </div>
       </div>
-      <div class="col-md-3"></div>
-      <div class="col-md-3"></div>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
+import ProductsItem from "@/components/ProductsItem";
+import Footer from "~/components/Footer";
+
 export default {
   layout: "portfolio",
-  components: {}
+  components: { ProductsItem, Footer },
+  data() {
+    return {
+      products: {
+        science: {
+          title: "Karkhana Science",
+          grade: "6 to 8",
+          type: "Curricular",
+          product: "Science Kit Online Support Platform Workbook",
+          school_services: "Teacher Training",
+          student_services: "Karkhana Teachers"
+        },
+        computing: {
+          title: "Karkhana Computing",
+          grade: "3 to 5",
+          type: "Curricular",
+          product: "Textbook",
+          school_services: "Teacher Training",
+          student_services: "Karkhana Teachers"
+        },
+        make: {
+          title: "Karkhana Make",
+          grade: "3 to 9",
+          type: "Co/Extra Curricular",
+          product: "Innovation Kit",
+          school_services: "N/A",
+          student_services: "Karkhana Teachers"
+        }
+      }
+    };
+  }
 };
 </script>
 

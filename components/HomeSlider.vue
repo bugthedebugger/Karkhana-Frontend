@@ -65,6 +65,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/styles/components/_home_slider.scss";
 </style>

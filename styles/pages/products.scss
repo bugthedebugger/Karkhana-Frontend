@@ -10,10 +10,16 @@
     toRem(24px),
     false,
     $font-weight-regular,
-    toRem(28px),
+    false,
     $font-museo
   );
 
   width: 100%;
-  height: 81px;
+  height: 90px;
+  // line-height: 90px;
+}
+
+.v-spacer{
+  // half of circle + gap + title + gap
+  height: calc(83px + 24px + 30px + 30px);
 }

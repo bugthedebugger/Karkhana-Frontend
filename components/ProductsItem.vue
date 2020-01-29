@@ -1,29 +1,29 @@
 <template>
-  <section class="about-stats">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <h1 class="stat-number">100+</h1>
-          <p class="stat-text">Schools Trust us with educating their students</p>
+  <div class="text-center">
+    <div class="product-item" :class="'product-item-' + category">
+      <div class="product-logo-circle">
+        <div class="img-wrapper">
+          <img :src="'/images/product-logo-' + category + '-white.svg'" />
         </div>
-        <div class="col">
-          <h1 class="stat-number">50+</h1>
-          <p class="stat-text">Employees believe in our mission and vision</p>
-        </div>
-        <div class="col">
-          <h1 class="stat-number">5+</h1>
-          <p class="stat-text">Monthly Events that promotes education</p>
-        </div>
-        <div class="col"></div>
       </div>
+      <p class="title">{{product_info.title}}</p>
+      <div class="attribute-value">{{product_info.grade}}</div>
+      <div class="attribute-value">{{product_info.type}}</div>
+      <div class="attribute-value">{{product_info.product}}</div>
+      <div class="attribute-value">{{product_info.school_services}}</div>
+      <div class="attribute-value">{{product_info.student_services}}</div>
+      <button class="btn-learn-more">Learn More</button>
     </div>
-    <div class="map"></div>
-  </section>
+    <a href="#" class="brochure-link" :class="'brochure-link-' + category">
+      <i class="fal fa-arrow-to-bottom"></i> Download Brochure
+    </a>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "ProductsItem"
+  name: "ProductsItem",
+  props: ["product_info", "category"]
 };
 </script>
 
