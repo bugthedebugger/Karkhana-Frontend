@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg" :class="{'navbar-scroll': opaqueNav || opaque}">
+  <nav
+    class="navbar fixed-top navbar-expand-lg"
+    :class="{'navbar-scroll': opaqueNav || opaqueByDefault}"
+  >
     <div class="container">
       <nuxt-link to="/" class="navbar-brand">
         <img src="/images/logo-nav.png" class="logo-nav" />
@@ -111,7 +114,7 @@ export default {
         { name: "Nepali", image: "locale-np.svg", locale: "np" }
       ],
       scrollPosition: null,
-      opaque: false
+      opaqueByDefault: false
     };
   },
 
@@ -147,7 +150,7 @@ export default {
 
   watch: {
     $route(to, from) {
-      this.opaque = to.name !== "index";
+      this.opaqueByDefault = to.name !== "index" && to.name !== "ProductDetail";
     }
   }
 };

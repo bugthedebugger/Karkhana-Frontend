@@ -11,13 +11,13 @@
           <div class="attribute-name">Student Services</div>
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.science" category="science" />
+          <ProductsItem :product_info="products.science" />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.computing" category="computing" />
+          <ProductsItem :product_info="products.computing" />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.make" category="make" />
+          <ProductsItem :product_info="products.make" />
         </div>
       </div>
     </div>
@@ -36,6 +36,7 @@ export default {
     return {
       products: {
         science: {
+          category: "science",
           title: "Karkhana Science",
           grade: "6 to 8",
           type: "Curricular",
@@ -44,6 +45,7 @@ export default {
           student_services: "Karkhana Teachers"
         },
         computing: {
+          category: "computing",
           title: "Karkhana Computing",
           grade: "3 to 5",
           type: "Curricular",
@@ -52,6 +54,7 @@ export default {
           student_services: "Karkhana Teachers"
         },
         make: {
+          category: "make",
           title: "Karkhana Make",
           grade: "3 to 9",
           type: "Co/Extra Curricular",

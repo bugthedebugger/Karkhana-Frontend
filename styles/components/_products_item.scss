@@ -59,6 +59,20 @@
     text-align: center;
   }
 
+  // Should match on products.scss
+  .attribute-name {
+    @include k-font(
+      toRem(24px),
+      false,
+      $font-weight-regular,
+      false,
+      $font-museo
+    );
+
+    width: 100%;
+    height: 90px;
+  }
+
   .btn-learn-more {
     width: calc(100% + 100px); // plus padding
     margin-left: -50px;
@@ -75,6 +89,22 @@
       $font-poppins
     );
     outline: none;
+  }
+
+  table {
+    width: 100%;
+
+    .attribute-name {
+      text-align: left;
+      font-size: toRem(18px);
+      padding-right: 30px;
+    }
+
+    .attribute-value {
+      text-align: left;
+      font-size: toRem(16px);
+      width: 195px;
+    }
   }
 }
 
