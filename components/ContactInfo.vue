@@ -1,0 +1,117 @@
+<template>
+  <section class="contact-info-wrapper">
+    <div class="container">
+      <h1 class="page-title">CONTACT US</h1>
+      <div class="contact-info-container">
+        <div class="contact-card">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="contact-info">
+                  <div class="contact-icon">
+                    <i class="contact-icon fal fa-map-marker"></i>
+                    <div class="circle circle-red"></div>
+                  </div>
+                  <p class="contact-title">ADDRESS</p>
+                  <p class="contact-value">
+                    Gyaneshore, Kathmandu
+                    <br />P.O. BOX: 23888
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="contact-info">
+                  <div class="contact-icon">
+                    <i class="contact-icon fal fa-clock"></i>
+                    <div class="circle circle-blue"></div>
+                  </div>
+                  <p class="contact-title">OPENING HOURS</p>
+                  <p class="contact-value">
+                    8:00AM - 18:00PM
+                    <br />Sun-Fri
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="seperator"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="contact-info">
+                  <div class="contact-icon">
+                    <i class="contact-icon fal fa-phone-rotary"></i>
+                    <div class="circle circle-green"></div>
+                  </div>
+                  <p class="contact-title">PHONE NUMBERS</p>
+                  <p class="contact-value">
+                    +977 01-424XXXX
+                    <br />+977 01-424XXXX
+                    <br />+977 01-424XXXX
+                    <br />+977 01-424XXXX
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="contact-info">
+                  <div class="contact-icon">
+                    <i class="contact-icon fal fa-envelope"></i>
+                    <div class="circle circle-yellow"></div>
+                  </div>
+                  <p class="contact-title">Email Address</p>
+                  <p class="contact-value">
+                    contact@karkhana.asia
+                    <br />partnership@karkhana.asia
+                    <br />hello@karkhana.asia
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h1 class="title">DROP US A LINE</h1>
+          <p class="subtitle">
+            Feel free to contact us if you have any further questions or concerns.
+            We will get back to you as soon as possible.
+          </p>
+          <form>
+            <div class="form-group">
+              <label for="fullname">Your Full Name</label>
+              <input type="text" class="form-control" id="fullname" aria-describedby="fullname" />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email Address</label>
+              <input type="email" class="form-control" id="email" aria-describedby="email" />
+            </div>
+            <div class="form-group">
+              <label for="concernedtopic">Your Concerned Topic</label>
+              <input type="text" class="form-control" id="email" aria-describedby="concernedtopic" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control" id="message" rows="5"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "HomeAbout",
+  data() {
+    return {};
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/styles/components/_contact_info.scss";
+</style>

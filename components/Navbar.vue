@@ -53,7 +53,7 @@
           </li>
           <a class="nav-item nav-link" href="#">Blog</a>
           <nuxt-link to="/about" class="nav-item nav-link">About</nuxt-link>
-          <a class="nav-item nav-link" href="#">Contact</a>
+          <nuxt-link to="/contact" class="nav-item nav-link">Contact</nuxt-link>
 
           <!-- Locale dropdown -->
           <li class="nav-item dropdown">
@@ -114,7 +114,7 @@ export default {
         { name: "Nepali", image: "locale-np.svg", locale: "np" }
       ],
       scrollPosition: null,
-      opaqueByDefault: false
+      opaqueByDefault: true
     };
   },
 
@@ -124,6 +124,8 @@ export default {
     if (process.browser) {
       window.addEventListener("scroll", this.updateScroll);
     }
+
+    this.checkOpaqueByDefault(this.$route.name);
   },
 
   destroyed() {
@@ -139,6 +141,11 @@ export default {
     },
     updateScroll() {
       if (process.browser) this.scrollPosition = window.scrollY;
+    },
+
+    checkOpaqueByDefault(routeName) {
+      this.opaqueByDefault =
+        routeName !== "index" && routeName !== "ProductDetail";
     }
   },
 
@@ -150,7 +157,7 @@ export default {
 
   watch: {
     $route(to, from) {
-      this.opaqueByDefault = to.name !== "index" && to.name !== "ProductDetail";
+      this.checkOpaqueByDefault(to.name);
     }
   }
 };

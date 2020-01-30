@@ -1,18 +1,22 @@
 <template>
-  <div class="container">
-    <div>
-      <h1>Products</h1>
-    </div>
+  <div class="contact">
+    <ContactInfo />
+    <ContactMap />
+    <Footer />
   </div>
 </template>
 
 <script>
+import ContactInfo from "~/components/ContactInfo";
+import ContactMap from "~/components/ContactMap";
+import Footer from "~/components/Footer";
+
 export default {
-  components: {
-  }
+  layout: "portfolio",
+  components: { ContactInfo, ContactMap, Footer }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/pages/about.scss";
+@import "@/styles/pages/contact.scss";
 </style>

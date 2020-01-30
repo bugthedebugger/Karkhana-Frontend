@@ -1,0 +1,123 @@
+@import "@/styles/global.scss";
+@import "@/styles/global.scss";
+.contact-info-wrapper {
+  padding-top: 90px;
+  margin-bottom: 100px;
+
+  .contact-info-container {
+    margin-top: 30px;
+    display: flex;
+    .contact-card {
+      flex: 1;
+      box-shadow: 0px 19px 70px 0px rgba(70, 69, 69, 0.75);
+      padding-top: 145px;
+      padding-bottom: 100px;
+
+      .contact-info {
+        padding-left: 145px;
+        padding-right: 145px;
+        .contact-title {
+          @include k-font(
+            toRem(16px),
+            $k-text-color-1,
+            $font-weight-semi-bold,
+            toRem(25px),
+            $font-poppins
+          );
+          opacity: 0.5;
+          margin-bottom: 8px;
+        }
+
+        .contact-value {
+          @include k-font(
+            toRem(16px),
+            $k-text-color-1,
+            $font-weight-regular,
+            toRem(25px),
+            $font-poppins
+          );
+        }
+
+        .contact-icon {
+          position: relative;
+          i {
+            font-size: toRem(36px);
+          }
+          .circle {
+            position: absolute;
+            left: -10px;
+            top: -10px;
+            width: 30px;
+            height: 30px;
+            opacity: 0.35;
+            border-radius: 50%;
+          }
+
+          .circle-red {
+            background-color: $k-red;
+          }
+
+          .circle-blue {
+            background-color: $k-blue;
+          }
+
+          .circle-green {
+            background-color: $k-green;
+          }
+
+          .circle-yellow {
+            background-color: $k-yellow;
+          }
+        }
+      }
+
+      .seperator {
+        width: 100%;
+        height: 145px;
+      }
+    }
+
+    .contact-form {
+      width: 600px;
+      padding: 60px;
+      background-color: $k-red;
+      color: $k-white;
+
+      .title {
+        // font: Regular 36px/36px Museo 700;
+        @include k-font(
+          toRem(36px),
+          $k-white,
+          $font-weight-regular,
+          toRem(36px),
+          $font-museo
+        );
+      }
+
+      .subtitle {
+        @include k-font(
+          toRem(16px),
+          $k-white,
+          $font-weight-regular,
+          toRem(28px),
+          $font-poppins
+        );
+        margin-bottom: 40px;
+      }
+
+      label {
+        @include k-font(
+          toRem(14px),
+          $k-white,
+          $font-weight-regular,
+          toRem(28px),
+          $font-raleway
+        );
+      }
+
+      button[type="submit"] {
+        background-color: #c52a28;
+      }
+    }
+  }
+}

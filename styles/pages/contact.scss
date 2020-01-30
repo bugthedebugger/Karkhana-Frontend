@@ -1,0 +1,14 @@
+@import "@/styles/global.scss";
+.contact {
+  padding-top: 90px;
+
+  .page-title {
+    @include k-font(
+      toRem(36px),
+      $k-black,
+      $font-weight-regular,
+      toRem(43px),
+      $font-museo
+    );
+  }
+}
