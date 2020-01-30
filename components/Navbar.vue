@@ -33,20 +33,35 @@
               aria-expanded="false"
             >Products</a>
             <div class="dropdown-menu products-menu" aria-labelledby="productsDropdown">
-              <div class="container">
-                <div class="row">
-                  <div class="col-4 product-category product-category-science">
-                    <div class="product-circle"></div>
+              <div class="row">
+                <div class="col-4 product-category product-category-science">
+                  <nuxt-link to="/productDetail">
+                    <div class="product-circle">
+                      <img src="/images/product-logo-science.svg" />
+                    </div>
                     <p class="product-category-name">Karkhana Science</p>
-                  </div>
-                  <div class="col-4 product-category product-category-computing">
-                    <div class="product-circle"></div>
+                  </nuxt-link>
+                </div>
+                <div class="col-4 product-category product-category-computing">
+                  <nuxt-link to="/productDetail">
+                    <div class="product-circle">
+                      <img src="/images/product-logo-computing.svg" />
+                    </div>
                     <p class="product-category-name">Karkhana Computing</p>
-                  </div>
-                  <div class="col-4 product-category product-category-make">
-                    <div class="product-circle"></div>
+                  </nuxt-link>
+                </div>
+                <div class="col-4 product-category product-category-make">
+                  <nuxt-link to="/productDetail">
+                    <div class="product-circle">
+                      <img src="/images/product-logo-make.svg" />
+                    </div>
                     <p class="product-category-name">Karkhana Make</p>
-                  </div>
+                  </nuxt-link>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 text-center">
+                  <nuxt-link to="/products" class="mt-2">View All Products</nuxt-link>
                 </div>
               </div>
             </div>

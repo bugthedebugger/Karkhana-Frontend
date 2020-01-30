@@ -73,27 +73,27 @@ export default {
           curriculum_links: [
             {
               title: "MYP Curriculum 2020",
-              url: ""
+              url: "1"
             },
             {
               title: "IPC Curriculum 2020",
-              url: ""
+              url: "2"
             },
             {
               title: "CBC Curriculum 2020 - Government of India",
-              url: ""
+              url: "3"
             },
             {
               title: "ICSE Curriculum 2020 [Updated]",
-              url: ""
+              url: "4"
             },
             {
               title: "ICSE Curriculum 2020 [Updated]",
-              url: ""
+              url: "5"
             },
             {
               title: "Government of Bangladesh - Some Curriculum Link",
-              url: ""
+              url: "6"
             }
           ]
         },

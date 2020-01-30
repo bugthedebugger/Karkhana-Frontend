@@ -30,7 +30,7 @@
             <div class="card">
               <img
                 class="card-img-top"
-                src="https://images.unsplash.com/photo-1430990480609-2bf7c02a6b1a"
+                src="/images/karkhana-building.png"
               />
               <div class="card-body">
                 <h2 class="title mt-4">Our Vision</h2>

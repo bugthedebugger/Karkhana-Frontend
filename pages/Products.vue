@@ -11,13 +11,13 @@
           <div class="attribute-name">Student Services</div>
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.science" />
+          <ProductsItem :product_info="products.science" :show_key_value="false" />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.computing" />
+          <ProductsItem :product_info="products.computing" :show_key_value="false" />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.make" />
+          <ProductsItem :product_info="products.make" :show_key_value="false" />
         </div>
       </div>
     </div>

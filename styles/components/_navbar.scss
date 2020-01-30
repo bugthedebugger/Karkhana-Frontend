@@ -9,7 +9,7 @@
   background-color: $k-white;
   padding-top: 0;
   padding-bottom: 0;
-  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
 
   .nav-link {
     padding-top: 28px;
@@ -118,53 +118,54 @@
 
   .product-category {
     // margin-right: 78px;
+    a:hover{
+      text-decoration: none;
+    }
   }
 
   .product-circle {
-    $size: 60px;
+    $size: 64px;
     height: $size;
     width: $size;
     margin: 0 auto;
     margin-top: 43px;
-    border-radius: 100%;
+    cursor: pointer;
+    img {
+      width: 100%;
+    }
   }
 
   .product-category-name {
     text-align: center;
+    margin-top: 10px;
     @include k-font(
       toRem(16px),
       false,
       $font-weight-medium,
-      toRem(84px),
+      false,
       $font-poppins
     );
   }
 
   .product-category-science {
-    .product-circle {
-      background-color: $k-blue;
-    }
-
-    .product-category-name {
-      color: $k-blue;
-    }
-  }
-
-  .product-category-computing {
-    .product-circle {
-      background-color: $k-success;
-    }
-
     .product-category-name {
       color: $k-success;
     }
   }
 
-  .product-category-make {
-    .product-circle {
-      background-color: $k-warning;
+  .product-category-computing {
+    .product-category-name {
+      color: $k-blue;
     }
 
+    .product-circle {
+      img {
+        width: 80%;
+      }
+    }
+  }
+
+  .product-category-make {
     .product-category-name {
       color: $k-warning;
     }
