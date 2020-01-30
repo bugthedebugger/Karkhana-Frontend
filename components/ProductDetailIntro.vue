@@ -9,7 +9,7 @@
         <!-- Product Item -->
         <div class="col-md-4">
           <div class="product-info-wrapper">
-            <ProductsItem :product_info="products.science" :show_key_value="true" />
+            <ProductsItem :product_info="selectedProduct" :show_key_value="true" />
           </div>
         </div>
 
@@ -61,6 +61,7 @@ export default {
   components: { ProductsItem },
   data() {
     return {
+      selectedProduct: null,
       products: {
         science: {
           category: "science",
@@ -117,6 +118,9 @@ export default {
         }
       }
     };
+  },
+  created(){
+    this.selectedProduct = this.products[this.$route.query.type];
   }
 };
 </script>

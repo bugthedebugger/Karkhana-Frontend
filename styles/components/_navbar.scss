@@ -116,6 +116,10 @@
 .products-menu {
   width: 670px !important;
 
+  a{
+    color: $k-black;
+  }
+
   .product-category {
     // margin-right: 78px;
     a:hover{

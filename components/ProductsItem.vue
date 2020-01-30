@@ -61,7 +61,10 @@
         <div class="attribute-value">{{product_info.student_services}}</div>
       </div>
 
-      <button class="btn-learn-more">Learn More</button>
+      <nuxt-link
+        class="btn-learn-more"
+        :to="'/productDetail?type=' + product_info.category"
+      >{{show_key_value ? "Let's make a deal" : 'Learn More'}}</nuxt-link>
     </div>
     <a href="#" class="brochure-link" :class="'brochure-link-' + product_info.category">
       <i class="fal fa-arrow-to-bottom"></i> Download Brochure

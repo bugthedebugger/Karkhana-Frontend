@@ -74,6 +74,8 @@
   }
 
   .btn-learn-more {
+    display: block;
+    text-decoration: none;
     width: calc(100% + 100px); // plus padding
     margin-left: -50px;
     padding: 20px 50px;

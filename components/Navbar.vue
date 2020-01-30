@@ -35,7 +35,7 @@
             <div class="dropdown-menu products-menu" aria-labelledby="productsDropdown">
               <div class="row">
                 <div class="col-4 product-category product-category-science">
-                  <nuxt-link to="/productDetail">
+                  <nuxt-link to="/productDetail?type=science">
                     <div class="product-circle">
                       <img src="/images/product-logo-science.svg" />
                     </div>
@@ -43,7 +43,7 @@
                   </nuxt-link>
                 </div>
                 <div class="col-4 product-category product-category-computing">
-                  <nuxt-link to="/productDetail">
+                  <nuxt-link to="/productDetail?type=computing">
                     <div class="product-circle">
                       <img src="/images/product-logo-computing.svg" />
                     </div>
@@ -51,7 +51,7 @@
                   </nuxt-link>
                 </div>
                 <div class="col-4 product-category product-category-make">
-                  <nuxt-link to="/productDetail">
+                  <nuxt-link to="/productDetail?type=make">
                     <div class="product-circle">
                       <img src="/images/product-logo-make.svg" />
                     </div>
