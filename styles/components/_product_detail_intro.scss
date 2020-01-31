@@ -58,8 +58,13 @@
       }
 
       .curriculum-links {
-        a {
-          color: $k-info;
+        /deep/ ul {
+          list-style-type: none;
+          li {
+            a {
+              color: $k-info !important;
+            }
+          }
         }
       }
     }

@@ -11,16 +11,16 @@
         <div class="col">
           <div class="navlinks d-flex flex-wrap">
             <div class="navlink-item">
-              <a href="#">Products</a>
+              <nuxt-link to="/products">Products</nuxt-link>
             </div>
             <div class="navlink-item">
-              <a href="#">Blog</a>
+              <nuxt-link to="/">Blog</nuxt-link>
             </div>
             <div class="navlink-item">
-              <a href="#">About</a>
+              <nuxt-link to="/about">About</nuxt-link>
             </div>
             <div class="navlink-item">
-              <a href="#">Contact</a>
+              <nuxt-link to="/contact">Contact</nuxt-link>
             </div>
             <div class="navlink-item ml-auto mr-0" @click="scrollToTop">
               Top

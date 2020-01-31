@@ -25,9 +25,14 @@ export const actions = {
                         cta: "Discover classes"
                     },
                     {
-                        title: "Some other quote here...",
+                        title: "The flower that blooms in adversity is the rarest and most beautiful of all.",
                         image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
                         cta: "Find more"
+                    },
+                    {
+                        title: "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+                        image: "https://images.unsplash.com/photo-1503796627019-324e68809dc3",
+                        cta: "Get started"
                     }
                 ],
                 aboutData: {

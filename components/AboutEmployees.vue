@@ -97,8 +97,8 @@ export default {
 
       employees: [
         {
-          name: "Pavitra Gautam",
-          designation: "Cheaf Executive Officer",
+          name: "Sakar Pudasaini",
+          designation: "Founder/Chairman",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image:
@@ -123,7 +123,7 @@ export default {
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image:
-            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+            "https://i.ya-webdesign.com/images/blank-profile-picture-png-2.png",
           skills: [
             "Leadership",
             "Marketing",
@@ -139,8 +139,8 @@ export default {
           }
         },
         {
-          name: "Aakash Raj Dahal",
-          designation: "Cheaf Executive Officer",
+          name: "Sunoj Shrestha",
+          designation: "Head Teacher",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image:
@@ -160,8 +160,8 @@ export default {
           }
         },
         {
-          name: "Pavitra Gautam",
-          designation: "Cheaf Executive Officer",
+          name: "Sachet Manandhar",
+          designation: "Cheaf Finance Officer",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image:
@@ -181,8 +181,8 @@ export default {
           }
         },
         {
-          name: "Pavitra Gautam",
-          designation: "Cheaf Executive Officer",
+          name: "Sangden Ghising",
+          designation: "Lead, Community of Teachers",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image:
@@ -202,8 +202,8 @@ export default {
           }
         },
         {
-          name: "Pavitra Gautam",
-          designation: "Cheaf Executive Officer",
+          name: "Rakshya Chand",
+          designation: "Director of Sales",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image:
@@ -223,8 +223,8 @@ export default {
           }
         },
         {
-          name: "Pavitra Gautam",
-          designation: "Cheaf Executive Officer",
+          name: "Preeti Shrestha",
+          designation: "Director of HR",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image:
@@ -261,6 +261,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/styles/components/_about_employees.scss";
 </style>

@@ -69,7 +69,7 @@ export default {
         },
         {
           title: "Started teaching at school",
-          image: "https://images.unsplash.com/photo-1502085671122-2d218cd434e6",
+          image: "https://images.unsplash.com/photo-1519942248912-c77dcb5374d8",
           date: {
             month: "Apr",
             year: 2003
@@ -109,7 +109,7 @@ export default {
         },
         {
           title: "Some another event in history",
-          image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+          image: "https://images.unsplash.com/photo-1579380309283-bcdec2023e95",
           date: {
             month: "Mar",
             year: 2013
@@ -117,18 +117,44 @@ export default {
         },
         {
           title: "Painted the building",
-          image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+          image: "https://images.unsplash.com/photo-1553012547-284d8c582b1f",
           date: {
             month: "Jun",
             year: 2014
           }
         },
         {
-          title: "Bibhuti joined the company",
-          image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+          title: "Started another project",
+          image: "https://images.unsplash.com/photo-1540064696208-0668a6339021",
           date: {
             month: "Feb",
             year: 2015
+          }
+        },
+        {
+          title: "Yet another point in time",
+          image: "https://images.unsplash.com/photo-1515681595959-82452516c80a",
+          date: {
+            month: "Aug",
+            year: 2016
+          }
+        },
+
+        {
+          title: "Some amazing stuff happened",
+          image: "https://images.unsplash.com/photo-1550587381-a9ec95bbe09e",
+          date: {
+            month: "Nov",
+            year: 2017
+          }
+        },
+
+        {
+          title: "Finally we are here",
+          image: "https://images.unsplash.com/photo-1451074597431-068bcb105aa2",
+          date: {
+            month: "Jan",
+            year: 2020
           }
         }
       ],
@@ -211,6 +237,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/styles/components/_about_history.scss";
 </style>

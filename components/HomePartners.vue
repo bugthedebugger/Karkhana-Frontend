@@ -10,9 +10,9 @@
             <p class="work-with-us">WORK WITH US</p>
             <p class="our-partners">Our Partners</p>
             <p class="partners-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatibus hic quisquam illum nihil excepturi molestias nostrum deleniti molestiae
-              expedita fugit in asperiores maiores voluptatem, quo blanditiis, eum vero obcaecati alias?
+              In our efforts to empower people to build a better future Karkhana partners with 
+              universities, nonprofits and governments from around the world. Learn more about our 
+              partnerships by clicking on the logos.
             </p>
           </div>
         </div>
