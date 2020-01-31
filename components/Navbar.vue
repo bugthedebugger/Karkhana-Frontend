@@ -66,7 +66,7 @@
               </div>
             </div>
           </li>
-          <a class="nav-item nav-link" href="#">Blog</a>
+          <nuxt-link to="/blog" class="nav-item nav-link">Blog</nuxt-link>
           <nuxt-link to="/about" class="nav-item nav-link">About</nuxt-link>
           <nuxt-link to="/contact" class="nav-item nav-link">Contact</nuxt-link>
 

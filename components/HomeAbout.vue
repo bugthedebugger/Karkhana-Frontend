@@ -26,7 +26,7 @@
                   </i>
                 </div>
                 <div class="stat-detail">
-                  <div class="stat-title">Students</div>
+                  <div class="stat-title">Students Reached</div>
                   <div class="stat-data">10,000+</div>
                 </div>
               </div>
@@ -40,7 +40,7 @@
                   </i>
                 </div>
                 <div class="stat-detail">
-                  <div class="stat-title">Schools</div>
+                  <div class="stat-title">Schools we work with</div>
                   <div class="stat-data">50+</div>
                 </div>
               </div>

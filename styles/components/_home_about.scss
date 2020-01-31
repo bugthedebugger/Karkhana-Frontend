@@ -4,6 +4,7 @@
   position: relative;
 
   .content {
+    padding-right: 50px;
     h5.about-karkhana {
       margin-top: 180px;
 
@@ -63,7 +64,7 @@
       @include media-breakpoint-down(md) {
         height: 20px;
       }
-      
+
       width: 100%;
     }
   }
@@ -78,7 +79,7 @@
       margin-right: toRem(30px);
       i {
         position: relative;
-        @include k-font(toRem(75px), $k-text-color-1);
+        @include k-font(toRem(50px), $k-text-color-1);
         img {
           position: absolute;
           left: -15px;
@@ -95,7 +96,7 @@
       .stat-title {
         min-width: 100px;
         @include k-font(
-          toRem(24px),
+          toRem(20px),
           $k-black-2,
           $font-weight-semi-bold,
           36px,
@@ -104,7 +105,7 @@
       }
       .stat-data {
         @include k-font(
-          toRem(24px),
+          toRem(18px),
           $k-grey,
           $font-weight-semi-bold,
           36px,
@@ -127,25 +128,28 @@
 
     .blob-pic {
       position: absolute;
-      width: 500px;
+      width: 700px;
       height: 500px;
       background-repeat: no-repeat;
       z-index: -1;
     }
 
     .blob-pic-1 {
-      margin-left: -150px;
-      background-image: url("/images/blob-about-gallery-pic-1.svg");
+      margin-left: -190px;
+      background-image: url(/images/blob-about-gallery-pic-1.svg);
+      margin-top: -65px;
     }
 
     .blob-pic-2 {
-      margin-left: -150px;
+      margin-left: -25px;
       background-image: url("/images/blob-about-gallery-pic-2.svg");
     }
 
     .blob-pic-3 {
-      margin-left: -150px;
-      background-image: url("/images/blob-about-gallery-pic-3.svg");
+      margin-left: -340px;
+      background-image: url(/images/blob-about-gallery-pic-3.svg);
+      margin-top: -176px;
+      height: 800px;
     }
 
     .pic-1 {
@@ -155,7 +159,7 @@
 
     .pic-2 {
       margin-top: -100px;
-      margin-left: -100px;
+      margin-left: -150px;
       z-index: 2;
     }
 

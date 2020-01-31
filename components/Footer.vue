@@ -14,7 +14,7 @@
               <nuxt-link to="/products">Products</nuxt-link>
             </div>
             <div class="navlink-item">
-              <nuxt-link to="/">Blog</nuxt-link>
+              <nuxt-link to="/blog">Blog</nuxt-link>
             </div>
             <div class="navlink-item">
               <nuxt-link to="/about">About</nuxt-link>
