@@ -42,6 +42,16 @@
       color: $k-white;
     }
 
+    .tagline {
+      @include k-font(
+        toRem(16px),
+        $k-white,
+        $font-weight-regular,
+        false,
+        $font-museo
+      );
+    }
+
     .details {
       margin-top: 80px;
       // font: Regular 18px/36px Raleway;

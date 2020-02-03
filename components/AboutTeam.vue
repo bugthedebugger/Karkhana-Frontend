@@ -4,7 +4,6 @@
       <div class="row">
         <div class="col">
           <h1 class="title">Meet Our Team</h1>
-          <p class="subtitle">We are passionate about the pursuit of ideas that people put first.</p>
         </div>
       </div>
     </div>

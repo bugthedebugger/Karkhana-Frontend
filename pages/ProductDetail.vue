@@ -21,6 +21,7 @@ export default {
         science: {
           category: "science",
           title: "Karkhana Science",
+          tagline: "Turn your classroom into a lab of discovery",
           grade: "6 to 8",
           type: "Curricular",
           product: "Science Kit Online Support Platform Workbook",
@@ -46,7 +47,7 @@ export default {
               <li>Having one-kit-per-student reduces teacher discomfort and increases the chances of continued use by both teachers and students.</li>
               <li>Online digital platform has teacher training videos reducing the need for excessive and expensive teacher training.</li>
             </ul>
-          `,
+          `
           // curriculum_links: `
           //   <ul>
           //     <li> <a  href="#">MYP Curriculum 2020</a></li>
@@ -61,6 +62,7 @@ export default {
         computing: {
           category: "computing",
           title: "Karkhana Computing",
+          tagline: "Technology education for the 21st century child",
           grade: "3 to 5",
           type: "Curricular",
           product: "Textbook",
@@ -86,18 +88,19 @@ export default {
               Because it takes more than schools to produce good citizens the same material can 
               also be used by parents.  
             </p>
-          `,
+          `
           // curriculum_links: `
-          //   The computing series is based on Karkhana’s own primary school computing curriculum. 
-          //   As most South Asian countries do not have a primary school computing curriculum, 
-          //   this fills a useful void that many schools encounter.  The computing series 
-          //   can also be aligned to PYP, IPC, UK (Key Stage 1 and 2). Currently the series 
-          //   is designed for grades 1 through 5. 
+          //   The computing series is based on Karkhana’s own primary school computing curriculum.
+          //   As most South Asian countries do not have a primary school computing curriculum,
+          //   this fills a useful void that many schools encounter.  The computing series
+          //   can also be aligned to PYP, IPC, UK (Key Stage 1 and 2). Currently the series
+          //   is designed for grades 1 through 5.
           // `
         },
         make: {
           category: "make",
           title: "Karkhana Make",
+          tagline: "Make your own future",
           grade: "3 to 9",
           type: "Co/Extra Curricular",
           product: "Innovation Kit",

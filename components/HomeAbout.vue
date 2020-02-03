@@ -7,12 +7,10 @@
           <h5 class="about-karkhana">ABOUT KARKHANA</h5>
           <p class="about-karkhana-detail">
             <span class="first-letter">K</span>
-            arkhana is an education company and makerspace with a unique approach to learning.
-            Our teachers come from a spectrum of engineers, designers, artists, scientists,
-            programmers; that turn the classroom into a lab for discovery! We have been in the
-            field of education for the past five years
-            designing learning experiences for middle school students.
-            We believe that the world is malleable and this is the insight we want our students to gain.
+            arkhana believes that makers today are the shapers of the future. Making 
+            teaches children to be resourceful,  to reshape their own environment, 
+            to solve novel problems, and thus makes them confident in the face of 
+            novel and unexpected problems. 
             <br />
             <nuxt-link to="/about" class="learn-more">LEARN MORE</nuxt-link>
           </p>
@@ -65,7 +63,7 @@
             <div class="col-md-6">
               <div class="stat">
                 <div class="stat-icon">
-                  <i class="far fa-building ">
+                  <i class="far fa-building">
                     <img src="/images/blob-partners.svg" />
                   </i>
                 </div>

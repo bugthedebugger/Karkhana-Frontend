@@ -48,8 +48,7 @@
                   <p class="contact-title">PHONE NUMBERS</p>
                   <p class="contact-value">
                     01-4412624
-                    <br />Viver: 9801888822
-                    <br />Whatsapp: 9801888822
+                    <br />Mobile/Viver/Whatsapp: 9801888822
                   </p>
                 </div>
               </div>
