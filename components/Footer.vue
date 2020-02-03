@@ -73,7 +73,7 @@
                 <a href="https://www.facebook.com/karkhana.asia" target="_blank">
                   <i class="fab fa-facebook"></i>
                 </a>
-                <a href>
+                <a href="https://www.instagram.com/karkhana.asia/?igshid=1h7o9m7avg733" target="_blank">
                   <i class="fab fa-instagram"></i>
                 </a>
                 <a href="https://www.youtube.com/user/karkhanalabs" target="_blank">
