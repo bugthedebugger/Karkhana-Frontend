@@ -3,7 +3,7 @@
     <AboutMain />
     <AboutHistory />
     <AboutTeam />
-    <AboutEmployees />
+    <!-- <AboutEmployees /> -->
     <AboutStats />
     <AboutCareers />
     <Footer />
