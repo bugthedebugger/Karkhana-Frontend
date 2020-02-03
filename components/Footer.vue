@@ -70,13 +70,13 @@
             <li class="d-none d-md-block">&nbsp;</li>
             <li>
               <div class="d-flex social-icons">
-                <a href="#">
+                <a href="https://www.facebook.com/karkhana.asia" target="_blank">
                   <i class="fab fa-facebook"></i>
                 </a>
                 <a href>
                   <i class="fab fa-instagram"></i>
                 </a>
-                <a href>
+                <a href="https://www.youtube.com/user/karkhanalabs" target="_blank">
                   <i class="fab fa-youtube"></i>
                 </a>
               </div>

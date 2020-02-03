@@ -97,14 +97,14 @@
           </li>
 
           <!-- Social handlers -->
-          <div class="nav-item nav-link nav-item-social" href="#">
-            <a href="#">
+          <div class="nav-item nav-link nav-item-social">
+            <a href="https://www.facebook.com/karkhana.asia" target="_blank">
               <i class="fab fa-facebook"></i>
             </a>
             <a href>
               <i class="fab fa-instagram"></i>
             </a>
-            <a href>
+            <a href="https://www.youtube.com/user/karkhanalabs" target="_blank">
               <i class="fab fa-youtube"></i>
             </a>
           </div>

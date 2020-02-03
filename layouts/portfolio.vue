@@ -16,8 +16,8 @@ export default {
 <style>
 .under-construction {
   position: fixed;
-  top: 0px;
-  right: 0px;
+  bottom: -5px;
+  right: -5px;
   height: 200px;
   width: 200px;
   z-index: 100000;
