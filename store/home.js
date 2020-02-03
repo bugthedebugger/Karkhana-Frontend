@@ -21,22 +21,22 @@ export const actions = {
                 sliderImages: [
                     {
                         title: "Makers Today, Shapers of Tomorrow.",
-                        image: "https://i.imgur.com/jGBNTLO.jpg",
+                        image: "/images/slider-image-1.jpg",
                         cta: "Discover classes"
                     },
                     {
                         title: "The hands are the gateway to the mind.",
-                        image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
+                        image: "/images/slider-image-2.jpg",
                         cta: "Find more"
                     },
                     {
                         title: "The world is malleable. We give you the tools to reshape it.",
-                        image: "https://images.unsplash.com/photo-1503796627019-324e68809dc3",
+                        image: "/images/slider-image-3.jpg",
                         cta: "Get started"
                     },
                     {
                         title: "We design learning experiences.",
-                        image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
+                        image: "/images/slider-image-4.jpg",
                         cta: "Find more"
                     },
                 ],

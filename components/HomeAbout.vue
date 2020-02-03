@@ -21,7 +21,7 @@
             <div class="col-md-6">
               <div class="stat">
                 <div class="stat-icon">
-                  <i class="fal fa-graduation-cap">
+                  <i class="far fa-users-class">
                     <img src="/images/blob-students-reached.svg" />
                   </i>
                 </div>
@@ -35,23 +35,7 @@
             <div class="col-md-6">
               <div class="stat">
                 <div class="stat-icon">
-                  <i class="fal fa-school">
-                    <img src="/images/blob-schools-we-work-with.svg" />
-                  </i>
-                </div>
-                <div class="stat-detail">
-                  <div class="stat-title">Schools we work with</div>
-                  <div class="stat-data">61+</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="seperator"></div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="stat">
-                <div class="stat-icon">
-                  <i class="fal fa-users">
+                  <i class="far fa-users">
                     <img src="/images/blob-schools-we-work-with.svg" />
                   </i>
                 </div>
@@ -61,11 +45,27 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="seperator"></div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="stat">
+                <div class="stat-icon">
+                  <i class="far fa-globe-asia">
+                    <img src="/images/blob-schools-we-work-with.svg" />
+                  </i>
+                </div>
+                <div class="stat-detail">
+                  <div class="stat-title">Countries we work in</div>
+                  <div class="stat-data">3</div>
+                </div>
+              </div>
+            </div>
 
             <div class="col-md-6">
               <div class="stat">
                 <div class="stat-icon">
-                  <i class="fal fa-suitcase">
+                  <i class="far fa-building ">
                     <img src="/images/blob-partners.svg" />
                   </i>
                 </div>

@@ -35,12 +35,12 @@
       <!-- Contents -->
       <div class="row">
         <div class="col-md-6 col-sm-12">
-          <h5 class="who-are-we">Who are we ?</h5>
+          <!-- <h5 class="who-are-we">Who are we ?</h5>
           <p class="who-are-we-content">
             We are a diverse team of engineers, designers, social workers, programmers and educators
             that are bound together by one vision: empower people with the skills &amp;
             attitudes that will help them build their future and the future of their community.
-          </p>
+          </p> -->
 
           <p class="mb-0">
             <i class="fal fa-copyright"></i>
@@ -69,9 +69,9 @@
 
         <div class="col-md-2 text-right col-sm-12">
           <ul class="links-list no-bullets">
-            <li class="d-none d-md-block">&nbsp;</li>
             <!-- <li class="d-none d-md-block">&nbsp;</li> -->
-            <li class="d-none d-md-block">&nbsp;</li>
+            <!-- <li class="d-none d-md-block">&nbsp;</li> -->
+            <!-- <li class="d-none d-md-block">&nbsp;</li> -->
             <li>
               <div class="d-flex social-icons">
                 <a href="https://www.facebook.com/karkhana.asia" target="_blank">

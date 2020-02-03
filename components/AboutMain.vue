@@ -4,10 +4,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-sm-12">
-            <h1 class="title">The Karkhana Team</h1>
-            <p
-              class="description"
-            >Behind every small and mid-size business are great people. Meet the people behind ours.</p>
+            <h1 class="title">The Karkhana Family</h1>
+            <p class="description">Learn more about our people and their motivations.</p>
           </div>
           <div class="col-md-6 col-sm-12">
             <div v-if="!showVideo" class="ml-auto about-video-thumbnail">

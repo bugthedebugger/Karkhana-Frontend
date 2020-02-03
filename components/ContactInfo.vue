@@ -14,7 +14,7 @@
                   </div>
                   <p class="contact-title">ADDRESS</p>
                   <p class="contact-value">
-                    Gyaneshore, Kathmandu
+                    Gyaneshowr, Kathmandu
                     <br />P.O. BOX: 23888
                   </p>
                 </div>
@@ -47,10 +47,9 @@
                   </div>
                   <p class="contact-title">PHONE NUMBERS</p>
                   <p class="contact-value">
-                    +977 01-424XXXX
-                    <br />+977 01-424XXXX
-                    <br />+977 01-424XXXX
-                    <br />+977 01-424XXXX
+                    01-4412624
+                    <br />Viver: 9801888822
+                    <br />Whatsapp: 9801888822
                   </p>
                 </div>
               </div>
@@ -62,9 +61,7 @@
                   </div>
                   <p class="contact-title">Email Address</p>
                   <p class="contact-value">
-                    contact@karkhana.asia
-                    <br />partnership@karkhana.asia
-                    <br />hello@karkhana.asia
+                    sales@karkhana.asia
                   </p>
                 </div>
               </div>

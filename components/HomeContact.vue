@@ -13,13 +13,13 @@
               </h1>
               <div class="card-title">Give us a call</div>
               <div class="card-content">
-                Want to lean more about what we do and partner with us or just want to say Hello.
-                Our line is always open. We would love to hear from you.
+                Do you have any questions? Just want to learn more about our philosophy or products ?
+                Give us a call to learn more.
                 <br />
                 <br />You can call us at:
                 <div class="pl-4">
-                  +977 01 4444444
-                  <br />+977 01 4444444
+                  Phone: 01-4412624
+                  <br />Mobile/Viber/Whatsapp: 9801888822
                 </div>
               </div>
             </div>
@@ -35,7 +35,9 @@
               </h1>
               <div class="card-title">Take a tour</div>
               <div class="card-content">
-                We welcome anyone or any team that want to take a look around our space and learn more about us and our processes. Do let us know in advance when you're arriving so we can start brewing coffee.
+                At Karkhana our office is also a teacher. Visitors - whether they are parents, teachers or school leaders
+                - learn more about us by visiting and seeing our facilities. We welcome you to
+                visit us. But please do make an appointment before you come so that we can give you a great tour!
                 <br />
 
                 <nuxt-link to="/contact" class="btn btn-primary btn-take-a-tour">

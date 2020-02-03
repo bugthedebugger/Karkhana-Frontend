@@ -3,8 +3,13 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1 class="title">Meet our team</h1>
-          <p class="subtitle">We are passionate about the pursuit of ideas that people put first.</p>
+          <h1 class="title">Meet The Karkhanaughts</h1>
+          <p class="subtitle">
+            The best part of this crazy journey is the people we work with.
+            We are a diverse team of engineers, designers, social workers, programmers and 
+            educators that are bound together by one vision: empower people with the skills 
+            &amp; attitudes that will help them build their future and the future of their community.
+          </p>
         </div>
       </div>
     </div>
@@ -26,7 +31,7 @@
     </div>
 
     <p class="team-data">
-      <span class="number">50</span>
+      <span class="number">52+</span>
       <br />Employees
     </p>
   </section>

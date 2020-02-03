@@ -27,7 +27,7 @@
       toRem(16px),
       #989898,
       $font-weight-regular,
-      toRem(87px),
+      false,
       $font-museo
     );
     @include media-breakpoint-down(md) {
@@ -40,7 +40,7 @@
     position: relative;
     width: 100vw;
     height: 783px;
-    background-image: url("/images/karkhana-team.png");
+    background-image: url("/images/karkhana-team.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
