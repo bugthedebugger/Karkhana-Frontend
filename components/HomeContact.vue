@@ -37,9 +37,10 @@
               <div class="card-content">
                 We welcome anyone or any team that want to take a look around our space and learn more about us and our processes. Do let us know in advance when you're arriving so we can start brewing coffee.
                 <br />
-                <button class="btn btn-primary btn-take-a-tour">
+
+                <nuxt-link to="/contact" class="btn btn-primary btn-take-a-tour">
                   <i class="fal fa-ticket icon"></i>Take a Tour
-                </button>
+                </nuxt-link>
               </div>
             </div>
           </div>

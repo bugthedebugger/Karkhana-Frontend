@@ -6,7 +6,7 @@
           <h1 class="slide-title">{{slide.title}}</h1>
           <div class="slide-image" :style="'background-image: url(' + slide.image + ')'"></div>
           <div class="overlay"></div>
-          <button class="btn btn-primary btn-cta slide-cta">{{slide.cta}}</button>
+          <!-- <button class="btn btn-primary btn-cta slide-cta">{{slide.cta}}</button> -->
         </div>
       </VueSlickCarousel>
 

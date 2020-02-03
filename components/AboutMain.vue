@@ -10,8 +10,18 @@
             >Behind every small and mid-size business are great people. Meet the people behind ours.</p>
           </div>
           <div class="col-md-6 col-sm-12">
-            <div class="ml-auto about-video-thumbnail">
-              <i class="fal fa-play-circle play cursor-pointer"></i>
+            <div v-if="!showVideo" class="ml-auto about-video-thumbnail">
+              <i class="fal fa-play-circle play cursor-pointer" @click="showVideo = true"></i>
+              <div class="about-video-thumbnail-overlay"></div>
+            </div>
+
+            <div v-else class="video-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/CDFPQATSsiY?autoplay=1"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
             </div>
 
             <!-- display gap on mobile -->
@@ -28,10 +38,7 @@
         <div class="row">
           <div class="col">
             <div class="card">
-              <img
-                class="card-img-top"
-                src="/images/karkhana-building.png"
-              />
+              <img class="card-img-top" src="/images/karkhana-building.png" />
               <div class="card-body">
                 <h2 class="title mt-4">Our Vision</h2>
                 <p class="content">
@@ -94,7 +101,9 @@
 export default {
   name: "AboutMain",
   data() {
-    return {};
+    return {
+      showVideo: false
+    };
   }
 };
 </script>

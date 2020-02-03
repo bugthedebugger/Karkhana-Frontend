@@ -3,7 +3,9 @@
     <div class="container">
       <!-- Logo -->
       <div class="row">
-        <div class="col"></div>
+        <div class="col text-center mb-4">
+          <img src="/images/logo-white.png" height="50" />
+        </div>
       </div>
 
       <!-- NavLinks -->
@@ -34,9 +36,11 @@
       <div class="row">
         <div class="col-md-6 col-sm-12">
           <h5 class="who-are-we">Who are we ?</h5>
-          <p
-            class="who-are-we-content"
-          >We come from a spectrum of engineers, designers, artists, scientists, programmers; that turn the classroom into a lab for discovery!</p>
+          <p class="who-are-we-content">
+            We are a diverse team of engineers, designers, social workers, programmers and educators
+            that are bound together by one vision: empower people with the skills &amp;
+            attitudes that will help them build their future and the future of their community.
+          </p>
 
           <p class="mb-0">
             <i class="fal fa-copyright"></i>
@@ -46,7 +50,7 @@
 
         <div class="col-md-2"></div>
 
-        <div class="col-md-2 col-sm-12">
+        <!-- <div class="col-md-2 col-sm-12">
           <ul class="links-list no-bullets">
             <li>
               <a href>FAQs</a>
@@ -61,12 +65,12 @@
               <a href>Terms of Use</a>
             </li>
           </ul>
-        </div>
+        </div> -->
 
         <div class="col-md-2 text-right col-sm-12">
           <ul class="links-list no-bullets">
             <li class="d-none d-md-block">&nbsp;</li>
-            <li class="d-none d-md-block">&nbsp;</li>
+            <!-- <li class="d-none d-md-block">&nbsp;</li> -->
             <li class="d-none d-md-block">&nbsp;</li>
             <li>
               <div class="d-flex social-icons">

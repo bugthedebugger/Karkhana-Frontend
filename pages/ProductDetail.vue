@@ -1,7 +1,7 @@
 <template>
   <div class="product-detail">
     <ProductDetailIntro :product_info="selectedProduct" />
-    <ProductDetailTestimonial :product_info="selectedProduct" />
+    <!-- <ProductDetailTestimonial :product_info="selectedProduct" /> -->
     <Footer />
   </div>
 </template>
@@ -47,16 +47,16 @@ export default {
               <li>Online digital platform has teacher training videos reducing the need for excessive and expensive teacher training.</li>
             </ul>
           `,
-          curriculum_links: `
-            <ul>
-              <li> <a  href="#">MYP Curriculum 2020</a></li>
-              <li> <a  href="#">IPC Curriculum 2020</a></li>
-              <li> <a  href="#">CBC Curriculum 2020 - Government of India</a></li>
-              <li> <a  href="#">ICSE Curriculum 2020 [Updated]</a></li>
-              <li> <a  href="#">ICSE Curriculum 2020 [Updated]</a></li>
-              <li> <a  href="#">Government of Bangladesh - Some Curriculum Link</a></li>
-            </ul>
-          `
+          // curriculum_links: `
+          //   <ul>
+          //     <li> <a  href="#">MYP Curriculum 2020</a></li>
+          //     <li> <a  href="#">IPC Curriculum 2020</a></li>
+          //     <li> <a  href="#">CBC Curriculum 2020 - Government of India</a></li>
+          //     <li> <a  href="#">ICSE Curriculum 2020 [Updated]</a></li>
+          //     <li> <a  href="#">ICSE Curriculum 2020 [Updated]</a></li>
+          //     <li> <a  href="#">Government of Bangladesh - Some Curriculum Link</a></li>
+          //   </ul>
+          // `
         },
         computing: {
           category: "computing",
@@ -87,13 +87,13 @@ export default {
               also be used by parents.  
             </p>
           `,
-          curriculum_links: `
-            The computing series is based on Karkhana’s own primary school computing curriculum. 
-            As most South Asian countries do not have a primary school computing curriculum, 
-            this fills a useful void that many schools encounter.  The computing series 
-            can also be aligned to PYP, IPC, UK (Key Stage 1 and 2). Currently the series 
-            is designed for grades 1 through 5. 
-          `
+          // curriculum_links: `
+          //   The computing series is based on Karkhana’s own primary school computing curriculum. 
+          //   As most South Asian countries do not have a primary school computing curriculum, 
+          //   this fills a useful void that many schools encounter.  The computing series 
+          //   can also be aligned to PYP, IPC, UK (Key Stage 1 and 2). Currently the series 
+          //   is designed for grades 1 through 5. 
+          // `
         },
         make: {
           category: "make",

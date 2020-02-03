@@ -14,7 +14,7 @@
             designing learning experiences for middle school students.
             We believe that the world is malleable and this is the insight we want our students to gain.
             <br />
-            <a href="#" class="learn-more">LEARN MORE</a>
+            <nuxt-link to="/about" class="learn-more">LEARN MORE</nuxt-link>
           </p>
 
           <div class="row">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="stat-detail">
                   <div class="stat-title">Students Reached</div>
-                  <div class="stat-data">10,000+</div>
+                  <div class="stat-data">6100+</div>
                 </div>
               </div>
             </div>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="stat-detail">
                   <div class="stat-title">Schools we work with</div>
-                  <div class="stat-data">50+</div>
+                  <div class="stat-data">61+</div>
                 </div>
               </div>
             </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="stat-detail">
                   <div class="stat-title">Employees</div>
-                  <div class="stat-data">50+</div>
+                  <div class="stat-data">52+</div>
                 </div>
               </div>
             </div>
@@ -70,8 +70,8 @@
                   </i>
                 </div>
                 <div class="stat-detail">
-                  <div class="stat-title">Partners</div>
-                  <div class="stat-data">30+</div>
+                  <div class="stat-title">Cities we work in</div>
+                  <div class="stat-data">6</div>
                 </div>
               </div>
             </div>

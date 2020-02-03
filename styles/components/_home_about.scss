@@ -96,7 +96,7 @@
       .stat-title {
         min-width: 100px;
         @include k-font(
-          toRem(20px),
+          toRem(18px),
           $k-black-2,
           $font-weight-semi-bold,
           36px,
@@ -105,8 +105,8 @@
       }
       .stat-data {
         @include k-font(
-          toRem(18px),
-          $k-grey,
+          toRem(36px),
+          $k-text-color-1,
           $font-weight-semi-bold,
           36px,
           $font-poppins

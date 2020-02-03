@@ -16,7 +16,7 @@
         <!-- Product details -->
         <div class="col-md-8">
           <div class="product-details-text">
-            <h1 class="title intro-title">Introduction</h1>
+            <h1 class="title intro-title">{{product_info.title}}</h1>
             <div class="details">
               <div class="product-details" v-html="product_info.product_details"></div>
 
@@ -42,8 +42,7 @@ export default {
   data() {
     return {};
   },
-  created() {
-  }
+  created() {}
 };
 </script>
 

@@ -61,12 +61,31 @@
         <div class="attribute-value">{{product_info.student_services}}</div>
       </div>
 
+      <a
+        v-if="show_key_value"
+        target="_black"
+        download
+        :href="'/pdfs/' + product_info.category + '.pdf'"
+        class="btn-learn-more"
+      >
+        <i class="fal fa-arrow-to-bottom"></i> Download Brochure
+      </a>
+
       <nuxt-link
+        v-else
         class="btn-learn-more"
         :to="'/productDetail?type=' + product_info.category"
-      >{{show_key_value ? "Let's make a deal" : 'Learn More'}}</nuxt-link>
+      >Learn More</nuxt-link>
     </div>
-    <a href="#" class="brochure-link" :class="'brochure-link-' + product_info.category">
+
+    <a
+      v-if="!show_key_value"
+      target="_black"
+      download
+      :href="'/pdfs/' + product_info.category + '.pdf'"
+      class="brochure-link"
+      :class="'brochure-link-' + product_info.category"
+    >
       <i class="fal fa-arrow-to-bottom"></i> Download Brochure
     </a>
   </div>

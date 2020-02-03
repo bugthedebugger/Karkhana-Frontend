@@ -20,20 +20,25 @@ export const actions = {
             data: {
                 sliderImages: [
                     {
-                        title: "The best way to predict the future is to invent it.",
+                        title: "Makers Today, Shapers of Tomorrow.",
                         image: "https://i.imgur.com/jGBNTLO.jpg",
                         cta: "Discover classes"
                     },
                     {
-                        title: "The flower that blooms in adversity is the rarest and most beautiful of all.",
+                        title: "The hands are the gateway to the mind.",
                         image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
                         cta: "Find more"
                     },
                     {
-                        title: "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+                        title: "The world is malleable. We give you the tools to reshape it.",
                         image: "https://images.unsplash.com/photo-1503796627019-324e68809dc3",
                         cta: "Get started"
-                    }
+                    },
+                    {
+                        title: "We design learning experiences.",
+                        image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
+                        cta: "Find more"
+                    },
                 ],
                 aboutData: {
 

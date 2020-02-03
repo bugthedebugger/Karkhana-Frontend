@@ -71,7 +71,7 @@
           <nuxt-link to="/contact" class="nav-item nav-link">Contact</nuxt-link>
 
           <!-- Locale dropdown -->
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -94,7 +94,7 @@
                 {{locale.name}}
               </a>
             </div>
-          </li>
+          </li> -->
 
           <!-- Social handlers -->
           <div class="nav-item nav-link nav-item-social">

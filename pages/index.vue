@@ -4,9 +4,9 @@
 
     <HomeAbout />
 
-    <HomeEvents />
+    <!-- <HomeEvents /> -->
 
-    <HomePartners />
+    <!-- <HomePartners /> -->
 
     <HomeContact />
 

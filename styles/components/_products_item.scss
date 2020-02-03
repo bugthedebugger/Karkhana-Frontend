@@ -156,7 +156,15 @@
 }
 
 .brochure-link {
+  @include k-font(
+    toRem(14px),
+    false,
+    $font-weight-medium,
+    fasle,
+    $font-poppins
+  );
   text-decoration: none;
+  cursor: pointer;
 }
 
 .brochure-link-science {

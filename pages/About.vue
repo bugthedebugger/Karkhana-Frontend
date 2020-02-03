@@ -1,11 +1,11 @@
 <template>
   <div>
     <AboutMain />
-    <AboutHistory />
+    <!-- <AboutHistory /> -->
     <AboutTeam />
     <!-- <AboutEmployees /> -->
-    <AboutStats />
-    <AboutCareers />
+    <!-- <AboutStats /> -->
+    <!-- <AboutCareers /> -->
     <Footer />
   </div>
 </template>
