@@ -1,0 +1,45 @@
+@import "@/styles/global.scss";
+
+.dashboard-nav {
+  padding-left: 38px;
+  padding-top: 36px;
+  .nav-logo {
+    img {
+      width: 130px;
+    }
+  }
+
+  .nav-link-list {
+    .nav-link-list-item {
+      margin-top: 40px;
+      border-right: 4px solid white;
+
+      a {
+        @include k-font(
+          toRem(16px),
+          $k-black,
+          $font-weight-regular,
+          toRem(25px),
+          $font-poppins
+        );
+        text-decoration: none;
+      }
+
+      i {
+        margin-right: 40px;
+      }
+    }
+
+    .nav-link-list-item-selected {
+      border-right-color: $k-red;
+    }
+  }
+
+  @include k-font(
+    toRem(36px),
+    $k-text-color-1,
+    $font-weight-regular,
+    toRem(43px),
+    $font-museo
+  );
+}
