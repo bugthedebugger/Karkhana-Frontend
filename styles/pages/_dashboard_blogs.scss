@@ -1,0 +1,15 @@
+@import "@/styles/global.scss";
+
+.search-field {
+  .input-group-prepend {
+    .input-group-text {
+      background-color: $k-white;
+      color: #959595;
+      border-right-color: white;
+    }
+  }
+
+  .search-input {
+    width: 300px;
+  }
+}
