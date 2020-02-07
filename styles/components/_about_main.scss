@@ -92,12 +92,22 @@
       border-radius: 5px;
       box-shadow: 1px 17px 17px -6px rgba(71, 71, 71, 0.75);
 
+      img.k-loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
       iframe {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: 2;
       }
     }
 

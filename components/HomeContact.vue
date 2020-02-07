@@ -35,9 +35,9 @@
               </h1>
               <div class="card-title">Take a tour</div>
               <div class="card-content">
-                Visitors - whether they are parents, teachers or school leaders - learn more about
-                us by visiting and seeing our facilities. Please do make an appointment before
-                you come so that we can give you a well planned tour!
+                At Karkhana our office is also a teacher. Visitors - whether they are parents, teachers or school leaders
+                - learn more about us by visiting and seeing our facilities. We welcome you to
+                visit us. But please do make an appointment before you come so that we can give you a great tour!
                 <br />
 
                 <nuxt-link to="/contact" class="btn btn-primary btn-take-a-tour">
