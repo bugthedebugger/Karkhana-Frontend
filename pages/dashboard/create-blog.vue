@@ -74,6 +74,10 @@ export default {
   methods: {
     autosave() {},
 
+    save() {
+      axios.post(`${process.env.BASE_API_URL}`);
+    },
+
     addTag(tag) {
       this.tags.push(tag);
       this.defaultTags.splice(this.defaultTags.indexOf(tag), 1);

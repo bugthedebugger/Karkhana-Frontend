@@ -20,6 +20,7 @@ import AboutCareers from "~/components/AboutCareers";
 import Footer from "~/components/Footer";
 export default {
   layout: "portfolio",
+  auth: false,
   components: {
     AboutHistory,
     AboutMain,

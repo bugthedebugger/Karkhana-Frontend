@@ -1,0 +1,60 @@
+@import "@/styles/global.scss";
+.blog-detail {
+  .blog-header {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $k-black;
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    .header-info {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      .author-info-container {
+        .author-image {
+          height: 64px;
+          width: 64px;
+          border-radius: 50%;
+          margin-right: 12px;
+          background-size: cover;
+          background-position: center;
+        }
+
+        .author-info {
+          @include k-font(
+            toRem(14px),
+            $k-white,
+            $font-weight-medium,
+            toRem(21px),
+            $font-poppins
+          );
+        }
+      }
+      .blog-title {
+        // font: Regular 36px/43px Museo 700;
+        margin-top: 20px;
+        @include k-font(
+          toRem(36px),
+          $k-white,
+          $font-weight-regular,
+          toRem(43px),
+          $font-museo
+        );
+      }
+    }
+  }
+}

@@ -1,0 +1,203 @@
+@import "@/styles/global.scss";
+.blogs {
+  padding-top: 150px;
+  background-color: #faf4f0;
+
+  .blog-tabs {
+    margin-bottom: 40px;
+    .tab {
+      margin-right: 45px;
+      @include k-font(
+        toRem(18px),
+        $k-text-color-2,
+        $font-weight-regular,
+        toRem(28px),
+        $font-museo
+      );
+      cursor: pointer;
+    }
+
+    .tab-selected {
+      font-size: 24px;
+      border-bottom: 5px solid $k-red;
+    }
+  }
+
+  .blog-post {
+    position: relative;
+    height: 490px;
+    margin: 10px;
+    border-radius: 5px;
+    color: $k-white;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: $k-black;
+      opacity: 0.3;
+      border-radius: 5px;
+      z-index: 1;
+    }
+
+    .blog-details {
+      position: absolute;
+      left: 20px;
+      bottom: 25px;
+      z-index: 2;
+      .author-info-container {
+        .author-image {
+          height: 64px;
+          width: 64px;
+          border-radius: 50%;
+          margin-right: 12px;
+          background-size: cover;
+          background-position: center;
+        }
+
+        .author-info {
+          @include k-font(
+            toRem(14px),
+            $k-white,
+            $font-weight-medium,
+            toRem(21px),
+            $font-poppins
+          );
+        }
+      }
+
+      .blog-title {
+        // font: Regular 24px/28px Museo 700;
+        margin-top: 20px;
+        @include k-font(
+          toRem(24px),
+          $k-white,
+          $font-weight-regular,
+          toRem(28px),
+          $font-museo
+        );
+      }
+    }
+  }
+
+  .blog-post-alt {
+    margin: 10px;
+    cursor: pointer;
+
+    .blog-image {
+      position: relative;
+      height: 250px;
+      border-radius: 5px;
+      color: $k-white;
+      background-size: cover;
+      background-position: center;
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: $k-black;
+        opacity: 0.3;
+        border-radius: 5px;
+        z-index: 1;
+      }
+    }
+
+    .author-info-container {
+      position: absolute;
+      left: 20px;
+      bottom: 25px;
+      z-index: 2;
+      .author-image {
+        height: 64px;
+        width: 64px;
+        border-radius: 50%;
+        margin-right: 12px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .author-info {
+        @include k-font(
+          toRem(14px),
+          $k-white,
+          $font-weight-medium,
+          toRem(21px),
+          $font-poppins
+        );
+      }
+    }
+
+    .blog-details {
+      padding: 24px 20px 20px 15px;
+      .blog-title {
+        margin-top: 20px;
+        @include k-font(
+          toRem(24px),
+          $k-text-color-1,
+          $font-weight-regular,
+          toRem(28px),
+          $font-museo
+        );
+      }
+
+      .blog-brief {
+        @include k-font(
+          toRem(16px),
+          $k-text-color-4,
+          $font-weight-regular,
+          toRem(28px),
+          $font-poppins
+        );
+      }
+    }
+  }
+
+  .tags-container {
+    // font: Regular 24px/28px Museo 700;
+    @include k-font(
+      toRem(24px),
+      $k-text-color-1,
+      $font-weight-regular,
+      toRem(28px),
+      $font-museo
+    );
+
+    .tags-count {
+      // font: Regular 16px/28px Poppins;
+      margin-left: 12px;
+      @include k-font(
+        toRem(16px),
+        $k-text-color-4,
+        $font-weight-regular,
+        toRem(28px),
+        $font-poppins
+      );
+    }
+
+    .tag {
+      float: left;
+      padding: 5px 25px;
+      margin-right: 20px;
+      margin-top: 10px;
+      border-radius: 20px;
+      background-color: $k-info;
+      color: $k-white;
+      cursor: pointer;
+      // font: Medium 12px/28px Poppins;
+      @include k-font(
+        toRem(12px),
+        $k-white,
+        $font-weight-medium,
+        toRem(28px),
+        $font-poppins
+      );
+    }
+  }
+}
