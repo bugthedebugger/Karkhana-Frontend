@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-detail">
+  <div class="blog-detail" v-if="blog">
     <div
       class="blog-header"
       :style="'background-image: url(' + 'https://source.unsplash.com/random' + ')'"
@@ -12,28 +12,125 @@
             :style="'background-image: url(' + 'https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg' + ')'"
           ></div>
           <div class="author-info align-self-center">
-            Bibhuti Poudyal
-            <br />18th Jan 2020, 15 min read
+            {{blog.author}}
+            <br />
+            {{formatCreatedAt(blog.created_at)}}, {{parseInt(blog.read_time) || 0}} min read
           </div>
         </div>
-        <h1 class="blog-title">Title of the blog is here</h1>
+        <h1 class="blog-title">{{blog.title}}</h1>
       </div>
     </div>
+
+    <div class="blog-wrapper">
+      <div class="blog-body" v-html="blog.body"></div>
+
+      <hr />
+      <div class="blog-footer">
+        <div class="tags-container">
+          <div class="tag" v-for="tag in blog.tags" :key="tag.id">{{tag.name}}</div>
+        </div>
+        <div class="social-handlers">
+          <label>Share</label>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-facebook"></i>
+          <i class="fal fa-bookmark"></i>
+        </div>
+      </div>
+
+      <div class="author-intro">
+        <div class="author-image"></div>
+        <div class="author-info">
+          <span class="author-name">{{blog.author}}</span>
+          <br />
+          <span class="author-designation">Not specified</span>
+          <br />
+          <br />
+          <span class="author-bio">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum molestiae
+            accusamus nostrum ullam nemo? Itaque, assumenda totam? Veritatis magni
+            beatae, modi placeat incidunt porro, recusandae ex aut voluptates excepturi illum.
+          </span>
+          <p class="social-handlers">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-instagram"></i>
+          </p>
+        </div>
+      </div>
+
+      <div class="pagination-posts">
+        <div class="row">
+          <div class="col-6">
+            <div class="pagination-post">
+              <div class="overlay"></div>
+              <div class="content">
+                <div class="title">
+                  <span>Previous post title</span>
+                  <i class="fal fa-bookmark"></i>
+                </div>
+
+                <nuxt-link to="/blogs" class="pagination-link">
+                  <i class="fal fa-arrow-left"></i>
+                  Previous Post
+                </nuxt-link>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="pagination-post">
+              <div class="overlay"></div>
+              <div class="content">
+                <div class="title">
+                  <span>Next post title</span>
+                  <i class="fal fa-bookmark"></i>
+                </div>
+
+                <nuxt-link to="/blogs" class="pagination-link">
+                  <i class="fal fa-arrow-right"></i>
+                  Next Post
+                </nuxt-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <Footer />
   </div>
 </template>
 
 <script>
 import Footer from "~/components/Footer";
+import moment from "moment";
+
 export default {
   layout: "portfolio",
-  // auth: false,
+  auth: false,
   components: { Footer },
   data() {
-    return {};
+    return {
+      uuid: this.$route.params.uuid,
+      blog: null
+    };
   },
 
-  methods: {}
+  created() {
+    this.fetchBlogDetails();
+  },
+
+  methods: {
+    fetchBlogDetails() {
+      this.$axios.get(`/blog/${this.uuid}`).then(response => {
+        this.blog = response.data.data;
+      });
+    },
+
+    formatCreatedAt(date) {
+      return moment(date).format("Do MMMM YYYY");
+    }
+  }
 };
 </script>
 

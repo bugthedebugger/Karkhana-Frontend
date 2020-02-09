@@ -87,12 +87,14 @@
 
   .blog-post-alt {
     margin: 10px;
+    max-width: 390px;
     cursor: pointer;
 
     .blog-image {
       position: relative;
       height: 250px;
-      border-radius: 5px;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
       color: $k-white;
       background-size: cover;
       background-position: center;
@@ -136,6 +138,8 @@
 
     .blog-details {
       padding: 24px 20px 20px 15px;
+      background-color: $k-white;
+      margin-top: -5px;
       .blog-title {
         margin-top: 20px;
         @include k-font(

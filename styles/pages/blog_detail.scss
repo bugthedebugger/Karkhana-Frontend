@@ -22,6 +22,8 @@
       position: absolute;
       bottom: 40px;
       left: 50%;
+      width: 865px;
+      padding-left: 20px;
       transform: translateX(-50%);
       z-index: 2;
       .author-info-container {
@@ -54,6 +56,145 @@
           toRem(43px),
           $font-museo
         );
+      }
+    }
+  }
+
+  .blog-wrapper {
+    max-width: 865px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .blog-body {
+      p {
+        @include k-font(
+          toRem(18px),
+          $k-text-color-4,
+          $font-weight-regular,
+          toRem(36px),
+          $font-raleway
+        );
+      }
+    }
+
+    .blog-footer {
+      display: flex;
+      justify-content: space-between;
+
+      .tags-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        .tag {
+          padding: 5px 25px;
+          margin: 5px;
+          border-radius: 20px;
+          background-color: $k-info;
+          color: $k-white;
+          cursor: pointer;
+          @include k-font(
+            toRem(12px),
+            $k-white,
+            $font-weight-medium,
+            toRem(28px),
+            $font-poppins
+          );
+        }
+      }
+
+      .social-handlers {
+        color: $k-text-color-1;
+        label,
+        i {
+          margin-right: 24px;
+        }
+      }
+    }
+
+    .author-intro {
+      margin-top: 60px;
+      display: flex;
+      color: $k-text-color-2;
+      .author-image {
+        height: 80px;
+        width: 80px;
+        margin-right: 25px;
+        border-radius: 50%;
+        border: 3px solid #ee312f;
+      }
+
+      .author-info {
+        flex: 1;
+
+        .author-name {
+          font-weight: bold;
+          color: $k-text-color-1;
+        }
+
+        .social-handlers {
+          margin-top: 20px;
+          i {
+            margin-right: 50px;
+          }
+        }
+      }
+    }
+
+    .pagination-post {
+      height: 115px;
+      width: 100%;
+      margin-bottom: 45px;
+      margin-top: 55px;
+      margin-right: 10px;
+      margin-left: 10px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      border-radius: 5px;
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        background-color: $k-black;
+        opacity: 0.5;
+        z-index: 1;
+      }
+
+      .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: $k-white;
+        z-index: 2;
+        padding: 30px 20px;
+        .title {
+          display: flex;
+          justify-content: space-between;
+          @include k-font(
+            toRem(20px),
+            false,
+            $font-weight-regular,
+            toRem(24px),
+            $font-museo
+          );
+          margin-bottom: 10px;
+        }
+
+        .pagination-link {
+          color: $k-white;
+          text-decoration: none;
+
+          i {
+            margin-right: 10px;
+          }
+        }
       }
     }
   }

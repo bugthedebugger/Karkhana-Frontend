@@ -116,7 +116,7 @@
               <div class="author-info align-self-center">
                 {{blogPost.author}}
                 <br />
-                {{formatCreatedAt(blogPost.created_at)}}, {{parseInt(blogPost.read_time)}} min read
+                {{formatCreatedAt(blogPost.created_at)}}, {{parseInt(blogPost.read_time) || 0}} min read
               </div>
             </div>
           </div>
@@ -163,7 +163,7 @@ import moment from "moment";
 
 export default {
   layout: "portfolio",
-  // auth: false,
+  auth: false,
   components: { Footer },
   data() {
     return {
@@ -186,7 +186,7 @@ export default {
 
     navigateTo(uuid) {
       this.$router.push({
-        path: "/blogs/asdasd"
+        path: "/blogs/" + uuid
       });
     },
 
