@@ -1,0 +1,12 @@
+input[type="file"] {
+  display: none;
+}
+
+.file-upload-handle {
+  cursor: pointer;
+  color: #727272;
+}
+
+.progress {
+  height: 2px;
+}

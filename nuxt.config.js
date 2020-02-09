@@ -59,6 +59,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: "http://52.221.186.42"
   },
   /*
   ** Build configuration
@@ -82,16 +83,22 @@ export default {
         endpoints: {
           login: { url: `http://52.221.186.42/v1/login/email`, method: 'post', propertyName: 'token' },
           logout: { url: '/auth/logout', method: 'post' },
-          // user: { url: 'http://52.221.186.42/v1/user/', method: 'get', propertyName: 'user' }
+          user: { url: 'http://52.221.186.42/admin/tags?per_page=10', method: 'get', propertyName: 'message' }
         },
-        // tokenRequired: true,
-        // tokenType: 'bearer'
+        tokenRequired: true,
+        tokenType: 'Bearer'
       }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/dashboard',
+      home: '/'
     }
   },
 
-  // router: {
-  //   middleware: ['auth']
-  // }
+  router: {
+    middleware: ['auth']
+  }
 
 }

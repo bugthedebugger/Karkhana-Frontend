@@ -23,26 +23,45 @@
 
       .tag {
         padding: 5px 25px;
-        margin-right: 20px;
-        margin-top: 10px;
+        margin-right: 5px;
+        margin-top: 5px;
         border-radius: 20px;
         background-color: $k-info;
         color: $k-white;
         cursor: pointer;
       }
 
-      .selected-tag {
-        padding: 2px 10px;
-        font-size: 12px;
-        margin-right: 20px;
-        border: 1px solid $k-info;
-        color: $k-info;
-        border-radius: 20px;
-        float: left;
+      .post-tags {
+        width: 100%;
+        height: auto;
+        padding: 0.375rem 0.75rem;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
 
-        i {
-          cursor: pointer;
-          color: $k-red;
+        .selected-tag {
+          padding: 2px 10px;
+          font-size: 12px;
+          margin: 5px;
+          border: 1px solid $k-info;
+          color: $k-info;
+          border-radius: 20px;
+
+          i {
+            margin-left: 5px;
+            margin-top: 3px;
+            cursor: pointer;
+            color: $k-red;
+          }
+        }
+
+        input[type="text"] {
+          padding: 2px 10px;
+          border: none;
+          border-radius: 20px;
+          min-width: 100px;
+          max-width: 100%;
+          outline: none;
         }
       }
     }

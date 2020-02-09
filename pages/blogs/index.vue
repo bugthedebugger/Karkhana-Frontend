@@ -105,10 +105,10 @@
           <div class="tags-container">
             <p class="title">
               Tags
-              <span class="tags-count">({{tags.length}})</span>
+              <span class="tags-count">({{tags ? tags.length : 0 }})</span>
             </p>
 
-            <div v-for="tag in tags" :key="tag.id" class="tag">{{tag.title}}</div>
+            <div v-for="tag in tags" :key="tag.id" class="tag">{{tag.name}}</div>
           </div>
         </div>
       </div>
@@ -148,14 +148,12 @@ export default {
           brief: ""
         }
       ],
-      tags: [
-        { id: 1, title: "karkhana" },
-        { id: 2, title: "Computing" },
-        { id: 3, title: "make" },
-        { id: 4, title: "science" },
-        { id: 5, title: "Nepal" }
-      ]
+      tags: null
     };
+  },
+
+  created(){
+    this.fetchTags();
   },
 
   methods: {
@@ -166,6 +164,12 @@ export default {
     navigateTo(uuid) {
       this.$router.push({
         path: "/blogs/asdasd"
+      });
+    },
+
+    fetchTags() {
+      this.$axios.get(`/blog/tags?per_page=100`).then(response => {
+        if (response.data.message === "success") this.tags = response.data.data;
       });
     }
   }

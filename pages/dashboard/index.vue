@@ -1,11 +1,14 @@
 <template>
-  <div>
+  <div class="container">
     <h1>File upload here...</h1>
+    <FileUpload />
   </div>
 </template>
 <script>
+import FileUpload from "~/components/FileUpload";
 export default {
-  layout: "dashboard"
+  layout: "dashboard",
+  components: { FileUpload }
 };
 </script>
 
