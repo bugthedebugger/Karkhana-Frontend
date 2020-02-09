@@ -4,7 +4,7 @@
 
     <div class="input-group file-upload-handle" @click="$refs.fileInput.click()">
       <div class="form-control">
-        <label v-if="selectedFile">{{selectedFile.name}}</label>
+        <label>{{selectedFile ? selectedFile.name : "None"}}</label>
       </div>
       <div class="input-group-append">
         <span class="input-group-text">
@@ -30,6 +30,7 @@
 <script>
 export default {
   name: "FileUpload",
+  props: ["uuid"],
   data() {
     return {
       selectedFile: null,
@@ -45,12 +46,14 @@ export default {
 
     onUpload() {
       const fd = new FormData();
-      fd.append("file", this.selectedFile, this.selectedFile.name);
+      fd.append("photos[0]", this.selectedFile, this.selectedFile.name);
       this.$axios
-        .post("http://localhost:5000/files/" + this.selectedFile.name, fd, {
+        .post(`/admin/blog/gallery/${this.uuid}/upload`, fd, {
           onUploadProgress: this.handleUploadProgress
         })
-        .then(response => {});
+        .then(response => {
+          this.$emit("fileUploaded", response.data);
+        });
     },
 
     handleUploadProgress(uploadEvent) {

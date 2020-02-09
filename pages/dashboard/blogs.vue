@@ -24,13 +24,17 @@
     <div class="container-card">
       <div class="menubar"></div>
       <ul class="dashboard-list no-bullets" v-if="blogPosts">
-        <li v-for="blogPost in blogPosts" :key="blogPost.uuid" class="dashboard-list-item d-flex">
+        <li
+          v-for="(blogPost, index) in blogPosts"
+          :key="blogPost.uuid"
+          class="dashboard-list-item d-flex"
+        >
           <label class="checkbox title flex-fill">
             <input type="checkbox" />
             {{blogPost.title}}
           </label>
           <label class="author">{{blogPost.author}}</label>
-          <label class="created-at">{{ moment("blogPost.created_at").format("DD/MM/YYYY")}}</label>
+          <label class="created-at">{{ formatCreatedAt(blogPost.created_at) }}</label>
           <label class="views">
             {{blogPost.views || 0}}
             <i class="fal fa-arrow-up"></i>
@@ -40,9 +44,11 @@
               <i class="fal fa-eye"></i>
             </div>
             <div class="btn-edit">
-              <i class="fal fa-edit"></i>
+              <nuxt-link :to="'create-blog?uuid=' + blogPost.uuid">
+                <i class="fal fa-edit"></i>
+              </nuxt-link>
             </div>
-            <div class="btn-delete">
+            <div class="btn-delete" @click="deleteBlogPost(blogPost.uuid, index)">
               <i class="fal fa-trash-alt"></i>
             </div>
           </div>
@@ -57,7 +63,8 @@ export default {
   layout: "dashboard",
   data() {
     return {
-      blogPosts: null
+      blogPosts: null,
+      filteredBlogPosts: null
     };
   },
 
@@ -72,6 +79,7 @@ export default {
         this.$axios
           .post("/admin/blog/create", {
             title: "New Blog Post",
+            language: "en",
             uuid: uuid
           })
           .then(response => {
@@ -79,7 +87,7 @@ export default {
               console.log(response);
               this.$router.push({
                 path: "/dashboard/create-blog",
-                params: { uuid: response.data.data.uuid }
+                query: { uuid: response.data.data.uuid }
               });
             }
           });
@@ -90,7 +98,19 @@ export default {
     fetchBlogs() {
       this.$axios.get("/admin/blog?per_page=100").then(response => {
         this.blogPosts = response.data.data;
+        this.filteredBlogPosts = response.data.data;
       });
+    },
+
+    deleteBlogPost(uuid, index) {
+      if (confirm("Are you sure you want to delete this post?"))
+        this.$axios.delete(`/admin/blog/delete/${uuid}`).then(response => {
+          this.blogPosts.splice(index, 1);
+        });
+    },
+
+    formatCreatedAt(date) {
+      return moment(date).format("DD/MM/YYYY");
     }
   }
 };

@@ -83,6 +83,17 @@
         35px,
         $font-poppins
       );
+      margin-bottom: 40px;
+    }
+
+    label {
+      @include k-font(
+        toRem(14px),
+        false,
+        $font-weight-medium,
+        false,
+        $font-poppins
+      );
     }
   }
 }

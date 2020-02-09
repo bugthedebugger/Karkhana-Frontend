@@ -11,7 +11,7 @@
         >{{cat}}</div>
       </div>
 
-      <div class="blog-posts">
+      <!-- <div class="blog-posts">
         <div class="d-flex">
           <div class="col-md-6 pl-0 pr-0">
             <div
@@ -98,6 +98,37 @@
             </div>
           </div>
         </div>
+      </div>-->
+
+      <div class="blog-posts">
+        <div class="blog-post-alt" v-for="blogPost in blogPosts" :key="blogPost.uuid">
+          <div
+            @click="navigateTo(blogPost.uuid)"
+            class="blog-image"
+            :style="'background-image: url(' + 'https://source.unsplash.com/random' + ')'"
+          >
+            <div class="overlay"></div>
+            <div class="author-info-container d-flex">
+              <div
+                class="author-image"
+                :style="'background-image: url(' + 'https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg' + ')'"
+              ></div>
+              <div class="author-info align-self-center">
+                {{blogPost.author}}
+                <br />
+                {{formatCreatedAt(blogPost.created_at)}}, {{parseInt(blogPost.read_time)}} min read
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-details">
+            <p class="blog-title">{{blogPost.title}}</p>
+            <p class="blog-brief">
+              In our work we try to go past what we already know and break new ground.
+              We have a commitment to relentlessly looking for the real edge of ...
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="row">
@@ -128,32 +159,24 @@
 
 <script>
 import Footer from "~/components/Footer";
+import moment from "moment";
+
 export default {
   layout: "portfolio",
   // auth: false,
   components: { Footer },
   data() {
     return {
-      fetchCategories: ["Recommended", "Latest"],
-      selectedFetchCategory: "Recommended",
-      blogPosts: [
-        {
-          uuid: "asdsd",
-          title: "This is the title of the blog post",
-          author: "Bibhuti Poudyal",
-          author_image_url:
-            "https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg",
-          created_at: "Jan 20, 2020",
-          read_time: "15 min",
-          brief: ""
-        }
-      ],
+      fetchCategories: ["By Language", "Latest"],
+      selectedFetchCategory: "Latest",
+      blogPosts: [],
       tags: null
     };
   },
 
-  created(){
+  created() {
     this.fetchTags();
+    this.fetchBlogs();
   },
 
   methods: {
@@ -171,6 +194,16 @@ export default {
       this.$axios.get(`/blog/tags?per_page=100`).then(response => {
         if (response.data.message === "success") this.tags = response.data.data;
       });
+    },
+
+    fetchBlogs() {
+      this.$axios.get("/blog?per_page=10").then(response => {
+        this.blogPosts = response.data.data;
+      });
+    },
+
+    formatCreatedAt(date) {
+      return moment(date).format("Do MMMM YYYY");
     }
   }
 };

@@ -4,16 +4,32 @@
       <div class="toolbar">
         <h1 class="title">Write Blog Post</h1>
         <div class="toolbar-controls">
-          <button type="button" class="btn btn-primary mb-2">Publish</button>
+          <button
+            v-if="published"
+            type="button"
+            class="btn btn-warning mb-2"
+            @click="unPublishPost()"
+          >Unpublish</button>
+
+          <button v-else type="button" class="btn btn-primary mb-2" @click="publishPost()">Publish</button>
+
           <button type="button" class="btn btn-link mb-2">Preview</button>
-          <button type="button" class="btn btn-link mb-2">Close</button>
+          <button type="button" class="btn btn-link mb-2" @click="deleteBlog()">Close</button>
         </div>
       </div>
 
       <form class="post-form pr-4">
         <div class="form-group">
           <label for="post-title">Post Title</label>
-          <input type="text" class="form-control" id="post-title" placeholder />
+          <input type="text" class="form-control" id="post-title" v-model="title" />
+        </div>
+
+        <div class="form-group">
+          <label for="post-title">Post Language</label>
+          <select class="form-control" v-model="language">
+            <option value="en">English</option>
+            <option value="np">Nepali</option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -24,7 +40,13 @@
               <i class="fal fa-times" @click="removeTag(tag)"></i>
             </div>
 
-            <input type="text" class="flex-fill" v-model="inputTag" @keyup.enter="createTag()" placeholder="Add tag" />
+            <input
+              type="text"
+              class="flex-fill"
+              v-model="inputTag"
+              @keyup.enter="createTag()"
+              placeholder="Add tag"
+            />
           </div>
           <div class="tags-container d-flex flex-wrap">
             <div
@@ -38,15 +60,26 @@
 
         <div class="form-group">
           <label for="post-text"></label>
-          <no-ssr placeholder="Loading Your Editor...">
-            <vue-editor v-model="content" :editorToolbar="editorToolbarConfig"></vue-editor>
-          </no-ssr>
+          <client-only placeholder="Loading Your Editor...">
+            <vue-editor v-model="body" :editorToolbar="editorToolbarConfig"></vue-editor>
+          </client-only>
         </div>
       </form>
     </div>
 
     <div class="post-settings">
       <h1 class="title">Post Settings</h1>
+      <label>Featured Image</label>
+      <FileUpload :uuid="uuid" :filename="featured" @fileUploaded="handleFileUploaded" />
+      <hr />
+      <div class="d-flex flex-wra">
+        <img
+          v-for="(image, index) in gallery"
+          :src="image.url"
+          :key="index"
+          style="width: 50px; height: 50px; margin: 10px"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -55,19 +88,23 @@ let VueEditor;
 if (process.browser) {
   VueEditor = require("vue2-editor").VueEditor;
 }
+import FileUpload from "~/components/FileUpload";
 
 export default {
   layout: "dashboard",
-  components: { VueEditor },
+  components: { VueEditor, FileUpload },
   data() {
     return {
       uuid: null,
       title: null,
-      content: null,
+      language: "en",
+      body: null,
+      published: null,
+      featured: null,
+      gallery: [],
       tags: [],
       defaultTags: [],
       inputTag: null,
-      mode: 0, // 0: Create, 1: Edit
       editorToolbarConfig: [
         ["bold", "italic", "underline", "strike"], // toggled buttons
         ["blockquote", "code-block"],
@@ -93,12 +130,22 @@ export default {
 
   created() {
     this.uuid = this.$route.query.uuid;
-    this.fetchTags();
+    this.fetchBlog(() => {
+      this.fetchTags();
+    });
+    this.fetchGallery();
+
     this.autosaveTimer = setInterval(() => this.autosave(), 5000);
   },
 
+  destroyed() {
+    clearInterval(this.autosaveTimer);
+  },
+
   methods: {
-    autosave() {},
+    autosave() {
+      this.updatePost();
+    },
 
     save() {
       axios.post("/");
@@ -106,11 +153,17 @@ export default {
 
     updatePost() {
       this.$axios
-        .post(`/admin/blog/update/${this.uuid}`, {
-          title: this.title
+        .post(`/admin/blog/create`, {
+          uuid: this.uuid,
+          title: this.title,
+          language: this.language,
+          body: this.body,
+          featured: this.featured,
+          tags: this.tags.map(tag => tag.id)
         })
         .then(response => {
           if (response.data.status === "success") {
+            console.log("autosaved");
           }
         });
     },
@@ -118,7 +171,8 @@ export default {
     createTag() {
       this.$axios
         .post("/admin/tags/store", {
-          tag: this.inputTag
+          tag: this.inputTag,
+          language: "en"
         })
         .then(response => {
           if (response.data.status === "success") {
@@ -128,8 +182,37 @@ export default {
         });
     },
 
-    publishPost(uuid) {
-      this.$axios.post(`/admin/blog/${this.uuid}/publish`).then(response => {});
+    deleteBlog() {
+      if (confirm("Are you sure you want to delete this post?"))
+        this.$axios.delete(`/admin/blog/delete/${this.uuid}`).then(response => {
+          this.$router.push({
+            path: "/dashboard/blogs"
+          });
+        });
+    },
+
+    handleFileUploaded() {
+      this.fetchGallery();
+    },
+
+    fetchGallery() {
+      this.$axios.get(`/admin/blog/gallery/${this.uuid}`).then(response => {
+        this.gallery = response.data.data;
+        if (this.gallery && this.gallery.length)
+          this.featured = this.gallery[0].url;
+      });
+    },
+
+    publishPost() {
+      this.$axios.post(`/admin/blog/publish/${this.uuid}`).then(response => {
+        this.published = true;
+      });
+    },
+
+    unPublishPost() {
+      this.$axios.post(`/admin/blog/unpublish/${this.uuid}`).then(response => {
+        this.published = false;
+      });
     },
 
     addTag(tag, removeFromDefault = true) {
@@ -143,10 +226,28 @@ export default {
       this.defaultTags.push(tag);
     },
 
+    fetchBlog(callback) {
+      this.$axios.get(`/admin/blog/${this.uuid}`).then(response => {
+        let data = response.data.data;
+        this.title = data.title;
+        this.body = data.body;
+        this.tags = data.tags || [];
+        this.published = data.published;
+        callback();
+      });
+    },
+
     fetchTags() {
       this.$axios.get(`/admin/tags?per_page=100`).then(response => {
-        if (response.data.message === "success")
-          this.defaultTags = response.data.data;
+        if (response.data.message === "success") {
+          this.defaultTags = [];
+          // debugger;
+          let tags = response.data.data;
+          tags.forEach(tag => {
+            if (!this.tags.find(t => t.id === tag.id))
+              this.defaultTags.push(tag);
+          });
+        }
       });
     }
   }

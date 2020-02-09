@@ -93,7 +93,7 @@ export default {
       login: '/login',
       logout: '/',
       callback: '/dashboard',
-      home: '/'
+      home: '/dashboard'
     }
   },
 
