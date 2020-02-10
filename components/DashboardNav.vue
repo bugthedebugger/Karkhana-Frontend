@@ -15,6 +15,12 @@
           {{link.title}}
         </nuxt-link>
       </li>
+      <li class="nav-link-list-item">
+        <a @click="logout()">
+          <i class="fal fa-sign-out"></i>
+          Logout
+        </a>
+      </li>
     </ul>
   </aside>
 </template>
@@ -61,6 +67,11 @@ export default {
   methods: {
     checkActiveTab(routeName) {
       this.activeTab = this.links.find(tab => routeName === tab.name);
+    },
+
+    async logout() {
+      await this.$auth.logout();
+      this.$router.push({ path: "/" });
     }
   },
 

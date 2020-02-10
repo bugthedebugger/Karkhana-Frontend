@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-content">
     <div class="toolbar">
-      <h1 class="title">Blog Posts</h1>
+      <h1 class="title">Settings</h1>
       <div class="toolbar-controls">
         <form class="form-inline">
           <div class="input-group mb-2 mr-sm-2 search-field">

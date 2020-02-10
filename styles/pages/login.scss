@@ -1,0 +1,47 @@
+@import "@/styles/global.scss";
+
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/images/login-background.png");
+  background-size: cover;
+  background-position: center;
+
+  @include k-font(
+    toRem(12px),
+    $k-black,
+    $font-weight-medium,
+    toRem(18px),
+    $font-poppins
+  );
+
+  .login-card {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%);
+    background-color: $k-white;
+    padding: 65px 50px;
+    border-radius: 5px;
+
+    .logo {
+      height: 40px;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      label {
+        font-size: 12px;
+      }
+    }
+
+    .login-options {
+      label {
+        font-size: 14px;
+      }
+      a {
+        color: $k-info;
+      }
+    }
+  }
+}

@@ -6,7 +6,9 @@
 <script>
 export default {
   layout: "dashboard",
-  components: {  }
+  auth: true,
+  // middleware: "auth",
+  components: {}
 };
 </script>
 

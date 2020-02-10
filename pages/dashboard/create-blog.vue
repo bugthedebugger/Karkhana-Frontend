@@ -13,7 +13,7 @@
 
           <button v-else type="button" class="btn btn-primary mb-2" @click="publishPost()">Publish</button>
 
-          <button type="button" class="btn btn-link mb-2">Preview</button>
+          <nuxt-link :to="'/blogs/' + uuid" class="btn btn-link mb-2" target="_blank">Preview</nuxt-link>
           <button type="button" class="btn btn-link mb-2" @click="deleteBlog()">Close</button>
         </div>
       </div>
@@ -92,6 +92,7 @@ import FileUpload from "~/components/FileUpload";
 
 export default {
   layout: "dashboard",
+  auth: true,
   components: { VueEditor, FileUpload },
   data() {
     return {
