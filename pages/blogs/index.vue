@@ -123,7 +123,9 @@
 
           <div class="blog-details">
             <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
-            <p class="blog-brief">{{blogPost.summary ? utf8Decode(blogPost.summary) + '...' : ""}}</p>
+            <p
+              class="blog-brief"
+            >{{utf8Decode(blogPost.summary).length > 1 ? utf8Decode(blogPost.summary) + "..." : ""}}</p>
           </div>
         </div>
       </div>
@@ -192,6 +194,7 @@ export default {
         return decodeURIComponent(escape(base64));
       } catch (e) {
         console.log("URI error");
+        return "";
       }
     },
 
