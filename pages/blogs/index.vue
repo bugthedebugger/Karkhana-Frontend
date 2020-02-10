@@ -123,7 +123,7 @@
 
           <div class="blog-details">
             <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
-            <p class="blog-brief">{{utf8Decode(blogPost.summary) + '...'}}</p>
+            <p class="blog-brief">{{blogPost.summary ? utf8Decode(blogPost.summary) + '...' : ""}}</p>
           </div>
         </div>
       </div>
