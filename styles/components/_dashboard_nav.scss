@@ -13,6 +13,9 @@
     .nav-link-list-item {
       margin-top: 40px;
       border-right: 4px solid white;
+      padding-right: 60px;
+      padding-top: 5px;
+      padding-bottom: 5px;
 
       a {
         @include k-font(
@@ -32,14 +35,17 @@
 
     .nav-link-list-item-selected {
       border-right-color: $k-red;
+      i {
+        color: $k-red;
+      }
     }
   }
 
-  @include k-font(
-    toRem(36px),
-    $k-text-color-1,
-    $font-weight-regular,
-    toRem(43px),
-    $font-museo
-  );
+  // @include k-font(
+  //   toRem(36px),
+  //   $k-text-color-1,
+  //   $font-weight-regular,
+  //   toRem(43px),
+  //   $font-museo
+  // );
 }

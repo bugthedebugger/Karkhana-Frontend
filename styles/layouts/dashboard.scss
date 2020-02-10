@@ -1,0 +1,87 @@
+@import "@/styles/global.scss";
+
+.dashboard-content {
+  padding: 80px;
+  background-color: $k-dashboard-background;
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+
+    h1.title {
+      @include k-font(
+        toRem(24px),
+        $k-text-color-2,
+        $font-weight-regular,
+        toRem(29px),
+        $font-museo
+      );
+    }
+  }
+
+  .container-card {
+    width: 100%;
+    padding: 40px;
+    padding-left: 48px;
+    margin-top: 40px;
+    background-color: $k-white;
+  }
+
+  .dashboard-list {
+    .dashboard-list-item {
+      padding-top: 35px;
+      label {
+        margin-right: 60px;
+        @include k-font(
+          toRem(14px),
+          $k-info,
+          $font-weight-regular,
+          false,
+          $font-poppins
+        );
+      }
+
+      .title,
+      .author {
+        color: $k-info;
+
+        input[type="checkbox"] {
+          height: 14px;
+          width: 14px;
+        }
+      }
+
+      .created-at {
+        color: $k-text-color-2;
+      }
+
+      .views {
+        font-size: 12px;
+        color: $k-text-color-2;
+        i {
+          color: $k-success;
+          margin-left: 8px;
+        }
+      }
+
+      .controls {
+        i {
+          margin-right: 16px;
+          cursor: pointer;
+        }
+
+        .btn-view {
+          color: $k-success;
+        }
+
+        .btn-edit {
+          color: $k-info;
+        }
+
+        .btn-delete {
+          color: $k-red;
+        }
+      }
+    }
+  }
+}

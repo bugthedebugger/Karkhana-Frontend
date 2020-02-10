@@ -13,6 +13,7 @@ import ProductDetailTestimonial from "~/components/ProductDetailTestimonial";
 
 export default {
   layout: "portfolio",
+  auth: false,
   components: { ProductDetailIntro, ProductDetailTestimonial, Footer },
   data() {
     return {

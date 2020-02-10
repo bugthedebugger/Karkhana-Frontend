@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <h1>File upload here...</h1>
+  <div class="container">
+    <h1>Dashboard</h1>
   </div>
 </template>
 <script>
 export default {
-  layout: "dashboard"
+  layout: "dashboard",
+  auth: true,
+  // middleware: "auth",
+  components: {}
 };
 </script>
 
