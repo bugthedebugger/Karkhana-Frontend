@@ -15,24 +15,35 @@
 
           <nuxt-link :to="'/blogs/' + uuid" class="btn btn-link mb-2" target="_blank">Preview</nuxt-link>
           <button type="button" class="btn btn-link mb-2" @click="deleteBlog()">Close</button>
+          <button type="button" class="btn btn-success mb-2" @click="autosave()">Save</button>
         </div>
       </div>
 
       <form class="post-form pr-4">
-        <div class="form-group">
+        <div class="form-group mb-4">
           <label for="post-title">Post Title</label>
           <input type="text" class="form-control" id="post-title" v-model="title" />
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-4">
           <label for="post-title">Post Language</label>
-          <select class="form-control" v-model="language">
-            <option value="en">English</option>
-            <option value="np">Nepali</option>
+          <select class="form-control" v-model="language" v-if="languages && languages.length">
+            <option v-for="lang in languages" :value="lang.code" :key="lang.code">{{lang.name}}</option>
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-4">
+          <label for="post-featured-image">Featured Image</label>
+          <br />
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            data-toggle="modal"
+            data-target="#galleryModal"
+          >Select Featured Image</button>
+        </div>
+
+        <div class="form-group mb-4">
           <label for="post-tags">Tags</label>
           <div class="post-tags d-flex flex-wrap">
             <div class="selected-tag d-flex align-self-center" v-for="tag in tags" :key="tag.id">
@@ -58,27 +69,68 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="post-text"></label>
+        <div class="form-group mb-4">
+          <label for="post-text">Post Text</label>
           <client-only placeholder="Loading Your Editor...">
-            <vue-editor v-model="body" :editorToolbar="editorToolbarConfig"></vue-editor>
+            <vue-editor
+              v-model="body"
+              :editorToolbar="editorToolbarConfig"
+              @image-added="handleImageAdded"
+            ></vue-editor>
           </client-only>
         </div>
       </form>
     </div>
 
     <div class="post-settings">
-      <h1 class="title">Post Settings</h1>
-      <label>Featured Image</label>
+      <h1 class="title">Gallery Images</h1>
+      <label>Gallery images</label>
       <FileUpload :uuid="uuid" :filename="featured" @fileUploaded="handleFileUploaded" />
       <hr />
-      <div class="d-flex flex-wra">
+      <div class="d-flex flex-wrap">
         <img
           v-for="(image, index) in gallery"
           :src="image.url"
           :key="index"
+          class="gallery-image"
+          :class="{'gallery-image-featured': image.url === featured}"
           style="width: 50px; height: 50px; margin: 10px"
+          @click="selectFeaturedImage(image.url)"
         />
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="galleryModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="galleryModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Select Featured Image</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Render List of gallery Images here -->
+            <div class="d-flex flex-wrap">
+              <img
+                v-for="(image, index) in gallery"
+                :src="image.url"
+                :key="index"
+                class="gallery-image"
+                :class="{'gallery-image-featured': image.path === featured}"
+                @click="selectFeaturedImage(image.path)"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -123,9 +175,12 @@ export default {
         [{ font: [] }],
         [{ align: [] }],
 
+        ["link", "image", "video", "formula"],
+
         ["clean"] // remove formatting button
       ],
-      autosaveTimer: null
+      autosaveTimer: null,
+      languages: null
     };
   },
 
@@ -135,6 +190,7 @@ export default {
       this.fetchTags();
     });
     this.fetchGallery();
+    this.fetchLanguages();
 
     this.autosaveTimer = setInterval(() => this.autosave(), 5000);
   },
@@ -144,6 +200,8 @@ export default {
   },
 
   methods: {
+    handleImageAdded(file, Editor, cursorLocation, resetUploader) {},
+
     autosave() {
       this.updatePost();
     },
@@ -170,6 +228,14 @@ export default {
     },
 
     createTag() {
+      //check if already exists
+      let existingTag = this.defaultTags.find(t => t.name === this.inputTag);
+      if (existingTag) {
+        this.addTag(existingTag);
+        this.inputTag = null;
+        return;
+      }
+
       this.$axios
         .post("/admin/tags/store", {
           tag: this.inputTag,
@@ -196,11 +262,13 @@ export default {
       this.fetchGallery();
     },
 
+    selectFeaturedImage(imagePath) {
+      this.featured = imagePath;
+    },
+
     fetchGallery() {
       this.$axios.get(`/admin/blog/gallery/${this.uuid}`).then(response => {
         this.gallery = response.data.data;
-        if (this.gallery && this.gallery.length)
-          this.featured = this.gallery[0].url;
       });
     },
 
@@ -235,6 +303,12 @@ export default {
         this.tags = data.tags || [];
         this.published = data.published;
         callback();
+      });
+    },
+
+    fetchLanguages(callback) {
+      this.$axios.get("/languages").then(response => {
+        this.languages = response.data.data;
       });
     },
 

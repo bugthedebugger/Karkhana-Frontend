@@ -2,22 +2,22 @@
   <div class="blog-detail" v-if="blog">
     <div
       class="blog-header"
-      :style="'background-image: url(' + 'https://source.unsplash.com/random' + ')'"
+      :style="'background-image: url(' + blog.featured || 'https://source.unsplash.com/random' + ')'"
     >
       <div class="overlay"></div>
       <div class="header-info">
+        <h1 class="blog-title">{{blog.title}}</h1>
         <div class="author-info-container d-flex">
-          <div
+          <!-- <div
             class="author-image"
             :style="'background-image: url(' + 'https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg' + ')'"
-          ></div>
+          ></div>-->
           <div class="author-info align-self-center">
-            {{blog.author}}
-            <br />
+            <!-- {{blog.author}} -->
+            <!-- <br /> -->
             {{formatCreatedAt(blog.created_at)}}, {{parseInt(blog.read_time) || 0}} min read
           </div>
         </div>
-        <h1 class="blog-title">{{blog.title}}</h1>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
       <div class="blog-body" v-html="blog.body"></div>
 
       <hr />
-      <div class="blog-footer">
+      <div class="blog-footer mb-4">
         <div class="tags-container">
           <div class="tag" v-for="tag in blog.tags" :key="tag.id">{{tag.name}}</div>
         </div>
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="author-intro">
+      <!-- <div class="author-intro">
         <div class="author-image"></div>
         <div class="author-info">
           <span class="author-name">{{blog.author}}</span>
@@ -94,7 +94,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
 
     <Footer />

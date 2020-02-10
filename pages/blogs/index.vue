@@ -105,28 +105,25 @@
           <div
             @click="navigateTo(blogPost.uuid)"
             class="blog-image"
-            :style="'background-image: url(' + 'https://source.unsplash.com/random' + ')'"
+            :style="'background-image: url(' + blogPost.featured ? blogPost.featured : 'https://source.unsplash.com/random' + ')'"
           >
             <div class="overlay"></div>
             <div class="author-info-container d-flex">
-              <div
+              <!-- <div
                 class="author-image"
                 :style="'background-image: url(' + 'https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg' + ')'"
-              ></div>
+              ></div>-->
               <div class="author-info align-self-center">
-                {{blogPost.author}}
-                <br />
+                <!-- {{blogPost.author}} -->
+                <!-- <br /> -->
                 {{formatCreatedAt(blogPost.created_at)}}, {{parseInt(blogPost.read_time) || 0}} min read
               </div>
             </div>
           </div>
 
           <div class="blog-details">
-            <p class="blog-title">{{blogPost.title}}</p>
-            <p class="blog-brief">
-              In our work we try to go past what we already know and break new ground.
-              We have a commitment to relentlessly looking for the real edge of ...
-            </p>
+            <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
+            <p class="blog-brief">{{utf8Decode(blogPost.summary)}}</p>
           </div>
         </div>
       </div>
@@ -180,6 +177,14 @@ export default {
   },
 
   methods: {
+    utf8Decode(base64) {
+      try {
+        return decodeURIComponent(escape(base64));
+      } catch (e) {
+        console.log("URI error");
+      }
+    },
+
     selectFetchCategory(cat) {
       this.selectedFetchCategory = cat;
     },
@@ -198,6 +203,8 @@ export default {
 
     fetchBlogs() {
       this.$axios.get("/blog?per_page=10").then(response => {
+        // console.log(response);
+        // console.log(atob(response.data.data[0]));
         this.blogPosts = response.data.data;
       });
     },

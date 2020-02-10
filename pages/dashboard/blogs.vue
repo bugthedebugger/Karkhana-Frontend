@@ -31,7 +31,7 @@
         >
           <label class="checkbox title flex-fill">
             <input type="checkbox" />
-            {{blogPost.title}}
+            {{ utf8Decode(blogPost.title) }}
           </label>
           <label class="author">{{blogPost.author}}</label>
           <label class="created-at">{{ formatCreatedAt(blogPost.created_at) }}</label>
@@ -59,6 +59,7 @@
 </template>
 <script>
 import moment from "moment";
+
 export default {
   layout: "dashboard",
   auth: true,
@@ -74,6 +75,14 @@ export default {
   },
 
   methods: {
+    utf8Decode(base64) {
+      try {
+        return decodeURIComponent(escape(base64));
+      } catch (e) {
+        console.log("URI error");
+      }
+    },
+
     createBlogPost() {
       this.$axios.get("/admin/blog/uuid").then(response => {
         let uuid = response.data.data.uuid;
@@ -99,7 +108,28 @@ export default {
     fetchBlogs() {
       this.$axios.get("/admin/blog?per_page=100").then(response => {
         this.blogPosts = response.data.data;
-        this.filteredBlogPosts = response.data.data;
+        // let base64 = response.data.data;
+
+        // this.blogPosts = base64
+        //   .filter(b => b.length > 0)
+        //   .map(b => JSON.parse(atob(b)));
+        // this.filteredBlogPosts = this.blogPosts;
+
+        // this.blogPosts = base64
+        //   .map(b => {
+        //     return{
+        //       uuid: b.uuid,
+        //       featured: b.featured,
+        //       author: b.author,
+        //       title: atob(b.title),
+        //       summary: atob(b.summary),
+        //       read_time: b.read_time
+        //       created_at: b.published
+        //     }
+        //   });
+        this.filteredBlogPosts = this.blogPosts;
+
+        console.log(this.blogPosts);
       });
     },
 
