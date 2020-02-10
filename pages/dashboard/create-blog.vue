@@ -122,7 +122,7 @@
                 :src="image.url"
                 :key="index"
                 class="gallery-image"
-                :class="{'gallery-image-featured': image.path === featured}"
+                :class="{'gallery-image-featured': image.url === featured}"
                 @click="selectFeaturedImage(image.path)"
               />
             </div>
@@ -169,7 +169,8 @@ export default {
       autosaveTimer: null,
       autosaveCounter: null,
       autosaveInterval: 10,
-      languages: null
+      languages: null,
+      featuredChanged: false
     };
   },
 
@@ -180,7 +181,7 @@ export default {
     });
     this.fetchGallery();
     this.fetchLanguages();
-    this.resetSaveTimer();
+    // this.resetSaveTimer();
   },
 
   methods: {
@@ -206,21 +207,21 @@ export default {
     },
 
     updatePost(showToast) {
-      this.$axios
-        .post(`/admin/blog/create`, {
-          uuid: this.uuid,
-          title: this.title,
-          language: "en",
-          body: this.body,
-          featured: this.featured,
-          tags: this.tags.map(tag => tag.id)
-        })
-        .then(response => {
-          if (response.data.status === "success") {
-            this.resetSaveTimer();
-            if (showToast) this.$toast.show("Saved successfully");
-          }
-        });
+      let updateBody = {
+        uuid: this.uuid,
+        title: this.title,
+        language: "en",
+        body: this.body,
+        tags: this.tags.map(tag => tag.id)
+      };
+      if (this.featuredChanged) updateBody.featured = this.featured;
+      this.$axios.post(`/admin/blog/create`, updateBody).then(response => {
+        if (response.data.status === "success") {
+          this.resetSaveTimer();
+          if (showToast) this.$toast.show("Saved successfully");
+          this.featuredChanged = false;
+        }
+      });
     },
 
     createTag() {
@@ -260,6 +261,7 @@ export default {
 
     selectFeaturedImage(imagePath) {
       this.featured = imagePath;
+      this.featuredChanged = true;
       $("#galleryModal").modal("hide");
     },
 
