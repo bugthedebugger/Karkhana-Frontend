@@ -1,6 +1,8 @@
 <template>
-  <div class="container">
-    <h1>Dashboard</h1>
+  <div class="dashboard-content">
+    <div class="toolbar">
+      <h1 class="title">Dashboard</h1>
+    </div>
   </div>
 </template>
 <script>

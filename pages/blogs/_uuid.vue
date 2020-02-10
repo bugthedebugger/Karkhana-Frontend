@@ -1,9 +1,6 @@
 <template>
   <div class="blog-detail" v-if="blog">
-    <div
-      class="blog-header"
-      :style="'background-image: url(' + blog.featured || 'https://source.unsplash.com/random' + ')'"
-    >
+    <div class="blog-header" :style="setBackgroundImage(blog.featured)">
       <div class="overlay"></div>
       <div class="header-info">
         <h1 class="blog-title">{{blog.title}}</h1>
@@ -121,6 +118,14 @@ export default {
   },
 
   methods: {
+    setBackgroundImage(image_path) {
+      let image;
+      if (image_path === null || image_path == "null")
+        image = "/images/slider-image-5.jpg";
+      else image = image_path;
+      return `background-image: url(${image})`;
+    },
+
     fetchBlogDetails() {
       this.$axios.get(`/blog/${this.uuid}`).then(response => {
         this.blog = response.data.data;

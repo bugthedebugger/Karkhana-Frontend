@@ -15,7 +15,7 @@
 
           <nuxt-link :to="'/blogs/' + uuid" class="btn btn-link mb-2" target="_blank">Preview</nuxt-link>
           <button type="button" class="btn btn-link mb-2" @click="deleteBlog()">Close</button>
-          <button type="button" class="btn btn-success mb-2" @click="autosave()">Save</button>
+          <button type="button" class="btn btn-success mb-2" @click="updatePost(true)">Save</button>
         </div>
       </div>
 
@@ -25,22 +25,27 @@
           <input type="text" class="form-control" id="post-title" v-model="title" />
         </div>
 
-        <div class="form-group mb-4">
+        <!-- <div class="form-group mb-4">
           <label for="post-title">Post Language</label>
           <select class="form-control" v-model="language" v-if="languages && languages.length">
             <option v-for="lang in languages" :value="lang.code" :key="lang.code">{{lang.name}}</option>
           </select>
-        </div>
+        </div>-->
 
         <div class="form-group mb-4">
           <label for="post-featured-image">Featured Image</label>
+          <br />
+          <span v-if="featured" style="font-size: 10px">{{featured}}</span>
           <br />
           <button
             type="button"
             class="btn btn-success btn-sm"
             data-toggle="modal"
             data-target="#galleryModal"
-          >Select Featured Image</button>
+          >
+            <span v-if="featured">Change featured image</span>
+            <span v-else>Select featured image</span>
+          </button>
         </div>
 
         <div class="form-group mb-4">
@@ -71,13 +76,7 @@
 
         <div class="form-group mb-4">
           <label for="post-text">Post Text</label>
-          <client-only placeholder="Loading Your Editor...">
-            <vue-editor
-              v-model="body"
-              :editorToolbar="editorToolbarConfig"
-              @image-added="handleImageAdded"
-            ></vue-editor>
-          </client-only>
+          <editor v-model="body" api-key="process.env.TINY_MCE_API_KEY" :init="tinyMceConfig" />
         </div>
       </form>
     </div>
@@ -94,8 +93,7 @@
           :key="index"
           class="gallery-image"
           :class="{'gallery-image-featured': image.url === featured}"
-          style="width: 50px; height: 50px; margin: 10px"
-          @click="selectFeaturedImage(image.url)"
+          @click="copyGalleryPath(image.url)"
         />
       </div>
     </div>
@@ -118,7 +116,6 @@
             </button>
           </div>
           <div class="modal-body">
-            <!-- Render List of gallery Images here -->
             <div class="d-flex flex-wrap">
               <img
                 v-for="(image, index) in gallery"
@@ -136,16 +133,14 @@
   </div>
 </template>
 <script>
-let VueEditor;
-if (process.browser) {
-  VueEditor = require("vue2-editor").VueEditor;
-}
+import Editor from "@tinymce/tinymce-vue";
 import FileUpload from "~/components/FileUpload";
+import clipboard from "clipboard-polyfill";
 
 export default {
   layout: "dashboard",
   auth: true,
-  components: { VueEditor, FileUpload },
+  components: { Editor, FileUpload },
   data() {
     return {
       uuid: null,
@@ -158,28 +153,22 @@ export default {
       tags: [],
       defaultTags: [],
       inputTag: null,
-      editorToolbarConfig: [
-        ["bold", "italic", "underline", "strike"], // toggled buttons
-        ["blockquote", "code-block"],
-
-        [{ header: 1 }, { header: 2 }], // custom button values
-        [{ list: "ordered" }, { list: "bullet" }],
-        [{ script: "sub" }, { script: "super" }], // superscript/subscript
-        [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-        [{ direction: "rtl" }], // text direction
-
-        [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-        [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-        [{ font: [] }],
-        [{ align: [] }],
-
-        ["link", "image", "video", "formula"],
-
-        ["clean"] // remove formatting button
-      ],
+      tinyMceConfig: {
+        height: 500,
+        menubar: false,
+        plugins: [
+          "advlist autolink lists link image charmap print preview anchor",
+          "searchreplace visualblocks code fullscreen",
+          "insertdatetime media table paste code help wordcount"
+        ],
+        toolbar:
+          "undo redo | formatselect | bold italic backcolor | \
+           alignleft aligncenter alignright alignjustify | \
+           bullist numlist outdent indent | removeformat | help | image"
+      },
       autosaveTimer: null,
+      autosaveCounter: null,
+      autosaveInterval: 10,
       languages: null
     };
   },
@@ -191,16 +180,22 @@ export default {
     });
     this.fetchGallery();
     this.fetchLanguages();
-
-    this.autosaveTimer = setInterval(() => this.autosave(), 5000);
-  },
-
-  destroyed() {
-    clearInterval(this.autosaveTimer);
+    this.resetSaveTimer();
   },
 
   methods: {
-    handleImageAdded(file, Editor, cursorLocation, resetUploader) {},
+    resetSaveTimer() {
+      clearInterval(this.autosaveTimer);
+      this.autosaveTimer = setInterval(
+        () => this.autosave(),
+        this.autosaveInterval * 1000
+      );
+    },
+
+    copyGalleryPath(path) {
+      clipboard.writeText(path);
+      this.$toast.show("Image copied to clipboard");
+    },
 
     autosave() {
       this.updatePost();
@@ -210,19 +205,20 @@ export default {
       axios.post("/");
     },
 
-    updatePost() {
+    updatePost(showToast) {
       this.$axios
         .post(`/admin/blog/create`, {
           uuid: this.uuid,
           title: this.title,
-          language: this.language,
+          language: "en",
           body: this.body,
           featured: this.featured,
           tags: this.tags.map(tag => tag.id)
         })
         .then(response => {
           if (response.data.status === "success") {
-            console.log("autosaved");
+            this.resetSaveTimer();
+            if (showToast) this.$toast.show("Saved successfully");
           }
         });
     },
@@ -264,6 +260,7 @@ export default {
 
     selectFeaturedImage(imagePath) {
       this.featured = imagePath;
+      $("#galleryModal").modal("hide");
     },
 
     fetchGallery() {
@@ -275,12 +272,14 @@ export default {
     publishPost() {
       this.$axios.post(`/admin/blog/publish/${this.uuid}`).then(response => {
         this.published = true;
+        this.$toast.show("Published");
       });
     },
 
     unPublishPost() {
       this.$axios.post(`/admin/blog/unpublish/${this.uuid}`).then(response => {
         this.published = false;
+        this.$toast.show("Un-published");
       });
     },
 
@@ -302,6 +301,7 @@ export default {
         this.body = data.body;
         this.tags = data.tags || [];
         this.published = data.published;
+        this.featured = data.featured;
         callback();
       });
     },
@@ -316,7 +316,6 @@ export default {
       this.$axios.get(`/admin/tags?per_page=100`).then(response => {
         if (response.data.message === "success") {
           this.defaultTags = [];
-          // debugger;
           let tags = response.data.data;
           tags.forEach(tag => {
             if (!this.tags.find(t => t.id === tag.id))

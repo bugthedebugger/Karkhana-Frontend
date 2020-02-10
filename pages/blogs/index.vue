@@ -100,12 +100,12 @@
         </div>
       </div>-->
 
-      <div class="blog-posts">
+      <div class="blog-posts d-flex flex-wrap justify-content-between">
         <div class="blog-post-alt" v-for="blogPost in blogPosts" :key="blogPost.uuid">
           <div
             @click="navigateTo(blogPost.uuid)"
             class="blog-image"
-            :style="'background-image: url(' + blogPost.featured ? blogPost.featured : 'https://source.unsplash.com/random' + ')'"
+            :style="setBackgroundImage(blogPost.featured)"
           >
             <div class="overlay"></div>
             <div class="author-info-container d-flex">
@@ -123,12 +123,12 @@
 
           <div class="blog-details">
             <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
-            <p class="blog-brief">{{utf8Decode(blogPost.summary)}}</p>
+            <p class="blog-brief">{{utf8Decode(blogPost.summary) + '...'}}</p>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <!-- <div class="row">
         <div class="col">
           <div class="tags-container">
             <p class="title">
@@ -139,16 +139,18 @@
             <div v-for="tag in tags" :key="tag.id" class="tag">{{tag.name}}</div>
           </div>
         </div>
-      </div>
+      </div>-->
 
-      <div class="row mt-4 mb-4">
+      <!-- <div class="row mt-4 mb-4">
         <div class="col text-center">
           <button class="btn btn-primary">
             <i class="fal fa-sync"></i>&nbsp;
             Load More
           </button>
         </div>
-      </div>
+      </div>-->
+
+      <div class="mb-4"></div>
     </div>
     <Footer />
   </div>
@@ -164,7 +166,7 @@ export default {
   components: { Footer },
   data() {
     return {
-      fetchCategories: ["By Language", "Latest"],
+      fetchCategories: ["Latest"],
       selectedFetchCategory: "Latest",
       blogPosts: [],
       tags: null
@@ -177,6 +179,14 @@ export default {
   },
 
   methods: {
+    setBackgroundImage(image_path) {
+      let image;
+      if (image_path === null || image_path == "null")
+        image = "/images/slider-image-5.jpg";
+      else image = image_path;
+      return `background-image: url(${image})`;
+    },
+
     utf8Decode(base64) {
       try {
         return decodeURIComponent(escape(base64));

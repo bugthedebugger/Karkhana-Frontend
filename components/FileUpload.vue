@@ -1,10 +1,10 @@
 <template>
   <div class="file-upload">
-    <input type="file" @change="onFileSelected" ref="fileInput" />
+    <input type="file" @change="onFileSelected" ref="fileInput" multiple />
 
     <div class="input-group file-upload-handle" @click="$refs.fileInput.click()">
       <div class="form-control">
-        <label>{{selectedFile ? selectedFile.name : "None"}}</label>
+        <label>{{selectedFiles && selectedFiles.length > 0 ? selectedFiles.length + " files selected" : "None"}}</label>
       </div>
       <div class="input-group-append">
         <span class="input-group-text">
@@ -23,7 +23,7 @@
       ></div>
     </div>
     <div class="mb-3"></div>
-    <button class="btn btn-success btn-sm" @click="onUpload()" :disabled="!selectedFile">Upload</button>
+    <button class="btn btn-success btn-sm" @click="onUpload()" :disabled="!selectedFiles">Upload</button>
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
   props: ["uuid"],
   data() {
     return {
-      selectedFile: null,
+      selectedFiles: null,
       uploadPercent: 0
     };
   },
@@ -41,12 +41,14 @@ export default {
 
   methods: {
     onFileSelected(event) {
-      if (event.target.files[0]) this.selectedFile = event.target.files[0];
+      if (event.target.files.length) this.selectedFiles = event.target.files;
     },
 
     onUpload() {
       const fd = new FormData();
-      fd.append("photos[0]", this.selectedFile, this.selectedFile.name);
+      Array.from(this.selectedFiles).forEach((selectedFile, index) => {
+        fd.append(`photos[${index}]`, selectedFile, selectedFile.name);
+      });
       this.$axios
         .post(`/admin/blog/gallery/${this.uuid}/upload`, fd, {
           onUploadProgress: this.handleUploadProgress

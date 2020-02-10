@@ -26,7 +26,8 @@ export default {
     CAL_API_KEY: "AIzaSyBepIVJdLIVOAHb2afbyVAxcF-sqJpy3dM",
     CAL_BASE_URL: "https://www.googleapis.com/calendar/v3/calendars",
     CAL_ID: "karkhana.asia_mdt3kr5jmvh1ld77g0fqfldc0k@group.calendar.google.com",
-    BASE_API_URL: "http://52.221.186.42"
+    BASE_API_URL: "http://52.221.186.42",
+    TINY_MCE_API_KEY: "xzdc1n6z3n8g0op6mby6jp3yvm3gapvhbgzmcyw7554g6jf7"
   },
 
   loading: false,
@@ -52,8 +53,17 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/toast',
   ],
+
+  // Nuxt Toast
+  toast: {
+    theme: "bubble",
+    position: "bottom-right",
+    duration: 3000
+  },
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -92,9 +102,7 @@ export default {
     },
     redirect: {
       login: '/login',
-      logout: '/',
-      callback: '/dashboard',
-      home: '/dashboard'
+      logout: '/'
     }
   },
 

@@ -16,7 +16,7 @@
         </nuxt-link>
       </li>
       <li class="nav-link-list-item">
-        <a @click="logout()">
+        <a href="#" @click="logout()">
           <i class="fal fa-sign-out"></i>
           Logout
         </a>

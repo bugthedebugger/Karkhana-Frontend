@@ -35,10 +35,7 @@
           </label>
           <label class="author">{{blogPost.author}}</label>
           <label class="created-at">{{ formatCreatedAt(blogPost.created_at) }}</label>
-          <label class="views">
-            {{blogPost.views || 0}}
-            <i class="fal fa-arrow-up"></i>
-          </label>
+          <label class="views">{{blogPost.published ? 'Published' : 'Un-published'}}</label>
           <div class="controls d-flex">
             <div class="btn-view">
               <i class="fal fa-eye"></i>
