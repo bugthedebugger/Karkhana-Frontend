@@ -4,7 +4,7 @@
 
     <div class="input-group file-upload-handle" @click="$refs.fileInput.click()">
       <div class="form-control">
-        <label>{{selectedFiles && selectedFiles.length > 0 ? selectedFiles.length + " files selected" : "None"}}</label>
+        <label>{{selectedFiles && selectedFiles.length > 0 ? selectedFiles.length + " file(s) selected" : "None"}}</label>
       </div>
       <div class="input-group-append">
         <span class="input-group-text">

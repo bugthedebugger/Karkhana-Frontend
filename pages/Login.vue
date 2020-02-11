@@ -34,7 +34,11 @@
         <nuxt-link to="/login">Forgot Password ?</nuxt-link>
       </div>
       <div class="text-center">
-        <button class="btn btn-primary btn-block" @click="handleSubmit()">Login</button>
+        <button
+          class="btn btn-primary btn-block"
+          @click="handleSubmit()"
+          :disabled="email.length <= 0 || password.length <= 0"
+        >Login</button>
       </div>
     </div>
   </div>
@@ -46,8 +50,8 @@ export default {
   components: {},
   data() {
     return {
-      email: "app@karkhana.asia",
-      password: "password"
+      email: "",
+      password: ""
     };
   },
 

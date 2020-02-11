@@ -24,9 +24,11 @@
             <div class="navlink-item">
               <nuxt-link to="/contact">Contact</nuxt-link>
             </div>
-            <div class="navlink-item ml-auto mr-0" @click="scrollToTop">
-              Top
-              <i class="fal fa-angle-up icon-up"></i>
+            <div class="navlink-item ml-auto mr-0" style="cursor: pointer" @click="scrollToTop">
+              <a href="#">
+                Top &nbsp;
+                <i class="fal fa-angle-up icon-up"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -40,7 +42,7 @@
             We are a diverse team of engineers, designers, social workers, programmers and educators
             that are bound together by one vision: empower people with the skills &amp;
             attitudes that will help them build their future and the future of their community.
-          </p> -->
+          </p>-->
 
           <p class="mb-0">
             <i class="fal fa-copyright"></i>
@@ -65,7 +67,7 @@
               <a href>Terms of Use</a>
             </li>
           </ul>
-        </div> -->
+        </div>-->
 
         <div class="col-md-2 text-right col-sm-12">
           <ul class="links-list no-bullets">

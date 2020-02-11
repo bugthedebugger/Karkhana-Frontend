@@ -12,7 +12,8 @@
           <div class="author-info align-self-center">
             <!-- {{blog.author}} -->
             <!-- <br /> -->
-            {{formatCreatedAt(blog.created_at)}}, {{parseInt(blog.read_time) || 0}} min read
+            {{formatCreatedAt(blog.created_at)}}
+            <!-- , {{parseInt(blog.read_time) || 0}} min read -->
           </div>
         </div>
       </div>
@@ -28,9 +29,14 @@
         </div>
         <div class="social-handlers">
           <label>Share</label>
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-facebook"></i>
-          <i class="fal fa-bookmark"></i>
+          <a :href="getFbShareLink()" target="_blank">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a :href="getTwitterShareLink()">
+            <i class="fab fa-twitter"></i>
+          </a>
+
+          <!-- <i class="fal fa-bookmark"></i> -->
         </div>
       </div>
 
@@ -105,7 +111,50 @@ import moment from "moment";
 export default {
   layout: "portfolio",
   auth: false,
+  head() {
+    return {
+      title: this.blog ? this.blog.title : "Karkhana",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.blog ? this.blog.title : "Karkhana Blog"
+        },
+        {
+          hid: "description",
+          name: "tags",
+          content:
+            this.blog && this.blog.tags
+              ? this.blog.tags.map(t => t.name)
+              : "Karkhana Blog"
+        },
+        {
+          property: "og:url",
+          content: process.env.MY_URL
+        },
+        {
+          property: "og:type",
+          content: "Website"
+        },
+        {
+          property: "og:title",
+          content: this.blog ? this.blog.title : "Karkhana Blog"
+        },
+        {
+          property: "og:description",
+          content: "Karkhana Blog"
+        },
+
+        {
+          property: "og:image",
+          content: process.env.MY_URL + (this.blog ? this.blog.featured : "")
+        }
+      ]
+    };
+  },
+
   components: { Footer },
+
   data() {
     return {
       uuid: this.$route.params.uuid,
@@ -118,6 +167,19 @@ export default {
   },
 
   methods: {
+    getFbShareLink() {
+      return `https://www.facebook.com/sharer/sharer.php?u=${process.env.MY_URL}/blogs/${this.uuid}`;
+    },
+
+    getTwitterShareLink() {
+      return (
+        "http://twitter.com/share?url=" +
+        encodeURIComponent("Karkhana.asia") +
+        "&text=" +
+        encodeURIComponent(this.blog.title || "Karkhana Blog")
+      );
+    },
+
     setBackgroundImage(image_path) {
       let image;
       if (image_path === null || image_path == "null")

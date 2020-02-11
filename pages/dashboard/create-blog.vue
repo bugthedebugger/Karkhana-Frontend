@@ -7,15 +7,24 @@
           <button
             v-if="published"
             type="button"
-            class="btn btn-warning mb-2"
+            class="btn btn-warning mb-2 btn-sm"
             @click="unPublishPost()"
           >Unpublish</button>
 
-          <button v-else type="button" class="btn btn-primary mb-2" @click="publishPost()">Publish</button>
+          <button
+            v-else
+            type="button"
+            class="btn btn-primary mb-2 btn-sm"
+            @click="publishPost()"
+          >Publish</button>
 
-          <nuxt-link :to="'/blogs/' + uuid" class="btn btn-link mb-2" target="_blank">Preview</nuxt-link>
-          <button type="button" class="btn btn-link mb-2" @click="deleteBlog()">Close</button>
-          <button type="button" class="btn btn-success mb-2" @click="updatePost(true)">Save</button>
+          <nuxt-link :to="'/blogs/' + uuid" class="btn btn-link mb-2 btn-sm" target="_blank">Preview</nuxt-link>
+          <button type="button" class="btn btn-link mb-2 btn-sm" @click="deleteBlog()">Close</button>
+          <button
+            type="button"
+            class="btn btn-primary mb-2 mr-2 btn-sm"
+            @click="updatePost(true)"
+          >Save</button>
         </div>
       </div>
 
@@ -35,7 +44,13 @@
         <div class="form-group mb-4">
           <label for="post-featured-image">Featured Image</label>
           <br />
-          <span v-if="featured" style="font-size: 10px">{{featured}}</span>
+          <img
+            v-if="featured"
+            :src="featuredForShow"
+            class="gallery-image gallery-image-featured"
+            data-toggle="modal"
+            data-target="#galleryModal"
+          />
           <br />
           <button
             type="button"
@@ -83,7 +98,7 @@
 
     <div class="post-settings">
       <h1 class="title">Gallery Images</h1>
-      <label>Gallery images</label>
+      <label>Select Gallery images</label>
       <FileUpload :uuid="uuid" :filename="featured" @fileUploaded="handleFileUploaded" />
       <hr />
       <div class="d-flex flex-wrap">
@@ -92,7 +107,6 @@
           :src="image.url"
           :key="index"
           class="gallery-image"
-          :class="{'gallery-image-featured': image.url === featured}"
           @click="copyGalleryPath(image.url)"
         />
       </div>
@@ -122,8 +136,8 @@
                 :src="image.url"
                 :key="index"
                 class="gallery-image"
-                :class="{'gallery-image-featured': image.url === featured}"
-                @click="selectFeaturedImage(image.path)"
+                :class="{'gallery-image-featured': image.url === featuredForShow}"
+                @click="selectFeaturedImage(image)"
               />
             </div>
           </div>
@@ -154,23 +168,28 @@ export default {
       defaultTags: [],
       inputTag: null,
       tinyMceConfig: {
-        height: 500,
-        menubar: false,
+        height: 800,
+        menubar: true,
         plugins: [
           "advlist autolink lists link image charmap print preview anchor",
           "searchreplace visualblocks code fullscreen",
           "insertdatetime media table paste code help wordcount"
         ],
         toolbar:
-          "undo redo | formatselect | bold italic backcolor | \
-           alignleft aligncenter alignright alignjustify | \
-           bullist numlist outdent indent | removeformat | help | image"
+          "formatselect | bold italic backcolor | \
+           fontselect | fontsizeselect | alignleft aligncenter alignright alignjustify | \
+           bullist numlist outdent indent | removeformat | image",
+        font_formats:
+          "Ananda=ananda; Museo=museo; Poppins=Poppins, sans-serif; Raleway=Raleway, sans-serif; Lato=Lato, sans-serif",
+        fontsize_formats:
+          "8pt 10pt 12pt 14pt 18pt 24pt 36pt 48pt 60pt 72pt 90pt"
       },
       autosaveTimer: null,
       autosaveCounter: null,
       autosaveInterval: 10,
       languages: null,
-      featuredChanged: false
+      featuredChanged: false,
+      featuredForShow: null
     };
   },
 
@@ -212,7 +231,8 @@ export default {
         title: this.title,
         language: "en",
         body: this.body,
-        tags: this.tags.map(tag => tag.id)
+        tags:
+          this.tags && this.tags.length ? this.tags.map(tag => tag.id) : null
       };
       if (this.featuredChanged) updateBody.featured = this.featured;
       this.$axios.post(`/admin/blog/create`, updateBody).then(response => {
@@ -259,9 +279,10 @@ export default {
       this.fetchGallery();
     },
 
-    selectFeaturedImage(imagePath) {
-      this.featured = imagePath;
+    selectFeaturedImage(image) {
+      this.featured = image.path;
       this.featuredChanged = true;
+      this.featuredForShow = image.url;
       $("#galleryModal").modal("hide");
     },
 
@@ -304,6 +325,7 @@ export default {
         this.tags = data.tags || [];
         this.published = data.published;
         this.featured = data.featured;
+        this.featuredForShow = data.featured;
         callback();
       });
     },

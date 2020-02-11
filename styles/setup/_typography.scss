@@ -12,10 +12,16 @@ $font-weight-semi-bold: 600;
   src: url("/fonts/Museo700-Regular.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "ananda";
+  src: url("/fonts/ananda.otf") format("truetype");
+}
+
 $font-poppins: poppins;
 $font-museo: museo;
 $font-raleway: "Raleway", sans-serif;
 $font-lato: "Lato", sans-serif;
+$font-ananda: ananda;
 
 h1,
 h2,

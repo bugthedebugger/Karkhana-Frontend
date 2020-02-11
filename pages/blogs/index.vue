@@ -101,12 +101,13 @@
       </div>-->
 
       <div class="blog-posts d-flex flex-wrap justify-content-between">
-        <div class="blog-post-alt" v-for="blogPost in blogPosts" :key="blogPost.uuid">
-          <div
-            @click="navigateTo(blogPost.uuid)"
-            class="blog-image"
-            :style="setBackgroundImage(blogPost.featured)"
-          >
+        <div
+          class="blog-post-alt"
+          v-for="blogPost in blogPosts"
+          :key="blogPost.uuid"
+          @click="navigateTo(blogPost.uuid)"
+        >
+          <div class="blog-image" :style="setBackgroundImage(blogPost.featured)">
             <div class="overlay"></div>
             <div class="author-info-container d-flex">
               <!-- <div
@@ -116,16 +117,17 @@
               <div class="author-info align-self-center">
                 <!-- {{blogPost.author}} -->
                 <!-- <br /> -->
-                {{formatCreatedAt(blogPost.created_at)}}, {{parseInt(blogPost.read_time) || 0}} min read
+                {{formatCreatedAt(blogPost.created_at)}}
+                <!-- , {{parseInt(blogPost.read_time) || 0}} min read -->
               </div>
             </div>
           </div>
 
           <div class="blog-details">
             <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
-            <p
+            <!-- <p
               class="blog-brief"
-            >{{utf8Decode(blogPost.summary).length > 1 ? utf8Decode(blogPost.summary) + "..." : ""}}</p>
+            >{{utf8Decode(blogPost.summary).length > 1 ? utf8Decode(blogPost.summary) + "..." : ""}}</p>-->
           </div>
         </div>
       </div>

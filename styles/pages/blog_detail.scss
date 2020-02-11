@@ -107,7 +107,11 @@
       }
 
       .social-handlers {
-        color: $k-text-color-1;
+        a {
+          color: $k-text-color-1;
+          text-decoration: none;
+          cursor: pointer;
+        }
         label,
         i {
           margin-right: 24px;
