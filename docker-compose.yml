@@ -10,4 +10,5 @@ services:
     #   - /home/bugthedebugger/Documents/Karkhana/Rebranding/Karkhana-Frontend/:/app
     ports:
       - 80:80
+      - 443:80
     # entrypoint: "npm run start"
