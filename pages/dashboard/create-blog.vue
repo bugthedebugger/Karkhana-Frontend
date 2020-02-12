@@ -24,7 +24,10 @@
             type="button"
             class="btn btn-primary mb-2 mr-2 btn-sm"
             @click="updatePost(true)"
-          >Save</button>
+            :disabled="saveLoading"
+          >
+            <Spinner v-if="saveLoading" />Save
+          </button>
         </div>
       </div>
 
@@ -150,11 +153,12 @@
 import Editor from "@tinymce/tinymce-vue";
 import FileUpload from "~/components/FileUpload";
 import clipboard from "clipboard-polyfill";
+import Spinner from "~/components/Spinner";
 
 export default {
   layout: "dashboard",
   auth: true,
-  components: { Editor, FileUpload },
+  components: { Editor, FileUpload, Spinner },
   data() {
     return {
       uuid: null,
@@ -189,7 +193,9 @@ export default {
       autosaveInterval: 10,
       languages: null,
       featuredChanged: false,
-      featuredForShow: null
+      featuredForShow: null,
+      saveLoading: false,
+      publishLoading: false
     };
   },
 
@@ -200,7 +206,7 @@ export default {
     });
     this.fetchGallery();
     this.fetchLanguages();
-    // this.resetSaveTimer();
+    this.resetSaveTimer();
   },
 
   methods: {
@@ -226,6 +232,7 @@ export default {
     },
 
     updatePost(showToast) {
+      if (this.saveLoading) return;
       let updateBody = {
         uuid: this.uuid,
         title: this.title,
@@ -235,13 +242,21 @@ export default {
           this.tags && this.tags.length ? this.tags.map(tag => tag.id) : null
       };
       if (this.featuredChanged) updateBody.featured = this.featured;
-      this.$axios.post(`/admin/blog/create`, updateBody).then(response => {
-        if (response.data.status === "success") {
-          this.resetSaveTimer();
-          if (showToast) this.$toast.show("Saved successfully");
-          this.featuredChanged = false;
-        }
-      });
+      this.saveLoading = true;
+      this.$axios
+        .post(`/admin/blog/create`, updateBody)
+        .then(response => {
+          if (response.data.status === "success") {
+            this.resetSaveTimer();
+            if (showToast) this.$toast.show("Saved successfully");
+            this.featuredChanged = false;
+          }
+          this.saveLoading = false;
+        })
+        .error(e => {
+          if (showToast) this.$toast.show("Error updating blog");
+          this.saveLoading = false;
+        });
     },
 
     createTag() {

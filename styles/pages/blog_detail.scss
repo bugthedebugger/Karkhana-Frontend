@@ -49,10 +49,9 @@
         }
       }
       .blog-title {
-        // font: Regular 36px/43px Museo 700;
         margin-top: 20px;
         @include k-font(
-          toRem(36px),
+          toRem(48px),
           $k-white,
           $font-weight-regular,
           toRem(43px),

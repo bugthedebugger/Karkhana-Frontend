@@ -1,0 +1,12 @@
+@import "@/styles/global.scss";
+
+.loading {
+  width: 25%;
+  height: auto;
+  margin: 0 auto;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}

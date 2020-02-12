@@ -80,7 +80,7 @@
   color: $k-white;
   margin-right: 3.75rem;
   padding-top: 48px;
-  margin-bottom: 30px;
+  padding-bottom: 30px;
 
   @include media-breakpoint-down(md) {
     padding-top: 5px;
@@ -114,15 +114,22 @@
 }
 
 .products-menu {
+  position: absolute;
+  top: 90%;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
   width: 670px !important;
+  z-index: 300000;
+  transition: all 0.2s ease-in-out;
 
-  a{
+  a {
     color: $k-black;
   }
 
   .product-category {
     // margin-right: 78px;
-    a:hover{
+    a:hover {
       text-decoration: none;
     }
   }
@@ -175,3 +182,27 @@
     }
   }
 }
+
+.nav-item-dropdown {
+  position: relative;
+}
+
+.nav-item-dropdown-handle:hover .products-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+// Chevron down instead of caret for dropdown
+.nav-link-dropdown-handle:after {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: $font-weight-regular;
+  padding-left: 8px;
+  content: "\f078";
+}
+.dropdown-toggle {
+  display: flex;
+}
+.dropdown-toggle:after {
+  border: none;
+}
+//-----------END-------------------------------

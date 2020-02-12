@@ -37,26 +37,32 @@
         <button
           class="btn btn-primary btn-block"
           @click="handleSubmit()"
-          :disabled="email.length <= 0 || password.length <= 0"
-        >Login</button>
+          :disabled="email.length <= 0 || password.length <= 0 || loginLoading"
+        >
+          <Spinner v-if="loginLoading" />Login
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Spinner from "~/components/Spinner";
+
 export default {
   auth: false,
-  components: {},
+  components: { Spinner },
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      loginLoading: false
     };
   },
 
   methods: {
     handleSubmit() {
+      this.loginLoading = true;
       this.$auth
         .loginWith("local", {
           data: {
@@ -68,6 +74,7 @@ export default {
           this.$router.push({
             path: "/dashboard"
           });
+          this.loginLoading = false;
         });
     }
   },

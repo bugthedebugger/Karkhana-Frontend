@@ -100,7 +100,7 @@
         </div>
       </div>-->
 
-      <div class="blog-posts d-flex flex-wrap justify-content-between">
+      <div v-if="blogPosts" class="blog-posts d-flex flex-wrap justify-content-around">
         <div
           class="blog-post-alt"
           v-for="blogPost in blogPosts"
@@ -130,6 +130,9 @@
             >{{utf8Decode(blogPost.summary).length > 1 ? utf8Decode(blogPost.summary) + "..." : ""}}</p>-->
           </div>
         </div>
+      </div>
+      <div v-else>
+        <Loading />
       </div>
 
       <!-- <div class="row">
@@ -162,17 +165,18 @@
 
 <script>
 import Footer from "~/components/Footer";
+import Loading from "~/components/Loading";
 import moment from "moment";
 
 export default {
   layout: "portfolio",
   auth: false,
-  components: { Footer },
+  components: { Footer, Loading },
   data() {
     return {
       fetchCategories: ["Latest"],
       selectedFetchCategory: "Latest",
-      blogPosts: [],
+      blogPosts: null,
       tags: null
     };
   },
