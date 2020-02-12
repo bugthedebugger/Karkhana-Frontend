@@ -9,14 +9,22 @@
             type="button"
             class="btn btn-warning mb-2 btn-sm"
             @click="unPublishPost()"
-          >Unpublish</button>
+            :disabled="publishLoading"
+          >
+            <Spinner v-if="publishLoading" />Save
+            Unpublish
+          </button>
 
           <button
             v-else
             type="button"
             class="btn btn-primary mb-2 btn-sm"
             @click="publishPost()"
-          >Publish</button>
+            :disabled="publishLoading"
+          >
+            <Spinner v-if="publishLoading" />Save
+            Publish
+          </button>
 
           <nuxt-link :to="'/blogs/' + uuid" class="btn btn-link mb-2 btn-sm" target="_blank">Preview</nuxt-link>
           <button type="button" class="btn btn-link mb-2 btn-sm" @click="deleteBlog()">Close</button>
@@ -253,7 +261,7 @@ export default {
           }
           this.saveLoading = false;
         })
-        .error(e => {
+        .catch(e => {
           if (showToast) this.$toast.show("Error updating blog");
           this.saveLoading = false;
         });

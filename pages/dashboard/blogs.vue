@@ -23,43 +23,53 @@
 
     <div class="container-card">
       <div class="menubar"></div>
-      <ul class="dashboard-list no-bullets" v-if="blogPosts">
-        <li
-          v-for="(blogPost, index) in blogPosts"
-          :key="blogPost.uuid"
-          class="dashboard-list-item d-flex"
-        >
-          <label class="checkbox title flex-fill">
-            <input type="checkbox" />
-            {{ utf8Decode(blogPost.title) }}
-          </label>
-          <label class="author">{{blogPost.author}}</label>
-          <label class="created-at">{{ formatCreatedAt(blogPost.created_at) }}</label>
-          <label class="views">{{blogPost.published ? 'Published' : 'Un-published'}}</label>
-          <div class="controls d-flex">
-            <div class="btn-view">
-              <i class="fal fa-eye"></i>
+      <div v-if="blogPosts">
+        <ul class="dashboard-list no-bullets" v-if="blogPosts.length">
+          <li
+            v-for="(blogPost, index) in blogPosts"
+            :key="blogPost.uuid"
+            class="dashboard-list-item d-flex"
+          >
+            <label class="checkbox title flex-fill">
+              <input type="checkbox" />
+              {{ utf8Decode(blogPost.title) }}
+            </label>
+            <label class="author">{{blogPost.author}}</label>
+            <label class="created-at">{{ formatCreatedAt(blogPost.created_at) }}</label>
+            <label class="views">{{blogPost.published ? 'Published' : 'Un-published'}}</label>
+            <div class="controls d-flex">
+              <div class="btn-view">
+                <nuxt-link :to="'/blogs/' + blogPost.uuid" target="_blank">
+                  <i class="fal fa-eye"></i>
+                </nuxt-link>
+              </div>
+              <div class="btn-edit">
+                <nuxt-link :to="'create-blog?uuid=' + blogPost.uuid">
+                  <i class="fal fa-edit"></i>
+                </nuxt-link>
+              </div>
+              <div class="btn-delete" @click="deleteBlogPost(blogPost.uuid, index)">
+                <i class="fal fa-trash-alt"></i>
+              </div>
             </div>
-            <div class="btn-edit">
-              <nuxt-link :to="'create-blog?uuid=' + blogPost.uuid">
-                <i class="fal fa-edit"></i>
-              </nuxt-link>
-            </div>
-            <div class="btn-delete" @click="deleteBlogPost(blogPost.uuid, index)">
-              <i class="fal fa-trash-alt"></i>
-            </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+        <div v-else>No Blogs found</div>
+      </div>
+      <div v-else>
+        <Loading />
+      </div>
     </div>
   </div>
 </template>
 <script>
 import moment from "moment";
+import Loading from "~/components/Loading";
 
 export default {
   layout: "dashboard",
   auth: true,
+  components: { Loading },
   data() {
     return {
       blogPosts: null,

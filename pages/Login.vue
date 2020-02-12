@@ -12,6 +12,7 @@
           id="email"
           aria-describedby="emailHelp"
           placeholder="Enter email"
+          @keyup.enter="handleSubmit()"
           v-model="email"
         />
       </div>
@@ -22,6 +23,7 @@
           class="form-control"
           id="password"
           placeholder="Password"
+          @keyup.enter="handleSubmit()"
           v-model="password"
         />
       </div>
@@ -61,21 +63,28 @@ export default {
   },
 
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
+      if (this.email.length === 0 || this.password.length === 0) {
+        this.$toast.show("Invalid credentials");
+        return;
+      }
       this.loginLoading = true;
-      this.$auth
-        .loginWith("local", {
+
+      try {
+        await this.$auth.loginWith("local", {
           data: {
             email: this.email,
             password: this.password
           }
-        })
-        .then(() => {
-          this.$router.push({
-            path: "/dashboard"
-          });
-          this.loginLoading = false;
         });
+        this.$router.push({
+          path: "/dashboard"
+        });
+        this.loginLoading = false;
+      } catch (error) {
+        this.$toast.show("Invalid credentials");
+        this.loginLoading = false;
+      }
     }
   },
   created() {}

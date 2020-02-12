@@ -100,7 +100,10 @@
         </div>
       </div>-->
 
-      <div v-if="blogPosts" class="blog-posts d-flex flex-wrap justify-content-around">
+      <div
+        v-if="blogPosts && blogPosts.length > 0"
+        class="blog-posts d-flex flex-wrap justify-content-start"
+      >
         <div
           class="blog-post-alt"
           v-for="blogPost in blogPosts"
@@ -132,7 +135,7 @@
         </div>
       </div>
       <div v-else>
-        <Loading />
+        <h5>No Blogs Found</h5>
       </div>
 
       <!-- <div class="row">
@@ -165,13 +168,12 @@
 
 <script>
 import Footer from "~/components/Footer";
-import Loading from "~/components/Loading";
 import moment from "moment";
 
 export default {
   layout: "portfolio",
   auth: false,
-  components: { Footer, Loading },
+  components: { Footer },
   data() {
     return {
       fetchCategories: ["Latest"],
@@ -182,11 +184,27 @@ export default {
   },
 
   created() {
-    this.fetchTags();
-    this.fetchBlogs();
+    // this.fetchTags();
+  },
+
+  mounted() {
+    this.applyEqualHeightRule();
+  },
+
+  async asyncData({ $axios, params }) {
+    const response = await $axios.get("/blog?per_page=10");
+    return { blogPosts: response.data.data };
   },
 
   methods: {
+    applyEqualHeightRule() {
+      let maxHeight = 0;
+      $(".blog-post-alt").each(function() {
+        if ($(this).height() > maxHeight) maxHeight = $(this).height();
+      });
+      $(".blog-post-alt").height(maxHeight);
+    },
+
     setBackgroundImage(image_path) {
       let image;
       if (image_path === null || image_path == "null")
@@ -225,6 +243,7 @@ export default {
         // console.log(response);
         // console.log(atob(response.data.data[0]));
         this.blogPosts = response.data.data;
+        this.applyEqualHeightRule();
       });
     },
 

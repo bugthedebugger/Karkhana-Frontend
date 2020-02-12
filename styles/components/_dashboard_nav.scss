@@ -3,6 +3,8 @@
 .dashboard-nav {
   padding-left: 38px;
   padding-top: 36px;
+  min-width: 260px;
+
   .nav-logo {
     img {
       width: 130px;
@@ -18,6 +20,8 @@
       padding-bottom: 5px;
 
       a {
+        display: inline-block;
+        height: 100%;
         @include k-font(
           toRem(16px),
           $k-black,
