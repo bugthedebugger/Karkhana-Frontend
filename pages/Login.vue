@@ -12,6 +12,7 @@
           id="email"
           aria-describedby="emailHelp"
           placeholder="Enter email"
+          @keyup.enter="handleSubmit()"
           v-model="email"
         />
       </div>
@@ -22,6 +23,7 @@
           class="form-control"
           id="password"
           placeholder="Password"
+          @keyup.enter="handleSubmit()"
           v-model="password"
         />
       </div>
@@ -37,38 +39,52 @@
         <button
           class="btn btn-primary btn-block"
           @click="handleSubmit()"
-          :disabled="email.length <= 0 || password.length <= 0"
-        >Login</button>
+          :disabled="email.length <= 0 || password.length <= 0 || loginLoading"
+        >
+          <Spinner v-if="loginLoading" />Login
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Spinner from "~/components/Spinner";
+
 export default {
   auth: false,
-  components: {},
+  components: { Spinner },
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      loginLoading: false
     };
   },
 
   methods: {
-    handleSubmit() {
-      this.$auth
-        .loginWith("local", {
+    async handleSubmit() {
+      if (this.email.length === 0 || this.password.length === 0) {
+        this.$toast.show("Invalid credentials");
+        return;
+      }
+      this.loginLoading = true;
+
+      try {
+        await this.$auth.loginWith("local", {
           data: {
             email: this.email,
             password: this.password
           }
-        })
-        .then(() => {
-          this.$router.push({
-            path: "/dashboard"
-          });
         });
+        this.$router.push({
+          path: "/dashboard"
+        });
+        this.loginLoading = false;
+      } catch (error) {
+        this.$toast.show("Invalid credentials");
+        this.loginLoading = false;
+      }
     }
   },
   created() {}

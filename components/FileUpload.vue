@@ -23,18 +23,27 @@
       ></div>
     </div>
     <div class="mb-3"></div>
-    <button class="btn btn-success btn-sm" @click="onUpload()" :disabled="!selectedFiles">Upload</button>
+    <button
+      class="btn btn-success btn-sm"
+      @click="onUpload()"
+      :disabled="!selectedFiles || uploadLoading"
+    >
+      <Spinner v-if="uploadLoading" />Upload
+    </button>
   </div>
 </template>
 
 <script>
+import Spinner from "~/components/Spinner";
 export default {
   name: "FileUpload",
   props: ["uuid"],
+  components: { Spinner },
   data() {
     return {
       selectedFiles: null,
-      uploadPercent: 0
+      uploadPercent: 0,
+      uploadLoading: false
     };
   },
   created() {},
@@ -49,12 +58,16 @@ export default {
       Array.from(this.selectedFiles).forEach((selectedFile, index) => {
         fd.append(`photos[${index}]`, selectedFile, selectedFile.name);
       });
+      this.uploadLoading = true;
       this.$axios
         .post(`/admin/blog/gallery/${this.uuid}/upload`, fd, {
           onUploadProgress: this.handleUploadProgress
         })
         .then(response => {
           this.$emit("fileUploaded", response.data);
+          this.uploadLoading = false;
+          this.uploadPercent = 0;
+          this.selectedFiles = null;
         });
     },
 

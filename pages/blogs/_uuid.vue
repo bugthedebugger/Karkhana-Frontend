@@ -32,7 +32,7 @@
           <a :href="getFbShareLink()" target="_blank">
             <i class="fab fa-facebook"></i>
           </a>
-          <a :href="getTwitterShareLink()">
+          <a :href="getTwitterShareLink()" target="_blank">
             <i class="fab fa-twitter"></i>
           </a>
 
@@ -113,24 +113,23 @@ export default {
   auth: false,
   head() {
     return {
-      title: this.blog ? this.blog.title : "Karkhana",
+      title: this.blog.title,
       meta: [
         {
           hid: "description",
           name: "description",
-          content: this.blog ? this.blog.title : "Karkhana Blog"
+          content: this.blog.title
         },
         {
           hid: "description",
           name: "tags",
-          content:
-            this.blog && this.blog.tags
-              ? this.blog.tags.map(t => t.name)
-              : "Karkhana Blog"
+          content: this.blog.tags
+            ? this.blog.tags.map(t => t.name)
+            : "Karkhana Blog"
         },
         {
           property: "og:url",
-          content: process.env.MY_URL
+          content: process.env.MY_URL + "/blogs/" + this.$route.params.uuid
         },
         {
           property: "og:type",
@@ -138,16 +137,23 @@ export default {
         },
         {
           property: "og:title",
-          content: this.blog ? this.blog.title : "Karkhana Blog"
+          content: this.blog.title
         },
         {
           property: "og:description",
-          content: "Karkhana Blog"
+          content: this.blog.title
         },
 
         {
           property: "og:image",
-          content: process.env.MY_URL + (this.blog ? this.blog.featured : "")
+          content: this.blog.featured
+            ? this.blog.featured
+            : process.env.MY_URL + "/images/slider-image-5.jpg"
+        },
+
+        {
+          property: "twitter:card",
+          content: "summary"
         }
       ]
     };
@@ -157,14 +163,17 @@ export default {
 
   data() {
     return {
-      uuid: this.$route.params.uuid,
-      blog: null
+      uuid: this.$route.params.uuid
+      // blog: null
     };
   },
 
-  created() {
-    this.fetchBlogDetails();
+  async asyncData({ $axios, params }) {
+    const response = await $axios.get(`/blog/${params.uuid}`);
+    return { blog: response.data.data };
   },
+
+  async created() {},
 
   methods: {
     getFbShareLink() {
@@ -174,9 +183,7 @@ export default {
     getTwitterShareLink() {
       return (
         "http://twitter.com/share?url=" +
-        encodeURIComponent("Karkhana.asia") +
-        "&text=" +
-        encodeURIComponent(this.blog.title || "Karkhana Blog")
+        encodeURIComponent(`${process.env.MY_URL}/blogs/${this.uuid}`)
       );
     },
 
@@ -188,10 +195,9 @@ export default {
       return `background-image: url(${image})`;
     },
 
-    fetchBlogDetails() {
-      this.$axios.get(`/blog/${this.uuid}`).then(response => {
-        this.blog = response.data.data;
-      });
+    async fetchBlogDetails() {
+      const response = await this.$axios.get(`/blog/${this.uuid}`);
+      this.blog = response.data.data;
     },
 
     formatCreatedAt(date) {

@@ -22,48 +22,44 @@
 
       <div class="collapse navbar-collapse" id="navbar-links">
         <div class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
+          <li class="nav-item nav-item-dropdown nav-item-dropdown-handle">
             <a
-              class="nav-link dropdown-toggle"
               href="#"
-              id="productsDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+              @click="navigateToProduct('all')"
+              class="nav-link nav-link-dropdown-handle"
             >Products</a>
-            <div class="dropdown-menu products-menu" aria-labelledby="productsDropdown">
+            <div class="dropdown-menu products-menu d-block" ref="productsDropdownMenu">
               <div class="row">
                 <div class="col-4 product-category product-category-science">
-                  <nuxt-link to="/productDetail?type=science">
+                  <a href="#" @click="navigateToProduct('science')">
                     <div class="product-circle">
                       <img src="/images/product-logo-science.svg" />
                     </div>
                     <p class="product-category-name">Karkhana Science</p>
-                  </nuxt-link>
+                  </a>
                 </div>
                 <div class="col-4 product-category product-category-computing">
-                  <nuxt-link to="/productDetail?type=computing">
+                  <a href="#" @click="navigateToProduct('computing')">
                     <div class="product-circle">
                       <img src="/images/product-logo-computing.svg" />
                     </div>
                     <p class="product-category-name">Karkhana Computing</p>
-                  </nuxt-link>
+                  </a>
                 </div>
                 <div class="col-4 product-category product-category-make">
-                  <nuxt-link to="/productDetail?type=make">
+                  <a href="#" @click="navigateToProduct('make')">
                     <div class="product-circle">
                       <img src="/images/product-logo-make.svg" />
                     </div>
                     <p class="product-category-name">Karkhana Make</p>
-                  </nuxt-link>
+                  </a>
                 </div>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-12 text-center">
                   <nuxt-link to="/products" class="mt-2">View All Products</nuxt-link>
                 </div>
-              </div>
+              </div>-->
             </div>
           </li>
           <nuxt-link to="/blogs" class="nav-item nav-link">Blog</nuxt-link>
@@ -94,7 +90,7 @@
                 {{locale.name}}
               </a>
             </div>
-          </li> -->
+          </li>-->
 
           <!-- Social handlers -->
           <div class="nav-item nav-link nav-item-social">
@@ -150,6 +146,15 @@ export default {
   },
 
   methods: {
+    navigateToProduct(type) {
+      if (type === "all") this.$router.push({ path: "/products" });
+      else this.$router.push({ path: `/productDetail?type=${type}` });
+      this.$refs.productsDropdownMenu.classList.add("invisible");
+      setTimeout(() => {
+        this.$refs.productsDropdownMenu.classList.remove("invisible");
+      }, 500);
+    },
+
     selectLocale(index) {
       this.selectedLocale = this.locales[index];
       this.$axios.defaults.headers.common["LANG"] = this.selectedLocale.locale;

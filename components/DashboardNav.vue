@@ -17,7 +17,8 @@
       </li>
       <li class="nav-link-list-item">
         <a href="#" @click="logout()">
-          <i class="fal fa-sign-out"></i>
+          <Spinner :dark="true" v-if="logoutLoading" />
+          <i v-else class="fal fa-sign-out"></i>
           Logout
         </a>
       </li>
@@ -26,8 +27,11 @@
 </template>
 
 <script>
+import Spinner from "~/components/Spinner";
+
 export default {
   name: "DashboardNav",
+  components: { Spinner },
   data() {
     return {
       activeTab: null,
@@ -56,7 +60,8 @@ export default {
           icon: "fal fa-cog",
           url: "/dashboard/settings"
         }
-      ]
+      ],
+      logoutLoading: false
     };
   },
 
@@ -70,8 +75,14 @@ export default {
     },
 
     async logout() {
-      await this.$auth.logout();
-      this.$router.push({ path: "/" });
+      this.logoutLoading = true;
+      try {
+        await this.$auth.logout();
+        this.$router.push({ path: "/" });
+        this.logoutLoading = false;
+      } catch (error) {
+        this.$toast.show("Error loggin out");
+      }
     }
   },
 

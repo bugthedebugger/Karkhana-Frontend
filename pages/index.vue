@@ -17,9 +17,9 @@
 <script>
 import HomeSlider from "~/components/HomeSlider";
 import HomeAbout from "~/components/HomeAbout";
-import HomeEvents from "~/components/HomeEvents";
+// import HomeEvents from "~/components/HomeEvents";
 import HomeContact from "~/components/HomeContact";
-import HomePartners from "~/components/HomePartners";
+// import HomePartners from "~/components/HomePartners";
 import Footer from "~/components/Footer";
 
 export default {
@@ -28,9 +28,9 @@ export default {
   components: {
     HomeSlider,
     HomeAbout,
-    HomeEvents,
+    // HomeEvents,
     HomeContact,
-    HomePartners,
+    // HomePartners,
     Footer
   },
   data() {

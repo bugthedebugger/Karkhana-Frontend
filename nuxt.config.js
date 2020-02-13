@@ -28,7 +28,7 @@ export default {
     CAL_ID: "karkhana.asia_mdt3kr5jmvh1ld77g0fqfldc0k@group.calendar.google.com",
     BASE_API_URL: "http://13.229.231.52",
     TINY_MCE_API_KEY: "xzdc1n6z3n8g0op6mby6jp3yvm3gapvhbgzmcyw7554g6jf7",
-    MY_URL: "https://karkhana.asia"
+    MY_URL: "http://karkhana.asia/"
   },
 
   loading: false,
