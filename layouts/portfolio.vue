@@ -13,13 +13,6 @@ export default {
 };
 </script>
 
-<style>
-.under-construction {
-  position: fixed;
-  bottom: -5px;
-  right: -5px;
-  height: 200px;
-  width: 200px;
-  z-index: 100000;
-}
+<style lang="scss">
+@import "@/styles/layouts/portfolio.scss";
 </style>

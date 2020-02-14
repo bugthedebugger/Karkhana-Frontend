@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-detail" v-if="blog">
+  <div class="blog-detail">
     <div class="blog-header" :style="setBackgroundImage(blog.featured)">
       <div class="overlay"></div>
       <div class="header-info">
@@ -24,7 +24,7 @@
 
       <hr />
       <div class="blog-footer mb-4">
-        <div class="tags-container">
+        <div v-if="blog.tags" class="tags-container">
           <div class="tag" v-for="tag in blog.tags" :key="tag.id">{{tag.name}}</div>
         </div>
         <div class="social-handlers">

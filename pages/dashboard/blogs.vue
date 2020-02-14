@@ -49,7 +49,9 @@
                 </nuxt-link>
               </div>
               <div class="btn-delete" @click="deleteBlogPost(blogPost.uuid, index)">
-                <i class="fal fa-trash-alt"></i>
+                <a href="#">
+                  <i class="fal fa-trash-alt"></i>
+                </a>
               </div>
             </div>
           </li>

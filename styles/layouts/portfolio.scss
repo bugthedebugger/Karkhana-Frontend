@@ -1,0 +1,16 @@
+@import "@/styles/global.scss";
+
+.under-construction {
+  position: fixed;
+  bottom: -5px;
+  right: -5px;
+  height: 200px;
+  width: 200px;
+  z-index: 100000;
+
+  @include media-breakpoint-down(md) {
+    height: 100px;
+    width: 100px;
+  }
+
+}

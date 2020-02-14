@@ -11,8 +11,7 @@
             @click="unPublishPost()"
             :disabled="publishLoading"
           >
-            <Spinner v-if="publishLoading" />Save
-            Unpublish
+            <Spinner v-if="publishLoading" />Unpublish
           </button>
 
           <button
@@ -22,19 +21,19 @@
             @click="publishPost()"
             :disabled="publishLoading"
           >
-            <Spinner v-if="publishLoading" />Save
-            Publish
+            <Spinner v-if="publishLoading" />Publish
           </button>
 
           <nuxt-link :to="'/blogs/' + uuid" class="btn btn-link mb-2 btn-sm" target="_blank">Preview</nuxt-link>
           <button type="button" class="btn btn-link mb-2 btn-sm" @click="deleteBlog()">Close</button>
           <button
             type="button"
-            class="btn btn-primary mb-2 mr-2 btn-sm"
+            class="btn btn-primary mb-2 mr-2 btn-sm btn-save"
             @click="updatePost(true)"
             :disabled="saveLoading"
           >
-            <Spinner v-if="saveLoading" />Save
+            <Spinner v-if="saveLoading" />
+            Saving in {{autosaveCounter}} Secs / Save Now
           </button>
         </div>
       </div>
@@ -194,10 +193,15 @@ export default {
         font_formats:
           "Ananda=ananda; Museo=museo; Poppins=Poppins, sans-serif; Raleway=Raleway, sans-serif; Lato=Lato, sans-serif",
         fontsize_formats:
-          "8pt 10pt 12pt 14pt 18pt 24pt 36pt 48pt 60pt 72pt 90pt"
+          "8pt 10pt 12pt 14pt 18pt 24pt 36pt 48pt 60pt 72pt 90pt",
+        image_class_list: [
+          { title: "None", value: "" },
+          { title: "Responsive", value: "img-fluid" }
+        ]
       },
       autosaveTimer: null,
       autosaveCounter: null,
+      autosaveCounterTimer: null,
       autosaveInterval: 10,
       languages: null,
       featuredChanged: false,
@@ -219,10 +223,19 @@ export default {
 
   methods: {
     resetSaveTimer() {
+      // autosave timer
       clearInterval(this.autosaveTimer);
       this.autosaveTimer = setInterval(
         () => this.autosave(),
         this.autosaveInterval * 1000
+      );
+
+      // autosave counter timer
+      clearInterval(this.autosaveCounterTimer);
+      this.autosaveCounter = this.autosaveInterval;
+      this.autosaveCounterTimer = setInterval(
+        () => (this.autosaveCounter = Math.max(--this.autosaveCounter, 0)),
+        1000
       );
     },
 
@@ -316,16 +329,20 @@ export default {
     },
 
     publishPost() {
+      this.publishLoading = true;
       this.$axios.post(`/admin/blog/publish/${this.uuid}`).then(response => {
         this.published = true;
         this.$toast.show("Published");
+        this.publishLoading = false;
       });
     },
 
     unPublishPost() {
+      this.publishLoading = true;
       this.$axios.post(`/admin/blog/unpublish/${this.uuid}`).then(response => {
         this.published = false;
         this.$toast.show("Un-published");
+        this.publishLoading = false;
       });
     },
 
