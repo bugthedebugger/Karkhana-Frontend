@@ -70,16 +70,26 @@
           cursor: pointer;
         }
 
+        a {
+          text-decoration: none;
+        }
+
         .btn-view {
-          color: $k-success;
+          a {
+            color: $k-success;
+          }
         }
 
         .btn-edit {
-          color: $k-info;
+          a {
+            color: $k-info;
+          }
         }
 
         .btn-delete {
-          color: $k-red;
+          a {
+            color: $k-red;
+          }
         }
       }
     }

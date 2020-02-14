@@ -26,10 +26,17 @@ $line-color: #707070;
   .navlinks {
     padding-left: 0;
     list-style-type: none;
+
+    @include media-breakpoint-down(md) {
+      justify-content: center;
+    }
+
+
     .navlink-item {
       margin-right: 94px;
       @include media-breakpoint-down(md) {
         margin-right: 1rem;
+        margin-left: 0 !important;
       }
       a {
         @include k-font(

@@ -139,7 +139,6 @@
 
     .blog-details {
       padding: 24px 20px 20px 15px;
-      // background-color: $k-white;
       margin-top: -5px;
       height: auto;
 
@@ -152,6 +151,9 @@
           toRem(28px),
           $font-museo
         );
+        @include media-breakpoint-down(md) {
+          text-align: center;
+        }
       }
 
       .blog-brief {

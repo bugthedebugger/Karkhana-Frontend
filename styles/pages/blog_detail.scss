@@ -28,7 +28,21 @@
       padding-left: 20px;
       transform: translateX(-50%);
       z-index: 2;
+
+      @include media-breakpoint-down(md) {
+        width: 100%;
+        text-align: center;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
       .author-info-container {
+
+        @include media-breakpoint-down(md) {
+          margin-top: 30px;
+          justify-content: center;
+        }
+
         .author-image {
           height: 64px;
           width: 64px;
@@ -54,7 +68,7 @@
           toRem(48px),
           $k-white,
           $font-weight-regular,
-          toRem(43px),
+          toRem(60px),
           $font-museo
         );
       }
@@ -83,6 +97,10 @@
     .blog-footer {
       display: flex;
       justify-content: space-between;
+
+      @include media-breakpoint-down(md) {
+        justify-content: center;
+      }
 
       .tags-container {
         display: flex;

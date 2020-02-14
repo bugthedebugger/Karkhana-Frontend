@@ -1,7 +1,7 @@
 <template>
   <div class="blogs">
     <div class="container">
-      <div class="blog-tabs d-flex">
+      <div class="blog-tabs d-flex justify-content-center justify-content-md-start">
         <div
           v-for="cat in fetchCategories"
           :key="cat"
@@ -102,7 +102,7 @@
 
       <div
         v-if="blogPosts && blogPosts.length > 0"
-        class="blog-posts d-flex flex-wrap justify-content-start"
+        class="blog-posts d-flex flex-wrap justify-content-center justify-content-md-start"
       >
         <div
           class="blog-post-alt"
@@ -176,7 +176,7 @@ export default {
   components: { Footer },
   data() {
     return {
-      fetchCategories: ["Latest"],
+      fetchCategories: ["Latest", "Recommended"],
       selectedFetchCategory: "Latest",
       blogPosts: null,
       tags: null
