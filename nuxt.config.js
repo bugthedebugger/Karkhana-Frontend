@@ -47,7 +47,15 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/google-analytics'
   ],
+  googleAnalytics: {
+    id: 'G-G5C2BLBWV5',
+    debug: {
+      enabled: true,
+      sendHitTask: true
+    },
+  },
   /*
   ** Nuxt.js modules
   */
@@ -55,7 +63,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    '@nuxtjs/toast',
+    '@nuxtjs/toast'
   ],
 
   // Nuxt Toast
