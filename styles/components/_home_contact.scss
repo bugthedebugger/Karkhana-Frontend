@@ -34,12 +34,14 @@ section.contact {
     height: 100%;
 
     @include media-breakpoint-down(md) {
-      height: 100%;
       padding: 10% 5% 5% 5%;
       text-align: center;
       margin-bottom: 3rem;
     }
 
+    @include media-breakpoint-down(sm) {
+      height: auto;
+    }
 
     .card-body {
       padding: 0;

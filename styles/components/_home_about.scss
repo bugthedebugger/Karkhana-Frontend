@@ -89,6 +89,18 @@
         }
       }
       margin-bottom: 3rem;
+
+      @include media-breakpoint-down(md) {
+        i {
+          @include k-font(toRem(48px), $k-text-color-1);
+          img {
+            left: -10px;
+            top: 3px;
+            width: 36px;
+            height: 48px;
+          }
+        }
+      }
     }
 
     .stat-detail {
@@ -111,6 +123,16 @@
           36px,
           $font-poppins
         );
+      }
+
+      @include media-breakpoint-down(md) {
+        .stat-title {
+          font-size: toRem(16px);
+        }
+
+        .stat-data {
+          font-size: toRem(24px);
+        }
       }
     }
   }
