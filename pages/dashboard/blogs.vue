@@ -117,28 +117,7 @@ export default {
     fetchBlogs() {
       this.$axios.get("/admin/blog?per_page=100").then(response => {
         this.blogPosts = response.data.data;
-        // let base64 = response.data.data;
-
-        // this.blogPosts = base64
-        //   .filter(b => b.length > 0)
-        //   .map(b => JSON.parse(atob(b)));
-        // this.filteredBlogPosts = this.blogPosts;
-
-        // this.blogPosts = base64
-        //   .map(b => {
-        //     return{
-        //       uuid: b.uuid,
-        //       featured: b.featured,
-        //       author: b.author,
-        //       title: atob(b.title),
-        //       summary: atob(b.summary),
-        //       read_time: b.read_time
-        //       created_at: b.published
-        //     }
-        //   });
         this.filteredBlogPosts = this.blogPosts;
-
-        console.log(this.blogPosts);
       });
     },
 

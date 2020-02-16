@@ -2,7 +2,7 @@
   <div class="products">
     <div class="container mb-4">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 d-none d-md-block">
           <div class="v-spacer"></div>
           <div class="attribute-name">Grade</div>
           <div class="attribute-name">Type</div>
@@ -11,13 +11,13 @@
           <div class="attribute-name">Student Services</div>
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.science" :show_key_value="false" />
+          <ProductsItem :product_info="products.science" :show_key_value="showKeyValue" />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.computing" :show_key_value="false" />
+          <ProductsItem :product_info="products.computing" :show_key_value="showKeyValue" />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.make" :show_key_value="false" />
+          <ProductsItem :product_info="products.make" :show_key_value="showKeyValue" />
         </div>
       </div>
     </div>
@@ -63,8 +63,16 @@ export default {
           school_services: "N/A",
           student_services: "Karkhana Teachers"
         }
-      }
+      },
+      showKeyValue: false
     };
+  },
+  
+  mounted() {
+    if (process.client) {
+      // show key value for mobile
+      this.showKeyValue = $(window).height() < 768;
+    }
   }
 };
 </script>

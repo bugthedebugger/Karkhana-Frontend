@@ -34,6 +34,27 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-10 d-none d-md-block"></div>
+        <div class="col-md-2 col-sm-12 text-right col-sm-12">
+          <ul class="links-list no-bullets">
+            <li>
+              <div class="d-flex social-icons">
+                <a href="https://www.facebook.com/karkhana.asia" target="_blank">
+                  <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/karkhana.asia/" target="_blank">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/user/karkhanalabs" target="_blank">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <!-- Contents -->
       <div class="row">
         <div class="col-md-6 col-sm-12">
@@ -44,7 +65,7 @@
             attitudes that will help them build their future and the future of their community.
           </p>-->
 
-          <p class="mb-0">
+          <p class="mb-0 copyright-text">
             <i class="fal fa-copyright"></i>
             2020. Copyright Karkhana Pvt Ltd. All Rights Reserved.
           </p>
@@ -69,26 +90,7 @@
           </ul>
         </div>-->
 
-        <div class="col-md-2 text-right col-sm-12">
-          <ul class="links-list no-bullets">
-            <!-- <li class="d-none d-md-block">&nbsp;</li> -->
-            <!-- <li class="d-none d-md-block">&nbsp;</li> -->
-            <!-- <li class="d-none d-md-block">&nbsp;</li> -->
-            <li>
-              <div class="d-flex social-icons">
-                <a href="https://www.facebook.com/karkhana.asia" target="_blank">
-                  <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/karkhana.asia/" target="_blank">
-                  <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/user/karkhanalabs" target="_blank">
-                  <i class="fab fa-youtube"></i>
-                </a>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <!-- Social icons was here -->
       </div>
     </div>
   </footer>

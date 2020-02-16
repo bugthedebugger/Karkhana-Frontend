@@ -11,95 +11,6 @@
         >{{cat}}</div>
       </div>
 
-      <!-- <div class="blog-posts">
-        <div class="d-flex">
-          <div class="col-md-6 pl-0 pr-0">
-            <div
-              class="blog-post"
-              :style="'background-image: url(' + 'https://source.unsplash.com/random' + ')'"
-              @click="navigateTo('uuid')"
-            >
-              <div class="overlay"></div>
-              <div class="blog-details">
-                <div class="author-info-container d-flex">
-                  <div
-                    class="author-image"
-                    :style="'background-image: url(' + 'https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg' + ')'"
-                  ></div>
-                  <div class="author-info align-self-center">
-                    Bibhuti Poudyal
-                    <br />18th Jan 2020, 15 min read
-                  </div>
-                </div>
-                <p class="blog-title">This is the title of the blog</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 pl-0 pr-0">
-            <div class="d-flex">
-              <div>
-                <div class="blog-post-alt">
-                  <div
-                    @click="navigateTo('uuid')"
-                    class="blog-image"
-                    :style="'background-image: url(' + 'https://source.unsplash.com/random' + ')'"
-                  >
-                    <div class="overlay"></div>
-                    <div class="author-info-container d-flex">
-                      <div
-                        class="author-image"
-                        :style="'background-image: url(' + 'https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg' + ')'"
-                      ></div>
-                      <div class="author-info align-self-center">
-                        Bibhuti Poudyal
-                        <br />18th Jan 2020, 15 min read
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="blog-details">
-                    <p class="blog-title">This is the title of the post</p>
-                    <p class="blog-brief">
-                      In our work we try to go past what we already know and break new ground.
-                      We have a commitment to relentlessly looking for the real edge of ...
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="blog-post-alt">
-                  <div
-                    @click="navigateTo('uuid')"
-                    class="blog-image"
-                    :style="'background-image: url(' + 'https://source.unsplash.com/random' + ')'"
-                  >
-                    <div class="overlay"></div>
-                    <div class="author-info-container d-flex">
-                      <div
-                        class="author-image"
-                        :style="'background-image: url(' + 'https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg' + ')'"
-                      ></div>
-                      <div class="author-info align-self-center">
-                        Bibhuti Poudyal
-                        <br />18th Jan 2020, 15 min read
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="blog-details">
-                    <p class="blog-title">This is the title of the post</p>
-                    <p class="blog-brief">
-                      In our work we try to go past what we already know and break new ground.
-                      We have a commitment to relentlessly looking for the real edge of ...
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>-->
-
       <div
         v-if="blogPosts && blogPosts.length > 0"
         class="blog-posts d-flex flex-wrap justify-content-center justify-content-md-start"
@@ -176,7 +87,7 @@ export default {
   components: { Footer },
   data() {
     return {
-      fetchCategories: ["Latest", "Recommended"],
+      fetchCategories: ["Latest"],
       selectedFetchCategory: "Latest",
       blogPosts: null,
       tags: null

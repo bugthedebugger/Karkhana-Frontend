@@ -28,6 +28,7 @@
   .product-details-text {
     margin-top: -90px;
     padding-left: 2rem;
+
     .title {
       @include k-font(
         toRem(36px),
@@ -76,6 +77,23 @@
             }
           }
         }
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      text-align: center;
+      padding-left: 0;
+
+      .intro-title {
+        color: $k-text-color-1;
+        margin-top: 30px;
+      }
+
+      .tagline {
+        color: $k-text-color-2;
+      }
+      .details {
+        margin-top: 30px;
       }
     }
   }

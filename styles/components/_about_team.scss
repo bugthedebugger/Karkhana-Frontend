@@ -8,6 +8,11 @@
 .about-team {
   margin-top: 160px;
   margin-bottom: 100px;
+
+  @include media-breakpoint-down(md) {
+    margin-top: 60px;
+  }
+
   .title {
     @include k-font(
       toRem(72px),
@@ -90,6 +95,10 @@
           toRem(28px),
           $font-raleway
         );
+
+        @include media-breakpoint-down(md) {
+          text-align: center;
+        }
       }
     }
   }

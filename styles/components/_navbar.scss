@@ -132,32 +132,29 @@
     a:hover {
       text-decoration: none;
     }
-  }
-
-  .product-circle {
-    $size: 64px;
-    height: $size;
-    width: $size;
-    margin: 0 auto;
-    margin-top: 43px;
-    cursor: pointer;
-    img {
-      width: 100%;
+    .product-circle {
+      $size: 64px;
+      height: $size;
+      width: $size;
+      margin: 0 auto;
+      margin-top: 43px;
+      cursor: pointer;
+      img {
+        width: 100%;
+      }
+    }
+    .product-category-name {
+      text-align: center;
+      margin-top: 10px;
+      @include k-font(
+        toRem(16px),
+        false,
+        $font-weight-medium,
+        false,
+        $font-poppins
+      );
     }
   }
-
-  .product-category-name {
-    text-align: center;
-    margin-top: 10px;
-    @include k-font(
-      toRem(16px),
-      false,
-      $font-weight-medium,
-      false,
-      $font-poppins
-    );
-  }
-
   .product-category-science {
     .product-category-name {
       color: $k-success;

@@ -4,9 +4,19 @@
   padding-top: 90px;
   margin-bottom: 100px;
 
+  @include media-breakpoint-down(md) {
+    padding-top: 10px;
+  }
+
   .contact-info-container {
     margin-top: 30px;
     display: flex;
+    justify-content: center;
+
+    @include media-breakpoint-down(md) {
+      flex-wrap: wrap;
+    }
+
     .contact-card {
       flex: 1;
       box-shadow: 0px 19px 70px 0px rgba(70, 69, 69, 0.75);
@@ -69,11 +79,27 @@
             background-color: $k-yellow;
           }
         }
+
+        @include media-breakpoint-down(md) {
+          padding-top: 50px;
+          padding-left: 50px;
+          padding-right: 50px;
+        }
+
+        @include media-breakpoint-down(lg) {
+          padding-left: 50px;
+        }
       }
 
       .seperator {
         width: 100%;
         height: 145px;
+      }
+
+      @include media-breakpoint-down(md) {
+        padding-top: 50px;
+        width: 100%;
+        box-shadow: none;
       }
     }
 
@@ -117,6 +143,10 @@
 
       button[type="submit"] {
         background-color: #c52a28;
+      }
+
+      @include media-breakpoint-down(md) {
+        padding: 30px;
       }
     }
   }

@@ -168,9 +168,13 @@ export default {
     };
   },
 
-  async asyncData({ $axios, params }) {
-    const response = await $axios.get(`/blog/${params.uuid}`);
-    return { blog: response.data.data };
+  async asyncData({ $axios, params, error }) {
+    try {
+      const response = await $axios.get(`/blog/${params.uuid}`);
+      return { blog: response.data.data };
+    } catch (e) {
+      error({ statusCode: 404 });
+    }
   },
 
   async created() {},

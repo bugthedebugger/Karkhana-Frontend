@@ -3,10 +3,15 @@
   padding-top: 150px;
   background-color: #faf4f0;
 
+  @include media-breakpoint-down(md) {
+    padding-top: 100px;
+  }
+
   .blog-tabs {
     margin-bottom: 40px;
     .tab {
-      margin-right: 45px;
+      margin-left: 20px;
+      margin-right: 20px;
       @include k-font(
         toRem(18px),
         $k-text-color-2,
@@ -165,6 +170,11 @@
           $font-poppins
         );
       }
+    }
+
+    @include media-breakpoint-down(md) {
+      margin: 0;
+      margin-bottom: 20px;
     }
   }
 

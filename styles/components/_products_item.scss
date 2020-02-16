@@ -105,7 +105,22 @@
     .attribute-value {
       text-align: left;
       font-size: toRem(16px);
-      width: 195px;
+
+      // white-space: nowrap;
+      // overflow: hidden;
+      // text-overflow: ellipsis;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .btn-learn-more {
+      width: calc(100% + 40px); // plus padding
+      margin-left: -20px;
+      padding: 15px 20px;
     }
   }
 }

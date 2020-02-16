@@ -195,7 +195,7 @@ export default {
         fontsize_formats:
           "8pt 10pt 12pt 14pt 18pt 24pt 36pt 48pt 60pt 72pt 90pt",
         image_class_list: [
-          { title: "None", value: "" },
+          { title: "None", value: "img-fluid" },
           { title: "Responsive", value: "img-fluid" }
         ]
       },

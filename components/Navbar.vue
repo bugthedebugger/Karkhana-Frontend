@@ -22,7 +22,7 @@
 
       <div class="collapse navbar-collapse" id="navbar-links">
         <div class="navbar-nav ml-auto">
-          <li class="nav-item nav-item-dropdown nav-item-dropdown-handle">
+          <li class="nav-item nav-item-dropdown nav-item-dropdown-handle d-none d-md-block">
             <a
               href="#"
               @click="navigateToProduct('all')"
@@ -30,25 +30,25 @@
             >Products</a>
             <div class="dropdown-menu products-menu d-block" ref="productsDropdownMenu">
               <div class="row">
-                <div class="col-4 product-category product-category-science">
+                <div class="col-md-4 col-sm-12 product-category product-category-science">
                   <a href="#" @click="navigateToProduct('science')">
-                    <div class="product-circle">
+                    <div class="product-circle d-none d-md-block">
                       <img src="/images/product-logo-science.svg" />
                     </div>
                     <p class="product-category-name">Karkhana Science</p>
                   </a>
                 </div>
-                <div class="col-4 product-category product-category-computing">
+                <div class="col-md-4 col-sm-12 product-category product-category-computing">
                   <a href="#" @click="navigateToProduct('computing')">
-                    <div class="product-circle">
+                    <div class="product-circle d-none d-md-block">
                       <img src="/images/product-logo-computing.svg" />
                     </div>
                     <p class="product-category-name">Karkhana Computing</p>
                   </a>
                 </div>
-                <div class="col-4 product-category product-category-make">
+                <div class="col-md-4 col-sm-12 product-category product-category-make">
                   <a href="#" @click="navigateToProduct('make')">
-                    <div class="product-circle">
+                    <div class="product-circle d-none d-md-block">
                       <img src="/images/product-logo-make.svg" />
                     </div>
                     <p class="product-category-name">Karkhana Make</p>
@@ -62,6 +62,8 @@
               </div>-->
             </div>
           </li>
+
+          <nuxt-link to="/products" class="nav-item nav-link mt-3 d-md-none">Products</nuxt-link>
           <nuxt-link to="/blogs" class="nav-item nav-link">Blog</nuxt-link>
           <nuxt-link to="/about" class="nav-item nav-link">About</nuxt-link>
           <nuxt-link to="/contact" class="nav-item nav-link">Contact</nuxt-link>
@@ -178,6 +180,7 @@ export default {
   watch: {
     $route(to, from) {
       this.checkOpaqueByDefault(to.name);
+      $("#navbar-links").collapse("hide");
     }
   }
 };

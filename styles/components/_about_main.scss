@@ -25,6 +25,8 @@
       @include media-breakpoint-down(md) {
         margin-top: 50px;
         text-align: center;
+        font-size: toRem(48px);
+        line-height: inherit;
       }
     }
 
