@@ -1,44 +1,48 @@
 @import "@/styles/global.scss";
 
-.error{
-    text-align: center;
-    padding-top: 4rem;
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-top: 4rem;
 
-    .k-logo{
-        width: 100px;
-    }
+  .k-logo {
+    width: 100px;
+  }
 
-    .error-image{
-        margin-top: 5rem;
-        width: 200px;
-    }
+  .error-image {
+    margin-top: 5rem;
+    width: 200px;
+  }
 
-    .error-title{
-        // font: Regular 36px/43px Museo 700;
-        margin-top: 58px;
+  .error-title {
+    // font: Regular 36px/43px Museo 700;
+    margin-top: 58px;
 
-        @include k-font(
-          toRem(36px),
-          $k-black,
-          $font-weight-regular,
-          43px,
-          $font-museo
-        );
-    }
+    @include k-font(
+      toRem(36px),
+      $k-black,
+      $font-weight-regular,
+      43px,
+      $font-museo
+    );
+  }
 
-    .error-subtitle{
-        // font: SemiBold 16px/25px Poppins;
-        margin-top: 15px;
-        @include k-font(
-          toRem(16px),
-          $k-text-color-1,
-          $font-weight-semi-bold,
-          25px,
-          $font-poppins
-        );
-    }
+  .error-subtitle {
+    // font: SemiBold 16px/25px Poppins;
+    margin-top: 15px;
+    @include k-font(
+      toRem(16px),
+      $k-text-color-1,
+      $font-weight-semi-bold,
+      25px,
+      $font-poppins
+    );
+  }
 
-    .btn-home{
-        margin-top: 3.5rem;
-    }
+  .btn-home {
+    margin-top: 3.5rem;
+  }
 }

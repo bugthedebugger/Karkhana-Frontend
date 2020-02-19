@@ -23,25 +23,10 @@
         >
           <div class="blog-image" :style="setBackgroundImage(blogPost.featured)">
             <div class="overlay"></div>
-            <div class="author-info-container d-flex">
-              <!-- <div
-                class="author-image"
-                :style="'background-image: url(' + 'https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg' + ')'"
-              ></div>-->
-              <div class="author-info align-self-center">
-                <!-- {{blogPost.author}} -->
-                <!-- <br /> -->
-                {{formatCreatedAt(blogPost.created_at)}}
-                <!-- , {{parseInt(blogPost.read_time) || 0}} min read -->
-              </div>
+            <div class="blog-details">
+              <p class="author-info align-self-center">{{formatCreatedAt(blogPost.created_at)}}</p>
+              <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
             </div>
-          </div>
-
-          <div class="blog-details">
-            <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
-            <!-- <p
-              class="blog-brief"
-            >{{utf8Decode(blogPost.summary).length > 1 ? utf8Decode(blogPost.summary) + "..." : ""}}</p>-->
           </div>
         </div>
       </div>
@@ -154,7 +139,7 @@ export default {
         // console.log(response);
         // console.log(atob(response.data.data[0]));
         this.blogPosts = response.data.data;
-        this.applyEqualHeightRule();
+        // this.applyEqualHeightRule();
       });
     },
 

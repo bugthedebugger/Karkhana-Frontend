@@ -92,13 +92,15 @@
 
   .blog-post-alt {
     margin: 20px;
-    max-width: 390px;
+    width: 390px;
+    height: 250px;
     cursor: pointer;
     background-color: $k-white;
 
     .blog-image {
       position: relative;
-      height: 250px;
+      height: 100%;
+      width: 100%;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
       color: $k-white;
@@ -111,64 +113,38 @@
         height: 100%;
         width: 100%;
         background-color: $k-black;
-        opacity: 0.3;
+        opacity: 0.5;
         border-radius: 5px;
         z-index: 1;
       }
-    }
 
-    .author-info-container {
-      position: absolute;
-      left: 20px;
-      bottom: 25px;
-      z-index: 2;
-      .author-image {
-        height: 64px;
-        width: 64px;
-        border-radius: 50%;
-        margin-right: 12px;
-        background-size: cover;
-        background-position: center;
-      }
+      .blog-details {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        z-index: 2;
 
-      .author-info {
-        @include k-font(
-          toRem(14px),
-          $k-white,
-          $font-weight-medium,
-          toRem(21px),
-          $font-poppins
-        );
-      }
-    }
-
-    .blog-details {
-      padding: 24px 20px 20px 15px;
-      margin-top: -5px;
-      height: auto;
-
-      .blog-title {
-        margin-top: 20px;
-        @include k-font(
-          toRem(24px),
-          $k-text-color-1,
-          $font-weight-regular,
-          toRem(28px),
-          $font-museo
-        );
-        @include media-breakpoint-down(md) {
-          text-align: center;
+        .blog-title {
+          @include k-font(
+            toRem(14px),
+            $k-white,
+            $font-weight-regular,
+            toRem(28px),
+            $font-museo
+          );
+          margin-bottom: 0;
         }
-      }
 
-      .blog-brief {
-        @include k-font(
-          toRem(16px),
-          $k-text-color-4,
-          $font-weight-regular,
-          toRem(28px),
-          $font-poppins
-        );
+        .author-info {
+          @include k-font(
+            toRem(8px),
+            $k-white,
+            $font-weight-medium,
+            toRem(21px),
+            $font-poppins
+          );
+          margin-bottom: 0;
+        }
       }
     }
 

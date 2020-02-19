@@ -188,12 +188,10 @@ export default {
         ],
         toolbar:
           "formatselect | bold italic backcolor | \
-           fontselect | fontsizeselect | alignleft aligncenter alignright alignjustify | \
+           fontselect | alignleft aligncenter alignright alignjustify | \
            bullist numlist outdent indent | removeformat | image",
         font_formats:
           "Ananda=ananda; Museo=museo; Poppins=Poppins, sans-serif; Raleway=Raleway, sans-serif; Lato=Lato, sans-serif",
-        fontsize_formats:
-          "8pt 10pt 12pt 14pt 18pt 24pt 36pt 48pt 60pt 72pt 90pt",
         image_class_list: [
           { title: "None", value: "img-fluid" },
           { title: "Responsive", value: "img-fluid" }
