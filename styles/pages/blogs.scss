@@ -101,8 +101,7 @@
       position: relative;
       height: 100%;
       width: 100%;
-      border-top-right-radius: 5px;
-      border-top-left-radius: 5px;
+      border-radius: 5px;
       color: $k-white;
       background-size: cover;
       background-position: center;
@@ -126,7 +125,7 @@
 
         .blog-title {
           @include k-font(
-            toRem(14px),
+            toRem(24px),
             $k-white,
             $font-weight-regular,
             toRem(28px),
@@ -137,7 +136,7 @@
 
         .author-info {
           @include k-font(
-            toRem(8px),
+            toRem(12px),
             $k-white,
             $font-weight-medium,
             toRem(21px),
@@ -151,6 +150,15 @@
     @include media-breakpoint-down(md) {
       margin: 0;
       margin-bottom: 20px;
+
+      .blog-image {
+        .blog-title {
+          font-size: toRem(14px);
+        }
+        .author-info {
+          font-size: toRem(8px);
+        }
+      }
     }
   }
 
