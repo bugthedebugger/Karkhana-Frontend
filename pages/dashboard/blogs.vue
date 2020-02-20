@@ -93,25 +93,30 @@ export default {
     },
 
     createBlogPost() {
-      this.$axios.get("/admin/blog/uuid").then(response => {
-        let uuid = response.data.data.uuid;
-        this.$axios
-          .post("/admin/blog/create", {
-            title: "New Blog Post",
-            language: "en",
-            uuid: uuid
-          })
-          .then(response => {
-            if (response.data.status === "success") {
-              console.log(response);
-              this.$router.push({
-                path: "/dashboard/create-blog",
-                query: { uuid: response.data.data.uuid }
-              });
-            }
-          });
+      // this.$axios.get("/admin/blog/uuid").then(response => {
+      //   let uuid = response.data.data.uuid;
+      //   this.$axios
+      //     .post("/admin/blog/create", {
+      //       title: "New Blog Post",
+      //       language: "en",
+      //       uuid: uuid
+      //     })
+      //     .then(response => {
+      //       if (response.data.status === "success") {
+      //         console.log(response);
+      //         this.$router.push({
+      //           path: "/dashboard/create-blog",
+      //           query: { uuid: response.data.data.uuid }
+      //         });
+      //       }
+      //     });
+      // });
+      // return;
+
+      this.$router.push({
+        path: "/dashboard/create-blog",
+        query: { uuid: "new-blog-post" }
       });
-      return;
     },
 
     fetchBlogs() {

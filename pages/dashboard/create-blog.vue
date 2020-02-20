@@ -4,36 +4,47 @@
       <div class="toolbar">
         <h1 class="title">Write Blog Post</h1>
         <div class="toolbar-controls">
-          <button
-            v-if="published"
-            type="button"
-            class="btn btn-warning mb-2 btn-sm"
-            @click="unPublishPost()"
-            :disabled="publishLoading"
-          >
-            <Spinner v-if="publishLoading" />Unpublish
-          </button>
+          <template v-if="!newBlogPost">
+            <button
+              v-if="published"
+              type="button"
+              class="btn btn-warning mb-2 btn-sm"
+              @click="unPublishPost()"
+              :disabled="publishLoading"
+            >
+              <Spinner v-if="publishLoading" />Unpublish
+            </button>
+
+            <button
+              v-else
+              type="button"
+              class="btn btn-primary mb-2 btn-sm"
+              @click="publishPost()"
+              :disabled="publishLoading"
+            >
+              <Spinner v-if="publishLoading" />Publish
+            </button>
+
+            <nuxt-link
+              :to="'/blogs/' + uuid"
+              class="btn btn-link mb-2 btn-sm"
+              target="_blank"
+            >Preview</nuxt-link>
+            <nuxt-link to="/dashboard/blogs" class="btn btn-link mb-2 btn-sm">Close</nuxt-link>
+          </template>
 
           <button
-            v-else
             type="button"
-            class="btn btn-primary mb-2 btn-sm"
-            @click="publishPost()"
-            :disabled="publishLoading"
-          >
-            <Spinner v-if="publishLoading" />Publish
-          </button>
-
-          <nuxt-link :to="'/blogs/' + uuid" class="btn btn-link mb-2 btn-sm" target="_blank">Preview</nuxt-link>
-          <button type="button" class="btn btn-link mb-2 btn-sm" @click="deleteBlog()">Close</button>
-          <button
-            type="button"
-            class="btn btn-primary mb-2 mr-2 btn-sm btn-save"
-            @click="updatePost(true)"
-            :disabled="saveLoading"
+            class="btn btn-primary mb-2 mr-2 btn-sm"
+            :class="{'btn-save' : !newBlogPost}"
+            @click="newBlogPost ? createPost() : updatePost(true)"
+            :disabled="saveLoading || !saveValid"
           >
             <Spinner v-if="saveLoading" />
-            Saving in {{autosaveCounter}} Secs / Save Now
+
+            <template v-if="autosaveStatus">Saving in {{autosaveCounter}} Secs / Save Now</template>
+
+            <template v-else>Save</template>
           </button>
         </div>
       </div>
@@ -44,64 +55,71 @@
           <input type="text" class="form-control" id="post-title" v-model="title" />
         </div>
 
-        <!-- <div class="form-group mb-4">
+        <div class="form-group mb-4">
+          <label for="post-slug">Post Slug</label>
+          <input type="text" class="form-control" id="post-slug" v-model="slug" />
+        </div>
+
+        <div class="form-group mb-4">
           <label for="post-title">Post Language</label>
           <select class="form-control" v-model="language" v-if="languages && languages.length">
             <option v-for="lang in languages" :value="lang.code" :key="lang.code">{{lang.name}}</option>
           </select>
-        </div>-->
-
-        <div class="form-group mb-4">
-          <label for="post-featured-image">Featured Image</label>
-          <br />
-          <img
-            v-if="featured"
-            :src="featuredForShow"
-            class="gallery-image gallery-image-featured"
-            data-toggle="modal"
-            data-target="#galleryModal"
-          />
-          <br />
-          <button
-            type="button"
-            class="btn btn-success btn-sm"
-            data-toggle="modal"
-            data-target="#galleryModal"
-          >
-            <span v-if="featured">Change featured image</span>
-            <span v-else>Select featured image</span>
-          </button>
         </div>
 
-        <div class="form-group mb-4">
-          <label for="post-tags">Tags</label>
-          <div class="post-tags d-flex flex-wrap">
-            <div class="selected-tag d-flex align-self-center" v-for="tag in tags" :key="tag.id">
-              {{tag.name}}
-              <i class="fal fa-times" @click="removeTag(tag)"></i>
-            </div>
-
-            <input
-              type="text"
-              class="flex-fill"
-              v-model="inputTag"
-              @keyup.enter="createTag()"
-              placeholder="Add tag"
+        <div v-if="!newBlogPost">
+          <div class="form-group mb-4">
+            <label for="post-featured-image">Featured Image</label>
+            <br />
+            <img
+              v-if="featured"
+              :src="featuredForShow"
+              class="gallery-image gallery-image-featured"
+              data-toggle="modal"
+              data-target="#galleryModal"
             />
+            <br />
+            <button
+              type="button"
+              class="btn btn-success btn-sm"
+              data-toggle="modal"
+              data-target="#galleryModal"
+            >
+              <span v-if="featured">Change featured image</span>
+              <span v-else>Select featured image</span>
+            </button>
           </div>
-          <div class="tags-container d-flex flex-wrap">
-            <div
-              class="tag"
-              v-for="tag in defaultTags"
-              :key="tag.id"
-              @click="addTag(tag)"
-            >{{tag.name}}</div>
-          </div>
-        </div>
 
-        <div class="form-group mb-4">
-          <label for="post-text">Post Text</label>
-          <editor v-model="body" api-key="process.env.TINY_MCE_API_KEY" :init="tinyMceConfig" />
+          <div class="form-group mb-4">
+            <label for="post-tags">Tags</label>
+            <div class="post-tags d-flex flex-wrap">
+              <div class="selected-tag d-flex align-self-center" v-for="tag in tags" :key="tag.id">
+                {{tag.name}}
+                <i class="fal fa-times" @click="removeTag(tag)"></i>
+              </div>
+
+              <input
+                type="text"
+                class="flex-fill"
+                v-model="inputTag"
+                @keyup.enter="createTag()"
+                placeholder="Add tag"
+              />
+            </div>
+            <div class="tags-container d-flex flex-wrap">
+              <div
+                class="tag"
+                v-for="tag in defaultTags"
+                :key="tag.id"
+                @click="addTag(tag)"
+              >{{tag.name}}</div>
+            </div>
+          </div>
+
+          <div class="form-group mb-4">
+            <label for="post-text">Post Text</label>
+            <editor v-model="body" api-key="process.env.TINY_MCE_API_KEY" :init="tinyMceConfig" />
+          </div>
         </div>
       </form>
     </div>
@@ -168,8 +186,10 @@ export default {
   components: { Editor, FileUpload, Spinner },
   data() {
     return {
+      newBlogPost: false,
       uuid: null,
       title: null,
+      slug: null,
       language: "en",
       body: null,
       published: null,
@@ -197,6 +217,8 @@ export default {
           { title: "Responsive", value: "img-fluid" }
         ]
       },
+
+      autosaveStatus: true,
       autosaveTimer: null,
       autosaveCounter: null,
       autosaveCounterTimer: null,
@@ -211,12 +233,21 @@ export default {
 
   created() {
     this.uuid = this.$route.query.uuid;
-    this.fetchBlog(() => {
-      this.fetchTags();
-    });
-    this.fetchGallery();
+
+    if (this.uuid === "new-blog-post") {
+      // values are default and only changed if new-blog-post
+      this.newBlogPost = true;
+      this.autosaveStatus = false;
+    } else {
+      this.fetchBlog(() => {
+        this.fetchTags();
+      });
+
+      this.resetSaveTimer();
+    }
+
     this.fetchLanguages();
-    this.resetSaveTimer();
+    this.fetchGallery();
   },
 
   methods: {
@@ -250,11 +281,38 @@ export default {
       axios.post("/");
     },
 
+    createPost() {
+      this.saveLoading = true;
+      this.$axios.get("/admin/blog/uuid").then(response => {
+        this.uuid = response.data.data.uuid;
+        this.$axios
+          .post("/admin/blog/create", {
+            uuid: this.uuid,
+            title: this.title,
+            slug: this.slug,
+            language: "en"
+          })
+          .then(response => {
+            if (response.data.status === "success") {
+              this.$toast.show("Blog created");
+              this.autosaveStatus = true;
+              this.newBlogPost = false;
+              this.fetchBlog(() => {
+                this.fetchTags();
+              });
+              this.resetSaveTimer();
+              this.saveLoading = false;
+            }
+          });
+      });
+    },
+
     updatePost(showToast) {
       if (this.saveLoading) return;
       let updateBody = {
         uuid: this.uuid,
         title: this.title,
+        slug: this.slug,
         language: "en",
         body: this.body,
         tags:
@@ -268,6 +326,7 @@ export default {
           if (response.data.status === "success") {
             this.resetSaveTimer();
             if (showToast) this.$toast.show("Saved successfully");
+            // track featured image changes
             this.featuredChanged = false;
           }
           this.saveLoading = false;
@@ -359,6 +418,7 @@ export default {
       this.$axios.get(`/admin/blog/${this.uuid}`).then(response => {
         let data = response.data.data;
         this.title = data.title;
+        this.slug = data.slug;
         this.body = data.body;
         this.tags = data.tags || [];
         this.published = data.published;
@@ -385,6 +445,19 @@ export default {
           });
         }
       });
+    }
+  },
+
+  computed: {
+    saveValid() {
+      return (
+        this.title &&
+        this.title.length > 0 &&
+        this.slug &&
+        this.slug.length > 0 &&
+        this.language &&
+        this.language.length > 0
+      );
     }
   }
 };
