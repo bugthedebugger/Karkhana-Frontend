@@ -26,7 +26,7 @@
             </button>
 
             <nuxt-link
-              :to="'/blogs/' + uuid"
+              :to="'/blogs/' + slug ? slug : uuid"
               class="btn btn-link mb-2 btn-sm"
               target="_blank"
             >Preview</nuxt-link>
