@@ -57,7 +57,9 @@
       background-image: url("/images/karkhana-team.jpg");
       background-size: cover;
       background-position: center;
-      box-shadow: 1px 17px 17px -6px rgba(71, 71, 71, 0.75);
+
+      @include k-shadow();
+      // box-shadow: 1px 17px 17px -6px rgba(71, 71, 71, 0.75);
 
       .play {
         font-size: toRem(70px);
@@ -99,7 +101,8 @@
       height: 354px;
       margin-top: 90px;
       border-radius: 5px;
-      box-shadow: 1px 17px 17px -6px rgba(71, 71, 71, 0.75);
+      // box-shadow: 1px 17px 17px -6px rgba(71, 71, 71, 0.75);
+      @include k-shadow();
 
       img.k-loading {
         position: absolute;

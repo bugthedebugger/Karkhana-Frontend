@@ -2,6 +2,8 @@
 
 .product-item {
   position: relative;
+
+  // half of circle + gap 
   padding-top: calc(83px + 24px);
   padding-left: 50px;
   padding-right: 50px;
@@ -105,10 +107,6 @@
     .attribute-value {
       text-align: left;
       font-size: toRem(16px);
-
-      // white-space: nowrap;
-      // overflow: hidden;
-      // text-overflow: ellipsis;
     }
   }
 
@@ -116,6 +114,37 @@
     margin-bottom: 100px;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 48px + 8px;
+
+    .product-logo-circle{
+      width: 97px;
+      height: 97px;
+
+      .img-wrapper{
+        img{
+          width: 40px;
+        }
+      }
+    }
+
+    .title {
+      font-size: toRem(16px);
+    }
+
+    table {
+      .attribute-name {
+        color: $k-text-color-2;
+        font-size: toRem(12px);
+      }
+
+      .attribute-value {
+        font-size: toRem(12px);
+      }
+    }
+
+    .attribute-name, .attribute-value{
+      height: 50px;
+    }
 
     .btn-learn-more {
       width: calc(100% + 40px); // plus padding

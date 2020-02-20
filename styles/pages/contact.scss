@@ -4,17 +4,22 @@
 
   .page-title {
     @include k-font(
-      toRem(36px),
+      toRem(20px),
       $k-black,
       $font-weight-regular,
       toRem(43px),
       $font-museo
     );
-  }
 
+    @include media-breakpoint-down(md) {
+      font-size: toRem(20px);
+    }
+
+  }
 
   @include media-breakpoint-down(md) {
     text-align: center;
+    padding-top: 70px;
   }
 
 }

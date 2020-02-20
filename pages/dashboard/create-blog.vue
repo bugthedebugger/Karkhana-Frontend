@@ -1,6 +1,6 @@
 <template>
   <div class="create-blog dashboard-content d-flex">
-    <div class="post-contents flex-fill">
+    <div v-if="!blogLoading" class="post-contents flex-fill">
       <div class="toolbar">
         <h1 class="title">Write Blog Post</h1>
         <div class="toolbar-controls">
@@ -26,7 +26,7 @@
             </button>
 
             <nuxt-link
-              :to="'/blogs/' + slug ? slug : uuid"
+              :to="'/blogs/' + (slug ? slug : uuid)"
               class="btn btn-link mb-2 btn-sm"
               target="_blank"
             >Preview</nuxt-link>
@@ -123,8 +123,11 @@
         </div>
       </form>
     </div>
+    <div v-else>
+      <Loading />
+    </div>
 
-    <div class="post-settings">
+    <div v-if="!galleryLoading" class="post-settings">
       <h1 class="title">Gallery Images</h1>
       <label>Select Gallery images</label>
       <FileUpload :uuid="uuid" :filename="featured" @fileUploaded="handleFileUploaded" />
@@ -138,6 +141,10 @@
           @click="copyGalleryPath(image.url)"
         />
       </div>
+    </div>
+
+    <div v-else>
+      <Loading />
     </div>
 
     <!-- Modal -->
@@ -179,11 +186,12 @@ import Editor from "@tinymce/tinymce-vue";
 import FileUpload from "~/components/FileUpload";
 import clipboard from "clipboard-polyfill";
 import Spinner from "~/components/Spinner";
+import Loading from "~/components/Loading";
 
 export default {
   layout: "dashboard",
   auth: true,
-  components: { Editor, FileUpload, Spinner },
+  components: { Editor, FileUpload, Spinner, Loading },
   data() {
     return {
       newBlogPost: false,
@@ -222,12 +230,14 @@ export default {
       autosaveTimer: null,
       autosaveCounter: null,
       autosaveCounterTimer: null,
-      autosaveInterval: 10,
+      autosaveInterval: 30,
       languages: null,
       featuredChanged: false,
       featuredForShow: null,
       saveLoading: false,
-      publishLoading: false
+      publishLoading: false,
+      blogLoading: false,
+      galleryLoading: false
     };
   },
 
@@ -380,8 +390,10 @@ export default {
     },
 
     fetchGallery() {
+      this.galleryLoading = true;
       this.$axios.get(`/admin/blog/gallery/${this.uuid}`).then(response => {
         this.gallery = response.data.data;
+        this.galleryLoading = false;
       });
     },
 
@@ -415,6 +427,7 @@ export default {
     },
 
     fetchBlog(callback) {
+      this.blogLoading = true;
       this.$axios.get(`/admin/blog/${this.uuid}`).then(response => {
         let data = response.data.data;
         this.title = data.title;
@@ -424,6 +437,7 @@ export default {
         this.published = data.published;
         this.featured = data.featured;
         this.featuredForShow = data.featured;
+        this.blogLoading = false;
         callback();
       });
     },

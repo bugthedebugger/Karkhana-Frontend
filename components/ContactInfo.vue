@@ -7,6 +7,7 @@
           <div class="container">
             <div class="row">
               <div class="col-md-6 col-sm-12">
+                <div class="mt-4 d-block d-md-none"></div>
                 <div class="contact-info pt-0">
                   <div class="contact-icon">
                     <i class="contact-icon fal fa-map-marker">
