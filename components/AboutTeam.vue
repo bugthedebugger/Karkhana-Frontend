@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1 class="title">Meet Our Team</h1>
+          <h1 class="title d-none d-md-block">Meet Our Team</h1>
         </div>
       </div>
     </div>

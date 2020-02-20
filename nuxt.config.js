@@ -51,10 +51,10 @@ export default {
   ],
   googleAnalytics: {
     id: 'UA-158647375-1',
-    // debug: {
-    //   enabled: true,
-    //   sendHitTask: true
-    // },
+    debug: {
+      enabled: true,
+      sendHitTask: true
+    },
   },
   /*
   ** Nuxt.js modules

@@ -75,7 +75,7 @@
         margin: 0 auto;
         box-shadow: none;
 
-        .play{
+        .play {
           font-size: 32px;
         }
       }
@@ -89,9 +89,6 @@
         background-color: $k-black;
         opacity: 0.3;
         z-index: 1;
-
-
-
       }
     }
 
@@ -138,7 +135,9 @@
     margin-top: -5px;
 
     @include media-breakpoint-down(md) {
-      display: none;
+      // display: none;
+      height: 100px;
+      background-size: cover;
     }
   }
 
@@ -155,7 +154,8 @@
         width: 100%;
 
         @include media-breakpoint-down(md) {
-          display: none;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
         }
       }
 
@@ -165,8 +165,22 @@
 
         @include media-breakpoint-down(md) {
           padding: 10px;
-          box-shadow: none;
-          text-align: center;
+          // box-shadow: none;
+
+          .title {
+            font-size: toRem(16px);
+            line-height: toRem(19px);
+          }
+
+          .subtitle {
+            font-size: toRem(8px);
+            line-height: toRem(14px);
+          }
+
+          .content {
+            font-size: toRem(12px);
+            line-height: toRem(20px);
+          }
         }
       }
     }
