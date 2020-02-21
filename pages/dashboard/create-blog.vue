@@ -129,17 +129,20 @@
 
     <div v-if="!galleryLoading" class="post-settings">
       <h1 class="title">Gallery Images</h1>
-      <label>Select Gallery images</label>
-      <FileUpload :uuid="uuid" :filename="featured" @fileUploaded="handleFileUploaded" />
-      <hr />
-      <div class="d-flex flex-wrap">
-        <img
-          v-for="(image, index) in gallery"
-          :src="image.url"
-          :key="index"
-          class="gallery-image"
-          @click="copyGalleryPath(image.url)"
-        />
+
+      <div v-if="!newBlogPost">
+        <label>Select Gallery images</label>
+        <FileUpload :uuid="uuid" :filename="featured" @fileUploaded="handleFileUploaded" />
+        <hr />
+        <div class="d-flex flex-wrap">
+          <img
+            v-for="(image, index) in gallery"
+            :src="image.url"
+            :key="index"
+            class="gallery-image"
+            @click="copyGalleryPath(image.url)"
+          />
+        </div>
       </div>
     </div>
 
@@ -476,6 +479,8 @@ export default {
       return (
         this.title &&
         this.title.length > 0 &&
+        this.slug &&
+        this.slug.length > 0 &&
         this.language &&
         this.language.length > 0
       );
