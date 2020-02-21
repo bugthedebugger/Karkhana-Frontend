@@ -295,13 +295,15 @@ export default {
       this.saveLoading = true;
       this.$axios.get("/admin/blog/uuid").then(response => {
         this.uuid = response.data.data.uuid;
+        let createBody = {
+          uuid: this.uuid,
+          title: this.title,
+          language: "en"
+        };
+        if (this.slug) createBody.slug = this.slug;
+
         this.$axios
-          .post("/admin/blog/create", {
-            uuid: this.uuid,
-            title: this.title,
-            slug: this.slug,
-            language: "en"
-          })
+          .post("/admin/blog/create", createBody)
           .then(response => {
             if (response.data.status === "success") {
               this.$toast.show("Blog created");
@@ -313,6 +315,10 @@ export default {
               this.resetSaveTimer();
               this.saveLoading = false;
             }
+          })
+          .catch(error => {
+            this.$toast.show("Error creating blog");
+            this.saveLoading = false;
           });
       });
     },
@@ -366,6 +372,9 @@ export default {
             this.addTag({ id: Math.random(), name: this.inputTag }, false);
             this.inputTag = null;
           }
+        })
+        .catch(error => {
+          this.$toast.show("Error creating tag");
         });
     },
 
@@ -467,8 +476,6 @@ export default {
       return (
         this.title &&
         this.title.length > 0 &&
-        this.slug &&
-        this.slug.length > 0 &&
         this.language &&
         this.language.length > 0
       );
