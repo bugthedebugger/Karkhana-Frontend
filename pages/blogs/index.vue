@@ -19,7 +19,7 @@
           class="blog-post-alt"
           v-for="blogPost in blogPosts"
           :key="blogPost.uuid"
-          @click="navigateTo(blogPost.uuid)"
+          @click="navigateTo(blogPost.slug ? blogPost.slug : blogPost.uuid )"
         >
           <div class="blog-image" :style="setBackgroundImage(blogPost.featured)">
             <div class="overlay"></div>
@@ -122,9 +122,9 @@ export default {
       this.selectedFetchCategory = cat;
     },
 
-    navigateTo(uuid) {
+    navigateTo(identifier) {
       this.$router.push({
-        path: "/blogs/" + uuid
+        path: "/blogs/" + identifier
       });
     },
 

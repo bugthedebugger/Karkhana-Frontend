@@ -37,9 +37,10 @@ section.home-slider {
 
         @include media-breakpoint-down(md) {
           left: 50%;
-          top: 20%;
-          transform: translateX(-50%);
-          font-size: 48px;
+          top: 50%;
+          bottom: 0;
+          transform: translate(-50%, -50%);
+          font-size: toRem(48px);
           text-align: center;
           width: 90%;
         }

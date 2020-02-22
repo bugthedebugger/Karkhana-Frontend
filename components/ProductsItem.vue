@@ -50,6 +50,21 @@
                 <div class="attribute-value">{{product_info.student_services}}</div>
               </td>
             </tr>
+            <tr>
+              <td colspan="2">
+                <a
+                  v-if="mobile_display"
+                  target="_black"
+                  download
+                  :href="'/pdfs/' + product_info.category + '.pdf'"
+                  class="brochure-link"
+                  :class="'brochure-link-' + product_info.category"
+                >
+                  <i class="fal fa-arrow-to-bottom"></i> Download Brochure
+                </a>
+                <div class="mb-2"></div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -62,7 +77,7 @@
       </div>
 
       <a
-        v-if="show_key_value"
+        v-if="show_key_value  && !mobile_display"
         target="_black"
         download
         :href="'/pdfs/' + product_info.category + '.pdf'"
@@ -94,7 +109,7 @@
 <script>
 export default {
   name: "ProductsItem",
-  props: ["product_info", "show_key_value"]
+  props: ["product_info", "show_key_value", "mobile_display"]
 };
 </script>
 

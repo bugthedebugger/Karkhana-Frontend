@@ -24,7 +24,7 @@
             </div>
 
             <!-- display gap on mobile -->
-            <div class="mb-5 d-md-none"></div>
+            <!-- <div class="mb-5 d-md-none"></div> -->
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
               </div>
             </div>
           </div>
-          <div class="col">
+          <div class="col d-none d-md-block">
             <div class="more-content">
               <h2 class="title mb-5">Our Values</h2>
               <h3 class="subtitle">We exist for our people</h3>

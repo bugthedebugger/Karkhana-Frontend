@@ -1,8 +1,3 @@
-// @import "@/styles/setup/_variables";
-// @import "@/styles/setup/_typography";
-// @import "@/styles/setup/_mixins";
-// @import "@/styles/setup/_helpers";
-// @import "@/styles/setup/_functions";
 @import "@/styles/global.scss";
 
 .about-team {
@@ -61,7 +56,7 @@
 
       @include media-breakpoint-down(md) {
         left: 50%;
-        transform: translate(-50%, 0);
+        transform: translate(-50%, -25%);
         width: 90%;
       }
 
@@ -101,6 +96,11 @@
         }
       }
     }
+
+    @include media-breakpoint-down(md) {
+      background-size: contain;
+      background-position: top;
+    }
   }
 
   .team-data {
@@ -118,9 +118,16 @@
         toRem(72px),
         $k-red,
         $font-weight-regular,
-        toRem(87px),
+        normal,
         $font-museo
       );
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-top: -120px;
+      .number {
+        font-size: toRem(36px);
+      }
     }
   }
 }

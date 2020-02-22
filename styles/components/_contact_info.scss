@@ -5,7 +5,21 @@
   margin-bottom: 100px;
 
   @include media-breakpoint-down(md) {
-    padding-top: 10px;
+    padding-top: 0px;
+  }
+
+  .page-title {
+    @include k-font(
+      toRem(20px),
+      $k-black,
+      $font-weight-regular,
+      toRem(43px),
+      $font-museo
+    );
+
+    @include media-breakpoint-down(md) {
+      font-size: toRem(20px);
+    }
   }
 
   .contact-info-container {
@@ -19,7 +33,8 @@
 
     .contact-card {
       flex: 1;
-      box-shadow: 0px 19px 70px 0px rgba(70, 69, 69, 0.75);
+      // box-shadow: 0px 19px 70px 0px rgba(70, 69, 69, 0.75);
+      @include k-shadow();
       padding-top: 145px;
       padding-bottom: 100px;
 
@@ -97,9 +112,8 @@
       }
 
       @include media-breakpoint-down(md) {
-        padding-top: 50px;
+        padding-top: 10px;
         width: 100%;
-        box-shadow: none;
       }
     }
 
@@ -147,6 +161,21 @@
 
       @include media-breakpoint-down(md) {
         padding: 30px;
+        text-align: left;
+
+        .title {
+          font-size: toRem(20px);
+        }
+
+        .subtitle {
+          font-size: toRem(12px);
+          line-height: toRem(20px);
+        }
+
+        .label {
+          font-size: toRem(12px);
+          line-height: toRem(28px);
+        }
       }
     }
   }

@@ -11,13 +11,13 @@
           <div class="attribute-name">Student Services</div>
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.science" :show_key_value="showKeyValue" />
+          <ProductsItem :product_info="products.science" :show_key_value="showKeyValue" :mobile_display="mobileDisplay" />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.computing" :show_key_value="showKeyValue" />
+          <ProductsItem :product_info="products.computing" :show_key_value="showKeyValue" :mobile_display="mobileDisplay" />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.make" :show_key_value="showKeyValue" />
+          <ProductsItem :product_info="products.make" :show_key_value="showKeyValue" :mobile_display="mobileDisplay" />
         </div>
       </div>
     </div>
@@ -64,7 +64,8 @@ export default {
           student_services: "Karkhana Teachers"
         }
       },
-      showKeyValue: false
+      showKeyValue: false,
+      mobileDisplay: false,
     };
   },
   
@@ -72,6 +73,7 @@ export default {
     if (process.client) {
       // show key value for mobile
       this.showKeyValue = $(window).height() < 768;
+      this.mobileDisplay = this.showKeyValue;
     }
   }
 };

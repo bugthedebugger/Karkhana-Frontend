@@ -81,19 +81,22 @@
     }
 
     @include media-breakpoint-down(md) {
-      text-align: center;
       padding-left: 0;
 
       .intro-title {
+        font-size: toRem(20px);
         color: $k-text-color-1;
         margin-top: 30px;
       }
 
       .tagline {
+        font-size: toRem(14px);
         color: $k-text-color-2;
       }
       .details {
+        font-size: toRem(12px);
         margin-top: 30px;
+        line-height: toRem(20px);
       }
     }
   }

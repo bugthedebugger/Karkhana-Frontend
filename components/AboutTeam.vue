@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1 class="title">Meet Our Team</h1>
+          <h1 class="title d-none d-md-block">Meet Our Team</h1>
         </div>
       </div>
     </div>
@@ -20,10 +20,10 @@
       </div>
     </div>
 
-    <p class="team-data">
-      <span class="number">52+</span>
-      <br />Employees
-    </p>
+    <div class="team-data">
+      <p class="number mb-0">52+</p>
+      <p class="mt-0">Employees</p>
+    </div>
   </section>
 </template>
 
