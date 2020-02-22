@@ -479,8 +479,8 @@ export default {
       return (
         this.title &&
         this.title.length > 0 &&
-        this.slug &&
-        this.slug.length > 0 &&
+        // this.slug &&
+        // this.slug.length > 0 &&
         this.language &&
         this.language.length > 0
       );
