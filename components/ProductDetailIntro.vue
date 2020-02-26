@@ -1,6 +1,6 @@
 <template>
   <div class="product-detail-intro">
-    <div class="header-image">
+    <div class="header-image d-none d-md-block">
       <div class="overlay"></div>
     </div>
 
@@ -16,7 +16,7 @@
         <!-- Product details -->
         <div class="col-md-8">
           <div class="product-details-text">
-            <h1 class="title intro-title">{{product_info.title}}</h1>
+            <h1 class="title intro-title d-none d-md-block">{{product_info.title}}</h1>
             <p class="tagline">{{product_info.tagline}}</p>
             <div class="details">
               <div class="product-details" v-html="product_info.product_details"></div>

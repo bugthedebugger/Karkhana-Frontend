@@ -11,13 +11,25 @@
           <div class="attribute-name">Student Services</div>
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.science" :show_key_value="showKeyValue" :mobile_display="mobileDisplay" />
+          <ProductsItem
+            :product_info="products.science"
+            :show_key_value="showKeyValue"
+            :mobile_display="mobileDisplay"
+          />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.computing" :show_key_value="showKeyValue" :mobile_display="mobileDisplay" />
+          <ProductsItem
+            :product_info="products.computing"
+            :show_key_value="showKeyValue"
+            :mobile_display="mobileDisplay"
+          />
         </div>
         <div class="col-md-3">
-          <ProductsItem :product_info="products.make" :show_key_value="showKeyValue" :mobile_display="mobileDisplay" />
+          <ProductsItem
+            :product_info="products.make"
+            :show_key_value="showKeyValue"
+            :mobile_display="mobileDisplay"
+          />
         </div>
       </div>
     </div>
@@ -65,14 +77,23 @@ export default {
         }
       },
       showKeyValue: false,
-      mobileDisplay: false,
+      mobileDisplay: false
     };
   },
-  
+
   mounted() {
     if (process.client) {
       // show key value for mobile
-      this.showKeyValue = $(window).height() < 768;
+      $(window).resize(() => {
+        this.adjustResponsive();
+      });
+      this.adjustResponsive();
+    }
+  },
+
+  methods: {
+    adjustResponsive() {
+      this.showKeyValue = $(window).width() < 768;
       this.mobileDisplay = this.showKeyValue;
     }
   }

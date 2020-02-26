@@ -18,7 +18,6 @@ export default {
       { src: "/js/jquery.min.js" },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js' },
       { src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js' }
-      // { src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js' },
     ]
   },
 
@@ -63,8 +62,15 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/sitemap'
   ],
+  sitemap: {
+    path: '/sitemap.xml',
+    cacheTime: 1000 * 60 * 60 * 2,
+    trailingSlash: true,
+    gzip: true
+  },
 
   // Nuxt Toast
   toast: {

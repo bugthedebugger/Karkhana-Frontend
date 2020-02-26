@@ -23,6 +23,10 @@
 
   .product-info-wrapper {
     margin-top: -150px;
+
+    @include media-breakpoint-down(md) {
+      margin-top: 130px;
+    }
   }
 
   .product-details-text {
@@ -92,6 +96,8 @@
       .tagline {
         font-size: toRem(14px);
         color: $k-text-color-2;
+        margin-top: 1rem;
+        margin-bottom: 0;
       }
       .details {
         font-size: toRem(12px);

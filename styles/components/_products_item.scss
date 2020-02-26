@@ -3,7 +3,7 @@
 .product-item {
   position: relative;
 
-  // half of circle + gap 
+  // half of circle + gap
   padding-top: calc(83px + 24px);
   padding-left: 50px;
   padding-right: 50px;
@@ -116,12 +116,12 @@
     padding-right: 20px;
     padding-top: 48px + 8px;
 
-    .product-logo-circle{
+    .product-logo-circle {
       width: 97px;
       height: 97px;
 
-      .img-wrapper{
-        img{
+      .img-wrapper {
+        img {
           width: 40px;
         }
       }
@@ -142,7 +142,8 @@
       }
     }
 
-    .attribute-name, .attribute-value{
+    .attribute-name,
+    .attribute-value {
       height: 50px;
     }
 
@@ -150,6 +151,10 @@
       width: calc(100% + 40px); // plus padding
       margin-left: -20px;
       padding: 15px 20px;
+
+      @include media-breakpoint-down(md) {
+        font-size: toRem(14px);
+      }
     }
   }
 }

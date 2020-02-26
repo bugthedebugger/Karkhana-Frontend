@@ -166,8 +166,14 @@ export default {
     },
 
     checkOpaqueByDefault(routeName) {
-      this.opaqueByDefault =
-        routeName !== "index" && routeName !== "ProductDetail";
+      // Transparent in homepage
+      // In products page on Larger devices
+
+      if (process.client) {
+        this.opaqueByDefault =
+          (routeName !== "index" && routeName !== "ProductDetail") ||
+          (routeName === "ProductDetail" && $(window).width() < 768);
+      }
     }
   },
 

@@ -92,15 +92,15 @@
     padding-right: 20px;
 
     .blog-body {
-      p {
-        @include k-font(
-          toRem(18px),
-          $k-text-color-4,
-          $font-weight-regular,
-          toRem(36px),
-          $font-raleway
-        );
-      }
+      // p {
+      //   @include k-font(
+      //     toRem(18px),
+      //     $k-text-color-4,
+      //     $font-weight-regular,
+      //     toRem(36px),
+      //     $font-raleway
+      //   );
+      // }
     }
 
     .blog-footer {

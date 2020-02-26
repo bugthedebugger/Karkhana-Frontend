@@ -218,7 +218,7 @@ export default {
           "insertdatetime media table paste code help wordcount"
         ],
         toolbar:
-          "formatselect | bold italic backcolor | \
+          "blockquote | formatselect | bold italic backcolor | \
            fontselect | alignleft aligncenter alignright alignjustify | \
            bullist numlist outdent indent | removeformat | image",
         font_formats:
@@ -261,6 +261,10 @@ export default {
 
     this.fetchLanguages();
     this.fetchGallery();
+  },
+
+  destroyed() {
+    clearInterval(this.autosaveTimer);
   },
 
   methods: {
@@ -320,7 +324,7 @@ export default {
             }
           })
           .catch(error => {
-            this.$toast.show("Error creating blog");
+            this.displayError(error);
             this.saveLoading = false;
           });
       });
@@ -351,7 +355,7 @@ export default {
           this.saveLoading = false;
         })
         .catch(e => {
-          if (showToast) this.$toast.show("Error updating blog");
+          if (showToast) this.displayError(e);
           this.saveLoading = false;
         });
     },
@@ -377,17 +381,22 @@ export default {
           }
         })
         .catch(error => {
-          this.$toast.show("Error creating tag");
+          this.displayError(error);
         });
     },
 
     deleteBlog() {
       if (confirm("Are you sure you want to delete this post?"))
-        this.$axios.delete(`/admin/blog/delete/${this.uuid}`).then(response => {
-          this.$router.push({
-            path: "/dashboard/blogs"
+        this.$axios
+          .delete(`/admin/blog/delete/${this.uuid}`)
+          .then(response => {
+            this.$router.push({
+              path: "/dashboard/blogs"
+            });
+          })
+          .catch(error => {
+            this.displayError(error);
           });
-        });
     },
 
     handleFileUploaded() {
@@ -411,20 +420,32 @@ export default {
 
     publishPost() {
       this.publishLoading = true;
-      this.$axios.post(`/admin/blog/publish/${this.uuid}`).then(response => {
-        this.published = true;
-        this.$toast.show("Published");
-        this.publishLoading = false;
-      });
+      this.$axios
+        .post(`/admin/blog/publish/${this.uuid}`)
+        .then(response => {
+          this.published = true;
+          this.$toast.show("Published");
+          this.publishLoading = false;
+        })
+        .catch(error => {
+          this.displayError(error);
+          this.publishLoading = false;
+        });
     },
 
     unPublishPost() {
       this.publishLoading = true;
-      this.$axios.post(`/admin/blog/unpublish/${this.uuid}`).then(response => {
-        this.published = false;
-        this.$toast.show("Un-published");
-        this.publishLoading = false;
-      });
+      this.$axios
+        .post(`/admin/blog/unpublish/${this.uuid}`)
+        .then(response => {
+          this.published = false;
+          this.$toast.show("Un-published");
+          this.publishLoading = false;
+        })
+        .catch(error => {
+          this.displayError(error);
+          this.publishLoading = false;
+        });
     },
 
     addTag(tag, removeFromDefault = true) {
@@ -471,6 +492,15 @@ export default {
           });
         }
       });
+    },
+
+    displayError(errorObj) {
+      if (errorObj.response.data.message) {
+        this.$toast.show(errorObj.response.data.message);
+      } else {
+        let errors = Object.values(errorObj.response.data);
+        errors.forEach(error => this.$toast.show(error));
+      }
     }
   },
 
@@ -479,8 +509,6 @@ export default {
       return (
         this.title &&
         this.title.length > 0 &&
-        // this.slug &&
-        // this.slug.length > 0 &&
         this.language &&
         this.language.length > 0
       );
