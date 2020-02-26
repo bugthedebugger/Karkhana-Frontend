@@ -256,7 +256,8 @@ export default {
         this.fetchTags();
       });
 
-      this.resetSaveTimer();
+      // this.resetSaveTimer();
+      this.autosaveStatus = false;
     }
 
     this.fetchLanguages();
