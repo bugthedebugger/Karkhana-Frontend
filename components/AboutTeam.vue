@@ -11,7 +11,9 @@
     <div class="team-image">
       <div class="team-info">
         <h1 class="title">Meet The Karkhanaughts</h1>
-        <p class="subtitle">The best part of this crazy journey is the people we work with.</p>
+        <p
+          class="subtitle d-none d-md-block"
+        >The best part of this crazy journey is the people we work with.</p>
         <p class="content">
           We are a diverse team of engineers, designers, social workers, programmers and
           educators that are bound together by one vision: empower people with the skills

@@ -39,15 +39,18 @@
             <div class="card">
               <img class="card-img-top" src="/images/karkhana-building.png" />
               <div class="card-body">
-                <h2 class="title mt-4">Our Vision</h2>
+                <h2 class="title">Our Vision</h2>
                 <p class="content">
                   We created Karkhana to nurture a spirit of innovating locally so as to make a
                   global impact. We want to empower people with the skills &amp; attitudes that will
                   help them build their future and the future of their community.
                 </p>
 
-                <h2 class="title mt-5">Our Mission</h2>
-                <h3 class="subtitle mb-3">How will we achieve our vision? We will make learning fun!</h3>
+                <div class="d-none d-md-block pb-4"></div>
+
+                <h2 class="title">Our Mission</h2>
+                <h3 class="subtitle">How will we achieve our vision? We will make learning fun!</h3>
+                <div class="d-none d-md-block pb-3"></div>
                 <p class="content">
                   We will do this by showing children creative ways of using science and technology.
                   Children will learn how science and technology can help them solve the problems in

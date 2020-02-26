@@ -9,7 +9,7 @@
   background-color: $k-white;
   padding-top: 0;
   padding-bottom: 0;
-  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  @include k-shadow();
 
   .nav-link {
     padding-top: 28px;
@@ -23,8 +23,8 @@
     margin-top: 20px;
 
     @include media-breakpoint-down(md) {
-      margin-top: 5px;
-      margin-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 5px;
     }
   }
 

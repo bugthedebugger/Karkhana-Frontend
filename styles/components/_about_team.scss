@@ -54,12 +54,6 @@
       background-color: $k-white;
       transform: translateY(50%);
 
-      @include media-breakpoint-down(md) {
-        left: 50%;
-        transform: translate(-50%, -25%);
-        width: 90%;
-      }
-
       .title {
         @include k-font(
           toRem(36px),
@@ -95,11 +89,27 @@
           text-align: center;
         }
       }
+
+      @include media-breakpoint-down(md) {
+        left: 50%;
+        transform: translate(-50%, -100%);
+        width: 90%;
+
+        .title {
+          font-size: toRem(20px);
+        }
+
+        .content {
+          font-size: toRem(12px);
+          margin-top: 10px;
+        }
+      }
     }
 
     @include media-breakpoint-down(md) {
       background-size: contain;
       background-position: top;
+      height: 660px;
     }
   }
 
@@ -124,7 +134,7 @@
     }
 
     @include media-breakpoint-down(md) {
-      margin-top: -120px;
+      margin-top: -220px;
       .number {
         font-size: toRem(36px);
       }
