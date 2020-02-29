@@ -16,7 +16,7 @@
             <div v-else class="video-wrapper">
               <img class="k-loading" src="/images/k-loading.gif" />
               <iframe
-                src="https://www.youtube.com/embed/CDFPQATSsiY?autoplay=1"
+                src="https://www.youtube.com/embed/eDOf1q42BFU?autoplay=1"
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
