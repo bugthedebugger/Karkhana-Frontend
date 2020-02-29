@@ -1,7 +1,7 @@
 <template>
   <div class="create-blog dashboard-content d-flex">
     <div v-if="!blogLoading" class="post-contents flex-fill">
-      <div class="toolbar">
+      <div class="toolbar pr-4">
         <h1 class="title">Write Blog Post</h1>
         <div class="toolbar-controls">
           <template v-if="!newBlogPost">
@@ -118,7 +118,7 @@
 
           <div class="form-group mb-4">
             <label for="post-text">Post Text</label>
-            <editor v-model="body" api-key="process.env.TINY_MCE_API_KEY" :init="tinyMceConfig" />
+            <editor v-model="body" :api-key="tinyMceApiKey" :init="tinyMceConfig" />
           </div>
         </div>
       </form>
@@ -209,23 +209,57 @@ export default {
       tags: [],
       defaultTags: [],
       inputTag: null,
+      tinyMceApiKey: process.env.TINY_MCE_API_KEY,
       tinyMceConfig: {
         height: 800,
         menubar: true,
+        content_css: "/css/tinymce.css",
         plugins: [
           "advlist autolink lists link image charmap print preview anchor",
           "searchreplace visualblocks code fullscreen",
           "insertdatetime media table paste code help wordcount"
         ],
         toolbar:
-          "blockquote | formatselect | bold italic backcolor | \
+          "styleselect | blockquote bold italic | \
            fontselect | alignleft aligncenter alignright alignjustify | \
-           bullist numlist outdent indent | removeformat | image",
+           bullist numlist outdent indent | removeformat",
         font_formats:
           "Ananda=ananda; Museo=museo; Poppins=Poppins, sans-serif; Raleway=Raleway, sans-serif; Lato=Lato, sans-serif",
         image_class_list: [
           { title: "None", value: "img-fluid" },
           { title: "Responsive", value: "img-fluid" }
+        ],
+        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+        style_formats: [
+          {
+            title: "Blog Heading",
+            block: "h1",
+            styles: { "font-size": "36px" }
+          },
+
+          {
+            title: "Main Heading",
+            block: "h2",
+            styles: { "font-size": "24px" }
+          },
+
+          {
+            title: "Sub Heading",
+            block: "h3",
+            styles: { "font-size": "20px" }
+          },
+
+          {
+            title: "Small Heading",
+            block: "h4",
+            styles: { "font-size": "16px" }
+          },
+
+          {
+            title: "Normal",
+            block: "p",
+            styles: { "font-size": "16px" }
+          }
         ]
       },
 

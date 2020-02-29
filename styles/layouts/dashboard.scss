@@ -3,6 +3,8 @@
 .dashboard-content {
   padding: 80px;
   background-color: $k-dashboard-background;
+  height: 100vh;
+  overflow-y: auto;
 
   .toolbar {
     display: flex;
@@ -31,7 +33,7 @@
     .dashboard-list-item {
       padding-top: 35px;
       label {
-        margin-right: 60px;
+        margin-right: 10px;
         @include k-font(
           toRem(14px),
           $k-info,

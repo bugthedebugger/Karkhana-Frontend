@@ -24,38 +24,48 @@
     <div class="container-card">
       <div class="menubar"></div>
       <div v-if="blogPosts">
-        <ul class="dashboard-list no-bullets" v-if="blogPosts.length">
-          <li
+        <table v-if="blogPosts.length" class="table table-borderless dashboard-list">
+          <tr
             v-for="(blogPost, index) in blogPosts"
             :key="blogPost.uuid"
-            class="dashboard-list-item d-flex"
+            class="dashboard-list-item"
           >
-            <label class="checkbox title flex-fill">
-              <input type="checkbox" />
-              {{ utf8Decode(blogPost.title) }}
-            </label>
-            <label class="author">{{blogPost.author}}</label>
-            <label class="created-at">{{ formatCreatedAt(blogPost.created_at) }}</label>
-            <label class="views">{{blogPost.published ? 'Published' : 'Un-published'}}</label>
-            <div class="controls d-flex">
-              <div class="btn-view">
-                <nuxt-link :to="'/blogs/' + blogPost.uuid" target="_blank">
-                  <i class="fal fa-eye"></i>
-                </nuxt-link>
+            <td>
+              <label class="checkbox title flex-fill">
+                <input type="checkbox" />
+                {{ utf8Decode(blogPost.title) }}
+              </label>
+            </td>
+            <td>
+              <label class="author">{{blogPost.author.name}}</label>
+            </td>
+            <td>
+              <label class="created-at">{{ formatCreatedAt(blogPost.created_at) }}</label>
+            </td>
+            <td>
+              <label class="views">{{blogPost.published ? 'Published' : 'Un-published'}}</label>
+            </td>
+            <td>
+              <div class="controls d-flex">
+                <div class="btn-view">
+                  <nuxt-link :to="'/blogs/' + blogPost.uuid" target="_blank">
+                    <i class="fal fa-eye"></i>
+                  </nuxt-link>
+                </div>
+                <div class="btn-edit">
+                  <nuxt-link :to="'create-blog?uuid=' + blogPost.uuid">
+                    <i class="fal fa-edit"></i>
+                  </nuxt-link>
+                </div>
+                <div class="btn-delete" @click="deleteBlogPost(blogPost.uuid, index)">
+                  <a href="#">
+                    <i class="fal fa-trash-alt"></i>
+                  </a>
+                </div>
               </div>
-              <div class="btn-edit">
-                <nuxt-link :to="'create-blog?uuid=' + blogPost.uuid">
-                  <i class="fal fa-edit"></i>
-                </nuxt-link>
-              </div>
-              <div class="btn-delete" @click="deleteBlogPost(blogPost.uuid, index)">
-                <a href="#">
-                  <i class="fal fa-trash-alt"></i>
-                </a>
-              </div>
-            </div>
-          </li>
-        </ul>
+            </td>
+          </tr>
+        </table>
         <div v-else>No Blogs found</div>
       </div>
       <div v-else>
@@ -93,26 +103,6 @@ export default {
     },
 
     createBlogPost() {
-      // this.$axios.get("/admin/blog/uuid").then(response => {
-      //   let uuid = response.data.data.uuid;
-      //   this.$axios
-      //     .post("/admin/blog/create", {
-      //       title: "New Blog Post",
-      //       language: "en",
-      //       uuid: uuid
-      //     })
-      //     .then(response => {
-      //       if (response.data.status === "success") {
-      //         console.log(response);
-      //         this.$router.push({
-      //           path: "/dashboard/create-blog",
-      //           query: { uuid: response.data.data.uuid }
-      //         });
-      //       }
-      //     });
-      // });
-      // return;
-
       this.$router.push({
         path: "/dashboard/create-blog",
         query: { uuid: "new-blog-post" }

@@ -55,10 +55,10 @@ export default {
           url: "/dashboard/pages"
         },
         {
-          title: "Settings",
-          name: "dashboard-settings",
-          icon: "fal fa-cog",
-          url: "/dashboard/settings"
+          title: "User Settings",
+          name: "user-settings",
+          icon: "fal fa-user",
+          url: "/dashboard/user-settings"
         }
       ],
       logoutLoading: false
