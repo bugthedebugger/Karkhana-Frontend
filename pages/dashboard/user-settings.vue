@@ -128,7 +128,7 @@ export default {
       this.$axios
         .post("/admin/register", {
           email: this.registrationEmail,
-          redirect: "http://192.168.100.3:8001/",
+          redirect: "http://192.168.100.3:8001/register/check",
           roles: [this.selectedRole]
         })
         .then(response => {
