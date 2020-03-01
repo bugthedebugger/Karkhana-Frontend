@@ -15,14 +15,16 @@
           {{link.title}}
         </nuxt-link>
       </li>
-      <li class="nav-link-list-item">
+      <!-- <li class="nav-link-list-item">
         <a href="#" @click="logout()">
           <Spinner :dark="true" v-if="logoutLoading" />
           <i v-else class="fal fa-sign-out"></i>
           Logout
         </a>
-      </li>
+      </li>-->
     </ul>
+
+    <div class="user-profile-info"></div>
   </aside>
 </template>
 

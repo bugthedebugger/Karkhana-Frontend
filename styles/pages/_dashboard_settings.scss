@@ -1,1 +1,46 @@
 @import "@/styles/global.scss";
+
+.user-list {
+  height: calc(100vh - 100px);
+  margin-top: -80px;
+  margin-right: -80px;
+  padding: 50px 40px;
+  background-color: white;
+  padding-right: 0;
+
+  .title {
+    @include k-font(
+      toRem(24px),
+      $k-text-color-2,
+      $font-weight-medium,
+      toRem(35px),
+      $font-poppins
+    );
+  }
+
+  table {
+    @include k-font(
+      toRem(14px),
+      false,
+      $font-weight-medium,
+      toRem(21px),
+      $font-poppins
+    );
+
+    th {
+      color: #bbbbbb;
+    }
+
+    td.email {
+      color: $k-info;
+    }
+
+    td.status {
+      font-style: italic;
+    }
+
+    .btn-delete {
+      color: $k-red;
+    }
+  }
+}

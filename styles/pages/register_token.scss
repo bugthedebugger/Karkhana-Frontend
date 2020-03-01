@@ -1,0 +1,133 @@
+@import "@/styles/global.scss";
+
+.background {
+  background-color: #fafafa;
+  width: 100vw;
+  height: 100vh;
+
+  .card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    height: auto;
+    width: auto;
+    border-radius: 5px;
+    @include k-shadow();
+
+    .logo {
+      width: 130px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .complete-registration-card {
+    padding: 10% 15%;
+    padding-top: 5%;
+    .gap {
+      width: 100%;
+      height: 24px;
+    }
+
+    .title {
+      @include k-font(
+        toRem(28px),
+        $k-text-color-1,
+        $font-weight-regular,
+        toRem(33px),
+        $font-museo
+      );
+    }
+
+    .description {
+      @include k-font(
+        toRem(14px),
+        $k-text-color-2,
+        $font-weight-regular,
+        toRem(21px),
+        $font-poppins
+      );
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 90%;
+      padding: 5% 7%;
+      padding-top: 2%;
+    }
+  }
+
+  .registration-card {
+    padding: 50px;
+    width: 90%;
+    height: 90%;
+    overflow: auto;
+    .register-image {
+      margin-top: 150px;
+      width: 100%;
+    }
+  }
+
+  .image-upload-card {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgba(238, 49, 47, 0.1);
+    padding: 50px 30px;
+    margin-bottom: 40px;
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background-color: $k-red;
+
+      text-align: center;
+      line-height: 110px;
+      color: white;
+      font-size: toRem(40px);
+      text-align: center;
+
+      img {
+        width: 50%;
+        height: 50%;
+      }
+    }
+  }
+}
+
+form {
+  label,
+  input[type="text"],
+  textarea {
+    @include k-font(
+      toRem(14px),
+      $k-text-color-1,
+      $font-weight-medium,
+      toRem(21px),
+      $font-poppins
+    );
+  }
+
+  label {
+    font-weight: $font-weight-bold;
+  }
+
+  input[type="text"] {
+    color: #959595;
+  }
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+
+  input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+}
