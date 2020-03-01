@@ -108,8 +108,7 @@ export default {
         endpoints: {
           login: { url: `http://52.221.186.42/v1/login/email`, method: 'post', propertyName: 'token' },
           logout: false,
-          // logout: { url: '/auth/logout', method: 'post' },
-          user: { url: 'http://52.221.186.42/admin/tags?per_page=10', method: 'get', propertyName: 'message' }
+          user: { url: 'http://52.221.186.42/me', method: 'post', propertyName: 'data' }
         },
         tokenRequired: true,
         tokenType: 'Bearer'

@@ -270,6 +270,7 @@ export default {
         })
         .catch(error => {
           this.displayError(error);
+          this.registerLoading = false;
         });
     },
 

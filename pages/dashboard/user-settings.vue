@@ -111,7 +111,7 @@ export default {
       availableRoles: null,
       selectedRole: null,
       users: null,
-      registrationEmail: "bibhutipd@gmail.com",
+      registrationEmail: null,
       registrationEmailSent: false,
       loading: false
     };

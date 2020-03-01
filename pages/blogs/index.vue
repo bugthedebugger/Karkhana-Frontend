@@ -92,7 +92,7 @@ export default {
 
   created() {
     // this.fetchTags();
-    console.log(this.blogPosts);
+    // console.log(this.blogPosts);
   },
 
   mounted() {
@@ -125,7 +125,7 @@ export default {
       try {
         return decodeURIComponent(escape(base64));
       } catch (e) {
-        console.log("URI error");
+        // ("URI error");
         return "";
       }
     },

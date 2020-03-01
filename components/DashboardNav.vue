@@ -24,7 +24,27 @@
       </li>-->
     </ul>
 
-    <div class="user-profile-info"></div>
+    <div class="dropdown user-profile-menu mt-auto">
+      <button
+        class="btn btn-primary dropdown-toggle"
+        type="button"
+        id="user-profile-button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <img class="mr-1" :src="$auth.user.avatar" />
+        {{$auth.user.name}}
+        <i class="fal fa-angle-up ml-2"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="user-profile-button">
+        <a class="dropdown-item" href="#" @click="logout()">
+          <Spinner :dark="true" v-if="logoutLoading" />
+          <i v-else class="fal fa-sign-out"></i>
+          Logout
+        </a>
+      </div>
+    </div>
   </aside>
 </template>
 
@@ -37,6 +57,7 @@ export default {
   data() {
     return {
       activeTab: null,
+      minimized: false,
       links: [
         {
           title: "Dashbaord",

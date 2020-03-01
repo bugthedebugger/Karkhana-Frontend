@@ -178,8 +178,7 @@ export default {
     }
   },
 
-  async created() {
-  },
+  async created() {},
 
   methods: {
     getFbShareLink() {
