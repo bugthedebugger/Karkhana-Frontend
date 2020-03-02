@@ -45,6 +45,24 @@
     }
   }
 
+  .user-profile-menu {
+    position: absolute;
+    bottom: 10px;
+    #user-profile-button {
+      border-radius: 23px;
+
+      &::after {
+        display: none;
+      }
+
+      img {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+      }
+    }
+  }
+
   // @include k-font(
   //   toRem(36px),
   //   $k-text-color-1,

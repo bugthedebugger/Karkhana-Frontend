@@ -122,8 +122,29 @@
         left: 10px;
         bottom: 10px;
         z-index: 2;
+        .author-info-container {
+          .author-image {
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            background-size: cover;
+            background-position: center;
+          }
+
+          .author-info {
+            @include k-font(
+              toRem(8px),
+              $k-white,
+              $font-weight-medium,
+              false,
+              $font-poppins
+            );
+          }
+        }
 
         .blog-title {
+          margin-left: 44px;
           @include k-font(
             toRem(24px),
             $k-white,
@@ -131,20 +152,66 @@
             toRem(28px),
             $font-museo
           );
-          margin-bottom: 0;
         }
 
-        .author-info {
-          @include k-font(
-            toRem(12px),
-            $k-white,
-            $font-weight-medium,
-            toRem(21px),
-            $font-poppins
-          );
-          margin-bottom: 0;
+        @include media-breakpoint-up(md) {
+          .blog-title {
+            margin-left: 44px;
+            @include k-font(
+              toRem(24px),
+              $k-white,
+              $font-weight-regular,
+              toRem(28px),
+              $font-museo
+            );
+          }
+
+          .author-info-container {
+            .author-info {
+              @include k-font(
+                toRem(14px),
+                $k-white,
+                $font-weight-medium,
+                false,
+                $font-poppins
+              );
+
+              .date {
+                font-size: toRem(10px);
+              }
+            }
+          }
         }
       }
+
+      // .blog-details {
+      //   position: absolute;
+      //   left: 10px;
+      //   bottom: 10px;
+      //   z-index: 2;
+
+      //   .blog-title {
+      //     @include k-font(
+      //       toRem(14px),
+      //       $k-white,
+      //       $font-weight-regular,
+      //       toRem(28px),
+      //       $font-museo
+      //     );
+      //     margin-bottom: 0;
+      //   }
+
+      //   .author-info {
+      //     @include k-font(
+      //       toRem(8px),
+      //       $k-white,
+      //       $font-weight-medium,
+      //       toRem(21px),
+      //       $font-poppins
+      //     );
+      //     margin-bottom: 0;
+      //   }
+      // }
     }
 
     @include media-breakpoint-down(md) {

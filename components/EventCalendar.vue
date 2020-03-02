@@ -1,6 +1,5 @@
 <template>
   <div class="calendar-container">
-
     <!-- Shown only from md -->
     <div class="calendar d-none d-md-block">
       <div class="cal-header">
@@ -61,7 +60,7 @@
       <!-- <span class="event-type-dot event-type-dot-public"></span>
       <span class="event-type">Public event</span>
       <span class="event-type-dot event-type-dot-private ml-4"></span>
-      <span class="event-type">Private event</span> -->
+      <span class="event-type">Private event</span>-->
       <p class="event-type text-center">Events</p>
 
       <perfect-scrollbar class="events-scroll-area" v-if="events">
@@ -130,10 +129,14 @@ export default {
     getEvents() {
       this.eventsLoading = true;
       this.events = null;
+
+      let auth_token = this.$axios.defaults.headers.common["Authorization"];
+      delete this.$axios.defaults.headers.common["Authorization"];
       this.$axios.get(calHelper.buildUrl(this.calendar)).then(resp => {
         this.eventsLoading = false;
         this.events = calHelper.formatEventsResonse(resp.data.items);
         if (this.events) calHelper.assignEvents(this.events, this.calendarData);
+        this.$axios.defaults.headers.common["Authorization"] = auth_token;
       });
     }
   },

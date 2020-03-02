@@ -5,13 +5,10 @@
       <div class="header-info">
         <h1 class="blog-title">{{blog.title}}</h1>
         <div class="author-info-container d-flex">
-          <!-- <div
-            class="author-image"
-            :style="'background-image: url(' + 'https://worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg' + ')'"
-          ></div>-->
+          <div class="author-image" :style="'background-image: url(' + blog.author.avatar + ')'"></div>
           <div class="author-info align-self-center">
-            <!-- {{blog.author}} -->
-            <!-- <br /> -->
+            {{blog.author.name}}
+            <br />
             {{formatCreatedAt(blog.created_at)}}
             <!-- , {{parseInt(blog.read_time) || 0}} min read -->
           </div>
@@ -40,29 +37,33 @@
         </div>
       </div>
 
-      <!-- <div class="author-intro">
-        <div class="author-image"></div>
+      <div class="author-intro">
+        <div class="author-image" :style="'background-image: url(' + blog.author.avatar + ')'"></div>
         <div class="author-info">
-          <span class="author-name">{{blog.author}}</span>
+          <span class="author-name">{{blog.author.name}}</span>
+          <!-- <br />
+          <span class="author-designation">Not specified</span>-->
+          <!-- <br /> -->
           <br />
-          <span class="author-designation">Not specified</span>
-          <br />
-          <br />
-          <span class="author-bio">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum molestiae
-            accusamus nostrum ullam nemo? Itaque, assumenda totam? Veritatis magni
-            beatae, modi placeat incidunt porro, recusandae ex aut voluptates excepturi illum.
-          </span>
+          <span class="author-bio">{{blog.author.bio}}</span>
           <p class="social-handlers">
-            <i class="fab fa-facebook"></i>
-            <i class="fab fa-twitter"></i>
-            <i class="fab fa-linkedin"></i>
-            <i class="fab fa-instagram"></i>
+            <a v-if="blog.author.facebook && blog.author.facebook !== 'null'" :href="blog.author.facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a v-if="blog.author.facebook && blog.author.twitter !== 'null'" :href="blog.author.twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a v-if="blog.author.facebook && blog.author.linkedin !== 'null'" :href="blog.author.linkedin">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a v-if="blog.author.facebook && blog.author.instagram !== 'null'" :href="blog.author.instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
           </p>
         </div>
       </div>
 
-      <div class="pagination-posts">
+      <!-- <div class="pagination-posts">
         <div class="row">
           <div class="col-6">
             <div class="pagination-post">
@@ -177,7 +178,9 @@ export default {
     }
   },
 
-  async created() {},
+  async created() {
+    console.log(this.blog);
+  },
 
   methods: {
     getFbShareLink() {

@@ -24,7 +24,18 @@
           <div class="blog-image" :style="setBackgroundImage(blogPost.featured)">
             <div class="overlay"></div>
             <div class="blog-details">
-              <p class="author-info align-self-center">{{formatCreatedAt(blogPost.created_at)}}</p>
+              <div class="author-info-container d-flex">
+                <div
+                  class="author-image"
+                  :style="'background-image: url(' + blogPost.author.avatar + ')'"
+                ></div>
+                <div class="author-info align-self-end">
+                  {{blogPost.author.name}}
+                  <br />
+                  <span class="date">{{formatCreatedAt(blogPost.created_at)}}</span>
+                </div>
+              </div>
+              <!-- <p class="author-info align-self-center">{{formatCreatedAt(blogPost.created_at)}}</p> -->
               <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
             </div>
           </div>
@@ -81,6 +92,7 @@ export default {
 
   created() {
     // this.fetchTags();
+    // console.log(this.blogPosts);
   },
 
   mounted() {
@@ -113,7 +125,7 @@ export default {
       try {
         return decodeURIComponent(escape(base64));
       } catch (e) {
-        console.log("URI error");
+        // ("URI error");
         return "";
       }
     },
