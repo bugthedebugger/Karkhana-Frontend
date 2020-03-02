@@ -108,7 +108,7 @@ export default {
         endpoints: {
           login: { url: `http://13.229.231.52/v1/login/email`, method: 'post', propertyName: 'token' },
           logout: false,
-          user: { url: 'http://52.221.186.42/me', method: 'post', propertyName: 'data' }
+          user: { url: 'http://13.229.231.52/me', method: 'post', propertyName: 'data' }
         },
         tokenRequired: true,
         tokenType: 'Bearer'
