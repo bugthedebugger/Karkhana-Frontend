@@ -76,12 +76,6 @@ export default {
           name: "dashboard-pages",
           icon: "fal fa-copy",
           url: "/dashboard/pages"
-        },
-        {
-          title: "User Settings",
-          name: "user-settings",
-          icon: "fal fa-user",
-          url: "/dashboard/user-settings"
         }
       ],
       logoutLoading: false
@@ -89,6 +83,26 @@ export default {
   },
 
   created() {
+    if (
+      this.$auth.user.roles &&
+      this.$auth.user.roles.find(
+        role => role.name.toLowerCase() === "superadmin"
+      )
+    )
+      this.links.push({
+        title: "User Settings",
+        name: "user-settings",
+        icon: "fal fa-user",
+        url: "/dashboard/user-settings"
+      });
+    else
+      this.links.push({
+        title: "Profile",
+        name: "dashboard-profile",
+        icon: "fal fa-user",
+        url: "/dashboard/profile"
+      });
+
     this.checkActiveTab(this.$route.name);
   },
 

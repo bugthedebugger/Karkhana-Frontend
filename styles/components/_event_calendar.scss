@@ -121,9 +121,8 @@ $evt-background-color: #efefef;
     @include media-breakpoint-down(md) {
       border-radius: $cal-border-radius;
       width: 100%;
+      padding-top: $cal-padding/2;
     }
-
-
 
     width: $evt-width;
     padding-top: $cal-padding;

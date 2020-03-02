@@ -80,6 +80,7 @@
                 <td class="status">{{user.status}}</td>
                 <td>
                   <button
+                    v-if="user.status === 'Pending'"
                     class="btn btn-default btn-sm btn-delete"
                     @click="deleteInvitation(user.email)"
                   >
@@ -117,6 +118,13 @@ export default {
     };
   },
 
+  async asyncData({ $auth, params, error }) {
+    if (
+      !$auth.user.roles.find(role => role.name.toLowerCase() === "superadmin")
+    )
+      error({ statusCode: 404 });
+  },
+
   created() {
     this.fetchRoles();
     this.fetchUsers();
@@ -128,6 +136,7 @@ export default {
       this.$axios
         .post("/admin/register", {
           email: this.registrationEmail,
+
           roles: [this.selectedRole]
         })
         .then(response => {

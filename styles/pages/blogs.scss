@@ -153,6 +153,30 @@
             $font-museo
           );
         }
+
+        @include media-breakpoint-up(md) {
+          .blog-title {
+            @include k-font(
+              toRem(24px),
+              $k-white,
+              $font-weight-regular,
+              toRem(28px),
+              $font-museo
+            );
+          }
+
+          .author-info-container {
+            .author-info {
+              @include k-font(
+                toRem(14px),
+                $k-white,
+                $font-weight-medium,
+                false,
+                $font-poppins
+              );
+            }
+          }
+        }
       }
 
       // .blog-details {

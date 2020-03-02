@@ -4,7 +4,7 @@
 
     <HomeAbout />
 
-    <!-- <HomeEvents /> -->
+    <HomeEvents />
 
     <!-- <HomePartners /> -->
 
@@ -17,7 +17,7 @@
 <script>
 import HomeSlider from "~/components/HomeSlider";
 import HomeAbout from "~/components/HomeAbout";
-// import HomeEvents from "~/components/HomeEvents";
+import HomeEvents from "~/components/HomeEvents";
 import HomeContact from "~/components/HomeContact";
 // import HomePartners from "~/components/HomePartners";
 import Footer from "~/components/Footer";
@@ -28,7 +28,7 @@ export default {
   components: {
     HomeSlider,
     HomeAbout,
-    // HomeEvents,
+    HomeEvents,
     HomeContact,
     // HomePartners,
     Footer

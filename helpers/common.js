@@ -6,5 +6,12 @@ export default {
             let errors = Object.values(errorObj.response.data);
             errors.forEach(error => $toast.show(error));
         }
+    },
+
+    nullOrVal(val) {
+        if (val == 'null')
+            return val * 1 || null;
+        return val;
     }
+
 }
