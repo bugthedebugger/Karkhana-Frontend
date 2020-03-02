@@ -47,16 +47,16 @@
           <br />
           <span class="author-bio">{{blog.author.bio}}</span>
           <p class="social-handlers">
-            <a v-if="blog.author.facebook !== 'null'" :href="blog.author.facebook">
+            <a v-if="blog.author.facebook && blog.author.facebook !== 'null'" :href="blog.author.facebook">
               <i class="fab fa-facebook"></i>
             </a>
-            <a v-if="blog.author.twitter !== 'null'" :href="blog.author.twitter">
+            <a v-if="blog.author.facebook && blog.author.twitter !== 'null'" :href="blog.author.twitter">
               <i class="fab fa-twitter"></i>
             </a>
-            <a v-if="blog.author.linkedin !== 'null'" :href="blog.author.linkedin">
+            <a v-if="blog.author.facebook && blog.author.linkedin !== 'null'" :href="blog.author.linkedin">
               <i class="fab fa-linkedin"></i>
             </a>
-            <a v-if="blog.author.instagram !== 'null'" :href="blog.author.instagram">
+            <a v-if="blog.author.facebook && blog.author.instagram !== 'null'" :href="blog.author.instagram">
               <i class="fab fa-instagram"></i>
             </a>
           </p>
@@ -178,7 +178,9 @@ export default {
     }
   },
 
-  async created() {},
+  async created() {
+    console.log(this.blog);
+  },
 
   methods: {
     getFbShareLink() {

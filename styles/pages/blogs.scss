@@ -145,6 +145,7 @@
         }
 
         .blog-title {
+          margin-left: 44px;
           @include k-font(
             toRem(14px),
             $k-white,
@@ -156,6 +157,7 @@
 
         @include media-breakpoint-up(md) {
           .blog-title {
+            margin-left: 44px;
             @include k-font(
               toRem(24px),
               $k-white,
@@ -174,6 +176,10 @@
                 false,
                 $font-poppins
               );
+
+              .date {
+                font-size: toRem(10px);
+              }
             }
           }
         }

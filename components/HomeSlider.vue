@@ -35,14 +35,38 @@ export default {
   props: ["sliderImages"],
   data() {
     return {
-      sliderSettings: {
+      sliderSettings: null
+    };
+  },
+
+  mounted() {
+    if (process.client) {
+      this.disableSliderForPhone();
+      $(window).resize(() => {
+        this.disableSliderForPhone();
+      });
+    }
+  },
+
+  methods: {
+    next() {
+      this.$refs.carousel.next();
+    },
+
+    prev() {
+      this.$refs.carousel.prev();
+    },
+
+    disableSliderForPhone() {
+      let autoPlayStatus = !($(window).width() < 768);
+      this.sliderSettings = {
         dots: false,
         arrows: false,
-        infinite: true,
+        infinite: autoPlayStatus,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: autoPlayStatus,
         autoplaySpeed: 10000,
         responsive: [
           {
@@ -52,15 +76,7 @@ export default {
             }
           }
         ]
-      }
-    };
-  },
-  methods: {
-    next() {
-      this.$refs.carousel.next();
-    },
-    prev() {
-      this.$refs.carousel.prev();
+      };
     }
   }
 };

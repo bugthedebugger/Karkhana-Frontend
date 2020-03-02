@@ -32,7 +32,7 @@
                 <div class="author-info align-self-end">
                   {{blogPost.author.name}}
                   <br />
-                  {{formatCreatedAt(blogPost.created_at)}}
+                  <span class="date">{{formatCreatedAt(blogPost.created_at)}}</span>
                 </div>
               </div>
               <!-- <p class="author-info align-self-center">{{formatCreatedAt(blogPost.created_at)}}</p> -->
