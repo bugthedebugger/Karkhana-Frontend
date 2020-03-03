@@ -24,10 +24,11 @@ export default {
     },
 
     formatSingleEvent(event) {
+        console.log(event.start.dateTime);
         return {
             title: event.summary,
             location: event.location,
-            startTime: moment(event.start.dateTime).format("h:MM A")
+            startTime: moment(event.start.dateTime).format("h:mm A")
         };
     },
 
