@@ -1,6 +1,6 @@
 <template>
   <div class="portfolio">
-    <img src="/images/under-construction.svg" class="under-construction" />
+    <!-- <img src="/images/under-construction.svg" class="under-construction" /> -->
     <!-- <div id="debug" ref="debug"></div> -->
     <Navbar />
     <nuxt />
