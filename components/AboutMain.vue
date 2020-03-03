@@ -93,9 +93,9 @@
       </div>
     </div>
 
-    <div class="container pt-5 pb-5 d-none d-md-block">
+    <!-- <div class="container pt-5 pb-5 d-none d-md-block">
       <div class="col-md-12"></div>
-    </div>
+    </div> -->
   </section>
 </template>
 
