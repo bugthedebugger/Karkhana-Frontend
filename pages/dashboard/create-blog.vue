@@ -566,7 +566,6 @@ export default {
     },
 
     handleAuthorChanged(event) {
-      console.log(event);
       this.selectedAuthorType = "author";
       if (event.type == "myself") this.selectedAuthor = this.$auth.user.id;
       else if (event.type == "author") this.selectedAuthor = event.id;
@@ -574,7 +573,6 @@ export default {
         this.selectedAuthorType = "guest";
         this.selectedAuthor = event.id;
       }
-      console.log(this.selectedAuthor);
     },
 
     displayError(errorObj) {

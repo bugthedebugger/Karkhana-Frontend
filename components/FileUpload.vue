@@ -51,6 +51,12 @@ export default {
   methods: {
     onFileSelected(event) {
       if (event.target.files.length) this.selectedFiles = event.target.files;
+      Array.from(this.selectedFiles).forEach((selectedFile, index) => {
+        if (selectedFile.size / (1000 * 1024) > 1.5) {
+          this.$toast.show("Max file size(1.5 MB) exceeded");
+          this.selectedFiles = null;
+        }
+      });
     },
 
     onUpload() {
