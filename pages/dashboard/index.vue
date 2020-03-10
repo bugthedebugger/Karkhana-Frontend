@@ -6,9 +6,6 @@
     </div>
 
     <div class="dashboard-card">Welcome back, {{$auth.user.name}}</div>
-
-    <div class="mt-4"></div>
-    <a target="_black" download href="/pdfs/blog_guideline.pdf">Download Blog guideline</a>
   </div>
 </template>
 <script>

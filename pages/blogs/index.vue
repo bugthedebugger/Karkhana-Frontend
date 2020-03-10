@@ -1,51 +1,53 @@
 <template>
   <div class="blogs">
-    <div class="container">
-      <div class="blog-tabs d-flex justify-content-center justify-content-md-start">
-        <div
-          v-for="cat in fetchCategories"
-          :key="cat"
-          class="tab"
-          :class="{'tab-selected': selectedFetchCategory === cat}"
-          @click="selectFetchCategory(cat)"
-        >{{cat}}</div>
-      </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="container-fluid">
+          <div class="blog-tabs d-flex justify-content-center justify-content-md-start">
+            <div
+              v-for="cat in fetchCategories"
+              :key="cat"
+              class="tab"
+              :class="{'tab-selected': selectedFetchCategory === cat}"
+              @click="selectFetchCategory(cat)"
+            >{{cat}}</div>
+          </div>
 
-      <div
-        v-if="blogPosts && blogPosts.length > 0"
-        class="blog-posts d-flex flex-wrap justify-content-center justify-content-md-start"
-      >
-        <div
-          class="blog-post-alt"
-          v-for="blogPost in blogPosts"
-          :key="blogPost.uuid"
-          @click="navigateTo(blogPost.slug ? blogPost.slug : blogPost.uuid )"
-        >
-          <div class="blog-image" :style="setBackgroundImage(blogPost.featured)">
-            <div class="overlay"></div>
-            <div class="blog-details">
-              <div class="author-info-container d-flex">
-                <div
-                  class="author-image"
-                  :style="'background-image: url(' + blogPost.author.avatar + ')'"
-                ></div>
-                <div class="author-info align-self-end">
-                  {{blogPost.author.name}}
-                  <br />
-                  <span class="date">{{formatCreatedAt(blogPost.created_at)}}</span>
+          <div
+            v-if="blogPosts && blogPosts.length > 0"
+            class="blog-posts d-flex flex-wrap justify-content-center justify-content-md-start"
+          >
+            <div
+              class="blog-post-alt"
+              v-for="blogPost in blogPosts"
+              :key="blogPost.uuid"
+              @click="navigateTo(blogPost.slug ? blogPost.slug : blogPost.uuid )"
+            >
+              <div class="blog-image" :style="setBackgroundImage(blogPost.featured)">
+                <div class="overlay"></div>
+                <div class="blog-details">
+                  <div class="author-info-container d-flex">
+                    <div
+                      class="author-image"
+                      :style="'background-image: url(' + blogPost.author.avatar + ')'"
+                    ></div>
+                    <div class="author-info align-self-end">
+                      {{blogPost.author.name}}
+                      <br />
+                      <span class="date">{{formatCreatedAt(blogPost.created_at)}}</span>
+                    </div>
+                  </div>
+                  <!-- <p class="author-info align-self-center">{{formatCreatedAt(blogPost.created_at)}}</p> -->
+                  <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
                 </div>
               </div>
-              <!-- <p class="author-info align-self-center">{{formatCreatedAt(blogPost.created_at)}}</p> -->
-              <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
             </div>
           </div>
-        </div>
-      </div>
-      <div v-else>
-        <h5>No Blogs Found</h5>
-      </div>
+          <div v-else>
+            <h5>No Blogs Found</h5>
+          </div>
 
-      <!-- <div class="row">
+          <!-- <div class="row">
         <div class="col">
           <div class="tags-container">
             <p class="title">
@@ -56,18 +58,20 @@
             <div v-for="tag in tags" :key="tag.id" class="tag">{{tag.name}}</div>
           </div>
         </div>
-      </div>-->
+          </div>-->
 
-      <!-- <div class="row mt-4 mb-4">
+          <!-- <div class="row mt-4 mb-4">
         <div class="col text-center">
           <button class="btn btn-primary">
             <i class="fal fa-sync"></i>&nbsp;
             Load More
           </button>
         </div>
-      </div>-->
+          </div>-->
 
-      <div class="mb-4"></div>
+          <div class="mb-4"></div>
+        </div>
+      </div>
     </div>
     <Footer />
   </div>

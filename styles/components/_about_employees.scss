@@ -1,10 +1,10 @@
-@import "@/styles/setup/_variables";
-@import "@/styles/setup/_typography";
-@import "@/styles/setup/_mixins";
-@import "@/styles/setup/_helpers";
-@import "@/styles/setup/_functions";
+@import "@/styles/global.scss";
 
 .about-employees {
+  @include media-breakpoint-down(md) {
+    margin-top: -75px;
+  }
+
   .team-members {
     $border-color: #e2e2e2;
     @include k-border(2px, solid, $border-color);
@@ -12,26 +12,51 @@
     margin-top: 20px;
     position: relative;
 
+    @include media-breakpoint-down(md) {
+      border: none;
+    }
+
     .selected-employee {
-      position: relative;
-      $size: 600px;
+      $size: 90%;
+      margin: 0 auto;
+
       width: $size;
       height: $size;
       margin: 35px;
       .image-circle-background {
         width: $size;
-        height: $size;
-        background-color: $k-red;
-        opacity: 0.2;
+        padding-top: $size; //same height as height in percentage
+        // background-color: $k-red;
+        // opacity: 0.2;
+        background-color: rgba(255, 0, 0, 0.3);
         border-radius: 100%;
         text-align: center;
+        position: relative;
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 90%;
+          height: 90%;
+          clip-path: circle(50%);
+        }
       }
-      img {
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 393px;
+
+      @include media-breakpoint-down(md) {
+        $size: 169px;
+        width: $size;
+        height: $size;
+        margin: 0 auto;
+
+        .image-circle-background {
+          width: $size;
+          height: $size;
+        }
+
+        img {
+          width: 80%;
+        }
       }
     }
 
@@ -95,6 +120,34 @@
           margin-right: 20px;
         }
       }
+
+      @include media-breakpoint-down(md) {
+        padding-top: 5px;
+        .designation {
+          text-align: center;
+          @include k-font(toRem(12px), false, false, toRem(28px), false);
+          margin-bottom: 0;
+        }
+
+        .name {
+          text-align: center;
+          @include k-font(toRem(20px), false, false, toRem(24px), false);
+        }
+
+        .quote {
+          @include k-font(toRem(14px), false, false, toRem(20px), false);
+          text-align: center;
+        }
+
+        .characteristics-title {
+          margin-top: 10px;
+          margin-bottom: 5px;
+        }
+
+        .characteristics-list li {
+          margin-top: 5px;
+        }
+      }
     }
   }
 
@@ -105,6 +158,11 @@
     margin-left: 35%;
     display: flex;
     transform: translateY(-50%);
+
+    @include media-breakpoint-down(md) {
+      width: auto;
+      margin-left: 65px;
+    }
 
     .employee-list {
       display: flex;
@@ -119,6 +177,12 @@
         background-color: $k-white;
         cursor: pointer;
         z-index: 10;
+
+        @include media-breakpoint-down(md) {
+          width: 53px;
+          height: 53px;
+          margin-right: 12px;
+        }
 
         .employee-image {
           width: 100%;
@@ -137,6 +201,12 @@
   .scroll-stat {
     width: 60px;
     margin-left: 25%;
+
+    @include media-breakpoint-down(md) {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+
     @include k-font(
       toRem(16px),
       $k-text-color-5,

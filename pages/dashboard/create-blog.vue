@@ -26,7 +26,7 @@
             </button>
 
             <nuxt-link
-              :to="'/blogs/' + (slug ? slug : uuid)"
+              :to="'/dashboard/preview-blog/' + (slug ? slug : uuid)"
               class="btn btn-link mb-2 btn-sm"
               target="_blank"
             >Preview</nuxt-link>
@@ -49,6 +49,12 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-12 small">
+          <a target="_black" download href="/pdfs/blog_guideline.pdf">Download Blog guideline</a>
+        </div>
+      </div>
+
       <form class="post-form pr-4">
         <div class="form-group mb-4">
           <label for="post-title">Post Title</label>
@@ -66,35 +72,6 @@
             <option v-for="lang in languages" :value="lang.code" :key="lang.code">{{lang.name}}</option>
           </select>
         </div>
-
-        <div class="form-group mb-4">
-          <label for="post-title">Post Author</label>
-          <select class="form-control" v-model="selectedAuthor" v-if="authors && authors.length">
-            <option v-for="author in authors" :value="author.id" :key="author.id">{{author.name}}</option>
-          </select>
-        </div>
-
-        <!-- <div class="form-group mb-4">
-          <div class="dropdown">
-            <button
-              class="btn btn-default dropdown-toggle"
-              type="button"
-              id="authorsDropdownButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >{{selectedAuthor ? selectedAuthor.name : "Select an author"}}</button>
-            <div class="dropdown-menu" aria-labelledby="authorsDropdownButton">
-              <a
-                class="dropdown-item"
-                v-for="author in authors"
-                href="#"
-                :key="author.id"
-                @click="selectedAuthor = author"
-              >{{author.name}}</a>
-            </div>
-          </div>
-        </div>-->
 
         <div v-if="!newBlogPost">
           <div class="form-group mb-4">
@@ -149,6 +126,12 @@
             <label for="post-text">Post Text</label>
             <editor v-model="body" :api-key="tinyMceApiKey" :init="tinyMceConfig" />
           </div>
+
+          <CreateBlogAuthor
+            :author="selectedAuthor"
+            :_author_type="selectedAuthorType"
+            @authorChanged="handleAuthorChanged"
+          />
         </div>
       </form>
     </div>
@@ -219,11 +202,12 @@ import FileUpload from "~/components/FileUpload";
 import clipboard from "clipboard-polyfill";
 import Spinner from "~/components/Spinner";
 import Loading from "~/components/Loading";
+import CreateBlogAuthor from "~/components/Dashboard/CreateBlogAuthor";
 
 export default {
   layout: "dashboard",
   auth: true,
-  components: { Editor, FileUpload, Spinner, Loading },
+  components: { Editor, FileUpload, Spinner, Loading, CreateBlogAuthor },
   data() {
     return {
       newBlogPost: false,
@@ -240,6 +224,7 @@ export default {
       inputTag: null,
       authors: null,
       selectedAuthor: null,
+      selectedAuthorType: null,
       tinyMceApiKey: process.env.TINY_MCE_API_KEY,
       tinyMceConfig: {
         height: 800,
@@ -405,12 +390,16 @@ export default {
         title: this.title,
         slug: this.slug,
         language: "en",
-        author: this.selectedAuthor,
         body: this.body,
         tags:
           this.tags && this.tags.length ? this.tags.map(tag => tag.id) : null
       };
       if (this.featuredChanged) updateBody.featured = this.featured;
+      if (this.selectedAuthorType == "author")
+        updateBody.author = this.selectedAuthor;
+      else if (this.selectedAuthorType == "guest")
+        updateBody.guest = this.selectedAuthor;
+
       this.saveLoading = true;
       this.$axios
         .post(`/admin/blog/create`, updateBody)
@@ -534,6 +523,12 @@ export default {
         let data = response.data.data;
         this.title = data.title;
         this.selectedAuthor = data.author.id;
+
+        if (data.guest) this.selectedAuthorType = "guest";
+        else if (this.selectedAuthor === this.$auth.user.id)
+          this.selectedAuthorType = "myself";
+        else this.selectedAuthorType = "author";
+
         this.slug = data.slug;
         this.body = data.body;
         this.tags = data.tags || [];
@@ -568,6 +563,18 @@ export default {
       this.$axios.get("/admin/users/registered").then(response => {
         this.authors = response.data.data.users;
       });
+    },
+
+    handleAuthorChanged(event) {
+      console.log(event);
+      this.selectedAuthorType = "author";
+      if (event.type == "myself") this.selectedAuthor = this.$auth.user.id;
+      else if (event.type == "author") this.selectedAuthor = event.id;
+      else if (event.type == "guest") {
+        this.selectedAuthorType = "guest";
+        this.selectedAuthor = event.id;
+      }
+      console.log(this.selectedAuthor);
     },
 
     displayError(errorObj) {

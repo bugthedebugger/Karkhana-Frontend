@@ -90,9 +90,11 @@
       text-align: center;
 
       img {
-        width: 50%;
-        height: 50%;
-        border-radius: 50%;
+        width: 105%;
+        height: 105%;
+        clip-path: circle(50%);
+        margin-top: -5px;
+        margin-left: -5px;
       }
     }
   }

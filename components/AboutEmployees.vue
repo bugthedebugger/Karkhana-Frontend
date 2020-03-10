@@ -4,16 +4,33 @@
       <div class="team-members">
         <div class="container">
           <div class="row">
-            <div class="col">
+            <div class="col-lg-6 col-md-12">
               <div class="selected-employee">
-                <div class="image-circle-background"></div>
-                <img :src="activeEmployee.image" class="employee-image" />
+                <div class="image-circle-background">
+                  <img :src="activeEmployee.image" class="employee-image" />
+                </div>
               </div>
             </div>
-            <div class="col">
+            <div class="col-lg-6 col-md-12">
               <div class="person-description">
                 <p class="designation">{{activeEmployee.designation}}</p>
                 <p class="name">{{activeEmployee.name}}</p>
+
+                <p class="social-links d-block d-md-none text-center">
+                  <a :href="activeEmployee.socialLinks.facebook">
+                    <i class="fab fa-facebook"></i>
+                  </a>
+                  <a :href="activeEmployee.socialLinks.twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a :href="activeEmployee.socialLinks.instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a :href="activeEmployee.socialLinks.email">
+                    <i class="fal fa-envelope"></i>
+                  </a>
+                </p>
+
                 <p class="quote">{{activeEmployee.quote}}</p>
                 <div class="row">
                   <div class="col">
@@ -21,7 +38,7 @@
                     <ul class="no-bullets characteristics-list">
                       <li v-for="skill in activeEmployee.skills" :key="skill">{{skill}}</li>
 
-                      <li class="social-links">
+                      <li class="social-links d-none d-md-block">
                         <a :href="activeEmployee.socialLinks.facebook">
                           <i class="fab fa-facebook"></i>
                         </a>
@@ -46,7 +63,7 @@
                       >{{background}}</li>
                     </ul>
                   </div>
-                  <div class="col"></div>
+                  <div class="col d-none d-md-block"></div>
                 </div>
               </div>
             </div>
@@ -101,8 +118,7 @@ export default {
           designation: "Founder/Chairman",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
-          image:
-            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          image: "/images/img-sakar.jpg",
           skills: [
             "Leadership",
             "Marketing",
@@ -117,13 +133,13 @@ export default {
             instagram: ""
           }
         },
+
         {
           name: "Pavitra Gautam",
           designation: "Cheaf Executive Officer",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
-          image:
-            "https://i.ya-webdesign.com/images/blank-profile-picture-png-2.png",
+          image: "/images/img-pavitra.jpg",
           skills: [
             "Leadership",
             "Marketing",
@@ -138,13 +154,13 @@ export default {
             instagram: ""
           }
         },
+
         {
           name: "Sunoj Shrestha",
           designation: "Head Teacher",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
-          image:
-            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          image: "/images/img-sunoj.jpg",
           skills: [
             "Leadership",
             "Marketing",
@@ -159,13 +175,13 @@ export default {
             instagram: ""
           }
         },
+
         {
           name: "Sachet Manandhar",
           designation: "Cheaf Finance Officer",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
-          image:
-            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          image: "/images/img-sachet.jpg",
           skills: [
             "Leadership",
             "Marketing",
@@ -180,13 +196,13 @@ export default {
             instagram: ""
           }
         },
+
         {
           name: "Sangden Ghising",
           designation: "Lead, Community of Teachers",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
-          image:
-            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          image: "/images/img-sangden.jpg",
           skills: [
             "Leadership",
             "Marketing",
@@ -201,13 +217,13 @@ export default {
             instagram: ""
           }
         },
+
         {
-          name: "Rakshya Chand",
-          designation: "Director of Sales",
+          name: "Samaya Khadga",
+          designation: "Community Lead (Production and Procurement)",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
-          image:
-            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
+          image: "/images/img-samaya.jpg",
           skills: [
             "Leadership",
             "Marketing",
@@ -222,9 +238,10 @@ export default {
             instagram: ""
           }
         },
+
         {
-          name: "Preeti Shrestha",
-          designation: "Director of HR",
+          name: "Suresh Ghimere",
+          designation: "Community Lead (Developers of Products and Knowledge)",
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image:
