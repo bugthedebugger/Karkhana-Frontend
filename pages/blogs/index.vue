@@ -2,7 +2,7 @@
   <div class="blogs">
     <div class="row">
       <div class="col-12">
-        <div class="container-fluid">
+        <div :class="{'container': !isMobile, 'container-fluid': isMobile}">
           <div class="blog-tabs d-flex justify-content-center justify-content-md-start">
             <div
               v-for="cat in fetchCategories"
@@ -15,7 +15,7 @@
 
           <div
             v-if="blogPosts && blogPosts.length > 0"
-            class="blog-posts d-flex flex-wrap justify-content-center justify-content-md-start"
+            class="blog-posts d-flex flex-wrap justify-content-center"
           >
             <div
               class="blog-post-alt"
@@ -90,7 +90,8 @@ export default {
       fetchCategories: ["Latest"],
       selectedFetchCategory: "Latest",
       blogPosts: null,
-      tags: null
+      tags: null,
+      isMobile: false
     };
   },
 
@@ -101,6 +102,12 @@ export default {
 
   mounted() {
     this.applyEqualHeightRule();
+    if (process.client) {
+      $(window).resize(() => {
+        this.checkIfMobile();
+      });
+      this.checkIfMobile();
+    }
   },
 
   async asyncData({ $axios, params }) {
@@ -109,6 +116,10 @@ export default {
   },
 
   methods: {
+    checkIfMobile() {
+      this.isMobile = $(window).width() < 768;
+    },
+
     applyEqualHeightRule() {
       let maxHeight = 0;
       $(".blog-post-alt").each(function() {

@@ -3,7 +3,7 @@
     <AboutMain />
     <!-- <AboutHistory /> -->
     <AboutTeam />
-    <!-- <AboutEmployees /> -->
+    <AboutEmployees />
     <!-- <AboutStats /> -->
     <!-- <AboutCareers /> -->
     <Footer />
@@ -14,7 +14,7 @@
 import AboutMain from "~/components/AboutMain";
 // import AboutHistory from "~/components/AboutHistory";
 import AboutTeam from "~/components/AboutTeam";
-// import AboutEmployees from "~/components/AboutEmployees";
+import AboutEmployees from "~/components/AboutEmployees";
 // import AboutStats from "~/components/AboutStats";
 // import AboutCareers from "~/components/AboutCareers";
 import Footer from "~/components/Footer";
@@ -25,7 +25,7 @@ export default {
     // AboutHistory,
     AboutMain,
     AboutTeam,
-    // AboutEmployees,
+    AboutEmployees,
     // AboutStats,
     // AboutCareers,
     Footer
