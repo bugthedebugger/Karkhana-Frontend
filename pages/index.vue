@@ -1,6 +1,8 @@
 <template>
   <div>
-    <HomeSlider :sliderImages="sliderImages" />
+    <!-- <HomeSlider :sliderImages="sliderImages" /> -->
+
+    <HomeCorona />
 
     <HomeAbout />
 
@@ -15,7 +17,8 @@
 </template>
 
 <script>
-import HomeSlider from "~/components/HomeSlider";
+// import HomeSlider from "~/components/HomeSlider";
+import HomeCorona from "~/components/HomeCorona";
 import HomeAbout from "~/components/HomeAbout";
 import HomeEvents from "~/components/HomeEvents";
 import HomeContact from "~/components/HomeContact";
@@ -26,7 +29,8 @@ export default {
   layout: "portfolio",
   auth: false,
   components: {
-    HomeSlider,
+    HomeCorona,
+    // HomeSlider,
     HomeAbout,
     HomeEvents,
     HomeContact,
