@@ -59,7 +59,6 @@
 
     .details {
       margin-top: 80px;
-      // font: Regular 18px/36px Raleway;
       @include k-font(
         toRem(18px),
         $k-text-color-4,
@@ -70,6 +69,118 @@
 
       ul {
         padding-left: 75px;
+      }
+
+      .product-facts {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        padding: 2rem 3rem 1.5rem 2rem;
+        margin-top: 60px;
+        color: $k-white;
+
+        .title {
+          @include k-font(
+            toRem(24px),
+            false,
+            $font-weight-regular,
+            29px,
+            $font-museo
+          );
+        }
+
+        .text {
+          @include k-font(
+            toRem(16px),
+            false,
+            $font-weight-medium,
+            28px,
+            $font-raleway
+          );
+        }
+
+        &.--science {
+          background-color: $k-green;
+        }
+
+        &.--computing {
+          background-color: $k-blue;
+        }
+
+        &.--make {
+          background-color: $k-yellow;
+        }
+      }
+
+      .product-kit-details {
+        margin-top: 80px;
+        .title {
+          text-align: center;
+          @include k-font(
+            toRem(24px),
+            $k-text-color-1,
+            $font-weight-regular,
+            29px,
+            $font-museo
+          );
+        }
+
+        .kit-feature {
+          margin-top: 50px;
+          text-align: center;
+
+          img {
+            width: 54px;
+            height: 54px;
+          }
+
+          .label {
+            margin-top: 20px;
+            @include k-font(
+              toRem(16px),
+              #959595,
+              $font-weight-medium,
+              28px,
+              $font-raleway
+            );
+          }
+        }
+      }
+
+      .product-subscribers {
+        .title {
+          margin-top: 50px;
+          margin-bottom: 50px;
+          text-align: center;
+          @include k-font(
+            toRem(24px),
+            $k-text-color-1,
+            $font-weight-regular,
+            29px,
+            $font-museo
+          );
+        }
+
+        .clients-list-wrapper {
+          position: relative;
+          width: 100%;
+          margin-bottom: 50px;
+          .clients-list {
+            .clients-list-item {
+              padding-right: 60px;
+              img {
+                width: 102px;
+                height: 102px;
+                filter: grayscale(100%);
+                transition: all 0.5s;
+              }
+
+              img:hover {
+                filter: none;
+              }
+            }
+          }
+        }
       }
 
       .curriculum-links {

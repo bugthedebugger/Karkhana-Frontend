@@ -7,6 +7,7 @@
         </div>
       </div>
       <p class="title">{{product_info.title}}</p>
+      <p class="tagline" v-if="show_key_value">{{product_info.tagline}}</p>
       <div v-if="show_key_value">
         <table border="0">
           <tbody>

@@ -45,7 +45,18 @@
       toRem(28px),
       $font-museo
     );
-    margin-bottom: 30px;
+    margin-bottom: 6px;
+  }
+
+  .tagline {
+    @include k-font(
+      toRem(16px),
+      $k-text-color-2,
+      $font-weight-medium,
+      toRem(25px),
+      $font-poppins
+    );
+    margin-bottom: 50px;
   }
 
   .attribute-value {
@@ -129,6 +140,10 @@
 
     .title {
       font-size: toRem(16px);
+    }
+
+    .tagline {
+      font-size: toRem(14px);
     }
 
     table {
