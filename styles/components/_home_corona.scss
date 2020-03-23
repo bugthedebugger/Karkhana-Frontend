@@ -3,5 +3,54 @@
 section.home-corona {
   width: 100vw;
   height: 100vh;
-  background-color: $k-red;
+
+  .message-container {
+    width: calc(100% - 1rem);
+    height: calc(100% - 105px);
+    margin-top: 105px;
+    margin-right: 0;
+    box-sizing: border-box;
+    background-color: $k-white;
+    border: 1rem solid $k-red;
+
+    .message-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      margin: 0 auto;
+      text-align: center;
+
+      img {
+        height: 200px;
+      }
+      .message {
+        margin-top: 40px;
+        @include k-font(
+          toRem(36px),
+          $k-black,
+          $font-weight-regular,
+          toRem(48px),
+          $font-museo
+        );
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .message-container {
+      border-width: 0.5rem;
+      width: 100vw;
+      height: calc(100% - 55px);
+      margin-top: 55px;
+      .message-wrapper {
+        width: 80%;
+        .message {
+          font-size: toRem(16px);
+          line-height: toRem(28px);
+        }
+      }
+    }
+  }
 }
