@@ -4,36 +4,52 @@ section.home-corona {
   width: 100vw;
   height: 100vh;
 
-  .message-container {
-    width: calc(100% - 1rem);
-    height: calc(100% - 105px);
-    margin-top: 105px;
-    margin-right: 0;
-    box-sizing: border-box;
-    background-color: $k-white;
-    border: 1rem solid $k-red;
+  @include media-breakpoint-down(xxxl) {
+    .message-container {
+      width: calc(100% - 1rem);
+      height: calc(100% - 105px);
+      margin-top: 105px;
+      margin-right: 0;
+      box-sizing: border-box;
+      background-color: $k-white;
+      border: 1rem solid $k-red;
 
-    .message-wrapper {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50%;
-      margin: 0 auto;
-      text-align: center;
+      .message-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
 
-      img {
-        height: 200px;
+        img {
+          height: 200px;
+        }
+        .message {
+          margin-top: 40px;
+          @include k-font(
+            toRem(36px),
+            $k-black,
+            $font-weight-regular,
+            toRem(48px),
+            $font-museo
+          );
+        }
       }
-      .message {
-        margin-top: 40px;
-        @include k-font(
-          toRem(36px),
-          $k-black,
-          $font-weight-regular,
-          toRem(48px),
-          $font-museo
-        );
+    }
+  }
+
+  @include media-breakpoint-down(xl) {
+    .message-container {
+      .message-wrapper {
+        img {
+          height: 150px;
+        }
+        .message {
+          font-size: toRem(24px);
+          line-height: toRem(28px);
+        }
       }
     }
   }

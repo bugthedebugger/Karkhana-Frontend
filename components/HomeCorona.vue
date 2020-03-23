@@ -8,7 +8,7 @@
           during COVID 19
         </p>
         <a
-          href="http://karkhana.asia/blogs/karkhanas-take-on-covid-19"
+          href="http://karkhana.asia/blogs/resources-to-cope-with-covid"
           target="_black"
           class="btn btn-primary btn-cta"
         >Click Here</a>
