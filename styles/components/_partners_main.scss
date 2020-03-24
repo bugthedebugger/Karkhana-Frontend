@@ -1,0 +1,27 @@
+@import "@/styles/global.scss";
+
+.partners-main {
+  padding: 6rem 0;
+  background-color: $k-white;
+
+  .title {
+    @include k-font(
+      toRem(64px),
+      false,
+      $font-weight-regular,
+      torem(80px),
+      $font-museo
+    );
+  }
+
+  .description {
+    margin-top: 24px;
+    @include k-font(
+      toRem(24px),
+      false,
+      $font-weight-regular,
+      torem(36px),
+      $font-raleway
+    );
+  }
+}
