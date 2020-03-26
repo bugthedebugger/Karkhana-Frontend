@@ -230,6 +230,7 @@ export default {
     },
 
     prevPage() {
+      // 
       if (this.paginationData.currentPage > 1)
         this.paginationData.currentPage--;
       this.fetchBlogs();
