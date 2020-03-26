@@ -31,6 +31,20 @@
                     </div>
                     <div class="col-md-6 col-sm-12 text">{{product_info.product_details.facts[1]}}</div>
                   </div>
+
+                  <div class="row mt-4" v-if="product_info.product_details.facts.length > 2">
+                    <div
+                      class="col-md-6 col-sm-12 text"
+                      v-if="product_info.product_details.facts[2]"
+                    >
+                      {{product_info.product_details.facts[2]}}
+                      <div class="mb-3 d-md-none d-sm-block"></div>
+                    </div>
+                    <div
+                      class="col-md-6 col-sm-12 text"
+                      v-if="product_info.product_details.facts[3]"
+                    >{{product_info.product_details.facts[3]}}</div>
+                  </div>
                 </div>
               </div>
 

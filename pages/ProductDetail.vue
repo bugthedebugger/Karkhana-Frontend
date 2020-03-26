@@ -73,6 +73,7 @@ export default {
             "/images/product-details/science-subscriber-6.png"
           ]
         },
+
         computing: {
           category: "computing",
           title: "Karkhana Computing",
@@ -93,8 +94,8 @@ export default {
             `,
 
             facts: [
-              "Interactive learning is more fun for students. Enjoying learning leads to better grades.",
-              "Practical Science lessons improve student's understanding of theory."
+              "Computers will be essential to every job and every sector in our children’s time.",
+              "Computing education in Nepal is 20 years behind the times and needs to be updated."
             ]
           },
           kit_info: [
@@ -124,6 +125,7 @@ export default {
             "/images/product-details/science-subscriber-6.png"
           ]
         },
+
         make: {
           category: "make",
           title: "Karkhana Make",
@@ -143,8 +145,9 @@ export default {
             these modern, tech-savvy children ? 
           `,
             facts: [
-              "Interactive learning is more fun for students. Enjoying learning leads to better grades.",
-              "Practical Science lessons improve student's understanding of theory."
+              "21st century children need to know more than just what is in the textbook.",
+              "Making skills lead children from being consumer to producer of technology.",
+              "Creative use of technology - robotics, game design, electronics - is important for future success."
             ]
           },
           kit_info: [
