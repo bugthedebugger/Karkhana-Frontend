@@ -13,36 +13,39 @@
             >{{cat}}</div>
           </div>
 
-          <div
-            v-if="blogPosts && blogPosts.length > 0"
-            class="blog-posts d-flex flex-wrap justify-content-center"
-          >
-            <div
-              class="blog-post-alt"
-              v-for="blogPost in blogPosts"
-              :key="blogPost.uuid"
-              @click="navigateTo(blogPost.slug ? blogPost.slug : blogPost.uuid )"
-            >
-              <div class="blog-image" :style="setBackgroundImage(blogPost.featured)">
-                <div class="overlay"></div>
-                <div class="blog-details">
-                  <div class="author-info-container d-flex">
-                    <div
-                      class="author-image"
-                      :style="'background-image: url(' + blogPost.author.avatar + ')'"
-                    ></div>
-                    <div class="author-info align-self-end">
-                      {{blogPost.author.name}}
-                      <br />
-                      <span class="date">{{formatCreatedAt(blogPost.created_at)}}</span>
+          <div v-if="blogPosts && blogPosts.length > 0">
+            <div class="blog-posts d-flex flex-wrap justify-content-center">
+              <div
+                class="blog-post-alt"
+                v-for="blogPost in blogPosts"
+                :key="blogPost.uuid"
+                @click="navigateTo(blogPost.slug ? blogPost.slug : blogPost.uuid )"
+              >
+                <div class="blog-image" :style="setBackgroundImage(blogPost.featured)">
+                  <div class="overlay"></div>
+                  <div class="blog-details">
+                    <div class="author-info-container d-flex">
+                      <div
+                        class="author-image"
+                        :style="'background-image: url(' + blogPost.author.avatar + ')'"
+                      ></div>
+                      <div class="author-info align-self-end">
+                        {{blogPost.author.name}}
+                        <br />
+                        <span class="date">{{formatCreatedAt(blogPost.created_at)}}</span>
+                      </div>
                     </div>
+                    <!-- <p class="author-info align-self-center">{{formatCreatedAt(blogPost.created_at)}}</p> -->
+                    <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
                   </div>
-                  <!-- <p class="author-info align-self-center">{{formatCreatedAt(blogPost.created_at)}}</p> -->
-                  <p class="blog-title">{{utf8Decode(blogPost.title)}}</p>
                 </div>
               </div>
             </div>
+            <div class="mt-4 mb-4 text-center d-flex justify-content-center" v-if="loadingMoreBlog">
+              <Spinner :dark="true" />Loading more...
+            </div>
           </div>
+
           <div v-else>
             <h5>No Blogs Found</h5>
           </div>
@@ -80,18 +83,20 @@
 <script>
 import Footer from "~/components/Footer";
 import moment from "moment";
+import Spinner from "~/components/Spinner";
 
 export default {
   layout: "portfolio",
   auth: false,
-  components: { Footer },
+  components: { Footer, Spinner },
   data() {
     return {
       fetchCategories: ["Latest"],
       selectedFetchCategory: "Latest",
       blogPosts: null,
       tags: null,
-      isMobile: false
+      isMobile: false,
+      loadingMoreBlog: false
     };
   },
 
@@ -107,12 +112,28 @@ export default {
         this.checkIfMobile();
       });
       this.checkIfMobile();
+
+      $(window).scroll(() => {
+        this.loadMoreBlogs();
+      });
+      this.loadMoreBlogs();
     }
   },
 
   async asyncData({ $axios, params }) {
-    const response = await $axios.get("/blog?per_page=10");
-    return { blogPosts: response.data.data };
+    const response = await $axios.get(`/blog?per_page=10&page=1`);
+    return {
+      blogPosts: response.data.data,
+      paginationData: {
+        perPage: 10,
+        currentPage: 1,
+        firstPage: response.data.from,
+        lastPage: response.data.last_page,
+        from: response.data.from,
+        to: response.data.to,
+        total: response.data.total
+      }
+    };
   },
 
   methods: {
@@ -161,17 +182,47 @@ export default {
       });
     },
 
-    fetchBlogs() {
-      this.$axios.get("/blog?per_page=10").then(response => {
-        // console.log(response);
-        // console.log(atob(response.data.data[0]));
-        this.blogPosts = response.data.data;
-        // this.applyEqualHeightRule();
-      });
+    fetchBlogs(concat) {
+      this.loadingMoreBlog = true;
+      this.$axios
+        .get(
+          `/blog?per_page=${this.paginationData.perPage}&page=${this.paginationData.currentPage}`
+        )
+        .then(response => {
+          if (concat)
+            this.blogPosts = this.blogPosts.concat(response.data.data);
+          else this.blogPosts = response.data.data;
+
+          // Pagination Data
+          this.paginationData.firstPage = response.data.from;
+          this.paginationData.lastPage = response.data.last_page;
+          this.paginationData.from = response.data.from;
+          this.paginationData.to = response.data.to;
+          this.paginationData.total = response.data.total;
+
+          this.loadingMoreBlog = false;
+        });
     },
 
     formatCreatedAt(date) {
       return moment(date).format("Do MMMM YYYY");
+    },
+
+    loadMoreBlogs() {
+      if (
+        
+        ($(window).scrollTop() + $(window).height() >=
+          $(document).height() - $("#footer").height() &&
+          !this.loadingMoreBlog)
+      )
+        this.nextPage();
+    },
+
+    nextPage() {
+      if (this.paginationData.currentPage < this.paginationData.lastPage) {
+        this.paginationData.currentPage++;
+        this.fetchBlogs(true);
+      }
     }
   }
 };

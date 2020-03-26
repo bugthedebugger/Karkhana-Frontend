@@ -171,7 +171,7 @@ export default {
 
       if (process.client) {
         this.opaqueByDefault =
-          (routeName !== "index" && routeName !== "ProductDetail") ||
+          (routeName !== "ProductDetail") ||
           (routeName === "ProductDetail" && $(window).width() < 768);
       }
     }
