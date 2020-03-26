@@ -13,3 +13,18 @@
     width: 300px;
   }
 }
+
+.pagination-controls {
+  color: $k-text-color-2;
+  .pagination-info {
+    // font: Italic 16px/25px Poppins;
+    @include k-font(
+      toRem(16px),
+      false,
+      $font-weight-medium,
+      toRem(25px),
+      $font-poppins
+    );
+    font-style: italic;
+  }
+}
