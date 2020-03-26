@@ -11,10 +11,12 @@
             is tremendous ways possible.
           </p>
 
-          <button class="btn btn-primary btn-cta mt-4">Partner with Us</button>
+          <button
+            class="btn btn-primary btn-cta mt-4 mb-4 mb-md-0 btn-partner-with-us"
+          >Partner with Us</button>
         </div>
         <div class="col-md-6 col-sm-12">
-          <img src="/images/partners.png" class="img-fluid" />
+          <img src="/images/partners.png" class="img-fluid d-none d-md-block" />
         </div>
       </div>
     </div>

@@ -1,0 +1,71 @@
+@import "@/styles/global.scss";
+
+.careers-openings {
+  padding-top: 98px;
+  padding-bottom: 90px;
+  .openings-scroll-area {
+    position: relative;
+    height: 100vh;
+
+    .openings-list {
+      .openings-list-item {
+        padding: 40px;
+        margin: 1.5rem 1rem;
+        background-color: white;
+        border-radius: 10px;
+        @include k-shadow();
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &.--active {
+          border-left: 8px solid $k-red;
+        }
+
+        .position {
+          @include k-font(
+            toRem(18px),
+            $k-text-color-1,
+            $font-weight-semi-bold,
+            toRem(27px),
+            $font-poppins
+          );
+        }
+
+        .section {
+          margin-top: 12px;
+          margin-bottom: 12px;
+          @include k-font(
+            toRem(18px),
+            #959595,
+            false,
+            toRem(27px),
+            $font-poppins
+          );
+          font-style: italic;
+        }
+
+        .location {
+          // font: Regular 16px/28px Poppins;
+          @include k-font(
+            toRem(16px),
+            #53575a,
+            $font-weight-regular,
+            toRem(28px),
+            $font-poppins
+          );
+
+          i {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+
+    .active-opening-details {
+      width: 100%;
+      height: 100%;
+      padding: 40px;
+      background-color: white;
+    }
+  }
+}

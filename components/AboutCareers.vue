@@ -1,21 +1,21 @@
 <template>
   <section class="about-careers">
-    <div class="container">
+    <div class="container" id="career-image-parent">
       <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-          <div class="career-image">
+        <div class="d-none d-md-block col-md-2 col-sm-12"></div>
+        <div class="col-md-8 col-sm-12">
+          <div class="career-image" id="career-image">
             <div class="career-notice">
               <p class="title">CAREERS</p>
               <p class="description">
                 Love what we're doing? Join our team to be part of a company
                 that's powering the future of education
               </p>
-              <a href="#" class="btn btn-primary">See All Positions</a>
+              <nuxt-link to="/careers" class="btn btn-primary">See All Positions</nuxt-link>
             </div>
           </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="d-none d-md-block col-md-2 col-sm-12"></div>
       </div>
     </div>
     <div class="map"></div>
@@ -24,7 +24,17 @@
 
 <script>
 export default {
-  name: "AboutCareers"
+  name: "AboutCareers",
+  mounted() {
+    // if (process.client) {
+    //   $("#career-image").css(
+    //     "margin-left",
+    //     "-" +
+    //       ($("#career-image-parent").outerWidth() -
+    //         $("#career-image-parent").width() + 5) + 'px'
+    //   );
+    // }
+  }
 };
 </script>
 

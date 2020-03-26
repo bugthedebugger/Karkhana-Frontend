@@ -3,6 +3,10 @@
 .partners-list {
   padding-top: 100px;
 
+  @include media-breakpoint-down(md) {
+    padding-top: 40px;
+  }
+
   .title {
     text-align: center;
     @include k-font(
@@ -33,6 +37,10 @@
 
   .client-schools {
     padding-top: 300px;
+
+    @include media-breakpoint-down(md) {
+      padding-top: 100px;
+    }
 
     .school-list {
       .school-list-item {

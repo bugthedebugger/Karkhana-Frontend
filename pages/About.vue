@@ -5,7 +5,7 @@
     <AboutTeam />
     <!-- <AboutEmployees /> -->
     <!-- <AboutStats /> -->
-    <!-- <AboutCareers /> -->
+    <AboutCareers />
     <Footer />
   </div>
 </template>
@@ -16,7 +16,7 @@ import AboutMain from "~/components/AboutMain";
 import AboutTeam from "~/components/AboutTeam";
 // import AboutEmployees from "~/components/AboutEmployees";
 // import AboutStats from "~/components/AboutStats";
-// import AboutCareers from "~/components/AboutCareers";
+import AboutCareers from "~/components/AboutCareers";
 import Footer from "~/components/Footer";
 export default {
   layout: "portfolio",
@@ -27,7 +27,7 @@ export default {
     AboutTeam,
     // AboutEmployees,
     // AboutStats,
-    // AboutCareers,
+    AboutCareers,
     Footer
   }
 };

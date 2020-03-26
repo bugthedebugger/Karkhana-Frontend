@@ -1,0 +1,8 @@
+@import "@/styles/global.scss";
+.careers {
+  padding-top: 90px;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 50px;
+  }
+}

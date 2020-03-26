@@ -4,12 +4,9 @@ $text-color: #444444;
 
 section.our-partners {
   .logos {
-    img {
-      width: 90%;
-      margin-right: 90px;
-      @include media-breakpoint-down(md) {
-        margin-right: 0px;
-      }
+    padding-right: 90px;
+    @include media-breakpoint-down(md) {
+      padding-right: 0px;
     }
   }
 

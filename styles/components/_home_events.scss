@@ -1,6 +1,3 @@
-// @import "@/styles/setup/_variables";
-// @import "@/styles/setup/_typography";
-// @import "@/styles/setup/_mixins";
 @import "@/styles/global.scss";
 
 section.events {
@@ -11,7 +8,7 @@ section.events {
     padding: 5%;
     padding-bottom: 150px;
   }
-  margin-bottom: -150px;
+  // margin-bottom: -150px;
   .calendar-title {
     font-weight: $font-weight-regular;
     font-size: 36px;

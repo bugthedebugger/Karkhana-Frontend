@@ -1,14 +1,14 @@
 @import "@/styles/global.scss";
 
-.partners-main {
+.careers-main {
   padding: 6rem 0;
   background-color: $k-white;
 
   @include media-breakpoint-down(md) {
     text-align: center;
-    padding: 1rem 0;
+    padding: 3rem 0;
 
-    .btn-partner-with-us {
+    .btn-see-all-openings {
       padding: 7px 36px !important;
     }
   }
@@ -42,5 +42,12 @@
       font-size: toRem(18px);
       line-height: inherit;
     }
+  }
+
+  .careers-img {
+    position: absolute;
+    top: -10%;
+    right: -15%;
+    width: 50%;
   }
 }
