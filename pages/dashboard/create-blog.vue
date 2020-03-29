@@ -74,26 +74,57 @@
         </div>
 
         <div v-if="!newBlogPost">
-          <div class="form-group mb-4">
-            <label for="post-featured-image">Featured Image</label>
-            <br />
-            <img
-              v-if="featured"
-              :src="featuredForShow"
-              class="gallery-image gallery-image-featured"
-              data-toggle="modal"
-              data-target="#galleryModal"
-            />
-            <br />
-            <button
-              type="button"
-              class="btn btn-success btn-sm"
-              data-toggle="modal"
-              data-target="#galleryModal"
-            >
-              <span v-if="featured">Change featured image</span>
-              <span v-else>Select featured image</span>
-            </button>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group mb-4">
+                <label for="post-featured-image">Featured Image (1920 x 600)</label>
+                <br />
+                <img
+                  v-if="featured"
+                  :src="featuredForShow"
+                  class="gallery-image gallery-image-featured"
+                  data-toggle="modal"
+                  data-target="#galleryModal"
+                  @click="dialogMode = 'featured'"
+                />
+                <br />
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  data-toggle="modal"
+                  data-target="#galleryModal"
+                  @click="dialogMode = 'featured'"
+                >
+                  <span v-if="featured">Change featured image</span>
+                  <span v-else>Select featured image</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group mb-4">
+                <label for="post-featured-image">Facebook Image (1200 x 630)</label>
+                <br />
+                <img
+                  v-if="facebookImage"
+                  :src="facebookImageForShow"
+                  class="gallery-image gallery-image-featured"
+                  data-toggle="modal"
+                  data-target="#galleryModal"
+                  @click="dialogMode = 'facebook'"
+                />
+                <br />
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  data-toggle="modal"
+                  data-target="#galleryModal"
+                  @click="dialogMode = 'facebook'"
+                >
+                  <span v-if="featured">Change facebook image</span>
+                  <span v-else>Select facebook image</span>
+                </button>
+              </div>
+            </div>
           </div>
 
           <div class="form-group mb-4">
@@ -181,14 +212,18 @@
           </div>
           <div class="modal-body">
             <div class="d-flex flex-wrap">
-              <img
-                v-for="(image, index) in gallery"
-                :src="image.url"
-                :key="index"
-                class="gallery-image"
-                :class="{'gallery-image-featured': image.url === featuredForShow}"
-                @click="selectFeaturedImage(image)"
-              />
+              <template v-for="(image, index) in gallery">
+                <div class="d-flex flex-column" :key="index">
+                  <img
+                    :src="image.url"
+                    :ref="'gallery-image-' + index"
+                    class="gallery-image mb-0"
+                    :class="{'gallery-image-featured': (dialogMode === 'featured' && image.url === featuredForShow) || dialogMode === 'facebook' && image.url === facebookImageForShow}"
+                    @click="selectDialogImage(image)"
+                  />
+                  <label class="gallery-image-size">{{imageSize('gallery-image-' + index)}}</label>
+                </div>
+              </template>
             </div>
           </div>
         </div>
@@ -218,6 +253,7 @@ export default {
       body: null,
       published: null,
       featured: null,
+      facebookImage: null,
       gallery: [],
       tags: [],
       defaultTags: [],
@@ -279,6 +315,8 @@ export default {
         ]
       },
 
+      dialogMode: null, // featured, facebook_image
+
       autosaveStatus: true,
       autosaveTimer: null,
       autosaveCounter: null,
@@ -287,6 +325,8 @@ export default {
       languages: null,
       featuredChanged: false,
       featuredForShow: null,
+      facebookImageChanged: false,
+      facebookImageForShow: null,
       saveLoading: false,
       publishLoading: false,
       blogLoading: false,
@@ -395,6 +435,9 @@ export default {
           this.tags && this.tags.length ? this.tags.map(tag => tag.id) : null
       };
       if (this.featuredChanged) updateBody.featured = this.featured;
+      if (this.facebookImageChanged)
+        updateBody.facebook_featured = this.facebookImage;
+
       if (this.selectedAuthorType == "author")
         updateBody.author = this.selectedAuthor;
       else if (this.selectedAuthorType == "guest")
@@ -461,10 +504,17 @@ export default {
       this.fetchGallery();
     },
 
-    selectFeaturedImage(image) {
-      this.featured = image.path;
-      this.featuredChanged = true;
-      this.featuredForShow = image.url;
+    selectDialogImage(image) {
+      if (this.dialogMode === "featured") {
+        this.featured = image.path;
+        this.featuredChanged = true;
+        this.featuredForShow = image.url;
+      } else if (this.dialogMode === "facebook") {
+        this.facebookImage = image.path;
+        this.facebookImageChanged = true;
+        this.facebookImageForShow = image.url;
+      }
+
       $("#galleryModal").modal("hide");
     },
 
@@ -535,6 +585,10 @@ export default {
         this.published = data.published;
         this.featured = data.featured;
         this.featuredForShow = data.featured;
+
+        this.facebookImage = data.facebook_featured;
+        this.facebookImageForShow = data.facebook_featured;
+
         this.blogLoading = false;
         callback();
       });
@@ -582,6 +636,15 @@ export default {
         let errors = Object.values(errorObj.response.data);
         errors.forEach(error => this.$toast.show(error));
       }
+    },
+
+    imageSize(refName) {
+      if (!this.$refs[refName]) return "--";
+      return (
+        this.$refs[refName][0].naturalWidth +
+        " x " +
+        this.$refs[refName][0].naturalHeight
+      );
     }
   },
 

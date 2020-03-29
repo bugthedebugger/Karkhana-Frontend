@@ -174,7 +174,9 @@ export default {
         {
           property: "og:image",
           content: this.blog.featured
-            ? this.blog.featured
+            ? this.blog.facebook_featured
+              ? this.blog.facebook_featured
+              : this.blog.featured
             : process.env.MY_URL + "/images/slider-image-5.jpg"
         },
 

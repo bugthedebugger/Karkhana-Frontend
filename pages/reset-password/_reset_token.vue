@@ -58,15 +58,15 @@ export default {
     };
   },
 
-  //   async asyncData({ $axios, params, error }) {
-  //     try {
-  //       const response = await $axios.post(
-  //         `/password-reset/${params.reset_token}`
-  //       );
-  //     } catch (e) {
-  //       error({ statusCode: 404 });
-  //     }
-  //   },
+  async asyncData({ $axios, params, error }) {
+    try {
+      const response = await $axios.post(
+        `/password-reset/${params.reset_token}`
+      );
+    } catch (e) {
+      error({ statusCode: 404 });
+    }
+  },
 
   methods: {
     handleResetPasswordSubmit() {
@@ -85,10 +85,6 @@ export default {
           this.resetLoading = false;
         });
     }
-  },
-
-  mounted() {
-    alert(this.resetToken);
   },
 
   computed: {

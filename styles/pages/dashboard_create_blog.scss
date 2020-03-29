@@ -107,8 +107,13 @@
   .gallery-image-featured {
     border: 2px solid $k-red;
   }
+
+  .gallery-image-size {
+    text-align: center;
+    font-size: 10px;
+  }
 }
 
-.btn-save{
+.btn-save {
   // min-width: 250px;
 }
