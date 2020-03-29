@@ -65,7 +65,10 @@
           />
         </div>
 
-        <button class="btn btn-link mb-4 text-align-left pl-0" @click="view='login'">Go back to login</button>
+        <button
+          class="btn btn-link mb-4 text-align-left pl-0"
+          @click="view='login'"
+        >Go back to login</button>
 
         <div class="text-center">
           <button
@@ -83,6 +86,7 @@
 
 <script>
 import Spinner from "~/components/Spinner";
+import Helper from "~/helpers/common";
 
 export default {
   auth: false,
@@ -133,6 +137,10 @@ export default {
           this.$toast.show("Reset link successfully sent to your email.");
           this.resetPasswordLoading = false;
           this.view = login;
+        })
+        .catch(error => {
+          Helper.displayError(this.$toast, error);
+          this.resetPasswordLoading = false;
         });
     }
   },
