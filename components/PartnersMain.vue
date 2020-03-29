@@ -13,6 +13,7 @@
 
           <button
             class="btn btn-primary btn-cta mt-4 mb-4 mb-md-0 btn-partner-with-us"
+            @click="partnerWithUs()"
           >Partner with Us</button>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -25,7 +26,13 @@
 
 <script>
 export default {
-  name: "PartnersMain"
+  name: "PartnersMain",
+
+  methods:{
+    partnerWithUs(){
+      window.scrollBy(0, 500);
+    }
+  }
 };
 </script>
 
