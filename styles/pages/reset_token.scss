@@ -1,0 +1,47 @@
+@import "@/styles/global.scss";
+
+.reset-token-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fafafa;
+
+  @include k-font(
+    toRem(12px),
+    $k-black,
+    $font-weight-medium,
+    toRem(18px),
+    $font-poppins
+  );
+
+  .reset-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $k-white;
+    padding: 50px 50px;
+    border-radius: 5px;
+    z-index: 2;
+    @include k-shadow();
+
+    .logo {
+      height: 40px;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      label {
+        font-size: 12px;
+      }
+    }
+
+    .login-options {
+      label {
+        font-size: 14px;
+      }
+      a {
+        color: $k-info;
+      }
+    }
+  }
+}
