@@ -78,7 +78,11 @@
       <div class="pagination-posts">
         <div class="row">
           <div class="col-md-6 col-sm-12">
-            <div class="pagination-post" v-if="blog.previous" :style="setBackgroundImage(blog.previous.featured)">
+            <div
+              class="pagination-post"
+              v-if="blog.previous"
+              :style="setBackgroundImage(blog.previous.featured)"
+            >
               <div class="overlay"></div>
               <div class="content">
                 <div class="title">
@@ -97,7 +101,11 @@
             </div>
           </div>
           <div class="col-md-6 col-sm-12">
-            <div class="pagination-post" v-if="blog.next" :style="setBackgroundImage(blog.next.featured)">
+            <div
+              class="pagination-post"
+              v-if="blog.next"
+              :style="setBackgroundImage(blog.next.featured)"
+            >
               <div class="overlay"></div>
               <div class="content">
                 <div class="title">
@@ -130,53 +138,53 @@ import moment from "moment";
 export default {
   layout: "portfolio",
   auth: false,
-  // head() {
-  //   return {
-  //     title: this.blog.title,
-  //     meta: [
-  //       {
-  //         hid: "description",
-  //         name: "description",
-  //         content: this.blog.title
-  //       },
-  //       {
-  //         hid: "description",
-  //         name: "tags",
-  //         content: this.blog.tags
-  //           ? this.blog.tags.map(t => t.name)
-  //           : "Karkhana Blog"
-  //       },
-  //       {
-  //         property: "og:url",
-  //         content: process.env.MY_URL + "/blogs/" + this.$route.params.uuid
-  //       },
-  //       {
-  //         property: "og:type",
-  //         content: "Website"
-  //       },
-  //       {
-  //         property: "og:title",
-  //         content: this.blog.title
-  //       },
-  //       {
-  //         property: "og:description",
-  //         content: this.blog.title
-  //       },
+  head() {
+    return {
+      title: this.blog.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.blog.title
+        },
+        {
+          hid: "description",
+          name: "tags",
+          content: this.blog.tags
+            ? this.blog.tags.map(t => t.name)
+            : "Karkhana Blog"
+        },
+        {
+          property: "og:url",
+          content: process.env.MY_URL + "/blogs/" + this.$route.params.uuid
+        },
+        {
+          property: "og:type",
+          content: "Website"
+        },
+        {
+          property: "og:title",
+          content: this.blog.title
+        },
+        {
+          property: "og:description",
+          content: this.blog.title
+        },
 
-  //       {
-  //         property: "og:image",
-  //         content: this.blog.featured
-  //           ? this.blog.featured
-  //           : process.env.MY_URL + "/images/slider-image-5.jpg"
-  //       },
+        {
+          property: "og:image",
+          content: this.blog.featured
+            ? this.blog.featured
+            : process.env.MY_URL + "/images/slider-image-5.jpg"
+        },
 
-  //       {
-  //         property: "twitter:card",
-  //         content: "summary"
-  //       }
-  //     ]
-  //   };
-  // },
+        {
+          property: "twitter:card",
+          content: "summary"
+        }
+      ]
+    };
+  },
 
   components: { Footer },
 
