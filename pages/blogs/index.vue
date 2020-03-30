@@ -21,8 +21,10 @@
                   class="form-control form-control-sm"
                   style="width: 200px"
                   @change="fetchBlogs()"
+                  v-model="selectedTag"
                 >
-                  <option v-for="tag in tags" :key="tag.id" value="tag.id">{{tag.name}}</option>
+                  <option value="0">All</option>
+                  <option v-for="tag in tags" :key="tag.id" :value="tag.id">{{tag.name}}</option>
                 </select>
               </form>
             </div>
@@ -57,12 +59,12 @@
               </div>
             </div>
             <div class="mt-4 mb-4 text-center d-flex justify-content-center" v-if="loadingMoreBlog">
-              <Spinner :dark="true" />Loading more...
+              <Spinner :dark="true" />Loading...
             </div>
           </div>
 
           <div v-else>
-            <h5>No Blogs Found</h5>
+            <h5 class="text-center mt-4 mb-4">No Blogs Found</h5>
           </div>
 
           <!-- <div class="row">
@@ -110,7 +112,6 @@ export default {
       selectedFetchCategory: "Latest",
       blogPosts: null,
       tags: null,
-      selectedTag: null,
       isMobile: false,
       loadingMoreBlog: false
     };
@@ -118,7 +119,6 @@ export default {
 
   created() {
     this.fetchTags();
-    // console.log(this.blogPosts);
   },
 
   mounted() {
@@ -136,10 +136,18 @@ export default {
     }
   },
 
-  async asyncData({ $axios, params }) {
-    const response = await $axios.get(`/blog?per_page=10&page=1&tag=1`);
+  async asyncData({ $axios, query }) {
+    let response;
+    try {
+      let url = "/blog?per_page=10&page=1";
+      if (query.tag) url += "&tag=" + query.tag;
+      response = await $axios.get(url);
+    } catch (e) {
+      response = { data: { data: [] } };
+    }
     return {
       blogPosts: response.data.data,
+      selectedTag: query.tag || 0,
       paginationData: {
         perPage: 10,
         currentPage: 1,
@@ -203,20 +211,27 @@ export default {
 
       let url = `/blog?per_page=${this.paginationData.perPage}`;
       url += `&page=${this.paginationData.currentPage}`;
-      if (this.selectedTag != 1) url += "&tag=" + this.selectedTag;
-      this.$axios.get(url).then(response => {
-        if (concat) this.blogPosts = this.blogPosts.concat(response.data.data);
-        else this.blogPosts = response.data.data;
+      if (this.selectedTag > 0) url += "&tag=" + this.selectedTag;
+      this.$axios
+        .get(url)
+        .then(response => {
+          if (concat)
+            this.blogPosts = this.blogPosts.concat(response.data.data);
+          else this.blogPosts = response.data.data;
 
-        // Pagination Data
-        this.paginationData.firstPage = response.data.from;
-        this.paginationData.lastPage = response.data.last_page;
-        this.paginationData.from = response.data.from;
-        this.paginationData.to = response.data.to;
-        this.paginationData.total = response.data.total;
+          // Pagination Data
+          this.paginationData.firstPage = response.data.from;
+          this.paginationData.lastPage = response.data.last_page;
+          this.paginationData.from = response.data.from;
+          this.paginationData.to = response.data.to;
+          this.paginationData.total = response.data.total;
 
-        this.loadingMoreBlog = false;
-      });
+          this.loadingMoreBlog = false;
+        })
+        .catch(error => {
+          this.loadingMoreBlog = false;
+          this.blogPosts = [];
+        });
     },
 
     formatCreatedAt(date) {
