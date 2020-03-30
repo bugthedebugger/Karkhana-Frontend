@@ -3,14 +3,29 @@
     <div class="row">
       <div class="col-12">
         <div :class="{'container': !isMobile, 'container-fluid': isMobile}">
-          <div class="blog-tabs d-flex justify-content-center justify-content-md-start">
-            <div
-              v-for="cat in fetchCategories"
-              :key="cat"
-              class="tab"
-              :class="{'tab-selected': selectedFetchCategory === cat}"
-              @click="selectFetchCategory(cat)"
-            >{{cat}}</div>
+          <div class="toolbar d-flex">
+            <div class="blog-tabs d-flex justify-content-center justify-content-md-start">
+              <div
+                v-for="cat in fetchCategories"
+                :key="cat"
+                class="tab"
+                :class="{'tab-selected': selectedFetchCategory === cat}"
+                @click="selectFetchCategory(cat)"
+              >{{cat}}</div>
+            </div>
+
+            <div class="tags ml-auto">
+              <form class="form-inline">
+                <label class="mr-2">Tag</label>
+                <select
+                  class="form-control form-control-sm"
+                  style="width: 200px"
+                  @change="fetchBlogs()"
+                >
+                  <option v-for="tag in tags" :key="tag.id" value="tag.id">{{tag.name}}</option>
+                </select>
+              </form>
+            </div>
           </div>
 
           <div v-if="blogPosts && blogPosts.length > 0">
@@ -95,13 +110,14 @@ export default {
       selectedFetchCategory: "Latest",
       blogPosts: null,
       tags: null,
+      selectedTag: null,
       isMobile: false,
       loadingMoreBlog: false
     };
   },
 
   created() {
-    // this.fetchTags();
+    this.fetchTags();
     // console.log(this.blogPosts);
   },
 
@@ -121,7 +137,7 @@ export default {
   },
 
   async asyncData({ $axios, params }) {
-    const response = await $axios.get(`/blog?per_page=10&page=1`);
+    const response = await $axios.get(`/blog?per_page=10&page=1&tag=1`);
     return {
       blogPosts: response.data.data,
       paginationData: {
@@ -184,24 +200,23 @@ export default {
 
     fetchBlogs(concat) {
       this.loadingMoreBlog = true;
-      this.$axios
-        .get(
-          `/blog?per_page=${this.paginationData.perPage}&page=${this.paginationData.currentPage}`
-        )
-        .then(response => {
-          if (concat)
-            this.blogPosts = this.blogPosts.concat(response.data.data);
-          else this.blogPosts = response.data.data;
 
-          // Pagination Data
-          this.paginationData.firstPage = response.data.from;
-          this.paginationData.lastPage = response.data.last_page;
-          this.paginationData.from = response.data.from;
-          this.paginationData.to = response.data.to;
-          this.paginationData.total = response.data.total;
+      let url = `/blog?per_page=${this.paginationData.perPage}`;
+      url += `&page=${this.paginationData.currentPage}`;
+      if (this.selectedTag != 1) url += "&tag=" + this.selectedTag;
+      this.$axios.get(url).then(response => {
+        if (concat) this.blogPosts = this.blogPosts.concat(response.data.data);
+        else this.blogPosts = response.data.data;
 
-          this.loadingMoreBlog = false;
-        });
+        // Pagination Data
+        this.paginationData.firstPage = response.data.from;
+        this.paginationData.lastPage = response.data.last_page;
+        this.paginationData.from = response.data.from;
+        this.paginationData.to = response.data.to;
+        this.paginationData.total = response.data.total;
+
+        this.loadingMoreBlog = false;
+      });
     },
 
     formatCreatedAt(date) {
@@ -210,10 +225,9 @@ export default {
 
     loadMoreBlogs() {
       if (
-        
-        ($(window).scrollTop() + $(window).height() >=
+        $(window).scrollTop() + $(window).height() >=
           $(document).height() - $("#footer").height() &&
-          !this.loadingMoreBlog)
+        !this.loadingMoreBlog
       )
         this.nextPage();
     },

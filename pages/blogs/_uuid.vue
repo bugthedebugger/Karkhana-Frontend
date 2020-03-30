@@ -78,50 +78,44 @@
       <div class="pagination-posts">
         <div class="row">
           <div class="col-md-6 col-sm-12">
-            <div
-              class="pagination-post"
+            <nuxt-link
+              :to="'/blogs/' + (blog.previous.slug ? blog.previous.slug : blog.previous.uuid)"
               v-if="blog.previous"
-              :style="setBackgroundImage(blog.previous.featured)"
+              class="pagination-link"
             >
-              <div class="overlay"></div>
-              <div class="content">
-                <div class="title">
-                  <span>{{blog.previous.title}}</span>
-                  <!-- <i class="fal fa-bookmark"></i> -->
-                </div>
+              <div class="pagination-post" :style="setBackgroundImage(blog.previous.featured)">
+                <div class="overlay"></div>
+                <div class="content">
+                  <div class="title">
+                    <span>{{blog.previous.title}}</span>
+                    <!-- <i class="fal fa-bookmark"></i> -->
+                  </div>
 
-                <nuxt-link
-                  :to="'/blogs/' + (blog.previous.slug ? blog.previous.slug : blog.previous.uuid)"
-                  class="pagination-link"
-                >
                   <i class="fal fa-arrow-left"></i>
                   Previous Post
-                </nuxt-link>
+                </div>
               </div>
-            </div>
+            </nuxt-link>
           </div>
           <div class="col-md-6 col-sm-12">
-            <div
-              class="pagination-post"
+            <nuxt-link
+              :to="'/blogs/' + (blog.next.slug ? blog.next.slug : blog.next.uuid)"
               v-if="blog.next"
-              :style="setBackgroundImage(blog.next.featured)"
+              class="pagination-link"
             >
-              <div class="overlay"></div>
-              <div class="content">
-                <div class="title">
-                  <span>{{blog.next.title}}</span>
-                  <!-- <i class="fal fa-bookmark"></i> -->
-                </div>
+              <div class="pagination-post" :style="setBackgroundImage(blog.next.featured)">
+                <div class="overlay"></div>
+                <div class="content">
+                  <div class="title">
+                    <span>{{blog.next.title}}</span>
+                    <!-- <i class="fal fa-bookmark"></i> -->
+                  </div>
 
-                <nuxt-link
-                  :to="'/blogs/' + (blog.next.slug ? blog.next.slug : blog.next.uuid)"
-                  class="pagination-link"
-                >
                   <i class="fal fa-arrow-right"></i>
                   Next Post
-                </nuxt-link>
+                </div>
               </div>
-            </div>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -204,10 +198,6 @@ export default {
     } catch (e) {
       error({ statusCode: 404 });
     }
-  },
-
-  async created() {
-    console.log(this.blog);
   },
 
   methods: {
