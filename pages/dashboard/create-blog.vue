@@ -139,7 +139,7 @@
                 type="text"
                 class="flex-fill"
                 v-model="inputTag"
-                @keyup.enter="createTag()"
+                @keyup="handleTagCreate"
                 placeholder="Add tag"
               />
             </div>
@@ -360,6 +360,16 @@ export default {
   },
 
   methods: {
+    handleTagCreate(e) {
+      if (e.code === "Comma") {
+        // remove trailing comma
+        // console.log(typeof (this.inputTag + ""));
+        this.inputTag = this.inputTag.substring(0, this.inputTag.length - 1);
+        // console.log(this.inputTag);
+        this.createTag();
+      }
+    },
+
     resetSaveTimer() {
       // autosave timer
       clearInterval(this.autosaveTimer);
@@ -470,19 +480,22 @@ export default {
         return;
       }
 
+      // Optimistic approach
+      let tagToAdd = { id: Math.random(), name: this.inputTag };
+      this.addTag(tagToAdd, false);
+      this.inputTag = null;
+
       this.$axios
         .post("/admin/tags/store", {
-          tag: this.inputTag,
+          tag: tagToAdd.name,
           language: "en"
         })
-        .then(response => {
-          if (response.data.status === "success") {
-            this.addTag({ id: Math.random(), name: this.inputTag }, false);
-            this.inputTag = null;
-          }
-        })
+        .then(response => {})
         .catch(error => {
           this.displayError(error);
+
+          // delete tag if failed
+          this.removeTag(tagToAdd);
         });
     },
 

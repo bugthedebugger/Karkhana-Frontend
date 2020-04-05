@@ -14,19 +14,25 @@
               >{{cat}}</div>
             </div>
 
-            <div class="tags ml-auto">
-              <form class="form-inline">
+            <div class="tags ml-auto" v-if="tags && tags.length > 0">
+              <!-- <form class="form-inline">
                 <label class="mr-2">Tag</label>
                 <select
                   class="form-control form-control-sm"
                   style="width: 200px"
-                  @change="fetchBlogs()"
+                  @change="fetchBlogs(false, true)"
                   v-model="selectedTag"
                 >
                   <option value="0">All</option>
                   <option v-for="tag in tags" :key="tag.id" :value="tag.id">{{tag.name}}</option>
                 </select>
-              </form>
+              </form>-->
+              <BlogsTagSelect
+                :tags="tags"
+                :value="$route.query.tag || 0"
+                @tagSelected="fetchBlogs(false, true)"
+                v-model="selectedTag"
+              />
             </div>
           </div>
 
@@ -58,12 +64,13 @@
                 </div>
               </div>
             </div>
-            <div class="mt-4 mb-4 text-center d-flex justify-content-center" v-if="loadingMoreBlog">
-              <Spinner :dark="true" />Loading...
-            </div>
           </div>
 
-          <div v-else>
+          <div class="mt-4 mb-4 text-center d-flex justify-content-center" v-if="loadingMoreBlog">
+            <Spinner :dark="true" />Loading...
+          </div>
+
+          <div v-else-if="blogPosts.length === 0">
             <h5 class="text-center mt-4 mb-4">No Blogs Found</h5>
           </div>
 
@@ -101,11 +108,12 @@
 import Footer from "~/components/Footer";
 import moment from "moment";
 import Spinner from "~/components/Spinner";
+import BlogsTagSelect from "~/components/BlogsTagSelect";
 
 export default {
   layout: "portfolio",
   auth: false,
-  components: { Footer, Spinner },
+  components: { Footer, Spinner, BlogsTagSelect },
   data() {
     return {
       fetchCategories: ["Latest"],
@@ -202,13 +210,17 @@ export default {
 
     fetchTags() {
       this.$axios.get(`/blog/tags?per_page=100`).then(response => {
-        if (response.data.message === "success") this.tags = response.data.data;
+        if (response.data.message === "success") {
+          this.tags = response.data.data;
+          this.tags.unshift({ id: 0, name: "All" });
+        }
       });
     },
 
-    fetchBlogs(concat) {
+    fetchBlogs(concat, resetPageNo) {
       this.loadingMoreBlog = true;
-
+      if (resetPageNo) this.paginationData.currentPage = 1;
+      if (!concat) this.blogPosts = [];
       let url = `/blog?per_page=${this.paginationData.perPage}`;
       url += `&page=${this.paginationData.currentPage}`;
       if (this.selectedTag > 0) url += "&tag=" + this.selectedTag;

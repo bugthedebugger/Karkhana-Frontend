@@ -1,0 +1,71 @@
+@import "@/styles/global.scss";
+
+.tags-select {
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+
+  @include k-font(
+    toRem(14px),
+    $k-text-color-2,
+    $font-weight-medium,
+    false,
+    $font-poppins
+  );
+
+  .tags-dropdown-toggle {
+    background: white;
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    min-width: 300px;
+    border-radius: 5px;
+
+    @include k-font(
+      toRem(14px),
+      $k-text-color-2,
+      $font-weight-medium,
+      false,
+      $font-poppins
+    );
+
+    .selected-tag {
+      color: $k-text-color-1;
+    }
+  }
+
+  .tags-list {
+    height: 200px;
+    padding: 0.5rem;
+    .tags-list-item {
+      padding: 0.1rem 1rem;
+      margin: 5px;
+      border-radius: 20px;
+      background-color: $k-info;
+      color: $k-white;
+      cursor: pointer;
+      @include k-font(
+        toRem(12px),
+        $k-white,
+        $font-weight-medium,
+        toRem(28px),
+        $font-poppins
+      );
+    }
+  }
+}
+
+// Chevron down instead of caret for dropdown
+.tags-dropdown-toggle:after {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: $font-weight-regular;
+  padding-left: 8px;
+  content: "\f078";
+}
+.dropdown-toggle {
+  display: flex;
+}
+.dropdown-toggle:after {
+  border: none;
+}
+//-----------END-------------------------------

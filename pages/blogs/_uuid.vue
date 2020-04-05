@@ -22,7 +22,12 @@
       <hr />
       <div class="blog-footer mb-4">
         <div v-if="blog.tags" class="tags-container">
-          <div class="tag" v-for="tag in blog.tags" :key="tag.id">{{tag.name}}</div>
+          <div
+            class="tag"
+            v-for="tag in blog.tags"
+            :key="tag.id"
+            @click="gotoTagPage(tag.id)"
+          >{{tag.name}}</div>
         </div>
         <div class="social-handlers">
           <label>Share</label>
@@ -227,6 +232,10 @@ export default {
 
     formatCreatedAt(date) {
       return moment(date).format("Do MMMM YYYY");
+    },
+
+    gotoTagPage(tagId) {
+      this.$router.push("/blogs?tag=" + tagId);
     }
   }
 };
