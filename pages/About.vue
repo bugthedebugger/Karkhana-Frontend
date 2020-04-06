@@ -1,10 +1,10 @@
 <template>
   <div>
     <AboutMain />
-    <!-- <AboutHistory /> -->
+    <AboutHistory />
     <AboutTeam />
-    <!-- <AboutEmployees /> -->
-    <!-- <AboutStats /> -->
+    <AboutEmployees />
+    <AboutStats />
     <AboutCareers />
     <Footer />
   </div>
@@ -12,21 +12,21 @@
 
 <script>
 import AboutMain from "~/components/AboutMain";
-// import AboutHistory from "~/components/AboutHistory";
+import AboutHistory from "~/components/AboutHistory";
 import AboutTeam from "~/components/AboutTeam";
-// import AboutEmployees from "~/components/AboutEmployees";
-// import AboutStats from "~/components/AboutStats";
+import AboutEmployees from "~/components/AboutEmployees";
+import AboutStats from "~/components/AboutStats";
 import AboutCareers from "~/components/AboutCareers";
 import Footer from "~/components/Footer";
 export default {
   layout: "portfolio",
   auth: false,
   components: {
-    // AboutHistory,
+    AboutHistory,
     AboutMain,
     AboutTeam,
-    // AboutEmployees,
-    // AboutStats,
+    AboutEmployees,
+    AboutStats,
     AboutCareers,
     Footer
   }

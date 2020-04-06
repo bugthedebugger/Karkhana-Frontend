@@ -1,7 +1,7 @@
 <template>
   <div class="product-detail">
     <ProductDetailIntro :product_info="selectedProduct" />
-    <!-- <ProductDetailTestimonial :product_info="selectedProduct" /> -->
+    <ProductDetailTestimonial :product_info="selectedProduct" />
     <Footer />
   </div>
 </template>

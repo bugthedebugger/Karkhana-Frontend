@@ -10,11 +10,11 @@
         </div>
 
         <div class="mt-4 text-center">
-          <!-- <button class="btn btn-outline-primary">Load Old Partners</button> -->
+          <button class="btn btn-outline-primary">Load Old Partners</button>
         </div>
       </div>
 
-      <!-- <div class="client-schools">
+      <div class="client-schools">
         <h2 class="title">Our Client Schools</h2>
 
         <div class="school-list">
@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </section>
 </template>

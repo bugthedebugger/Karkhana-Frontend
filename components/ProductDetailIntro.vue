@@ -82,7 +82,7 @@
 
               <hr />
 
-              <!-- <div class="product-subscribers">
+              <div class="product-subscribers">
                 <h2 class="title">Clients Currently Subscribed to Karkhana {{product_info.category}}</h2>
 
                 <perfect-scrollbar class="clients-list-wrapper">
@@ -96,12 +96,12 @@
                     </div>
                   </div>
                 </perfect-scrollbar>
-              </div> -->
+              </div>
 
-              <!-- <div v-if="product_info.curriculum_links">
+              <div v-if="product_info.curriculum_links">
                 <h1 class="title mt-4">Curriculum links</h1>
                 <div class="curriculum-links" v-html="product_info.curriculum_links"></div>
-              </div>-->
+              </div>
             </div>
           </div>
         </div>

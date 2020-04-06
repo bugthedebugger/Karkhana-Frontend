@@ -1,14 +1,14 @@
 <template>
   <div>
-    <!-- <HomeSlider :sliderImages="sliderImages" /> -->
+    <HomeSlider :sliderImages="sliderImages" />
 
-    <HomeCorona />
+    <!-- <HomeCorona /> -->
 
     <HomeAbout />
 
     <HomeEvents />
 
-    <!-- <HomePartners /> -->
+    <HomePartners />
 
     <HomeContact />
 
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-// import HomeSlider from "~/components/HomeSlider";
+import HomeSlider from "~/components/HomeSlider";
 import HomeCorona from "~/components/HomeCorona";
 import HomeAbout from "~/components/HomeAbout";
 import HomeEvents from "~/components/HomeEvents";
 import HomeContact from "~/components/HomeContact";
-// import HomePartners from "~/components/HomePartners";
+import HomePartners from "~/components/HomePartners";
 import Footer from "~/components/Footer";
 
 export default {
@@ -30,11 +30,11 @@ export default {
   auth: false,
   components: {
     HomeCorona,
-    // HomeSlider,
+    HomeSlider,
     HomeAbout,
     HomeEvents,
     HomeContact,
-    // HomePartners,
+    HomePartners,
     Footer
   },
   data() {
