@@ -1,6 +1,6 @@
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -35,7 +35,7 @@ export default {
   ** Global CSS
   */
   css: [
-    'styles/global.scss'
+    '@/styles/global.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -68,7 +68,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/toast',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/style-resources',
   ],
   sitemap: {
     path: '/sitemap.xml',

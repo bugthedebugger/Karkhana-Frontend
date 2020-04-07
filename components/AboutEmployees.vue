@@ -31,39 +31,34 @@
                   </a>
                 </p>
 
-                <p class="quote">{{activeEmployee.quote}}</p>
+                <!-- <p class="quote">{{activeEmployee.quote}}</p> -->
                 <div class="row">
                   <div class="col">
-                    <p class="characteristics-title">SKILLS</p>
-                    <ul class="no-bullets characteristics-list">
-                      <li v-for="skill in activeEmployee.skills" :key="skill">{{skill}}</li>
-
-                      <li class="social-links d-none d-md-block">
-                        <a :href="activeEmployee.socialLinks.facebook">
-                          <i class="fab fa-facebook"></i>
-                        </a>
-                        <a :href="activeEmployee.socialLinks.twitter">
-                          <i class="fab fa-twitter"></i>
-                        </a>
-                        <a :href="activeEmployee.socialLinks.instagram">
-                          <i class="fab fa-instagram"></i>
-                        </a>
-                        <a :href="activeEmployee.socialLinks.email">
-                          <i class="fal fa-envelope"></i>
-                        </a>
-                      </li>
-                    </ul>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam libero excepturi expedita magnam quidem quia unde
+                    laudantium voluptas dolor accusantium facere perspiciatis
+                    pariatur corrupti quis reprehenderit, dolore quisquam quae nihil?
+                    <br />
+                    <br />
+                    <a href="#" data-toggle="modal" data-target="#employeeDetailModal">
+                      View More
+                      <i class="fal fa-chevron-double-right ml-1"></i>
+                    </a>
+                    <p class="social-links d-none d-md-block mt-4">
+                      <a :href="activeEmployee.socialLinks.facebook">
+                        <i class="fab fa-facebook"></i>
+                      </a>
+                      <a :href="activeEmployee.socialLinks.twitter">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                      <a :href="activeEmployee.socialLinks.instagram">
+                        <i class="fab fa-instagram"></i>
+                      </a>
+                      <a :href="activeEmployee.socialLinks.email">
+                        <i class="fal fa-envelope"></i>
+                      </a>
+                    </p>
                   </div>
-                  <div class="col">
-                    <p class="characteristics-title">BACKGROUND</p>
-                    <ul class="no-bullets characteristics-list">
-                      <li
-                        v-for="background in activeEmployee.backgrounds"
-                        :key="background"
-                      >{{background}}</li>
-                    </ul>
-                  </div>
-                  <div class="col d-none d-md-block"></div>
                 </div>
               </div>
             </div>
@@ -90,6 +85,84 @@
           </div>
         </div>
       </perfect-scrollbar>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal fade" id="employeeDetailModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="d-flex w-100 justify-content-end">
+              <button
+                type="button"
+                class="close text-primary"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="content">
+              <div class="intro">
+                <div class="selected-employee">
+                  <img :src="activeEmployee.image" class="employee-image" />
+                </div>
+
+                <div class="person-description">
+                  <p class="designation">{{activeEmployee.designation}}</p>
+                  <p class="name">{{activeEmployee.name}}</p>
+                </div>
+              </div>
+
+              <br />Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Aperiam libero excepturi expedita magnam quidem quia unde
+              laudantium voluptas dolor accusantium facere perspiciatis
+              pariatur corrupti quis reprehenderit, dolore quisquam quae nihil?
+              <br />Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Aperiam libero excepturi expedita magnam quidem quia unde
+              laudantium voluptas dolor accusantium facere perspiciatis
+              pariatur corrupti quis reprehenderit, dolore quisquam quae nihil?
+              <br />Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Aperiam libero excepturi expedita magnam quidem quia unde
+              laudantium voluptas dolor accusantium facere perspiciatis
+              pariatur corrupti quis reprehenderit, dolore quisquam quae nihil?
+              <br />Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Aperiam libero excepturi expedita magnam quidem quia unde
+              laudantium voluptas dolor accusantium facere perspiciatis
+              pariatur corrupti quis reprehenderit, dolore quisquam quae nihil?
+              <br />Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Aperiam libero excepturi expedita magnam quidem quia unde
+              laudantium voluptas dolor accusantium facere perspiciatis
+              pariatur corrupti quis reprehenderit, dolore quisquam quae nihil?
+              <br />Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Aperiam libero excepturi expedita magnam quidem quia unde
+              laudantium voluptas dolor accusantium facere perspiciatis
+              pariatur corrupti quis reprehenderit, dolore quisquam quae nihil?
+              <br />
+              <br />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <p class="social-links text-center mr-auto ml-auto">
+              <a :href="activeEmployee.socialLinks.facebook">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a :href="activeEmployee.socialLinks.twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a :href="activeEmployee.socialLinks.instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a :href="activeEmployee.socialLinks.email">
+                <i class="fal fa-envelope"></i>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -119,13 +192,9 @@ export default {
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image: "/images/img-sakar.jpg",
-          skills: [
-            "Leadership",
-            "Marketing",
-            "Public Relations",
-            "Making Coffee"
-          ],
-          backgrounds: ["Electrical Eng.(TU)", "Nepal Robotocs Association"],
+          details: `
+            person-description
+          `,
           socialLinks: {
             facebook: "",
             twitter: "",
@@ -224,28 +293,6 @@ export default {
           quote:
             "<< I am pretty sure cheese is the greatest invention in history >>",
           image: "/images/img-samaya.jpg",
-          skills: [
-            "Leadership",
-            "Marketing",
-            "Public Relations",
-            "Making Coffee"
-          ],
-          backgrounds: ["Electrical Eng.(TU)", "Nepal Robotocs Association"],
-          socialLinks: {
-            facebook: "",
-            twitter: "",
-            email: "",
-            instagram: ""
-          }
-        },
-
-        {
-          name: "Suresh Ghimere",
-          designation: "Community Lead (Developers of Products and Knowledge)",
-          quote:
-            "<< I am pretty sure cheese is the greatest invention in history >>",
-          image:
-            "https://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/people19.png",
           skills: [
             "Leadership",
             "Marketing",

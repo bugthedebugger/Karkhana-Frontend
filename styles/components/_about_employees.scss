@@ -15,140 +15,6 @@
     @include media-breakpoint-down(md) {
       border: none;
     }
-
-    .selected-employee {
-      $size: 90%;
-      margin: 0 auto;
-
-      width: $size;
-      height: $size;
-      margin: 35px;
-      .image-circle-background {
-        width: $size;
-        padding-top: $size; //same height as height in percentage
-        // background-color: $k-red;
-        // opacity: 0.2;
-        background-color: rgba(255, 0, 0, 0.3);
-        border-radius: 100%;
-        text-align: center;
-        position: relative;
-        img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 90%;
-          height: 90%;
-          clip-path: circle(50%);
-        }
-      }
-
-      @include media-breakpoint-down(md) {
-        $size: 169px;
-        width: $size;
-        height: $size;
-        margin: 0 auto;
-
-        .image-circle-background {
-          width: $size;
-          height: $size;
-        }
-
-        img {
-          width: 80%;
-        }
-      }
-    }
-
-    .person-description {
-      padding-top: 100px;
-      .designation {
-        @include k-font(
-          toRem(16px),
-          $k-red,
-          $font-weight-bold,
-          toRem(28px),
-          $font-poppins
-        );
-      }
-
-      .name {
-        @include k-font(
-          toRem(36px),
-          $k-text-color-1,
-          $font-weight-regular,
-          toRem(43px),
-          $font-museo
-        );
-      }
-
-      .quote {
-        @include k-font(
-          toRem(20px),
-          $k-text-color-1,
-          $font-weight-bold,
-          toRem(28px),
-          $font-poppins
-        );
-      }
-
-      .characteristics-title {
-        margin-top: 60px;
-        @include k-font(
-          toRem(14px),
-          $k-text-color-5,
-          $font-weight-bold,
-          toRem(28px),
-          $font-raleway
-        );
-      }
-
-      .characteristics-list li {
-        margin-top: 19px;
-        @include k-font(
-          toRem(14px),
-          $k-text-color-1,
-          $font-weight-bold,
-          toRem(28px),
-          $font-raleway
-        );
-      }
-
-      .social-links {
-        i {
-          color: $k-text-color-5;
-          margin-right: 20px;
-        }
-      }
-
-      @include media-breakpoint-down(md) {
-        padding-top: 5px;
-        .designation {
-          text-align: center;
-          @include k-font(toRem(12px), false, false, toRem(28px), false);
-          margin-bottom: 0;
-        }
-
-        .name {
-          text-align: center;
-          @include k-font(toRem(20px), false, false, toRem(24px), false);
-        }
-
-        .quote {
-          @include k-font(toRem(14px), false, false, toRem(20px), false);
-          text-align: center;
-        }
-
-        .characteristics-title {
-          margin-top: 10px;
-          margin-bottom: 5px;
-        }
-
-        .characteristics-list li {
-          margin-top: 5px;
-        }
-      }
-    }
   }
 
   .employees-list-wrapper {
@@ -217,6 +83,169 @@
 
     .current-employee {
       color: $k-red;
+    }
+  }
+
+  .social-links {
+    i {
+      color: $k-text-color-5;
+      margin-right: 20px;
+    }
+  }
+
+  .modal {
+    .modal-header {
+      padding: 0.5rem 1rem;
+      border-bottom: none;
+    }
+
+    .modal-body {
+      max-height: 75vh;
+      overflow: auto;
+
+      .selected-employee {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        .employee-image {
+          width: 40%;
+          height: 40%;
+          border-radius: 50%;
+        }
+      }
+      .person-description {
+        text-align: center;
+        padding-top: 10px;
+      }
+    }
+
+    .modal-footer {
+      border-top: none;
+    }
+  }
+
+  .selected-employee {
+    $size: 90%;
+    margin: 0 auto;
+
+    width: $size;
+    height: $size;
+    margin: 35px;
+    .image-circle-background {
+      width: $size;
+      padding-top: $size; //same height as height in percentage
+      border-radius: 100%;
+      text-align: center;
+      position: relative;
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        height: 90%;
+        clip-path: circle(50%);
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      $size: 169px;
+      width: $size;
+      height: $size;
+      margin: 0 auto;
+
+      .image-circle-background {
+        width: $size;
+        height: $size;
+      }
+
+      img {
+        width: 80%;
+      }
+    }
+  }
+
+  .person-description {
+    padding-top: 100px;
+    .designation {
+      @include k-font(
+        toRem(16px),
+        $k-red,
+        $font-weight-bold,
+        toRem(28px),
+        $font-poppins
+      );
+    }
+
+    .name {
+      @include k-font(
+        toRem(36px),
+        $k-text-color-1,
+        $font-weight-regular,
+        toRem(43px),
+        $font-museo
+      );
+    }
+
+    .quote {
+      @include k-font(
+        toRem(20px),
+        $k-text-color-1,
+        $font-weight-bold,
+        toRem(28px),
+        $font-poppins
+      );
+    }
+
+    .characteristics-title {
+      margin-top: 60px;
+      @include k-font(
+        toRem(14px),
+        $k-text-color-5,
+        $font-weight-bold,
+        toRem(28px),
+        $font-raleway
+      );
+    }
+
+    .characteristics-list li {
+      margin-top: 19px;
+      @include k-font(
+        toRem(14px),
+        $k-text-color-1,
+        $font-weight-bold,
+        toRem(28px),
+        $font-raleway
+      );
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-top: 5px;
+      .designation {
+        text-align: center;
+        @include k-font(toRem(12px), false, false, toRem(28px), false);
+        margin-bottom: 0;
+      }
+
+      .name {
+        text-align: center;
+        @include k-font(toRem(20px), false, false, toRem(24px), false);
+      }
+
+      .quote {
+        @include k-font(toRem(14px), false, false, toRem(20px), false);
+        text-align: center;
+      }
+
+      .characteristics-title {
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+
+      .characteristics-list li {
+        margin-top: 5px;
+      }
     }
   }
 }
