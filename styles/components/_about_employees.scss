@@ -248,4 +248,14 @@
       }
     }
   }
+
+  .details{
+    @include k-font(
+      toRem(16px),
+      $k-text-color-1,
+      $font-weight-regular,
+      toRem(28px),
+      $font-raleway
+    );
+  }
 }
