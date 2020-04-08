@@ -3,6 +3,7 @@
 .careers-main {
   padding: 6rem 0;
   background-color: $k-white;
+  height: 100vh;
 
   @include media-breakpoint-down(md) {
     text-align: center;
