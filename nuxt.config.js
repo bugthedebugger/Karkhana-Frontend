@@ -25,7 +25,7 @@ export default {
     CAL_API_KEY: "AIzaSyBepIVJdLIVOAHb2afbyVAxcF-sqJpy3dM",
     CAL_BASE_URL: "https://www.googleapis.com/calendar/v3/calendars",
     CAL_ID: "karkhana.asia_mdt3kr5jmvh1ld77g0fqfldc0k@group.calendar.google.com",
-    BASE_API_URL: "http://13.229.231.52",
+    BASE_API_URL: "https://api.karkhana.asia",
     TINY_MCE_API_KEY: "xzdc1n6z3n8g0op6mby6jp3yvm3gapvhbgzmcyw7554g6jf7",
     MY_URL: "https://api.karkhana.asia"
   },
@@ -111,9 +111,9 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: `http://13.229.231.52/v1/login/email`, method: 'post', propertyName: 'token' },
+          login: { url: `https://api.karkhana.asia/v1/login/email`, method: 'post', propertyName: 'token' },
           logout: false,
-          user: { url: 'http://13.229.231.52/me', method: 'post', propertyName: 'data' }
+          user: { url: 'https://api.karkhana.asia/me', method: 'post', propertyName: 'data' }
         },
         tokenRequired: true,
         tokenType: 'Bearer'
