@@ -60,7 +60,7 @@ export default {
       minimized: false,
       links: [
         {
-          title: "Dashbaord",
+          title: "Dashboard",
           name: "dashboard",
           icon: "fal fa-tachometer-alt",
           url: "/dashboard"
@@ -71,6 +71,14 @@ export default {
           icon: "fal fa-align-left",
           url: "/dashboard/blogs"
         },
+
+        {
+          title: "Tags",
+          name: "dashboard-tags",
+          icon: "fal fa-align-left",
+          url: "/dashboard/tags"
+        },
+
         {
           title: "Pages",
           name: "dashboard-pages",
