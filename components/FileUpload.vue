@@ -37,7 +37,7 @@
 import Spinner from "~/components/Spinner";
 export default {
   name: "FileUpload",
-  props: ["uuid"],
+  props: ["uuid", "pageCode"],
   components: { Spinner },
   data() {
     return {
@@ -61,12 +61,23 @@ export default {
 
     onUpload() {
       const fd = new FormData();
-      Array.from(this.selectedFiles).forEach((selectedFile, index) => {
-        fd.append(`photos[${index}]`, selectedFile, selectedFile.name);
-      });
-      this.uploadLoading = true;
+
+      var url = `/admin/blog/gallery/${this.uuid}/upload`;
+      if (this.pageCode) {
+        url = '/admin/media/upload'; 
+        Array.from(this.selectedFiles).forEach((selectedFile, index) => {
+          fd.append(`media`, selectedFile, selectedFile.name);
+        });
+        fd.append("page_code", this.pageCode);
+      } else {
+        Array.from(this.selectedFiles).forEach((selectedFile, index) => {
+          fd.append(`photos[${index}]`, selectedFile, selectedFile.name);
+        });
+        this.uploadLoading = true;
+      }
+
       this.$axios
-        .post(`/admin/blog/gallery/${this.uuid}/upload`, fd, {
+        .post(url, fd, {
           onUploadProgress: this.handleUploadProgress
         })
         .then(response => {

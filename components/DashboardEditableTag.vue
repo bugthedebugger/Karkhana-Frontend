@@ -1,11 +1,13 @@
 <template>
   <div class="tag-wrapper">
-    <div v-if="editable"></div>
-    <div v-else>
-      <div class="tag" v-on:dblclick="editable = true">
-        <span class="tag-name"></span>
-        <i class="fal fa-times ml-1" @click="deleteTag()"></i>
-      </div>
+    <div class="tag d-flex" v-on:dblclick="editable = true" :class="{'--editable': editable}">
+      <div
+        class="tag-name align-self-center"
+        :contenteditable="editable"
+        @keypress.enter="editTag"
+        @input="updateInput"
+      >{{tag.name}}</div>
+      <i class="fal fa-times align-self-center ml-2" @click="deleteTag()"></i>
     </div>
   </div>
 </template>
@@ -24,39 +26,26 @@ export default {
     };
   },
 
-  created() {
-    if (
-      this.$auth.user.roles &&
-      this.$auth.user.roles.find(
-        role => role.name.toLowerCase() === "superadmin"
-      )
-    )
-      this.links.push({
-        title: "User Settings",
-        name: "user-settings",
-        icon: "fal fa-user",
-        url: "/dashboard/user-settings"
-      });
-    else
-      this.links.push({
-        title: "Profile",
-        name: "dashboard-profile",
-        icon: "fal fa-user",
-        url: "/dashboard/profile"
-      });
-
-    this.checkActiveTab(this.$route.name);
-  },
+  created() {},
 
   methods: {
+    updateInput() {
+      this.tagInput = this.$el.innerText;
+    },
+
     deleteTag() {
-      if (prompt("Are you sure ?", "Delete Tag")) {
+      if (this.editable) {
+        this.editable = false;
+        return;
+      }
+
+      if (confirm("Are you sure you want to delete tag ?")) {
         this.$emit("deleted");
       }
     },
 
-    editTag(id) {
-      this.$emit("edited");
+    editTag(e) {
+      this.$emit("edited", this.tagInput);
       this.editable = false;
     }
   }
@@ -64,5 +53,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/components/_dashboard_nav.scss";
+@import "@/styles/components/dashboard/_editable_tag.scss";
 </style>

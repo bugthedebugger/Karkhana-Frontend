@@ -1,0 +1,19 @@
+@import "@/styles/global.scss";
+
+.tag {
+  padding: 5px 10px 5px 25px;
+  margin-right: 5px;
+  margin-top: 5px;
+  border-radius: 20px;
+  background-color: $k-info;
+  color: $k-white;
+  cursor: pointer;
+
+  &.--editable {
+    background-color: $k-white;
+    color: $k-info;
+    border: 1px solid $k-info;
+    outline: none;
+    padding: 5px;
+  }
+}

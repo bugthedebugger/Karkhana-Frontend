@@ -6,7 +6,18 @@
 
     <div class="container-card">
       <div v-if="tags">
-        <EditableTag v-for="(tag, index) in tags" :key="index" />
+        <div class="tags-container d-flex" v-for="(item, key, index) in tags" :key="index">
+          <h2 class="mr-4">{{upperCaseKey(key) + key}}</h2>
+          <div class="d-flex flex-wrap mb-4 ml-4">
+            <EditableTag
+              v-for="(tag, index) in item"
+              :key="index"
+              :tag="tag"
+              @edited="(newName) => handleEdit(newName, tag.id)"
+              @deleted="handleDelete(tag.id)"
+            />
+          </div>
+        </div>
       </div>
       <div v-else>
         <Loading />
@@ -37,15 +48,49 @@ export default {
     fetchTags() {
       this.tags = null;
       this.$axios.get(`/admin/tags?per_page=1000`).then(response => {
-        this.tags = response.data.data;
+        let tags = response.data.data;
+        let tagData = {};
+        // arrange by alphabetical order
+        tags.forEach(tag => {
+          let key = tag.name[0].toLowerCase();
+          if (tagData[key]) tagData[key].push(tag);
+          else tagData[key] = [tag];
+        });
+
+        let sortedTagData = {};
+        Object.keys(tagData)
+          .sort()
+          .forEach(key => {
+            sortedTagData[key] = tagData[key];
+          });
+        this.tags = sortedTagData;
       });
     },
 
-    deleteTag(id) {
+    handleDelete(id) {
       if (confirm("Are you sure you want to delete this tag ?"))
-        this.$axios.delete(`/admin/blog/delete/${uuid}`).then(response => {
-          this.blogPosts.splice(index, 1);
+        this.$axios.delete(`/admin/tags/delete/${id}`).then(response => {
+          this.fetchTags();
         });
+    },
+
+    handleEdit(newName, id) {
+      console.log("edit " + newName);
+      this.$axios.delete(`/admin/tags/delete/${id}`).then(response => {
+        this.fetchTags();
+      });
+    },
+
+    // deleteTag(id) {
+    //   if (confirm("Are you sure you want to delete this tag ?"))
+    //     this.$axios.delete(`/admin/tags/delete/${id}`).then(response => {
+    //       this.fetchTags();
+    //     });
+    // },
+
+    upperCaseKey(key) {
+      if (key.length > 0 && key.match(/[a-z]/i)) return key.toUpperCase();
+      return "";
     }
   }
 };

@@ -1,1 +1,7 @@
-// @import "@/styles/global.scss";
+@import "@/styles/global.scss";
+
+.tags-container {
+  background-color: $k-dashboard-background;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
