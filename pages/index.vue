@@ -1,14 +1,18 @@
 <template>
   <div>
-    <!-- <HomeSlider :sliderImages="sliderImages" /> -->
+    <HomeSlider :sliderImages="landingData.sliders" />
 
-    <HomeCorona />
+    <!-- <HomeCorona /> -->
 
-    <HomeAbout />
+    <HomeAbout
+      v-if="landingData.about && landingData.stats"
+      :aboutData="landingData.about"
+      :stats="landingData.stats"
+    />
 
     <HomeEvents />
 
-    <!-- <HomePartners /> -->
+    <HomePartners v-if="landingData.partners" :partnersData="landingData.partners" />
 
     <HomeContact />
 
@@ -17,12 +21,12 @@
 </template>
 
 <script>
-// import HomeSlider from "~/components/HomeSlider";
+import HomeSlider from "~/components/HomeSlider";
 import HomeCorona from "~/components/HomeCorona";
 import HomeAbout from "~/components/HomeAbout";
 import HomeEvents from "~/components/HomeEvents";
 import HomeContact from "~/components/HomeContact";
-// import HomePartners from "~/components/HomePartners";
+import HomePartners from "~/components/HomePartners";
 import Footer from "~/components/Footer";
 
 export default {
@@ -30,25 +34,34 @@ export default {
   auth: false,
   components: {
     HomeCorona,
-    // HomeSlider,
+    HomeSlider,
     HomeAbout,
     HomeEvents,
     HomeContact,
-    // HomePartners,
+    HomePartners,
     Footer
   },
+
+  async asyncData({ $axios, params, error }) {
+    try {
+      const response = await $axios.get("/pages/landing");
+      console.log(response.data.data);
+      return { landingData: response.data.data };
+    } catch (e) {
+      error({ statusCode: 404 });
+    }
+  },
+
   data() {
-    return {
-      // slides: []
-    };
+    return {};
   },
   created() {
     this.$store.dispatch("home/fetchData");
   },
   computed: {
-    sliderImages() {
-      return this.$store.getters["home/data"].sliderImages;
-    }
+    // sliderImages() {
+    //   return this.$store.getters["home/data"].sliderImages;
+    // }
   }
 };
 </script>

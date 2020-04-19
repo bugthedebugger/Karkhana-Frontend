@@ -3,10 +3,10 @@
     <div class="slides">
       <VueSlickCarousel v-bind="sliderSettings" ref="carousel">
         <div class="slide" v-for="(slide, index) in sliderImages" :key="index">
-          <h1 class="slide-title">{{slide.title}}</h1>
-          <div class="slide-image" :style="'background-image: url(' + slide.image + ')'"></div>
+          <h1 class="slide-title">{{slide.quote}}</h1>
+          <div class="slide-image" :style="'background-image: url(' + slide.path + ')'"></div>
           <div class="overlay"></div>
-          <!-- <button class="btn btn-primary btn-cta slide-cta">{{slide.cta}}</button> -->
+          <button class="btn btn-primary btn-cta slide-cta">{{slide.button.label}}</button>
         </div>
       </VueSlickCarousel>
 

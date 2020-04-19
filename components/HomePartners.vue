@@ -8,14 +8,12 @@
         <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 content">
           <div class="align-middle">
             <p class="work-with-us">WORK WITH US</p>
-            <p class="our-partners">Our Partners</p>
+            <p class="our-partners">{{partnersData.label}}</p>
             <p class="partners-content">
-              In our efforts to empower people to build a better future Karkhana partners with
-              universities, nonprofits and governments from around the world. Learn more about our
-              partnerships by clicking on the logos.
+              {{partnersData.text}}
             </p>
 
-            <nuxt-link to="/partners" class="btn btn-primary">Learn More</nuxt-link>
+            <nuxt-link to="/partners" class="btn btn-primary text-uppercase">{{partnersData.button_label}}</nuxt-link>
           </div>
         </div>
       </div>
@@ -25,7 +23,8 @@
 
 <script>
 export default {
-  name: "HomePartners"
+  name: "HomePartners",
+  props: ["partnersData"]
 };
 </script>
 

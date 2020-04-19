@@ -26,6 +26,7 @@
             </select>
           </div>
 
+          <!-- Slider Images -->
           <div class="slider-images mb-4">
             <h5>Slider Images</h5>
             <SliderImageInput
@@ -34,6 +35,7 @@
             />
           </div>
 
+          <!-- About -->
           <div class="about mb-4">
             <h5>About</h5>
             <div class="row">
@@ -65,41 +67,70 @@
             </div>
           </div>
 
+          <!-- Stats -->
           <div class="stats mb-4">
             <h5>Stats</h5>
             <div class="row">
               <div class="col">
+                <label class="mb-1">Students Reached</label>
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="Students Reached"
+                  class="form-control form-control-sm mb-1"
+                  placeholder="Students Reached Label"
                   v-model="landingData.sections.stats.students_reached.label"
+                />
+                <input
+                  type="text"
+                  class="form-control form-control-sm mb-1"
+                  placeholder="Students Reached Value"
+                  v-model="landingData.sections.stats.students_reached.value"
                 />
               </div>
               <div class="col">
+                <label class="mb-1">Employees</label>
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="Employees"
+                  class="form-control form-control-sm mb-1"
+                  placeholder="Employees Label"
                   v-model="landingData.sections.stats.employees.label"
+                />
+                <input
+                  type="text"
+                  class="form-control form-control-sm mb-1"
+                  placeholder="Employees Value"
+                  v-model="landingData.sections.stats.employees.value"
                 />
               </div>
             </div>
             <div class="row mt-2">
               <div class="col">
+                <label class="mb-1">Countries We Work In</label>
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="Countries We Work In"
+                  class="form-control form-control-sm mb-1"
+                  placeholder="Countries We Work In - Label"
                   v-model="landingData.sections.stats.countried_we_work_in.label"
+                />
+                <input
+                  type="text"
+                  class="form-control form-control-sm mb-1"
+                  placeholder="Countries We Work In - Value"
+                  v-model="landingData.sections.stats.countried_we_work_in.value"
                 />
               </div>
               <div class="col">
+                <label class="mb-1">Cities We Work In</label>
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="Cities We Work In"
+                  class="form-control form-control-sm mb-1"
+                  placeholder="Cities We Work In - Label"
                   v-model="landingData.sections.stats.cities_we_work_in.label"
+                />
+                <input
+                  type="text"
+                  class="form-control form-control-sm mb-1"
+                  placeholder="Cities We Work In - Value"
+                  v-model="landingData.sections.stats.cities_we_work_in.value"
                 />
               </div>
             </div>
@@ -206,13 +237,25 @@ export default {
 
       // Stats
       if (!this.landingData.sections.stats.students_reached)
-        this.landingData.sections.stats.students_reached = { label: null };
+        this.landingData.sections.stats.students_reached = {
+          label: null,
+          value: null
+        };
       if (!this.landingData.sections.stats.employees)
-        this.landingData.sections.stats.employees = { label: null };
+        this.landingData.sections.stats.employees = {
+          label: null,
+          value: null
+        };
       if (!this.landingData.sections.stats.countried_we_work_in)
-        this.landingData.sections.stats.countried_we_work_in = { label: null };
+        this.landingData.sections.stats.countried_we_work_in = {
+          label: null,
+          value: null
+        };
       if (!this.landingData.sections.stats.cities_we_work_in)
-        this.landingData.sections.stats.cities_we_work_in = { label: null };
+        this.landingData.sections.stats.cities_we_work_in = {
+          label: null,
+          value: null
+        };
 
       // About
       if (!this.landingData.sections.partners)
@@ -238,7 +281,9 @@ export default {
       // Stats
       if (resp.sections.stats) {
         Object.keys(resp.sections.stats).some(key => {
-          if (!resp.sections.stats[key].label) {
+          if (
+            !(resp.sections.stats[key].label || resp.sections.stats[key].value)
+          ) {
             resp.sections.stats = null;
             return true;
           }

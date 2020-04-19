@@ -4,15 +4,12 @@
     <div class="container pb-5">
       <div class="row">
         <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 content">
-          <h5 class="about-karkhana">ABOUT KARKHANA</h5>
+          <h5 class="about-karkhana text-uppercase">{{ aboutData.label }}</h5>
           <p class="about-karkhana-detail">
-            <span class="first-letter">K</span>
-            arkhana believes that makers today are the shapers of the future. Making 
-            teaches children to be resourceful,  to reshape their own environment, 
-            to solve novel problems, and thus makes them confident in the face of 
-            novel and unexpected problems. 
+            <span class="first-letter">{{ aboutData.text.charAt(0).toUpperCase() }}</span>
+            {{aboutData.text.slice(0)}}
             <br />
-            <nuxt-link to="/about" class="learn-more">LEARN MORE</nuxt-link>
+            <nuxt-link to="/about" class="learn-more text-uppercase">{{aboutData.button_label}}</nuxt-link>
           </p>
 
           <div class="row">
@@ -112,6 +109,7 @@
 <script>
 export default {
   name: "HomeAbout",
+  props: ["aboutData"],
   data() {
     return {};
   }
