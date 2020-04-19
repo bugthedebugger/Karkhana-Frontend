@@ -26,13 +26,16 @@
               data-target="#sliderGalleryModal"
               @click="activeSlider = sliderImage"
             ></div>
-            <textarea
-              class="form-control"
-              rows="3"
+
+            <TextArea
+              id="slider-quote"
               placeholder="Slider Quote"
+              rows="3"
+              :maxlength="200"
               v-model="sliderImage.quote"
               @input="emitUpdate()"
-            ></textarea>
+            />
+
             <div class="form-group form-check mb-1">
               <input
                 type="checkbox"
@@ -43,24 +46,22 @@
               />
               <label class="form-check-label" :for="'is-hidden' + i">Hide slider</label>
             </div>
-            <div class="d-flex">
-              <div class="form-group p-1 mb-0">
-                <label class="mb-0" :form="'label' + i">Label</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  :id="'label' + i"
-                  placeholder="Label"
-                  v-model="sliderImage.button.label"
-                  @input="emitUpdate()"
-                />
-              </div>
+            <div class="form-group p-1 mb-0">
+              <label class="mb-0" :form="'label' + i">Label</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                :id="'label' + i"
+                placeholder="Label"
+                v-model="sliderImage.button.label"
+                @input="emitUpdate()"
+              />
 
               <div class="form-group p-1 mb-0">
                 <label class="mb-0" :form="'action' + i">Action</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   :id="'action' + i"
                   placeholder="Action"
                   v-model="sliderImage.button.action"
@@ -116,10 +117,20 @@
 </template>
 
 <script>
+import TextArea from "~/components/core/TextArea";
+
 export default {
   name: "SliderImageInput",
-  components: {},
-  props: ["_sliderImages"],
+  components: { TextArea },
+  props: {
+    _sliderImages: {
+      type: Array
+    },
+    max: {
+      type: Number,
+      default: 4
+    }
+  },
   data() {
     return {
       activeSlider: null,
@@ -134,6 +145,10 @@ export default {
 
   methods: {
     add() {
+      if (this.sliderImages.length >= this.max) {
+        alert(this.max + " Sliders are allowed");
+        return;
+      }
       this.sliderImages.push({
         quote: null,
         order: this.sliderImages.length + 1,

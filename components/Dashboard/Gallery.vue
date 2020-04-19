@@ -54,6 +54,7 @@ export default {
 
     handleFileUploaded() {
       this.fetchGalleryImages();
+      this.$emit("newImage");
     }
   }
 };

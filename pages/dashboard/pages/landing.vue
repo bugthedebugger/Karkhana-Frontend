@@ -1,10 +1,10 @@
 <template>
   <div class="d-flex">
-    <div class="flex-grow-1">
+    <div class="dashboard-content flex-grow-1">
       <div class="container-card pt-3">
         <div v-if="landingData.sections">
           <div class="toolbar d-flex mb-4 mt-4">
-            <h2 class="title mb-4">Landing Page</h2>
+            <h1 class="title mb-4">Landing Page</h1>
 
             <div class="ml-auto">
               <button class="btn btn-primary btn-sm mr-2" @click="save()" :disabled="saveLoading">
@@ -40,11 +40,12 @@
             <h5>About</h5>
             <div class="row">
               <div class="col">
-                <textarea
-                  class="form-control mb-2"
-                  v-model="landingData.sections.about.text"
+                <TextArea
+                  id="about-text"
                   placeholder="About Text"
-                ></textarea>
+                  :maxlength="200"
+                  v-model="landingData.sections.about.text"
+                />
               </div>
             </div>
             <div class="row">
@@ -116,11 +117,12 @@
             <h5>Partners</h5>
             <div class="row">
               <div class="col">
-                <textarea
-                  class="form-control mb-2"
-                  v-model="landingData.sections.partners.text"
+                <TextArea
+                  id="partners-text"
                   placeholder="Partners Text"
-                ></textarea>
+                  :maxlength="200"
+                  v-model="landingData.sections.partners.text"
+                />
               </div>
             </div>
             <div class="row">
@@ -160,11 +162,12 @@ import Loading from "~/components/Loading";
 import Spinner from "~/components/Spinner";
 import Gallery from "~/components/Dashboard/Gallery";
 import SliderImageInput from "~/components/Dashboard/SliderImageInput";
+import TextArea from "~/components/core/TextArea";
 
 export default {
   layout: "dashboard",
   auth: true,
-  components: { Loading, Spinner, Gallery, SliderImageInput },
+  components: { Loading, Spinner, Gallery, SliderImageInput, TextArea },
   data() {
     return {
       saveLoading: false,
