@@ -79,12 +79,6 @@
                   placeholder="Students Reached Label"
                   v-model="landingData.sections.stats.students_reached.label"
                 />
-                <input
-                  type="text"
-                  class="form-control form-control-sm mb-1"
-                  placeholder="Students Reached Value"
-                  v-model="landingData.sections.stats.students_reached.value"
-                />
               </div>
               <div class="col">
                 <label class="mb-1">Employees</label>
@@ -93,12 +87,6 @@
                   class="form-control form-control-sm mb-1"
                   placeholder="Employees Label"
                   v-model="landingData.sections.stats.employees.label"
-                />
-                <input
-                  type="text"
-                  class="form-control form-control-sm mb-1"
-                  placeholder="Employees Value"
-                  v-model="landingData.sections.stats.employees.value"
                 />
               </div>
             </div>
@@ -109,13 +97,7 @@
                   type="text"
                   class="form-control form-control-sm mb-1"
                   placeholder="Countries We Work In - Label"
-                  v-model="landingData.sections.stats.countried_we_work_in.label"
-                />
-                <input
-                  type="text"
-                  class="form-control form-control-sm mb-1"
-                  placeholder="Countries We Work In - Value"
-                  v-model="landingData.sections.stats.countried_we_work_in.value"
+                  v-model="landingData.sections.stats.countries_we_work_in.label"
                 />
               </div>
               <div class="col">
@@ -125,12 +107,6 @@
                   class="form-control form-control-sm mb-1"
                   placeholder="Cities We Work In - Label"
                   v-model="landingData.sections.stats.cities_we_work_in.label"
-                />
-                <input
-                  type="text"
-                  class="form-control form-control-sm mb-1"
-                  placeholder="Cities We Work In - Value"
-                  v-model="landingData.sections.stats.cities_we_work_in.value"
                 />
               </div>
             </div>
@@ -238,23 +214,19 @@ export default {
       // Stats
       if (!this.landingData.sections.stats.students_reached)
         this.landingData.sections.stats.students_reached = {
-          label: null,
-          value: null
+          label: null
         };
       if (!this.landingData.sections.stats.employees)
         this.landingData.sections.stats.employees = {
-          label: null,
-          value: null
+          label: null
         };
-      if (!this.landingData.sections.stats.countried_we_work_in)
-        this.landingData.sections.stats.countried_we_work_in = {
-          label: null,
-          value: null
+      if (!this.landingData.sections.stats.countries_we_work_in)
+        this.landingData.sections.stats.countries_we_work_in = {
+          label: null
         };
       if (!this.landingData.sections.stats.cities_we_work_in)
         this.landingData.sections.stats.cities_we_work_in = {
-          label: null,
-          value: null
+          label: null
         };
 
       // About
@@ -281,9 +253,7 @@ export default {
       // Stats
       if (resp.sections.stats) {
         Object.keys(resp.sections.stats).some(key => {
-          if (
-            !(resp.sections.stats[key].label || resp.sections.stats[key].value)
-          ) {
+          if (!resp.sections.stats[key].label) {
             resp.sections.stats = null;
             return true;
           }

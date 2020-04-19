@@ -21,8 +21,12 @@
                   </i>
                 </div>
                 <div class="stat-detail">
-                  <div class="stat-title">Students Reached</div>
-                  <div class="stat-data">6100+</div>
+                  <div
+                    class="stat-title"
+                  >{{stats.students_reached ? stats.students_reached.label : ''}}</div>
+                  <div
+                    class="stat-data"
+                  >{{stats.students_reached ? stats.students_reached.value : ''}}</div>
                 </div>
               </div>
             </div>
@@ -35,8 +39,8 @@
                   </i>
                 </div>
                 <div class="stat-detail">
-                  <div class="stat-title">Employees</div>
-                  <div class="stat-data">52+</div>
+                  <div class="stat-title">{{stats.employees ? stats.employees.label : ''}}</div>
+                  <div class="stat-data">{{stats.employees ? stats.employees.value : ''}}</div>
                 </div>
               </div>
             </div>
@@ -51,8 +55,12 @@
                   </i>
                 </div>
                 <div class="stat-detail">
-                  <div class="stat-title">Countries we work in</div>
-                  <div class="stat-data">3</div>
+                  <div
+                    class="stat-title"
+                  >{{stats.countries_we_work_in ? stats.countries_we_work_in.label : ''}}</div>
+                  <div
+                    class="stat-data"
+                  >{{stats.countries_we_work_in ? stats.countries_we_work_in.value : ''}}</div>
                 </div>
               </div>
             </div>
@@ -65,8 +73,12 @@
                   </i>
                 </div>
                 <div class="stat-detail">
-                  <div class="stat-title">Cities we work in</div>
-                  <div class="stat-data">6</div>
+                  <div
+                    class="stat-title"
+                  >{{stats.cities_we_work_in ? stats.cities_we_work_in.label : ''}}</div>
+                  <div
+                    class="stat-data"
+                  >{{stats.cities_we_work_in ? stats.cities_we_work_in.value : ''}}</div>
                 </div>
               </div>
             </div>
@@ -109,7 +121,7 @@
 <script>
 export default {
   name: "HomeAbout",
-  props: ["aboutData"],
+  props: ["aboutData", "stats"],
   data() {
     return {};
   }
