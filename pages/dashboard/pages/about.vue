@@ -186,6 +186,7 @@
                   <h6>Team Image</h6>
                   <GalleryImageInput
                     id="team-image"
+                    page_code="about"
                     :value="aboutData.sections.team.team_photo.path"
                     v-model="aboutData.sections.team.team_photo.path"
                   />
@@ -276,55 +277,27 @@ export default {
       let resp = JSON.parse(JSON.stringify(this.aboutData));
 
       // Karkhana building
-      if (resp.sections.karkhana_building) {
-        // Object.keys(resp.sections.karkhana_building).some(key => {
-        //   if (!resp.sections.karkhana_building[key]) {
-        //     resp.sections.karkhana_building = null;
-        //     return true;
-        //   }
-        // });
-        if (this.hasNullValue(resp.sections.karkhana_building))
-          resp.sections.karkhana_building = null;
-      }
+      if (this.hasNullValue(resp.sections.karkhana_building))
+        resp.sections.karkhana_building = null;
 
       // Head Section
-      if (resp.sections.head_section) {
-        // Object.keys(resp.sections.head_section).some(key => {
-        //   if (!resp.sections.head_section[key]) {
-        //     resp.sections.head_section = null;
-        //     return true;
-        //   }
-        // });
-        if (this.hasNullValue(resp.sections.head_section))
-          resp.sections.head_section = null;
-      }
+      if (this.hasNullValue(resp.sections.head_section))
+        resp.sections.head_section = null;
 
       // Mission Vision
-      if (resp.sections.mission_vision) {
-        // Object.keys(resp.sections.partners).some(key => {
-        //   if (!resp.sections.partners[key]) {
-        //     resp.sections.partners = null;
-        //     return true;
-        //   }
-        // });
-        if (this.hasNullValue(resp.sections.mission_vision))
-          resp.sections.mission_vision = null;
-      }
+      if (this.hasNullValue(resp.sections.mission_vision))
+        resp.sections.mission_vision = null;
 
       // Values
-      if (resp.sections.values) {
-        if (this.hasNullValue(resp.sections.values))
-          resp.sections.values = null;
-      }
+      if (this.hasNullValue(resp.sections.values)) resp.sections.values = null;
 
-      if (resp.sections.team) {
-        if (this.hasNullValue(resp.sections.team)) resp.sections.team = null;
-      }
+      if (this.hasNullValue(resp.sections.team)) resp.sections.team = null;
 
       return resp;
     },
 
     hasNullValue(obj) {
+      if (obj === null) return true;
       let keys = Object.keys(obj);
       for (let i = 0; i < keys.length; i++) {
         let key = keys[i];

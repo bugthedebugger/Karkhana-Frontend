@@ -50,7 +50,7 @@
 export default {
   name: "GalleryImageInput",
   components: {},
-  props: ["id", "value", "image_class"],
+  props: ["id", "value", "image_class", "page_code"],
   data() {
     return {
       galleryImages: null,
@@ -77,7 +77,7 @@ export default {
     },
 
     fetchGalleryImages() {
-      this.$axios.get("/admin/media/landing").then(response => {
+      this.$axios.get("/admin/media/" + this.page_code).then(response => {
         this.galleryImages = response.data.data;
       });
     },
