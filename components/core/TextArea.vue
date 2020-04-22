@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group">
+  <div class="form-group" :class="custom_class">
     <label v-if="label" :for="id">{{label}}</label>
 
     <textarea
@@ -52,6 +52,10 @@ export default {
 
     maxlength: {
       type: Number
+    },
+
+    custom_class: {
+      type: String
     }
   },
 

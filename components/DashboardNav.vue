@@ -84,6 +84,13 @@ export default {
           name: "dashboard-pages",
           icon: "fal fa-copy",
           url: "/dashboard/pages"
+        },
+
+        {
+          title: "Products",
+          name: "dashboard-products",
+          icon: "fal fa-copy",
+          url: "/dashboard/products"
         }
       ],
       logoutLoading: false

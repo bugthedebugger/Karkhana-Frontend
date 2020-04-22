@@ -1,5 +1,5 @@
 <template>
-  <div class>
+  <div>
     <div class="d-flex">
       <div class="dashboard-content flex-grow-1">
         <div class="toolbar d-flex mb-4 mt-4">

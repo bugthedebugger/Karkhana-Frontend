@@ -1,0 +1,371 @@
+<template>
+  <div>
+    <div class="d-flex">
+      <div class="dashboard-content flex-grow-1">
+        <div class="toolbar d-flex mb-4 mt-4">
+          <h1 class="title mb-4">Create Product</h1>
+
+          <div class="ml-auto">
+            <button
+              class="btn btn-primary btn-sm mr-2"
+              @click="save()"
+              :disabled="saveLoading || !valid()"
+            >
+              <Spinner v-if="saveLoading" />Save
+            </button>
+            <nuxt-link to="/dashboard/products" class="btn btn-secondary btn-sm">Cancel</nuxt-link>
+          </div>
+        </div>
+
+        <div class="container-card mt-0">
+          <div class="product-input" v-if="value">
+            <!-- Logo -->
+            <div class="row mb-4">
+              <div class="col">
+                <div class="d-flex justify-content-center">
+                  <div>
+                    <label>Logo *</label>
+                    <GalleryImageInput
+                      ref="logoImageInput"
+                      id="logo"
+                      page_code="products"
+                      :value="value.logo"
+                      v-model="value.logo"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="d-flex justify-content-center">
+                  <div>
+                    <label>Featured Image</label>
+                    <GalleryImageInput
+                      ref="featuredImageInput"
+                      id="featured-image"
+                      page_code="products"
+                      :value="value.featured_image"
+                      v-model="value.featured_image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Color -->
+            <div class="row">
+              <div class="col">
+                <label>Color *</label>
+                <input type="color" class="form-control form-control-sm mb-4" v-model="value.color" />
+              </div>
+
+              <div class="col">
+                <label>Secondary Color *</label>
+                <input
+                  type="color"
+                  class="form-control form-control-sm mb-4"
+                  v-model="value.secondary_color"
+                />
+              </div>
+            </div>
+
+            <!-- Unique Code -->
+            <label>Unique Product Code *</label>
+            <input
+              type="text"
+              class="form-control form-control-sm mb-4"
+              placeholder="Unique product code"
+              v-model="value.code"
+            />
+
+            <!-- Name -->
+            <label>Product Name *</label>
+            <input
+              type="text"
+              class="form-control form-control-sm mb-4"
+              placeholder="Product Name"
+              v-model="value.name"
+            />
+
+            <!-- Tag -->
+            <label>Tag *</label>
+            <TextArea id="tag" v-model="value.tag" rows="2" :maxlength="100" />
+
+            <!-- Grade && Type -->
+            <div class="row">
+              <div class="col">
+                <label>Grade *</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm mb-4"
+                  placeholder="Grade"
+                  v-model="value.grade"
+                />
+              </div>
+              <div class="col">
+                <label>Type *</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm mb-4"
+                  placeholder="Type"
+                  v-model="value.type"
+                />
+              </div>
+            </div>
+
+            <!-- School Services -->
+            <div class="row">
+              <div class="col">
+                <label>School Services *</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm mb-4"
+                  placeholder="School Services"
+                  v-model="value.school_services"
+                />
+              </div>
+            </div>
+
+            <!-- Student Services -->
+            <div class="row">
+              <div class="col">
+                <label>Student Services *</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm mb-4"
+                  placeholder="Student Services"
+                  v-model="value.student_services"
+                />
+              </div>
+            </div>
+
+            <!-- Description -->
+            <label>Description *</label>
+            <TextArea id="tag" v-model="value.description" rows="5" :maxlength="1000" />
+
+            <!-- Facts -->
+            <div class="facts-input mb-4">
+              <label>Facts</label>
+              <div class="d-flex flex-column">
+                <div class="fact d-flex mb-2" v-for="(fact, index) in value.facts" :key="index">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm align-self-center mr-2"
+                    placeholder="Student Services"
+                    v-model="value.facts[index]"
+                  />
+                  <button
+                    class="btn btn-secondary btn-sm align-self-center mr-2"
+                    @click="removeFact(index)"
+                  >
+                    <i class="fal fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-success" @click="addFact()">Add new Fact</button>
+            </div>
+
+            <!-- Features -->
+            <div class="features-input mb-4">
+              <label>Features</label>
+              <div class="d-flex flex-column">
+                <div
+                  class="feature d-flex mb-2"
+                  v-for="(feature, index) in value.features"
+                  :key="index"
+                >
+                  <div class="align-self-center mr-2">
+                    <GalleryImageInput
+                      :ref="'featureImageInput' + index"
+                      :id="'feature-image' + index"
+                      page_code="products"
+                      v-model="value.features[index].logo"
+                      value="value.features[index].logo"
+                      width="50"
+                      height="50"
+                    />
+                  </div>
+
+                  <div class="align-self-center mr-2">
+                    <TextArea
+                      :id="'feature-' + index + 'text'"
+                      custom_class="mb-0"
+                      v-model="value.features[index].feature"
+                      rows="2"
+                    />
+                  </div>
+
+                  <button
+                    class="btn btn-secondary btn-sm align-self-center"
+                    @click="removeFeature(index)"
+                  >
+                    <i class="fal fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-success" @click="addFeature()">Add new Feature</button>
+            </div>
+
+            <!-- Brochure -->
+            <label>Brochure</label>
+            <input
+              type="text"
+              class="form-control form-control-sm mb-4"
+              placeholder="Brochure"
+              v-model="value.brochure"
+            />
+          </div>
+          <div v-else>
+            <Loading />
+          </div>
+        </div>
+      </div>
+
+      <div class="ml-2 p-4 pl-2">
+        <Gallery pageCode="products" @newImage="fetchGalleryImages()" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import GalleryImageInput from "~/components/Dashboard/GalleryImageInput";
+import TextArea from "~/components/core/TextArea";
+import Gallery from "~/components/Dashboard/Gallery";
+import Helper from "~/helpers/common";
+import Loading from "~/components/Loading";
+
+export default {
+  name: "CreateProduct",
+  layout: "dashboard",
+  auth: true,
+  components: { GalleryImageInput, TextArea, Gallery, Loading },
+  data() {
+    return {
+      mode: false, //false: create, true: update
+      value: null,
+      saveLoading: false
+    };
+  },
+
+  created() {
+    let id = this.$route.query.id;
+    if (id === "new-product") {
+      this.mode = false;
+      this.value = this.initProduct();
+    } else {
+      this.mode = true;
+      this.fetchProduct(id);
+    }
+  },
+
+  methods: {
+    initProduct() {
+      return {
+        language: "en",
+        logo: null,
+        color: null,
+        secondary_color: null,
+        code: null,
+        name: null,
+        tag: null,
+        grade: null,
+        type: null,
+        school_services: null,
+        student_services: null,
+        description: null,
+        facts: [],
+        features: [],
+        brochure: null,
+        featured_image: null
+      };
+    },
+
+    fetchProduct(id) {
+      this.$axios
+        .get("/admin/product/" + id + "?language=en")
+        .then(response => {
+          this.value = response.data.data;
+          this.value.logo = this.value.logo.path;
+          this.value.featured_image = this.value.featured_image.path;
+        })
+        .catch(error => {
+          this.$toast.show("Product not found");
+          this.$router.push({ path: "/dashboard/products" });
+        });
+    },
+
+    save() {
+      this.saveLoading = true;
+      if (mode) {
+      } else {
+        this.$axios
+          .post("/admin/product/create", this.value)
+          .then(response => {
+            this.$router.push({
+              path: "/dashboard/products",
+              query: { id: "new-product" }
+            });
+            this.$toast.show("Product Created");
+            this.saveLoading = false;
+          })
+          .catch(error => {
+            Helper.displayError(this.$toast, error);
+            this.saveLoading = false;
+          });
+      }
+    },
+
+    fetchGalleryImages() {
+      this.$refs.logoImageInput.fetchGalleryImages();
+      this.$refs.featuredImageInput.fetchGalleryImages();
+      for (let i = 0; i < this.value.features.length; i++) {
+        this.$refs["featureImageInput" + i].fetchGalleryImages();
+      }
+    },
+
+    addFact() {
+      this.value.facts.push("New fact " + (this.value.facts.length + 1));
+    },
+
+    removeFact(index) {
+      this.value.facts.splice(index, 1);
+    },
+
+    addFeature() {
+      this.value.features.push({
+        logo: null,
+        feature: "New feature " + (this.value.features.length + 1)
+      });
+    },
+
+    removeFeature(index) {
+      this.value.features.splice(index, 1);
+    },
+
+    valid() {
+      return (
+        this.value &&
+        this.value.code &&
+        this.value.color &&
+        this.value.description &&
+        this.value.grade &&
+        this.value.logo &&
+        this.value.featured_image &&
+        this.value.name &&
+        this.value.school_services &&
+        this.value.secondary_color &&
+        this.value.student_services &&
+        this.value.tag &&
+        this.value.type
+      );
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+label {
+  margin-bottom: 0;
+}
+</style>

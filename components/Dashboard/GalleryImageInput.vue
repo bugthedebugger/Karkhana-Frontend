@@ -3,7 +3,7 @@
     <div
       class="preview-image"
       :class="image_class"
-      :style="'background-image: url(' + selectedImagePath + ')'"
+      :style="applyStyle()"
       data-toggle="modal"
       :data-target="'#galleryModal-' + id"
     ></div>
@@ -50,7 +50,7 @@
 export default {
   name: "GalleryImageInput",
   components: {},
-  props: ["id", "value", "image_class", "page_code"],
+  props: ["id", "value", "image_class", "page_code", "width", "height"],
   data() {
     return {
       galleryImages: null,
@@ -90,6 +90,14 @@ export default {
 
     emitUpdate() {
       this.$emit("input", this.selectedImagePath);
+    },
+
+    applyStyle(){
+      let style = "";
+      if(this.width) style += 'width: ' + this.width + 'px;'
+      if(this.height) style += 'height: ' + this.height + 'px;'
+      style += 'background-image: url(' + this.selectedImagePath + ');';
+      return style;
     }
   }
 };
