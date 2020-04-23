@@ -91,6 +91,13 @@ export default {
           name: "dashboard-products",
           icon: "fal fa-copy",
           url: "/dashboard/products"
+        },
+
+        {
+          title: "Partners",
+          name: "dashboard-partners",
+          icon: "fal fa-copy",
+          url: "/dashboard/partners"
         }
       ],
       logoutLoading: false
