@@ -297,14 +297,27 @@ export default {
 
     save() {
       this.saveLoading = true;
-      if (mode) {
+      if (this.mode) {
+        this.$axios
+          .post("/admin/product/update", {
+            ...this.value,
+            product_id: this.$route.query.id
+          })
+          .then(response => {
+            this.$toast.show("Product Updated");
+            this.saveLoading = false;
+          })
+          .catch(error => {
+            Helper.displayError(this.$toast, error);
+            this.saveLoading = false;
+          });
+          
       } else {
         this.$axios
           .post("/admin/product/create", this.value)
           .then(response => {
             this.$router.push({
-              path: "/dashboard/products",
-              query: { id: "new-product" }
+              path: "/dashboard/products"
             });
             this.$toast.show("Product Created");
             this.saveLoading = false;

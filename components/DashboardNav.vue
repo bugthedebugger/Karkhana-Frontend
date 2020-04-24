@@ -98,6 +98,13 @@ export default {
           name: "dashboard-partners",
           icon: "fal fa-copy",
           url: "/dashboard/partners"
+        },
+
+        {
+          title: "Team Members",
+          name: "team-members",
+          icon: "fal fa-copy",
+          url: "/dashboard/team-members"
         }
       ],
       logoutLoading: false
