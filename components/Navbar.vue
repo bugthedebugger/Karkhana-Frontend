@@ -69,7 +69,7 @@
           <nuxt-link to="/contact" class="nav-item nav-link">Contact</nuxt-link>
 
           <!-- Locale dropdown -->
-          <!-- <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -92,7 +92,7 @@
                 {{locale.name}}
               </a>
             </div>
-          </li>-->
+          </li>
 
           <!-- Social handlers -->
           <div class="nav-item nav-link nav-item-social">
@@ -132,7 +132,7 @@ export default {
   },
 
   created() {
-    this.selectedLocale = this.locales[0];
+    this.selectLocale(0);
     this.opaque = this.$route.name !== "index";
     if (process.browser) {
       window.addEventListener("scroll", this.updateScroll);
@@ -159,8 +159,15 @@ export default {
 
     selectLocale(index) {
       this.selectedLocale = this.locales[index];
-      this.$axios.defaults.headers.common["LANG"] = this.selectedLocale.locale;
+      this.$axios.defaults.headers.common[
+        "Accept-Language"
+      ] = this.selectedLocale.locale;
+      this.$router.push({
+        path: this.$route.path,
+        query: { lang: this.selectedLocale.locale }
+      });
     },
+
     updateScroll() {
       if (process.browser) this.scrollPosition = window.scrollY;
     },
@@ -171,7 +178,7 @@ export default {
 
       if (process.client) {
         this.opaqueByDefault =
-          (routeName !== "ProductDetail") ||
+          routeName !== "ProductDetail" ||
           (routeName === "ProductDetail" && $(window).width() < 768);
       }
     }

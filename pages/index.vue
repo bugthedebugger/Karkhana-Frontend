@@ -28,6 +28,7 @@ import HomeEvents from "~/components/HomeEvents";
 import HomeContact from "~/components/HomeContact";
 import HomePartners from "~/components/HomePartners";
 import Footer from "~/components/Footer";
+import DefaultValue from "~/helpers/default-values";
 
 export default {
   layout: "portfolio",
@@ -45,12 +46,22 @@ export default {
   async asyncData({ $axios, params, error }) {
     try {
       const response = await $axios.get("/pages/landing");
-      console.log(response.data.data);
+      const landingData = response.data.data;
+
+      // set default values if null
+      Object.keys(landingData).forEach(key => {
+        if (!landingData[key] && DefaultValue.home[key])
+          landingData[key] = DefaultValue.home[key];
+      });
+
       return { landingData: response.data.data };
     } catch (e) {
+      console.log(e);
       error({ statusCode: 404 });
     }
   },
+
+  watchQuery: ["lang"],
 
   data() {
     return {};
@@ -58,6 +69,49 @@ export default {
   created() {
     this.$store.dispatch("home/fetchData");
   },
+
+  methods: {
+    getDefaultSliderImages() {
+      return [
+        {
+          quote: "Makers Today, Shapers of Tomorrow.",
+          path: "/images/slider-image-1.jpg",
+          button: {
+            label: "Discover classes",
+            action: ""
+          }
+        },
+
+        {
+          quote: "The hands are the gateway to the mind.",
+          path: "/images/slider-image-2.jpg",
+          button: {
+            label: "Find More",
+            action: ""
+          }
+        },
+
+        {
+          quote: "The world is malleable. We give you the tools to reshape it.",
+          path: "/images/slider-image-3.jpg",
+          button: {
+            label: "Get Started",
+            action: ""
+          }
+        },
+
+        {
+          quote: "We design learning experiences.",
+          path: "/images/slider-image-4.jpg",
+          button: {
+            label: "Find More",
+            action: ""
+          }
+        }
+      ];
+    }
+  },
+
   computed: {
     // sliderImages() {
     //   return this.$store.getters["home/data"].sliderImages;

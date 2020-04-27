@@ -1,5 +1,5 @@
 <template>
-  <aside class="dashboard-nav">
+  <aside class="dashboard-nav --minimized">
     <div class="nav-logo">
       <img src="/images/logo-nav.png" />
     </div>
@@ -12,7 +12,7 @@
       >
         <nuxt-link :to="link.url">
           <i :class="link.icon"></i>
-          {{link.title}}
+          <span>{{link.title}}</span>
         </nuxt-link>
       </li>
       <!-- <li class="nav-link-list-item">
@@ -34,7 +34,7 @@
         aria-expanded="false"
       >
         <img class="mr-1" :src="$auth.user.avatar" />
-        {{$auth.user.name}}
+        <span class="username">{{$auth.user.name}}</span>
         <i class="fal fa-angle-up ml-2"></i>
       </button>
       <div class="dropdown-menu" aria-labelledby="user-profile-button">
@@ -75,7 +75,7 @@ export default {
         {
           title: "Tags",
           name: "dashboard-tags",
-          icon: "fal fa-align-left",
+          icon: "fal fa-tags",
           url: "/dashboard/tags"
         },
 
@@ -89,21 +89,21 @@ export default {
         {
           title: "Products",
           name: "dashboard-products",
-          icon: "fal fa-copy",
+          icon: "fal fa-sitemap",
           url: "/dashboard/products"
         },
 
         {
           title: "Partners",
           name: "dashboard-partners",
-          icon: "fal fa-copy",
+          icon: "fal fa-users-crown",
           url: "/dashboard/partners"
         },
 
         {
           title: "Team Members",
-          name: "team-members",
-          icon: "fal fa-copy",
+          name: "dashboard-team-members",
+          icon: "fal fa-users-class",
           url: "/dashboard/team-members"
         }
       ],
@@ -120,8 +120,8 @@ export default {
     )
       this.links.push({
         title: "User Settings",
-        name: "user-settings",
-        icon: "fal fa-user",
+        name: "dashboard-user-settings",
+        icon: "fal fa-users-cog",
         url: "/dashboard/user-settings"
       });
     else
@@ -154,6 +154,7 @@ export default {
 
   watch: {
     $route(to, from) {
+      console.log(to.name);
       this.checkActiveTab(to.name);
     }
   }
