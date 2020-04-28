@@ -1,9 +1,9 @@
 <template>
   <div class="text-center">
-    <div class="product-item" :class="'product-item-' + product_info.category">
+    <div class="product-item" :class="'product-item-' + product_info.code">
       <div class="product-logo-circle">
         <div class="img-wrapper">
-          <img :src="'/images/product-logo-' + product_info.category + '-white.svg'" />
+          <img :src="product_info.logo" />
         </div>
       </div>
       <p class="title">{{product_info.title}}</p>
@@ -57,9 +57,9 @@
                   v-if="mobile_display"
                   target="_black"
                   download
-                  :href="'/pdfs/' + product_info.category + '.pdf'"
+                  :href="product_info.brocure"
                   class="brochure-link"
-                  :class="'brochure-link-' + product_info.category"
+                  :class="'brochure-link-' + product_info.code"
                 >
                   <i class="fal fa-arrow-to-bottom"></i> Download Brochure
                 </a>
@@ -81,7 +81,7 @@
         v-if="show_key_value  && !mobile_display"
         target="_black"
         download
-        :href="'/pdfs/' + product_info.category + '.pdf'"
+        :href="product_info.brochure"
         class="btn-learn-more"
       >
         <i class="fal fa-arrow-to-bottom"></i> Download Brochure
@@ -90,7 +90,7 @@
       <nuxt-link
         v-else
         class="btn-learn-more"
-        :to="'/productDetail?type=' + product_info.category"
+        :to="'/productDetail?type=' + product_info.code"
       >Learn More</nuxt-link>
     </div>
 
@@ -98,9 +98,9 @@
       v-if="!show_key_value"
       target="_black"
       download
-      :href="'/pdfs/' + product_info.category + '.pdf'"
+      :href="product_info.brochure"
       class="brochure-link"
-      :class="'brochure-link-' + product_info.category"
+      :class="'brochure-link-' + product_info.code"
     >
       <i class="fal fa-arrow-to-bottom"></i> Download Brochure
     </a>

@@ -3,28 +3,22 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1 class="title d-none d-md-block">Meet Our Team</h1>
+          <h1 class="title d-none d-md-block">{{team.title}}</h1>
         </div>
       </div>
     </div>
 
     <div class="team-image">
       <div class="team-info">
-        <h1 class="title">Meet The Karkhanaughts</h1>
-        <p
-          class="subtitle d-none d-md-block"
-        >The best part of this crazy journey is the people we work with.</p>
-        <p class="content">
-          We are a diverse team of engineers, designers, social workers, programmers and
-          educators that are bound together by one vision: empower people with the skills
-          &amp; attitudes that will help them build their future and the future of their community.
-        </p>
+        <h1 class="title">{{team.sub_title}}</h1>
+        <p class="subtitle d-none d-md-block">{{team.sub_text}}</p>
+        <p class="content">{{team.text}}</p>
       </div>
     </div>
 
     <div class="team-data">
-      <p class="number mb-0">52+</p>
-      <p class="mt-0">Employees</p>
+      <p class="number mb-0">{{team.employees.count}}</p>
+      <p class="mt-0">{{team.employees.label}}</p>
     </div>
   </section>
 </template>
@@ -34,7 +28,8 @@ export default {
   name: "AboutTeam",
   data() {
     return {};
-  }
+  },
+  props: ["team"]
 };
 </script>
 

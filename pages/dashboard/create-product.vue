@@ -19,6 +19,17 @@
 
         <div class="container-card mt-0">
           <div class="product-input" v-if="value">
+            <div class="language mb-4">
+              <h5>Language</h5>
+              <select class="form-control" v-model="value.language">
+                <option
+                  v-for="language in languages"
+                  :value="language.code"
+                  :key="language.code"
+                >{{language.name}}</option>
+              </select>
+            </div>
+
             <!-- Logo -->
             <div class="row mb-4">
               <div class="col">
@@ -244,6 +255,7 @@ export default {
     return {
       mode: false, //false: create, true: update
       value: null,
+      languages: null,
       saveLoading: false
     };
   },
@@ -285,9 +297,16 @@ export default {
       this.$axios
         .get("/admin/product/" + id + "?language=en")
         .then(response => {
-          this.value = response.data.data;
-          this.value.logo = this.value.logo.path;
-          this.value.featured_image = this.value.featured_image.path;
+          this.$axios.get("/languages").then(response2 => {
+            this.languages = response2.data.data;
+            this.value = response.data.data;
+            this.value.logo = this.value.logo.path;
+            this.value.featured_image = this.value.featured_image.path;
+            this.value.language = "en";
+            if (!this.value.color) this.value.color = "#ffffffff";
+            if (!this.value.secondary_color)
+              this.value.secondary_color = "#ffffffff";
+          });
         })
         .catch(error => {
           this.$toast.show("Product not found");
@@ -311,7 +330,6 @@ export default {
             Helper.displayError(this.$toast, error);
             this.saveLoading = false;
           });
-          
       } else {
         this.$axios
           .post("/admin/product/create", this.value)

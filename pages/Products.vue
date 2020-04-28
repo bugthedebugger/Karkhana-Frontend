@@ -4,29 +4,32 @@
       <div class="row">
         <div class="col-md-3 d-none d-md-block">
           <div class="v-spacer"></div>
-          <div class="attribute-name">Grade</div>
-          <div class="attribute-name">Type</div>
-          <div class="attribute-name">Product</div>
-          <div class="attribute-name">School Services</div>
-          <div class="attribute-name">Student Services</div>
+          <div class="attribute-name">{{productsData.grade_label}}</div>
+          <div class="attribute-name">{{productsData.type_label}}</div>
+          <div class="attribute-name">{{productsData.product_label}}</div>
+          <div class="attribute-name">{{productsData.school_services_label}}</div>
+          <div class="attribute-name">{{productsData.students_services_label}}</div>
         </div>
         <div class="col-md-3">
           <ProductsItem
-            :product_info="products.science"
+            v-if="productsData.products[0]"
+            :product_info="productsData.products[0]"
             :show_key_value="showKeyValue"
             :mobile_display="mobileDisplay"
           />
         </div>
         <div class="col-md-3">
           <ProductsItem
-            :product_info="products.computing"
+            v-if="productsData.products[1]"
+            :product_info="productsData.products[1]"
             :show_key_value="showKeyValue"
             :mobile_display="mobileDisplay"
           />
         </div>
         <div class="col-md-3">
           <ProductsItem
-            :product_info="products.make"
+            v-if="productsData.products[2]"
+            :product_info="productsData.products[2]"
             :show_key_value="showKeyValue"
             :mobile_display="mobileDisplay"
           />
@@ -40,11 +43,33 @@
 <script>
 import ProductsItem from "@/components/ProductsItem";
 import Footer from "~/components/Footer";
+import DefaultValue from "~/helpers/default-values";
 
 export default {
   layout: "portfolio",
   auth: false,
   components: { ProductsItem, Footer },
+
+  async asyncData({ $axios, params, error }) {
+    try {
+      const response = await $axios.get("/pages/products");
+      const productsData = response.data.data;
+
+      // set default values if null
+      Object.keys(productsData).forEach(key => {
+        if (!productsData[key] && DefaultValue.home[key])
+          productsData[key] = DefaultValue.home[key];
+      });
+
+      console.log(productsData);
+
+      return { productsData };
+    } catch (e) {
+      console.log(e);
+      error({ statusCode: 404 });
+    }
+  },
+
   data() {
     return {
       products: {

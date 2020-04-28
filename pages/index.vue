@@ -4,17 +4,13 @@
 
     <!-- <HomeCorona /> -->
 
-    <HomeAbout
-      v-if="landingData.about && landingData.stats"
-      :aboutData="landingData.about"
-      :stats="landingData.stats"
-    />
+    <HomeAbout :aboutData="landingData.about" :stats="landingData.stats" />
 
     <HomeEvents />
 
-    <HomePartners v-if="landingData.partners" :partnersData="landingData.partners" />
+    <HomePartners :partnersData="landingData.partners" />
 
-    <HomeContact />
+    <HomeContact :phone="landingData.phone" :mobile="landingData.mobile" />
 
     <Footer />
   </div>
@@ -54,7 +50,7 @@ export default {
           landingData[key] = DefaultValue.home[key];
       });
 
-      return { landingData: response.data.data };
+      return { landingData };
     } catch (e) {
       console.log(e);
       error({ statusCode: 404 });

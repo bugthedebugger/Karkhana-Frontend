@@ -14,10 +14,9 @@
                       <div class="circle circle-red"></div>
                     </i>
                   </div>
-                  <p class="contact-title">ADDRESS</p>
+                  <p class="contact-title">{{address.label}}</p>
                   <p class="contact-value">
-                    Gyaneshowr, Kathmandu
-                    <br />P.O. BOX: 23888
+                    {{address.address}}
                   </p>
                 </div>
               </div>
@@ -28,10 +27,11 @@
                       <div class="circle circle-blue"></div>
                     </i>
                   </div>
-                  <p class="contact-title">OPENING HOURS</p>
+                  <p class="contact-title">{{open_hours.label}}</p>
                   <p class="contact-value">
-                    8:00AM - 18:00PM
-                    <br />Sun-Fri
+                    {{open_hours.open_hours}}
+                    <br />
+                    {{open_days.open_days}}
                   </p>
                 </div>
               </div>
@@ -49,7 +49,7 @@
                       <div class="circle circle-green"></div>
                     </i>
                   </div>
-                  <p class="contact-title">PHONE NUMBERS</p>
+                  <p class="contact-title">{{phone.label}}</p>
                   <p class="contact-value">
                     01-4412624
                     <br />Mobile/Viber/Whatsapp: 9801888822
@@ -63,8 +63,8 @@
                       <div class="circle circle-yellow"></div>
                     </i>
                   </div>
-                  <p class="contact-title">Email Address</p>
-                  <p class="contact-value">sales@karkhana.asia</p>
+                  <p class="contact-title">{{email.label}}</p>
+                  <p class="contact-value">{{email.email}}</p>
                 </div>
               </div>
             </div>
@@ -129,6 +129,7 @@ import Helper from "~/helpers/common";
 export default {
   name: "HomeAbout",
   components: { Spinner },
+  props: ["address", "open_hours", "open_days", "phone", "email"],
   data() {
     return {
       isMobile: false,

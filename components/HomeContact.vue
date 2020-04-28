@@ -18,8 +18,9 @@
                 <br />
                 <br />You can call us at:
                 <div class="pl-4">
-                  Phone: 01-4412624
-                  <br />Mobile/Viber/Whatsapp: 9801888822
+                  Phone: {{phone}}
+                  <br />
+                  Mobile/Viber/Whatsapp: {{mobile}}
                 </div>
               </div>
             </div>
@@ -54,7 +55,8 @@
 
 <script>
 export default {
-  name: "HomeContact"
+  name: "HomeContact",
+  props: ["phone", "mobile"]
 };
 </script>
 
