@@ -245,12 +245,13 @@ import TextArea from "~/components/core/TextArea";
 import Gallery from "~/components/Dashboard/Gallery";
 import Helper from "~/helpers/common";
 import Loading from "~/components/Loading";
+import Spinner from "~/components/Spinner";
 
 export default {
   name: "CreateProduct",
   layout: "dashboard",
   auth: true,
-  components: { GalleryImageInput, TextArea, Gallery, Loading },
+  components: { GalleryImageInput, TextArea, Gallery, Loading, Spinner },
   data() {
     return {
       mode: false, //false: create, true: update
@@ -303,9 +304,22 @@ export default {
             this.value.logo = this.value.logo.path;
             this.value.featured_image = this.value.featured_image.path;
             this.value.language = "en";
-            if (!this.value.color) this.value.color = "#ffffffff";
+
+            if (!this.value.color) this.value.color = "#ffffff";
             if (!this.value.secondary_color)
-              this.value.secondary_color = "#ffffffff";
+              this.value.secondary_color = "#ffffff";
+
+            if (this.value.color > 6)
+              this.value.color = this.value.color.substr(
+                0,
+                this.value.color.length - 2
+              );
+
+            if (this.value.secondary_color > 6)
+              this.value.secondary_color = this.value.secondary_color.substr(
+                0,
+                this.value.secondary_color.length - 2
+              );
           });
         })
         .catch(error => {
@@ -320,7 +334,9 @@ export default {
         this.$axios
           .post("/admin/product/update", {
             ...this.value,
-            product_id: this.$route.query.id
+            product_id: this.$route.query.id,
+            // color: this.value.color + "FF",
+            // secondary_color: this.value.secondary_color + "FF"
           })
           .then(response => {
             this.$toast.show("Product Updated");
@@ -332,7 +348,11 @@ export default {
           });
       } else {
         this.$axios
-          .post("/admin/product/create", this.value)
+          .post("/admin/product/create", {
+            ...this.value,
+            // color: this.value.color + "FF",
+            // secondary_color: this.value.secondary_color + "FF"
+          })
           .then(response => {
             this.$router.push({
               path: "/dashboard/products"

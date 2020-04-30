@@ -4,10 +4,10 @@
       <div class="card mr-2" v-for="(sliderImage, i) in sliderImages" :key="i">
         <div class="card-body p-1">
           <div class="slider-image-input d-flex flex-column">
-            <div class="toolbar d-flex mb-1">
+            <div class="slider-image-input-toolbar d-flex justify-content-between mb-1">
               <p class="mb-0">Slider-{{sliderImage.order}}</p>
 
-              <div class="btn-group ml-auto" role="group">
+              <div class="btn-group" role="group" style="width: 100px">
                 <button class="btn btn-secondary btn-sm" @click="remove(i)">
                   <i class="fal fa-trash-alt"></i>
                 </button>
@@ -19,13 +19,16 @@
                 </button>
               </div>
             </div>
-            <div
-              class="image"
-              :style="'background-image: url(' + sliderImage.path + ')'"
-              data-toggle="modal"
-              data-target="#sliderGalleryModal"
-              @click="activeSlider = sliderImage"
-            ></div>
+
+            <div class="ml-auto mr-auto mb-2">
+              <GalleryImageInput
+                page_code="landing"
+                :id="'slider-image-' + i"
+                :value="sliderImages[i].path"
+                v-model="sliderImages[i].path"
+                image_class="karkhana-building-image"
+              />
+            </div>
 
             <TextArea
               id="slider-quote"
@@ -36,7 +39,7 @@
               @input="emitUpdate()"
             />
 
-            <div class="form-group form-check mb-1">
+            <div class="form-group form-check mb-0">
               <input
                 type="checkbox"
                 class="form-check-input"
@@ -46,8 +49,8 @@
               />
               <label class="form-check-label" :for="'is-hidden' + i">Hide slider</label>
             </div>
-            <div class="form-group p-1 mb-0">
-              <label class="mb-0" :form="'label' + i">Label</label>
+            <div class="form-group mb-0">
+              <label class="mb-0" :form="'label' + i">Button Label</label>
               <input
                 type="text"
                 class="form-control form-control-sm"
@@ -57,8 +60,8 @@
                 @input="emitUpdate()"
               />
 
-              <div class="form-group p-1 mb-0">
-                <label class="mb-0" :form="'action' + i">Action</label>
+              <div class="form-group mb-0">
+                <label class="mb-0" :form="'action' + i">Button Action</label>
                 <input
                   type="text"
                   class="form-control form-control-sm"
@@ -77,51 +80,16 @@
     <div class="text-center mt-2">
       <button class="btn btn-primary btn-sm" @click="add()">Add New Slider</button>
     </div>
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="sliderGalleryModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="sliderGalleryModal"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Select Slider Image</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="d-flex flex-wrap">
-              <template v-for="(image, index) in galleryImages">
-                <div class="d-flex flex-column" :key="index">
-                  <img
-                    :src="image.url"
-                    :ref="'gallery-image-' + index"
-                    class="gallery-image mb-0"
-                    @click="selectSliderImage(image)"
-                  />
-                  <label class="gallery-image-size">{{imageSize('gallery-image-' + index)}}</label>
-                </div>
-              </template>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 import TextArea from "~/components/core/TextArea";
+import GalleryImageInput from "~/components/Dashboard/GalleryImageInput";
 
 export default {
   name: "SliderImageInput",
-  components: { TextArea },
+  components: { TextArea, GalleryImageInput },
   props: {
     _sliderImages: {
       type: Array

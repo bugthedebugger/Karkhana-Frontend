@@ -98,7 +98,7 @@ export default {
 
         values: {
             title: "Our Values",
-            vaues: [
+            values: [
                 {
                     title: "We exist for our people",
                     text: "Karkhana’s first and biggest responsibility is to its own team. Only with an honest understanding of individual aspirations can we achieve our collective mission."
@@ -134,7 +134,7 @@ export default {
             },
 
             team_photo: {
-                path: ""
+                path: "/images/karkhana-team.jpg"
             }
         },
 
@@ -327,6 +327,226 @@ export default {
         email: {
             label: "Email Address",
             email: "sales@karkhana.asia"
+        }
+    },
+
+    products: {
+        grade_label: "Grade",
+        type_label: "Type",
+        product_label: "Product",
+        school_services_label: "School Services",
+        student_services_label: "Student Services",
+        learn_more_label: "Learn More",
+        download_label: "Download",
+        products: [
+            {
+                code: "science",
+                name: "Karkhana Science",
+                logo: "/images/product-logo-science-white.svg",
+                color: "green",
+                secondary_color: "lightgreen",
+                grade: "6 to 8",
+                type: "Curricular",
+                product: "Science Kit Online Support Platform Workbook",
+                school_services: "Teacher Training",
+                student_services: "Karkhana Teachers",
+                brochure: "/pdfs/science.pdf",
+            },
+
+            {
+                code: "computing",
+                name: "Karkhana Computing",
+                logo: "/images/product-logo-computing-white.svg",
+                color: "blue",
+                secondary_color: "lightblue",
+                grade: "3 to 5",
+                type: "Curricular",
+                product: "Textbook",
+                school_services: "Teacher Training",
+                student_services: "Karkhana Teachers",
+                brochure: "/pdfs/computing.pdf",
+            },
+
+            {
+                code: "make",
+                name: "Karkhana Make",
+                logo: "/images/product-logo-make-white.svg",
+                color: "yellow",
+                secondary_color: "lightyellow",
+                grade: "3 to 9",
+                type: "Co/Extra Curricular",
+                product: "Innovation Kit",
+                school_services: "N/A",
+                student_services: "Karkhana Teachers",
+                brochure: "/pdfs/make.pdf",
+            }
+        ]
+    },
+
+    productDetails: {
+        science: {
+            grade_label: "Grade",
+            type_label: "Type",
+            product_label: "Product",
+            school_services_label: "School Services",
+            student_services_label: "Student Services",
+            learn_more_label: "Learn More",
+            download_label: "Download",
+            feature_label: "What do you get in Karkhana science Kit ?",
+            facts_label: "Facts",
+            product: {
+                code: "science",
+                name: "Karkhana Science",
+                logo: "/images/product-logo-science-white.svg",
+                color: "green",
+                secondary_color: "lightgreen",
+                featured_image: {
+                    path: "/images/product-detail-header.png",
+                    url: null
+                },
+                tag: "Turn your classroom into a lab of discovery",
+                grade: "6 to 8",
+                type: "Curricular",
+                product: "Science Kit Online Support Platform Workbook",
+                school_services: "Teacher Training",
+                student_services: "Karkhana Teachers",
+                description: "Hands-on interactive science is fun. But it is also more than just fun. Research from around the world demonstrates that students learn better, remember more and do better on exams when taught in hands-on practical ways. Karkhana's research revealed that there are two roadblocks to institutionalizing practical education in South Asia: materials cost too much and teachers are uncomfortable teaching with the material that is available.",
+                facts: [
+                    "Interactive learning is more fun for students. Enjoying learning leads to better grades.",
+                    "Practical Science lessons improve student's understanding of theory."
+                ],
+                features: [
+                    {
+                        logo: "/images/product-details/kit-science-item-1.svg",
+                        feature:
+                            "A Science Kit with one practical for each chapter aligning with the national curriculum."
+                    },
+                    {
+                        logo: "/images/product-details/kit-science-item-2.svg",
+                        feature:
+                            "Workbook and Materials that students can use in class and at home."
+                    },
+                    {
+                        logo: "/images/product-details/kit-science-item-3.svg",
+                        feature: "Learning material that can be used all the way to SEE"
+                    },
+                    {
+                        logo: "/images/product-details/kit-science-item-4.svg",
+                        feature: "Affordable Refills every year."
+                    }
+                ],
+                brochure: "/pdfs/science.pdf"
+            },
+        },
+
+        computing: {
+            grade_label: "Grade",
+            type_label: "Type",
+            product_label: "Product",
+            school_services_label: "School Services",
+            student_services_label: "Student Services",
+            learn_more_label: "Learn More",
+            download_label: "Download",
+            feature_label: "What do you get in Karkhana Computing Kit ?",
+            facts_label: "Facts",
+            product: {
+                code: "computing",
+                name: "Karkhana Computing",
+                logo: "/images/product-logo-computing-white.svg",
+                color: "green",
+                secondary_color: "lightgreen",
+                featured_image: {
+                    path: "/images/product-detail-header.png",
+                    url: null
+                },
+                tag: "Technology education for the 21st century child",
+                grade: "3 to 5",
+                type: "Curricular",
+                product: "Textbook",
+                school_services: "Teacher Training",
+                student_services: "Karkhana Teachers",
+                description: "The digital world is increasingly shaping our everyday life. Today’s children will grow up in a world where computing devices, screens and online communities with be both normal and widespread. In their future, the impact of digital technologies on society, work and government is going to be significant. Yet, computing curriculums are lagging behind this fast moving field.",
+                facts: [
+                    "Computers will be essential to every job and every sector in our children’s time.",
+                    "Computing education in Nepal is 20 years behind the times and needs to be updated."
+                ],
+                features: [
+                    {
+                        logo: "/images/product-details/kit-computing-item-1.svg",
+                        feature:
+                            "International standard books that captures all the latest and most important ideas in computer education."
+                    },
+                    {
+                        logo: "/images/product-details/kit-computing-item-2.svg",
+                        feature:
+                            "Expert training by Karkhana trainers for your school's teachers."
+                    },
+                    {
+                        logo: "/images/product-details/kit-computing-item-3.svg",
+                        feature:
+                            "Books and Videos that help both parents and students understand how to stay safe online and in social media"
+                    }
+                ],
+                brochure: "/pdfs/computing.pdf"
+            },
+        },
+
+        make: {
+            grade_label: "Grade",
+            type_label: "Type",
+            product_label: "Product",
+            school_services_label: "School Services",
+            student_services_label: "Student Services",
+            learn_more_label: "Learn More",
+            download_label: "Download",
+            feature_label: "What do you get in Karkhana Make Kit ?",
+            facts_label: "Facts",
+            product: {
+                code: "make",
+                name: "Karkhana Make",
+                logo: "/images/product-logo-make-white.svg",
+                color: "green",
+                secondary_color: "lightgreen",
+                featured_image: {
+                    path: "/images/product-detail-header.png",
+                    url: null
+                },
+                tag: "Make your own future",
+                grade: "3 to 9",
+                type: "Co/Extra Curricular",
+                product: "Innovation Kit",
+                school_services: "N/A",
+                student_services: "Karkhana Teachers",
+                description: "To be relevant in the 21st century, children need to expand their knowledge beyond the textbook. They need to know how to communicate their ideas confidently, how to work in a team and how to build smart solutions for real world problems. Yet, as parents will testify, it’s becoming increasingly hard to tear kids away from their phones and gadgets. How do we provide soft skills in a way that engages these modern, tech-savvy children ?",
+                facts: [
+                    "21st century children need to know more than just what is in the textbook.",
+                    "Making skills lead children from being consumer to producer of technology.",
+                    "Creative use of technology - robotics, game design, electronics - is important for future success."
+                ],
+                features: [
+                    {
+                        logo: "/images/product-details/kit-make-item-1.svg",
+                        feature:
+                            "An inventor's kit that can be used to make over 80 projects."
+                    },
+                    {
+                        logo: "/images/product-details/kit-make-item-2.svg",
+                        feature:
+                            "Reusable material that can also be used for science fairs and learning at home."
+                    },
+                    {
+                        logo: "/images/product-details/kit-make-item-3.svg",
+                        feature:
+                            "Karkhana teachers to guide each student's journey as innovators."
+                    },
+                    {
+                        logo: "/images/product-details/kit-make-item-4.svg",
+                        label:
+                            "Karkhana teachers to guide each student's journey as innovators."
+                    }
+                ],
+                brochure: "/pdfs/make.pdf"
+            },
         }
     }
 }

@@ -18,7 +18,7 @@
             <!-- Language -->
             <div class="language mb-4">
               <h5>Language</h5>
-              <select class="form-control" v-model="aboutData.language">
+              <select class="form-control" v-model="aboutData.language" @change="fetchData()">
                 <option
                   v-for="language in languages"
                   :value="language.code"
@@ -62,6 +62,7 @@
               <div class="row">
                 <div class="col">
                   <GalleryImageInput
+                    page_code="about"
                     id="k-building"
                     :value="aboutData.sections.karkhana_building.path"
                     v-model="aboutData.sections.karkhana_building.path"
@@ -230,7 +231,6 @@ export default {
     return {
       saveLoading: false,
       languages: null,
-      galleryImages: null,
       aboutData: {
         language: "en",
         sections: null
@@ -244,15 +244,14 @@ export default {
 
   methods: {
     fetchData() {
+      this.$axios.setHeader("Accept-Language", this.aboutData.language);
+      this.aboutData.sections = null;
       this.$axios.get("/pages/about").then(response => {
         this.$axios.get("/languages").then(response2 => {
-          this.$axios.get("/admin/media/about").then(response3 => {
-            this.galleryImages = response3.data.data;
-            this.loading = false;
-            this.languages = response2.data.data;
-            this.aboutData.sections = response.data.data;
-            this.correctData();
-          });
+          this.loading = false;
+          this.languages = response2.data.data;
+          this.aboutData.sections = response.data.data;
+          this.correctData();
         });
       });
     },
@@ -285,8 +284,9 @@ export default {
         resp.sections.head_section = null;
 
       // Mission Vision
-      if (this.hasNullValue(resp.sections.mission_vision))
+      if (this.hasNullValue(resp.sections.mission_vision)) {
         resp.sections.mission_vision = null;
+      }
 
       // Values
       if (this.hasNullValue(resp.sections.values)) resp.sections.values = null;
@@ -297,14 +297,10 @@ export default {
     },
 
     hasNullValue(obj) {
-      if (obj === null) return true;
-      let keys = Object.keys(obj);
-      for (let i = 0; i < keys.length; i++) {
-        let key = keys[i];
-        if (obj[key] === null) return true;
-        else if (obj[key] instanceof Object) return this.hasNullValue(obj[key]);
-      }
-      return false;
+      // Note: The input shouldn't contain ~~ for this logic to work
+      let str = JSON.stringify(obj);
+      str = str.replace(/"/g, "~~");
+      return str.includes("~~~~") || str.includes("null");
     }
   }
 };

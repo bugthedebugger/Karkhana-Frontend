@@ -8,7 +8,7 @@
     />
     <!-- <AboutHistory /> -->
     <AboutTeam :team="aboutData.team" />
-    <AboutEmployees :employees="aboutData.employees" />
+    <AboutEmployees v-if="aboutData.employees" :employees="aboutData.employees" />
     <!-- <AboutStats /> -->
     <AboutCareers />
     <Footer />
@@ -28,6 +28,7 @@ import DefaultValue from "~/helpers/default-values";
 export default {
   layout: "portfolio",
   auth: false,
+    watchQuery: ["lang"],
   components: {
     // AboutHistory,
     AboutMain,
@@ -38,8 +39,9 @@ export default {
     Footer
   },
 
-  async asyncData({ $axios, params, error }) {
+  async asyncData({ $axios, query, error }) {
     try {
+      $axios.setHeader("Accept-Language", query.lang);
       const response = await $axios.get("/pages/about");
       const aboutData = response.data.data;
 
@@ -47,8 +49,8 @@ export default {
 
       // set default values if null
       Object.keys(aboutData).forEach(key => {
-        if (!aboutData[key] && DefaultValue.home[key])
-          aboutData[key] = DefaultValue.home[key];
+        if (!aboutData[key] && DefaultValue.about[key])
+          aboutData[key] = DefaultValue.about[key];
       });
 
       return { aboutData };

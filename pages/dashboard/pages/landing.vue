@@ -14,133 +14,142 @@
             </div>
           </div>
 
-          <!-- Language -->
-          <div class="language mb-4">
-            <h5>Language</h5>
-            <select class="form-control" v-model="landingData.language">
-              <option
-                v-for="language in languages"
-                :value="language.code"
-                :key="language.code"
-              >{{language.name}}</option>
-            </select>
-          </div>
+          <div class="page-form">
+            <!-- Language -->
+            <div class="language mb-4">
+              <h5>Language</h5>
+              <select class="form-control" v-model="landingData.language" @change="fetchData()">
+                <option
+                  v-for="language in languages"
+                  :value="language.code"
+                  :key="language.code"
+                >{{language.name}}</option>
+              </select>
+            </div>
 
-          <!-- Slider Images -->
-          <div class="slider-images mb-4">
-            <h5>Slider Images</h5>
-            <SliderImageInput
-              :_sliderImages="landingData.sections.sliders"
-              @sliderImageChanged="handleSliderImageChanged"
-            />
-          </div>
+            <!-- Slider Images -->
+            <div class="slider-images mb-4">
+              <h5>Slider Images</h5>
+              <SliderImageInput
+                :_sliderImages="landingData.sections.sliders"
+                @sliderImageChanged="handleSliderImageChanged"
+              />
+            </div>
 
-          <!-- About -->
-          <div class="about mb-4">
-            <h5>About</h5>
-            <div class="row">
-              <div class="col">
-                <TextArea
-                  id="about-text"
-                  placeholder="About Text"
-                  :maxlength="200"
-                  v-model="landingData.sections.about.text"
-                />
+            <!-- About -->
+            <div class="about mb-4">
+              <h5>About</h5>
+              <div class="row">
+                <div class="col">
+                  <label>About Text</label>
+                  <TextArea
+                    id="about-text"
+                    placeholder="About Text"
+                    :maxlength="200"
+                    v-model="landingData.sections.about.text"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label>About Label</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Label"
+                    v-model="landingData.sections.about.label"
+                  />
+                </div>
+                <div class="col">
+                  <label>About Button Label</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Button Label"
+                    v-model="landingData.sections.about.button_label"
+                  />
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Label"
-                  v-model="landingData.sections.about.label"
-                />
-              </div>
-              <div class="col">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Button Label"
-                  v-model="landingData.sections.about.button_label"
-                />
-              </div>
-            </div>
-          </div>
 
-          <!-- Stats -->
-          <div class="stats mb-4">
-            <h5>Stats</h5>
-            <div class="row">
-              <div class="col">
-                <label class="mb-1">Students Reached</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm mb-1"
-                  placeholder="Students Reached Label"
-                  v-model="landingData.sections.stats.students_reached.label"
-                />
+            <!-- Stats -->
+            <div class="stats mb-4">
+              <h5>Stats</h5>
+              <div class="row">
+                <div class="col">
+                  <label class="mb-1">Students Reached - Label</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm mb-1"
+                    placeholder="Students Reached Label"
+                    v-model="landingData.sections.stats.students_reached.label"
+                  />
+                </div>
+                <div class="col">
+                  <label class="mb-1">Employees - Label</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm mb-1"
+                    placeholder="Employees Label"
+                    v-model="landingData.sections.stats.employees.label"
+                  />
+                </div>
               </div>
-              <div class="col">
-                <label class="mb-1">Employees</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm mb-1"
-                  placeholder="Employees Label"
-                  v-model="landingData.sections.stats.employees.label"
-                />
+              <div class="row mt-2">
+                <div class="col">
+                  <label class="mb-1">Countries We Work In - Label</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm mb-1"
+                    placeholder="Countries We Work In - Label"
+                    v-model="landingData.sections.stats.countries_we_work_in.label"
+                  />
+                </div>
+                <div class="col">
+                  <label class="mb-1">Cities We Work In - Label</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm mb-1"
+                    placeholder="Cities We Work In - Label"
+                    v-model="landingData.sections.stats.cities_we_work_in.label"
+                  />
+                </div>
               </div>
             </div>
-            <div class="row mt-2">
-              <div class="col">
-                <label class="mb-1">Countries We Work In</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm mb-1"
-                  placeholder="Countries We Work In - Label"
-                  v-model="landingData.sections.stats.countries_we_work_in.label"
-                />
-              </div>
-              <div class="col">
-                <label class="mb-1">Cities We Work In</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm mb-1"
-                  placeholder="Cities We Work In - Label"
-                  v-model="landingData.sections.stats.cities_we_work_in.label"
-                />
-              </div>
-            </div>
-          </div>
 
-          <div class="partners mb-4">
-            <h5>Partners</h5>
-            <div class="row">
-              <div class="col">
-                <TextArea
-                  id="partners-text"
-                  placeholder="Partners Text"
-                  :maxlength="200"
-                  v-model="landingData.sections.partners.text"
-                />
+            <!-- Partners -->
+            <div class="partners mb-4">
+              <h5>Partners</h5>
+              <div class="row">
+                <div class="col">
+                  <label>Partners Text</label>
+                  <TextArea
+                    id="partners-text"
+                    placeholder="Partners Text"
+                    :maxlength="200"
+                    v-model="landingData.sections.partners.text"
+                  />
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Label"
-                  v-model="landingData.sections.partners.label"
-                />
-              </div>
-              <div class="col">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Button Label"
-                  v-model="landingData.sections.partners.button_label"
-                />
+              <div class="row">
+                <div class="col">
+                  <label>Partners Label</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Label"
+                    v-model="landingData.sections.partners.label"
+                  />
+                </div>
+                <div class="col">
+                  <label>Button Label</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Button Label"
+                    v-model="landingData.sections.partners.button_label"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -186,6 +195,8 @@ export default {
 
   methods: {
     fetchData() {
+      this.$axios.setHeader("Accept-Language", this.landingData.language);
+      this.landingData.sections = null;
       this.$axios.get("/pages/landing").then(response => {
         this.$axios.get("/languages").then(response2 => {
           this.languages = response2.data.data;
@@ -206,6 +217,18 @@ export default {
     },
 
     correctData() {
+      // Slider images
+      if (!this.landingData.sections.sliders)
+        this.landingData.sections.sliders = [];
+      else {
+        this.landingData.sections.sliders = this.landingData.sections.sliders.map(
+          slider => {
+            if (!slider.button) slider.button = { label: null, action: null };
+            return slider;
+          }
+        );
+      }
+
       // About
       if (!this.landingData.sections.about)
         this.landingData.sections.about = {
@@ -243,6 +266,15 @@ export default {
 
     generateResponse() {
       let resp = JSON.parse(JSON.stringify(this.landingData));
+
+      // sliders
+      if (resp.sections.sliders) {
+        resp.sections.sliders = resp.sections.sliders.map(slider => {
+          if (!slider.button) slider.button = { label: null, action: null };
+          return slider;
+        });
+      }
+
       // About
       if (resp.sections.about) {
         Object.keys(resp.sections.about).some(key => {
@@ -284,5 +316,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/pages/_dashboard_blogs.scss";
+// @import "@/styles/pages/_dashboard_blogs.scss";
 </style>

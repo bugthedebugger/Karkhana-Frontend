@@ -57,11 +57,9 @@ export default {
 
       // set default values if null
       Object.keys(productsData).forEach(key => {
-        if (!productsData[key] && DefaultValue.home[key])
-          productsData[key] = DefaultValue.home[key];
+        if (!productsData[key] && DefaultValue.products[key])
+          productsData[key] = DefaultValue.products[key];
       });
-
-      console.log(productsData);
 
       return { productsData };
     } catch (e) {
@@ -72,35 +70,35 @@ export default {
 
   data() {
     return {
-      products: {
-        science: {
-          category: "science",
-          title: "Karkhana Science",
-          grade: "6 to 8",
-          type: "Curricular",
-          product: "Science Kit Online Support Platform Workbook",
-          school_services: "Teacher Training",
-          student_services: "Karkhana Teachers"
-        },
-        computing: {
-          category: "computing",
-          title: "Karkhana Computing",
-          grade: "3 to 5",
-          type: "Curricular",
-          product: "Textbook",
-          school_services: "Teacher Training",
-          student_services: "Karkhana Teachers"
-        },
-        make: {
-          category: "make",
-          title: "Karkhana Make",
-          grade: "3 to 9",
-          type: "Co/Extra Curricular",
-          product: "Innovation Kit",
-          school_services: "N/A",
-          student_services: "Karkhana Teachers"
-        }
-      },
+      // products: {
+      //   science: {
+      //     category: "science",
+      //     title: "Karkhana Science",
+      //     grade: "6 to 8",
+      //     type: "Curricular",
+      //     product: "Science Kit Online Support Platform Workbook",
+      //     school_services: "Teacher Training",
+      //     student_services: "Karkhana Teachers"
+      //   },
+      //   computing: {
+      //     category: "computing",
+      //     title: "Karkhana Computing",
+      //     grade: "3 to 5",
+      //     type: "Curricular",
+      //     product: "Textbook",
+      //     school_services: "Teacher Training",
+      //     student_services: "Karkhana Teachers"
+      //   },
+      //   make: {
+      //     category: "make",
+      //     title: "Karkhana Make",
+      //     grade: "3 to 9",
+      //     type: "Co/Extra Curricular",
+      //     product: "Innovation Kit",
+      //     school_services: "N/A",
+      //     student_services: "Karkhana Teachers"
+      //   }
+      // },
       showKeyValue: false,
       mobileDisplay: false
     };

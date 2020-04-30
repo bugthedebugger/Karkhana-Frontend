@@ -15,6 +15,31 @@ export default {
   layout: "portfolio",
   auth: false,
   components: { ProductDetailIntro, ProductDetailTestimonial, Footer },
+
+  async asyncData({ $axios, query, error }) {
+    try {
+      const response = await $axios.get(
+        "/pages/product-details?code=" + query.type
+      );
+      const productData = response.data.data;
+
+      // // set default values if null
+      // Object.keys(productsData).forEach(key => {
+      //   if (!productsData[key] && DefaultValue.home[key])
+      //     productsData[key] = DefaultValue.home[key];
+      // });
+
+      // console.log(productsData);
+
+      // return { productsData };
+
+      console.log(productData);
+    } catch (e) {
+      console.log(e);
+      error({ statusCode: 404 });
+    }
+  },
+
   data() {
     return {
       selectedProduct: null,

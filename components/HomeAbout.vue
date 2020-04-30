@@ -23,10 +23,10 @@
                 <div class="stat-detail">
                   <div
                     class="stat-title"
-                  >{{stats.students_reached ? stats.students_reached.label : ''}}</div>
+                  >{{stats.students_reached ? stats.students_reached.label : DefaultValue().home.stats.students_reached.label}}</div>
                   <div
                     class="stat-data"
-                  >{{stats.students_reached ? stats.students_reached.value : ''}}</div>
+                  >{{stats.students_reached ? stats.students_reached.value : DefaultValue().home.stats.students_reached.value}}</div>
                 </div>
               </div>
             </div>
@@ -39,8 +39,12 @@
                   </i>
                 </div>
                 <div class="stat-detail">
-                  <div class="stat-title">{{stats.employees ? stats.employees.label : ''}}</div>
-                  <div class="stat-data">{{stats.employees ? stats.employees.value : ''}}</div>
+                  <div
+                    class="stat-title"
+                  >{{stats.employees ? stats.employees.label : DefaultValue().home.stats.employees.label}}</div>
+                  <div
+                    class="stat-data"
+                  >{{stats.employees ? stats.employees.value : DefaultValue().home.stats.employees.value}}</div>
                 </div>
               </div>
             </div>
@@ -57,10 +61,10 @@
                 <div class="stat-detail">
                   <div
                     class="stat-title"
-                  >{{stats.countries_we_work_in ? stats.countries_we_work_in.label : ''}}</div>
+                  >{{stats.countries_we_work_in ? stats.countries_we_work_in.label : DefaultValue().home.stats.countries_we_work_in.label}}</div>
                   <div
                     class="stat-data"
-                  >{{stats.countries_we_work_in ? stats.countries_we_work_in.value : ''}}</div>
+                  >{{stats.countries_we_work_in ? stats.countries_we_work_in.value : DefaultValue().home.stats.countries_we_work_in.value}}</div>
                 </div>
               </div>
             </div>
@@ -75,10 +79,10 @@
                 <div class="stat-detail">
                   <div
                     class="stat-title"
-                  >{{stats.cities_we_work_in ? stats.cities_we_work_in.label : ''}}</div>
+                  >{{stats.cities_we_work_in ? stats.cities_we_work_in.label : DefaultValue().home.stats.cities_we_work_in.label}}</div>
                   <div
                     class="stat-data"
-                  >{{stats.cities_we_work_in ? stats.cities_we_work_in.value : ''}}</div>
+                  >{{stats.cities_we_work_in ? stats.cities_we_work_in.value : DefaultValue().home.stats.cities_we_work_in.value}}</div>
                 </div>
               </div>
             </div>
@@ -119,11 +123,19 @@
 </template>
 
 <script>
+import DefaultValue from "~/helpers/default-values";
+
 export default {
   name: "HomeAbout",
   props: ["aboutData", "stats"],
   data() {
     return {};
+  },
+
+  methods: {
+    DefaultValue() {
+      return DefaultValue;
+    }
   }
 };
 </script>

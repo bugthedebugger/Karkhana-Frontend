@@ -25,7 +25,7 @@ export default {
     CAL_API_KEY: "AIzaSyBepIVJdLIVOAHb2afbyVAxcF-sqJpy3dM",
     CAL_BASE_URL: "https://www.googleapis.com/calendar/v3/calendars",
     CAL_ID: "karkhana.asia_mdt3kr5jmvh1ld77g0fqfldc0k@group.calendar.google.com",
-    BASE_API_URL: "http://52.221.186.42",
+    BASE_API_URL: "http://18.140.51.167",
     TINY_MCE_API_KEY: "xzdc1n6z3n8g0op6mby6jp3yvm3gapvhbgzmcyw7554g6jf7",
     MY_URL: "http://karkhana.asia/"
   },
@@ -90,7 +90,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: "http://52.221.186.42"
+    baseURL: "http://18.140.51.167"
   },
   /*
   ** Build configuration
@@ -112,9 +112,9 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: `http://52.221.186.42/v1/login/email`, method: 'post', propertyName: 'token' },
+          login: { url: `http://18.140.51.167/v1/login/email`, method: 'post', propertyName: 'token' },
           logout: false,
-          user: { url: 'http://52.221.186.42/me', method: 'post', propertyName: 'data' }
+          user: { url: 'http://18.140.51.167/me', method: 'post', propertyName: 'data' }
         },
         tokenRequired: true,
         tokenType: 'Bearer'

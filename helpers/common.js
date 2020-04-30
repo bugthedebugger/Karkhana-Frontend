@@ -12,6 +12,10 @@ export default {
         if (val == 'null')
             return val * 1 || null;
         return val;
+    },
+
+    valOrDefault(val, def) {
+        return val ? val : def;
     }
 
 }

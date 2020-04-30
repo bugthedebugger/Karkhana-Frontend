@@ -39,8 +39,9 @@ export default {
     Footer
   },
 
-  async asyncData({ $axios, params, error }) {
+  async asyncData({ $axios, query, error }) {
     try {
+      $axios.setHeader("Accept-Language", query.lang);
       const response = await $axios.get("/pages/landing");
       const landingData = response.data.data;
 
