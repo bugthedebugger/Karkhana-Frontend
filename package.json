@@ -21,7 +21,7 @@
     "bootstrap": "^4.4.1",
     "clipboard-polyfill": "^2.8.6",
     "googleapis": "^39.2.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
