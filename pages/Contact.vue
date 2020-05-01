@@ -23,15 +23,16 @@ export default {
   auth: false,
   components: { ContactInfo, ContactMap, Footer },
 
-  async asyncData({ $axios, params, error }) {
+  async asyncData({ $axios, query, error }) {
+    if (!query.lang) redirect({ path: "/", query: { lang: "en" } });
     try {
       const response = await $axios.get("/pages/contact");
       const contactData = response.data.data;
 
       // set default values if null
       Object.keys(contactData).forEach(key => {
-        if (!contactData[key] && DefaultValue.home[key])
-          contactData[key] = DefaultValue.home[key];
+        if (!contactData[key] && DefaultValue.contact[key])
+          contactData[key] = DefaultValue.contact[key];
       });
 
       return { contactData };
@@ -39,7 +40,9 @@ export default {
       console.log(e);
       error({ statusCode: 404 });
     }
-  }
+  },
+
+  watchQuery: ["lang"]
 };
 </script>
 

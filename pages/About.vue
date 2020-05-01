@@ -28,7 +28,7 @@ import DefaultValue from "~/helpers/default-values";
 export default {
   layout: "portfolio",
   auth: false,
-    watchQuery: ["lang"],
+  watchQuery: ["lang"],
   components: {
     // AboutHistory,
     AboutMain,
@@ -40,6 +40,7 @@ export default {
   },
 
   async asyncData({ $axios, query, error }) {
+    if (!query.lang) redirect({ path: "/", query: { lang: "en" } });
     try {
       $axios.setHeader("Accept-Language", query.lang);
       const response = await $axios.get("/pages/about");

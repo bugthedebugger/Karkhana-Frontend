@@ -39,7 +39,8 @@ export default {
     Footer
   },
 
-  async asyncData({ $axios, query, error }) {
+  async asyncData({ $axios, query, error, redirect, route }) {
+    if (!query.lang) redirect({ path: "/", query: { lang: "en" } });
     try {
       $axios.setHeader("Accept-Language", query.lang);
       const response = await $axios.get("/pages/landing");

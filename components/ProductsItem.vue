@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
-    <div class="product-item" :class="'product-item-' + product_info.code">
-      <div class="product-logo-circle">
+    <div class="product-item" :style="'background-color:' + product_info.secondary_color">
+      <div class="product-logo-circle" :style="'background-color:' + product_info.color">
         <div class="img-wrapper">
           <img :src="product_info.logo" />
         </div>
@@ -83,6 +83,7 @@
         download
         :href="product_info.brochure"
         class="btn-learn-more"
+        :style="'background-color:' + product_info.color"
       >
         <i class="fal fa-arrow-to-bottom"></i> Download Brochure
       </a>
@@ -91,6 +92,7 @@
         v-else
         class="btn-learn-more"
         :to="'/productDetail?type=' + product_info.code"
+        :style="'background-color:' + product_info.color"
       >Learn More</nuxt-link>
     </div>
 
@@ -101,6 +103,7 @@
       :href="product_info.brochure"
       class="brochure-link"
       :class="'brochure-link-' + product_info.code"
+      :style="'color:' + product_info.color"
     >
       <i class="fal fa-arrow-to-bottom"></i> Download Brochure
     </a>

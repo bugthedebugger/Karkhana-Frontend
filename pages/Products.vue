@@ -4,32 +4,33 @@
       <div class="row">
         <div class="col-md-3 d-none d-md-block">
           <div class="v-spacer"></div>
-          <div class="attribute-name">{{productsData.grade_label}}</div>
-          <div class="attribute-name">{{productsData.type_label}}</div>
-          <div class="attribute-name">{{productsData.product_label}}</div>
-          <div class="attribute-name">{{productsData.school_services_label}}</div>
-          <div class="attribute-name">{{productsData.students_services_label}}</div>
+          <div class="attribute-name">{{vod(productsData.grade_label, dv.grade_label)}}</div>
+          <div class="attribute-name">{{vod(productsData.type_label, dv.type_label)}}</div>
+          <div class="attribute-name">{{vod(productsData.product_label, dv.product_label)}}</div>
+          <div
+            class="attribute-name"
+          >{{vod(productsData.school_services_label, dv.school_services_label)}}</div>
+          <div
+            class="attribute-name"
+          >{{vod(productsData.students_services_label, dv.students_services_label)}}</div>
         </div>
         <div class="col-md-3">
           <ProductsItem
-            v-if="productsData.products[0]"
-            :product_info="productsData.products[0]"
+            :product_info="vod(productsData.products[0], dv.products[0])"
             :show_key_value="showKeyValue"
             :mobile_display="mobileDisplay"
           />
         </div>
         <div class="col-md-3">
           <ProductsItem
-            v-if="productsData.products[1]"
-            :product_info="productsData.products[1]"
+            :product_info="vod(productsData.products[1], dv.products[1])"
             :show_key_value="showKeyValue"
             :mobile_display="mobileDisplay"
           />
         </div>
         <div class="col-md-3">
           <ProductsItem
-            v-if="productsData.products[2]"
-            :product_info="productsData.products[2]"
+            :product_info="vod(productsData.products[2], dv.products[2])"
             :show_key_value="showKeyValue"
             :mobile_display="mobileDisplay"
           />
@@ -50,7 +51,8 @@ export default {
   auth: false,
   components: { ProductsItem, Footer },
 
-  async asyncData({ $axios, params, error }) {
+  async asyncData({ $axios, query, error }) {
+    if (!query.lang) redirect({ path: "/", query: { lang: "en" } });
     try {
       const response = await $axios.get("/pages/products");
       const productsData = response.data.data;
@@ -63,10 +65,11 @@ export default {
 
       return { productsData };
     } catch (e) {
-      console.log(e);
       error({ statusCode: 404 });
     }
   },
+
+  watchQuery: ["lang"],
 
   data() {
     return {
@@ -118,6 +121,16 @@ export default {
     adjustResponsive() {
       this.showKeyValue = $(window).width() < 768;
       this.mobileDisplay = this.showKeyValue;
+    },
+
+    vod(val, def) {
+      return val ? val : def;
+    }
+  },
+
+  computed: {
+    dv() {
+      return DefaultValue.products;
     }
   }
 };

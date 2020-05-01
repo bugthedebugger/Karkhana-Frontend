@@ -4,7 +4,7 @@
     :class="{'navbar-scroll': opaqueNav || opaqueByDefault}"
   >
     <div class="container">
-      <nuxt-link to="/" class="navbar-brand">
+      <nuxt-link :to="'/?lang='+ selectedLocale.locale" class="navbar-brand">
         <img src="/images/logo-nav.png" class="logo-nav" />
       </nuxt-link>
 
@@ -63,10 +63,16 @@
             </div>
           </li>
 
-          <nuxt-link to="/products" class="nav-item nav-link mt-3 d-md-none">Products</nuxt-link>
-          <nuxt-link to="/blogs" class="nav-item nav-link">Blog</nuxt-link>
-          <nuxt-link to="/about" class="nav-item nav-link">About</nuxt-link>
-          <nuxt-link to="/contact" class="nav-item nav-link">Contact</nuxt-link>
+          <nuxt-link
+            :to="'/products?lang=' + selectedLocale.locale"
+            class="nav-item nav-link mt-3 d-md-none"
+          >Products</nuxt-link>
+          <nuxt-link :to="'/blogs?lang=' + selectedLocale.locale" class="nav-item nav-link">Blog</nuxt-link>
+          <nuxt-link :to="'/about?lang=' + selectedLocale.locale" class="nav-item nav-link">About</nuxt-link>
+          <nuxt-link
+            :to="'/contact?lang=' + selectedLocale.locale"
+            class="nav-item nav-link"
+          >Contact</nuxt-link>
 
           <!-- Locale dropdown -->
           <li class="nav-item dropdown">
@@ -149,8 +155,16 @@ export default {
 
   methods: {
     navigateToProduct(type) {
-      if (type === "all") this.$router.push({ path: "/products" });
-      else this.$router.push({ path: `/productDetail?type=${type}` });
+      if (type === "all")
+        this.$router.push({
+          path: "/products",
+          query: { lang: this.selectedLocale.locale }
+        });
+      else
+        this.$router.push({
+          path: "/productDetail",
+          query: { type, lang: this.selectedLocale.locale }
+        });
       this.$refs.productsDropdownMenu.classList.add("invisible");
       setTimeout(() => {
         this.$refs.productsDropdownMenu.classList.remove("invisible");
@@ -164,7 +178,7 @@ export default {
       ] = this.selectedLocale.locale;
       this.$router.push({
         path: this.$route.path,
-        query: { lang: this.selectedLocale.locale }
+        query: { ...this.$route.query, lang: this.selectedLocale.locale }
       });
     },
 

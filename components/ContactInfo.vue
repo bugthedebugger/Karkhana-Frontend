@@ -14,10 +14,8 @@
                       <div class="circle circle-red"></div>
                     </i>
                   </div>
-                  <p class="contact-title">{{address.label}}</p>
-                  <p class="contact-value">
-                    {{address.address}}
-                  </p>
+                  <p class="contact-title">{{vod(address.label, dv.address.label)}}</p>
+                  <p class="contact-value">{{vod(address.address, dv.address.address)}}</p>
                 </div>
               </div>
               <div class="col-md-6 col-sm-12">
@@ -27,11 +25,11 @@
                       <div class="circle circle-blue"></div>
                     </i>
                   </div>
-                  <p class="contact-title">{{open_hours.label}}</p>
+                  <p class="contact-title">{{vod(open_hours.label, dv.open_hours.label)}}</p>
                   <p class="contact-value">
-                    {{open_hours.open_hours}}
+                    {{vod(open_hours.open_hours, dv.open_hours.open_hours)}}
                     <br />
-                    {{open_days.open_days}}
+                    {{vod(open_days.open_days, dv.open_days.open_days)}}
                   </p>
                 </div>
               </div>
@@ -49,10 +47,10 @@
                       <div class="circle circle-green"></div>
                     </i>
                   </div>
-                  <p class="contact-title">{{phone.label}}</p>
+                  <p class="contact-title">{{vod(phone.label, dv.phone.label)}}</p>
                   <p class="contact-value">
-                    01-4412624
-                    <br />Mobile/Viber/Whatsapp: 9801888822
+                    {{vod(phone.phone, dv.phone.phone)}}
+                    <br />Mobile/Viber/Whatsapp: {{vod(phone.mobile, dv.phone.mobile)}}
                   </p>
                 </div>
               </div>
@@ -63,8 +61,8 @@
                       <div class="circle circle-yellow"></div>
                     </i>
                   </div>
-                  <p class="contact-title">{{email.label}}</p>
-                  <p class="contact-value">{{email.email}}</p>
+                  <p class="contact-title">{{vod(email.label, dv.email.label)}}</p>
+                  <p class="contact-value">{{vod(email.email, dv.email.email)}}</p>
                 </div>
               </div>
             </div>
@@ -125,6 +123,7 @@
 <script>
 import Spinner from "~/components/Spinner";
 import Helper from "~/helpers/common";
+import DefaultValue from "~/helpers/default-values";
 
 export default {
   name: "HomeAbout",
@@ -176,6 +175,10 @@ export default {
 
     checkIfMobile() {
       this.isMobile = $(window).width() < 768;
+    },
+
+    vod(val, def) {
+      return val ? val : def;
     }
   },
 
@@ -189,6 +192,10 @@ export default {
         this.formData.topic &&
         this.formData.topic.length > 1
       );
+    },
+
+    dv() {
+      return DefaultValue.contact;
     }
   }
 };
