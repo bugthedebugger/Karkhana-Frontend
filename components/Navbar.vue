@@ -118,6 +118,7 @@
 
 <script>
 import axios from "axios";
+import DefaultValue from "~/helpers/default-values";
 
 export default {
   name: "Navbar",
@@ -138,7 +139,13 @@ export default {
     this.navbarData = (
       await this.$axios.get("/pages/landing")
     ).data.data.header;
-    console.log(this.navbarData);
+
+    // Default values
+    Object.keys(this.navbarData).forEach(key => {
+      this.vod(this.navbarData[key], this.dv[key]);
+    });
+    if (this.navbarData.products.length === 0)
+      this.navbarData.products = this.dv.products;
   },
   fetchOnServer: true,
 
@@ -200,12 +207,19 @@ export default {
           routeName !== "ProductDetail" ||
           (routeName === "ProductDetail" && $(window).width() < 768);
       }
+    },
+
+    vod(val, def) {
+      return val ? val : def;
     }
   },
 
   computed: {
     opaqueNav() {
       if (process.browser) return this.scrollPosition > window.innerHeight / 4;
+    },
+    dv() {
+      return DefaultValue.header;
     }
   },
 

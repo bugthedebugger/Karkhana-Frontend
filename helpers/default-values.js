@@ -1,4 +1,41 @@
 export default {
+
+    header: {
+        language: "en",
+        products: [
+            {
+                code: "science",
+                name: "Karkhana Science",
+                logo: "/images/product-logo-science.svg",
+                color: "#6dc067",
+                secondary_color: "#deefdc",
+            },
+            {
+                code: "computing",
+                name: "Karkhana Computing",
+                logo: "/images/product-logo-computing.svg",
+                color: "#39c2d7",
+                secondary_color: "#d3eff3",
+            },
+            {
+                code: "make",
+                name: "Karkhana Make",
+                logo: "/images/product-logo-make.svg",
+                color: "#fbb040",
+                secondary_color: "#faebd5",
+            }
+        ],
+        product_label: "Products",
+        logo: "/images/logo-nav.png",
+        blog: "Blog",
+        about: "About",
+        contact: "Contact",
+        facebook: "https://www.facebook.com/karkhana.asia",
+        instagram: "https://www.instagram.com/karkhana.asia/",
+        youtube: "https://www.youtube.com/user/karkhanalabs"
+
+    },
+
     home: {
 
         sliders: [
