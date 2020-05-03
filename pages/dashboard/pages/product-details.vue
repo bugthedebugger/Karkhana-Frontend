@@ -17,12 +17,24 @@
           </div>
         </div>
 
-        <div class="container-card mt-0">
+        <div class="container-card mt-0 page-form">
           <div v-if="productDetailsData">
+            <!-- Products -->
+            <div class="product mb-4">
+              <h5>Product</h5>
+              <select class="form-control" v-model="selectedProduct" @change="fetchData()">
+                <option
+                  v-for="product in products"
+                  :value="product.code"
+                  :key="product.code"
+                >{{product.code}}</option>
+              </select>
+            </div>
+
             <!-- Language -->
             <div class="language mb-4">
               <h5>Language</h5>
-              <select class="form-control" v-model="productDetailsData.language">
+              <select class="form-control" v-model="selectedLanguage" @change="fetchData()">
                 <option
                   v-for="language in languages"
                   :value="language.code"
@@ -43,6 +55,7 @@
                     v-model="productDetailsData.grade_label"
                   />
 
+                  <label>Type Label *</label>
                   <input
                     type="text"
                     class="form-control mb-1"
@@ -162,7 +175,9 @@ export default {
     return {
       saveLoading: false,
       languages: null,
-      galleryImages: null,
+      products: null,
+      selectedLanguage: "en",
+      selectedProduct: null,
       productDetailsData: null
     };
   },
@@ -173,21 +188,31 @@ export default {
 
   methods: {
     fetchData() {
-      this.$axios.get("/pages/product-details").then(response => {
-        this.$axios.get("/languages").then(response2 => {
-          this.$axios.get("/admin/media/about").then(response3 => {
-            this.galleryImages = response3.data.data;
-            this.loading = false;
-            this.languages = response2.data.data;
-            this.productDetailsData = response.data.data;
-            this.correctData();
+      this.$axios.setHeader("Accept-Language", this.selectedLanguage);
+      this.productDetailsData = null;
+      this.$axios.get("/admin/product/all").then(response1 => {
+        this.products = response1.data.data;
+        if (!this.products || !this.products.length) {
+          alert("No products found");
+          this.$router.push({ path: "/dashboard/pages" });
+          return;
+        }
+
+        if (!this.selectedProduct) this.selectedProduct = this.products[0].code;
+        this.$axios
+          .get("/pages/product-details?code=" + this.selectedProduct)
+          .then(response2 => {
+            this.$axios.get("/languages").then(response3 => {
+              this.languages = response3.data.data;
+              this.productDetailsData = response2.data.data;
+            });
           });
-        });
       });
     },
 
     save() {
       this.saveLoading = true;
+      this.productDetailsData.language = this.selectedLanguage;
       this.$axios
         .post("/admin/pages/products/update", this.productDetailsData)
         .then(response => {
@@ -201,28 +226,28 @@ export default {
       delete this.productDetailsData["products"];
     },
 
-    generateResponse() {
-      let resp = JSON.parse(JSON.stringify(this.productDetailsData));
+    // generateResponse() {
+    //   let resp = JSON.parse(JSON.stringify(this.productDetailsData));
 
-      // Karkhana building
-      if (this.hasNullValue(resp.sections.karkhana_building))
-        resp.sections.karkhana_building = null;
+    //   // Karkhana building
+    //   if (this.hasNullValue(resp.sections.karkhana_building))
+    //     resp.sections.karkhana_building = null;
 
-      // Head Section
-      if (this.hasNullValue(resp.sections.head_section))
-        resp.sections.head_section = null;
+    //   // Head Section
+    //   if (this.hasNullValue(resp.sections.head_section))
+    //     resp.sections.head_section = null;
 
-      // Mission Vision
-      if (this.hasNullValue(resp.sections.mission_vision))
-        resp.sections.mission_vision = null;
+    //   // Mission Vision
+    //   if (this.hasNullValue(resp.sections.mission_vision))
+    //     resp.sections.mission_vision = null;
 
-      // Values
-      if (this.hasNullValue(resp.sections.values)) resp.sections.values = null;
+    //   // Values
+    //   if (this.hasNullValue(resp.sections.values)) resp.sections.values = null;
 
-      if (this.hasNullValue(resp.sections.team)) resp.sections.team = null;
+    //   if (this.hasNullValue(resp.sections.team)) resp.sections.team = null;
 
-      return resp;
-    },
+    //   return resp;
+    // },
 
     valid() {
       return (
@@ -233,8 +258,7 @@ export default {
         this.productDetailsData.school_services_label &&
         this.productDetailsData.student_services_label &&
         this.productDetailsData.learn_more_label &&
-        this.productDetailsData.download_label &&
-        this.productDetailsData.language
+        this.productDetailsData.download_label
       );
     }
   }

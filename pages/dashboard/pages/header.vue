@@ -17,11 +17,11 @@
           </div>
         </div>
 
-        <div class="container-card mt-0">
+        <div class="container-card mt-0 page-form">
           <div v-if="headerData">
             <div class="language mb-4">
               <h5>Language</h5>
-              <select class="form-control" v-model="headerData.language">
+              <select class="form-control" v-model="selectedLanguage" @change="fetchData()">
                 <option
                   v-for="language in languages"
                   :value="language.code"
@@ -34,17 +34,6 @@
             <div class="row">
               <div class="col">
                 <div class="form-group">
-                  <label for="products">Products *</label>
-                  <input
-                    id="products"
-                    type="text"
-                    class="form-control mb-1"
-                    placeholder="Products Text"
-                    v-model="headerData.products"
-                  />
-                </div>
-
-                <div class="form-group">
                   <label for="products">Product Label *</label>
                   <input
                     id="product_label"
@@ -55,79 +44,36 @@
                   />
                 </div>
 
-                <!-- Logo -->
-                <label>Logo</label>
-                <GalleryImageInput
-                  id="logo"
-                  page_code="header"
-                  :value="headerData.logo"
-                  v-model="headerData.logo"
-                />
-                <div class="mb-4"></div>
-
                 <div class="form-group">
-                  <label for="blog">Blog *</label>
+                  <label for="blog">Blog Label *</label>
                   <input
                     id="blog"
                     type="text"
                     class="form-control mb-1"
-                    placeholder="Blog"
+                    placeholder="Blog Label"
                     v-model="headerData.blog"
                   />
                 </div>
 
                 <div class="form-group">
-                  <label for="about">About *</label>
+                  <label for="about">About Label *</label>
                   <input
                     id="about"
                     type="text"
                     class="form-control mb-1"
-                    placeholder="About"
+                    placeholder="About Label"
                     v-model="headerData.about"
                   />
                 </div>
 
                 <div class="form-group">
-                  <label for="contact">Contact *</label>
+                  <label for="contact">Contact Label *</label>
                   <input
                     id="contact"
                     type="text"
                     class="form-control mb-1"
-                    placeholder="Contact"
+                    placeholder="Contact Label"
                     v-model="headerData.contact"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="facebook">Facebook</label>
-                  <input
-                    id="facebook"
-                    type="text"
-                    class="form-control mb-1"
-                    placeholder="Facebook"
-                    v-model="headerData.facebook"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="instagram">Instagram</label>
-                  <input
-                    id="instagram"
-                    type="text"
-                    class="form-control mb-1"
-                    placeholder="Instagram"
-                    v-model="headerData.instagram"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="youtube">Youtube</label>
-                  <input
-                    id="youtube"
-                    type="text"
-                    class="form-control mb-1"
-                    placeholder="Youtube"
-                    v-model="headerData.youtube"
                   />
                 </div>
               </div>
@@ -140,9 +86,7 @@
         </div>
       </div>
 
-      <div class="ml-2 p-4 pl-2">
-        <Gallery pageCode="header" @newImage="fetchDatau()" />
-      </div>
+      <div class="ml-2 p-4 pl-2"></div>
     </div>
   </div>
 </template>
@@ -169,6 +113,7 @@ export default {
     return {
       saveLoading: false,
       languages: null,
+      selectedLanguage: "en",
       headerData: null
     };
   },
@@ -179,6 +124,8 @@ export default {
 
   methods: {
     fetchData() {
+      this.$axios.setHeader("Accept-Language", this.selectedLanguage);
+      this.headerData = null;
       this.$axios.get("/admin/pages/header").then(response => {
         this.$axios.get("/languages").then(response2 => {
           this.headerData = response.data.data;
@@ -189,6 +136,7 @@ export default {
 
     save() {
       this.saveLoading = true;
+      this.headerData.language = this.selectedLanguage;
       this.$axios
         .post("/admin/pages/header/update", this.headerData)
         .then(response => {

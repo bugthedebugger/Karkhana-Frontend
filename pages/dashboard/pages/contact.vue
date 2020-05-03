@@ -17,12 +17,12 @@
           </div>
         </div>
 
-        <div class="container-card mt-0">
+        <div class="container-card mt-0 page-form">
           <div v-if="contactData">
             <!-- Language -->
             <div class="language mb-4">
               <h5>Language</h5>
-              <select class="form-control" v-model="contactData.language" @change="fetchData()">
+              <select class="form-control" v-model="selectedLanguage" @change="fetchData()">
                 <option
                   v-for="language in languages"
                   :value="language.code"
@@ -34,11 +34,11 @@
             <!-- Edit -->
             <div class="row">
               <div class="col">
-                <label>Email *</label>
+                <label>Email Label *</label>
                 <input
                   type="email"
                   class="form-control mb-1"
-                  placeholder="Email"
+                  placeholder="Email Label"
                   v-model="contactData.email"
                 />
               </div>
@@ -47,20 +47,20 @@
             <!-- Address && Phone -->
             <div class="row">
               <div class="col">
-                <label>Address *</label>
+                <label>Address Label *</label>
                 <input
                   type="text"
                   class="form-control mb-1"
-                  placeholder="Address"
+                  placeholder="Address Label"
                   v-model="contactData.address"
                 />
               </div>
               <div class="col">
-                <label>Phone *</label>
+                <label>Phone Label *</label>
                 <input
                   type="text"
                   class="form-control mb-1"
-                  placeholder="Phone"
+                  placeholder="Phone Label"
                   v-model="contactData.phone"
                 />
               </div>
@@ -69,20 +69,20 @@
             <!-- Open Hours && Days -->
             <div class="row">
               <div class="col">
-                <label>Open days *</label>
+                <label>Open days Label *</label>
                 <input
                   type="text"
                   class="form-control mb-1"
-                  placeholder="Open days"
+                  placeholder="Open days Label"
                   v-model="contactData.open_days"
                 />
               </div>
               <div class="col">
-                <label>Open Hours *</label>
+                <label>Open Hours Label *</label>
                 <input
                   type="text"
                   class="form-control mb-1"
-                  placeholder="Open Hours"
+                  placeholder="Open Hours Label"
                   v-model="contactData.open_hours"
                 />
               </div>
@@ -118,6 +118,7 @@ export default {
     return {
       saveLoading: false,
       languages: null,
+      selectedLanguage: "en",
       contactData: null
     };
   },
@@ -128,6 +129,8 @@ export default {
 
   methods: {
     fetchData() {
+      this.$axios.setHeader("Accept-Language", this.selectedLanguage);
+      this.contactData = null;
       this.$axios.get("/pages/contact").then(response => {
         this.$axios.get("/languages").then(response2 => {
           this.loading = false;
@@ -155,6 +158,7 @@ export default {
       Object.keys(resp).forEach(key => {
         if (key !== "language") resp[key] = resp[key] ? resp[key].label : null;
       });
+      resp.language = this.selectedLanguage;
 
       this.contactData = resp;
     },

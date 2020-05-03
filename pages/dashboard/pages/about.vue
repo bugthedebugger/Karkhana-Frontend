@@ -13,7 +13,7 @@
           </div>
         </div>
 
-        <div class="container-card mt-0">
+        <div class="container-card page-form mt-0">
           <div v-if="aboutData.sections">
             <!-- Language -->
             <div class="language mb-4">

@@ -13,9 +13,25 @@
           </div>
         </div>
 
-        <div class="container-card mt-0">
+        <div class="container-card mt-0 page-form">
           <div v-if="settingsData">
-            <!-- Email & Location -->
+            <!-- Logo -->
+            <div class="mb-4 text-center">
+              <label>Logo</label>
+              <div class="row">
+                <div class="col d-flex justify-content-center">
+                  <GalleryImageInput
+                    ref="logoInput"
+                    id="k-logo"
+                    page_code="settings"
+                    :value="settingsData.logo"
+                    v-model="settingsData.logo"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
             <div class="row">
               <div class="col">
                 <div class="form-group">
@@ -31,6 +47,7 @@
               </div>
             </div>
 
+            <!-- Location -->
             <div class="row">
               <div class="col">
                 <div class="form-group">
@@ -112,21 +129,6 @@
                     class="form-control mb-1"
                     placeholder="Open Days"
                     v-model="settingsData.open_days"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Logo -->
-            <div class="mb-2">
-              <label>Logo</label>
-              <div class="row">
-                <div class="col">
-                  <GalleryImageInput
-                    id="k-building"
-                    page_code="settings"
-                    :value="settingsData.logo"
-                    v-model="settingsData.logo"
                   />
                 </div>
               </div>
@@ -251,9 +253,9 @@
 import Loading from "~/components/Loading";
 import Spinner from "~/components/Spinner";
 import Gallery from "~/components/Dashboard/Gallery";
-import AboutValuesInput from "~/components/Dashboard/AboutValuesInput";
+// import AboutValuesInput from "~/components/Dashboard/AboutValuesInput";
 import GalleryImageInput from "~/components/Dashboard/GalleryImageInput";
-import TextArea from "~/components/core/TextArea";
+// import TextArea from "~/components/core/TextArea";
 
 export default {
   layout: "dashboard",
@@ -262,9 +264,7 @@ export default {
     Loading,
     Spinner,
     Gallery,
-    AboutValuesInput,
-    GalleryImageInput,
-    TextArea
+    GalleryImageInput
   },
   data() {
     return {
@@ -280,8 +280,29 @@ export default {
   methods: {
     fetchData() {
       this.$axios.get("/admin/settings").then(response => {
-        this.settingsData = response.data.data;
+        if (response.data.data) this.settingsData = response.data.data;
+        else {
+          this.settingsData = {
+            logo: null,
+            phone: null,
+            mobile: null,
+            email: null,
+            open_hours: null,
+            open_days: null,
+            instagram: null,
+            facebook: null,
+            youtube: null,
+            location: null,
+            geo_location: null,
+            students_reached: null,
+            employees: null,
+            countried_we_work_in: null,
+            cities_we_work_in: null,
+            brand_video: null
+          };
+        }
       });
+      if (this.$refs.logoInput) this.$refs.logoInput.fetchGalleryImages();
     },
 
     save() {
@@ -292,47 +313,47 @@ export default {
           this.saveLoading = false;
           this.$toast.show("Saved");
         });
-    },
-
-    correctData() {
-      delete this.aboutData.sections.head_section["brand_video"];
-      delete this.aboutData.sections.karkhana_building["url"];
-      delete this.aboutData.sections.team.team_photo["url"];
-    },
-
-    generateResponse() {
-      let resp = JSON.parse(JSON.stringify(this.aboutData));
-
-      // Karkhana building
-      if (this.hasNullValue(resp.sections.karkhana_building))
-        resp.sections.karkhana_building = null;
-
-      // Head Section
-      if (this.hasNullValue(resp.sections.head_section))
-        resp.sections.head_section = null;
-
-      // Mission Vision
-      if (this.hasNullValue(resp.sections.mission_vision))
-        resp.sections.mission_vision = null;
-
-      // Values
-      if (this.hasNullValue(resp.sections.values)) resp.sections.values = null;
-
-      if (this.hasNullValue(resp.sections.team)) resp.sections.team = null;
-
-      return resp;
-    },
-
-    hasNullValue(obj) {
-      if (obj === null) return true;
-      let keys = Object.keys(obj);
-      for (let i = 0; i < keys.length; i++) {
-        let key = keys[i];
-        if (obj[key] === null) return true;
-        else if (obj[key] instanceof Object) return this.hasNullValue(obj[key]);
-      }
-      return false;
     }
+
+    // correctData() {
+    //   delete this.aboutData.sections.head_section["brand_video"];
+    //   delete this.aboutData.sections.karkhana_building["url"];
+    //   delete this.aboutData.sections.team.team_photo["url"];
+    // },
+
+    // generateResponse() {
+    //   let resp = JSON.parse(JSON.stringify(this.aboutData));
+
+    //   // Karkhana building
+    //   if (this.hasNullValue(resp.sections.karkhana_building))
+    //     resp.sections.karkhana_building = null;
+
+    //   // Head Section
+    //   if (this.hasNullValue(resp.sections.head_section))
+    //     resp.sections.head_section = null;
+
+    //   // Mission Vision
+    //   if (this.hasNullValue(resp.sections.mission_vision))
+    //     resp.sections.mission_vision = null;
+
+    //   // Values
+    //   if (this.hasNullValue(resp.sections.values)) resp.sections.values = null;
+
+    //   if (this.hasNullValue(resp.sections.team)) resp.sections.team = null;
+
+    //   return resp;
+    // },
+
+    // hasNullValue(obj) {
+    //   if (obj === null) return true;
+    //   let keys = Object.keys(obj);
+    //   for (let i = 0; i < keys.length; i++) {
+    //     let key = keys[i];
+    //     if (obj[key] === null) return true;
+    //     else if (obj[key] instanceof Object) return this.hasNullValue(obj[key]);
+    //   }
+    //   return false;
+    // }
   }
 };
 </script>

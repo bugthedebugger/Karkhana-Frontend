@@ -24,41 +24,49 @@
             <div class="details">
               <div class="product-details" v-html="product_info.product.description"></div>
 
-              <div class="product-facts" :style="'background-color:' + product_info.product.color">
-                <div class="container">
-                  <h2 class="title">{{product_info.facts_label}}</h2>
-                  <div class="row">
-                    <div class="col-md-6 col-sm-12 text">
-                      {{product_info.product.facts[0]}}
-                      <div class="mb-3 d-md-none d-sm-block"></div>
+              <template v-if="product_info.product.facts && product_info.product.facts.length">
+                <div
+                  class="product-facts"
+                  :style="'background-color:' + product_info.product.color"
+                >
+                  <div class="container">
+                    <h2 class="title">{{product_info.facts_label}}</h2>
+                    <div class="row">
+                      <div class="col-md-6 col-sm-12 text">
+                        {{product_info.product.facts[0]}}
+                        <div class="mb-3 d-md-none d-sm-block"></div>
+                      </div>
+                      <div class="col-md-6 col-sm-12 text">{{product_info.product.facts[1]}}</div>
                     </div>
-                    <div class="col-md-6 col-sm-12 text">{{product_info.product.facts[1]}}</div>
-                  </div>
 
-                  <div class="row mt-4" v-if="product_info.product.facts.length > 2">
-                    <div class="col-md-6 col-sm-12 text" v-if="product_info.product.facts[2]">
-                      {{product_info.product.facts[2]}}
-                      <div class="mb-3 d-md-none d-sm-block"></div>
+                    <div class="row mt-4" v-if="product_info.product.facts.length > 2">
+                      <div class="col-md-6 col-sm-12 text" v-if="product_info.product.facts[2]">
+                        {{product_info.product.facts[2]}}
+                        <div class="mb-3 d-md-none d-sm-block"></div>
+                      </div>
+                      <div
+                        class="col-md-6 col-sm-12 text"
+                        v-if="product_info.product.facts[3]"
+                      >{{product_info.product.facts[3]}}</div>
                     </div>
-                    <div
-                      class="col-md-6 col-sm-12 text"
-                      v-if="product_info.product.facts[3]"
-                    >{{product_info.product.facts[3]}}</div>
                   </div>
                 </div>
-              </div>
+              </template>
 
-              <div class="product-kit-details">
+              <div
+                class="product-kit-details"
+                v-if="product_info.product.features && product_info.product.features.length"
+              >
                 <h2 class="title">{{product_info.feature_label}}</h2>
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-6" v-if="product_info.product.features[0]">
                     <div class="kit-feature">
                       <img :src="product_info.product.features[0].logo" />
                       <p class="label">{{product_info.product.features[0].feature}}</p>
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="kit-feature">
+                    <div class="kit-feature" v-if="product_info.product.features[1]">
                       <img :src="product_info.product.features[1].logo" />
                       <p class="label">{{product_info.product.features[1].feature}}</p>
                     </div>
@@ -66,7 +74,7 @@
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <div class="kit-feature">
+                    <div class="kit-feature" v-if="product_info.product.features[2]">
                       <img :src="product_info.product.features[2].logo" />
                       <p class="label">{{product_info.product.features[2].feature}}</p>
                     </div>

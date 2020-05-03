@@ -1,123 +1,119 @@
 <template>
-  <nav
-    class="navbar fixed-top navbar-expand-lg"
-    :class="{'navbar-scroll': opaqueNav || opaqueByDefault}"
-  >
-    <div class="container">
-      <nuxt-link :to="'/?lang='+ selectedLocale.locale" class="navbar-brand">
-        <img src="/images/logo-nav.png" class="logo-nav" />
-      </nuxt-link>
+  <div>
+    <nav
+      class="navbar fixed-top navbar-expand-lg"
+      :class="{'navbar-scroll': opaqueNav || opaqueByDefault}"
+      v-if="navbarData"
+    >
+      <div class="container">
+        <nuxt-link :to="'/?lang='+ selectedLocale.locale" class="navbar-brand">
+          <img src="/images/logo-nav.png" class="logo-nav" />
+        </nuxt-link>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbar-links"
-        aria-controls="navbar-links"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fal fa-bars"></i>
-      </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbar-links"
+          aria-controls="navbar-links"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fal fa-bars"></i>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbar-links">
-        <div class="navbar-nav ml-auto">
-          <li class="nav-item nav-item-dropdown nav-item-dropdown-handle d-none d-md-block">
-            <a
-              href="#"
-              @click="navigateToProduct('all')"
-              class="nav-link nav-link-dropdown-handle"
-            >Products</a>
-            <div class="dropdown-menu products-menu d-block" ref="productsDropdownMenu">
-              <div class="row">
-                <div class="col-md-4 col-sm-12 product-category product-category-science">
-                  <a href="#" @click="navigateToProduct('science')">
-                    <div class="product-circle d-none d-md-block">
-                      <img src="/images/product-logo-science.svg" />
-                    </div>
-                    <p class="product-category-name">Karkhana Science</p>
-                  </a>
-                </div>
-                <div class="col-md-4 col-sm-12 product-category product-category-computing">
-                  <a href="#" @click="navigateToProduct('computing')">
-                    <div class="product-circle d-none d-md-block">
-                      <img src="/images/product-logo-computing.svg" />
-                    </div>
-                    <p class="product-category-name">Karkhana Computing</p>
-                  </a>
-                </div>
-                <div class="col-md-4 col-sm-12 product-category product-category-make">
-                  <a href="#" @click="navigateToProduct('make')">
-                    <div class="product-circle d-none d-md-block">
-                      <img src="/images/product-logo-make.svg" />
-                    </div>
-                    <p class="product-category-name">Karkhana Make</p>
-                  </a>
+        <div class="collapse navbar-collapse" id="navbar-links">
+          <div class="navbar-nav ml-auto">
+            <li
+              class="nav-item nav-item-dropdown nav-item-dropdown-handle d-none d-md-block"
+              v-if="navbarData.products"
+            >
+              <a
+                href="#"
+                @click="navigateToProduct('all')"
+                class="nav-link nav-link-dropdown-handle"
+              >{{navbarData.product_label}}</a>
+              <div class="dropdown-menu products-menu d-block" ref="productsDropdownMenu">
+                <div class="row">
+                  <div
+                    class="col-md-4 col-sm-12 product-category"
+                    v-for="product in navbarData.products"
+                    :key="product.code"
+                  >
+                    <a href="#" @click="navigateToProduct(product.code)">
+                      <div class="product-circle d-none d-md-block">
+                        <img :src="product.logo" />
+                      </div>
+                      <p
+                        class="product-category-name"
+                        :style="'color: ' + product.color"
+                      >{{product.name}}</p>
+                    </a>
+                  </div>
                 </div>
               </div>
-              <!-- <div class="row">
-                <div class="col-12 text-center">
-                  <nuxt-link to="/products" class="mt-2">View All Products</nuxt-link>
-                </div>
-              </div>-->
-            </div>
-          </li>
+            </li>
 
-          <nuxt-link
-            :to="'/products?lang=' + selectedLocale.locale"
-            class="nav-item nav-link mt-3 d-md-none"
-          >Products</nuxt-link>
-          <nuxt-link :to="'/blogs?lang=' + selectedLocale.locale" class="nav-item nav-link">Blog</nuxt-link>
-          <nuxt-link :to="'/about?lang=' + selectedLocale.locale" class="nav-item nav-link">About</nuxt-link>
-          <nuxt-link
-            :to="'/contact?lang=' + selectedLocale.locale"
-            class="nav-item nav-link"
-          >Contact</nuxt-link>
+            <nuxt-link
+              :to="'/products?lang=' + selectedLocale.locale"
+              class="nav-item nav-link mt-3 d-md-none"
+            >Products</nuxt-link>
+            <nuxt-link
+              :to="'/blogs?lang=' + selectedLocale.locale"
+              class="nav-item nav-link"
+            >{{navbarData.blog}}</nuxt-link>
+            <nuxt-link
+              :to="'/about?lang=' + selectedLocale.locale"
+              class="nav-item nav-link"
+            >{{navbarData.about}}</nuxt-link>
+            <nuxt-link
+              :to="'/contact?lang=' + selectedLocale.locale"
+              class="nav-item nav-link"
+            >{{navbarData.contact}}</nuxt-link>
 
-          <!-- Locale dropdown -->
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="localeDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <img class="locale-img-selected" :src="'/images/' + selectedLocale.image" />
-            </a>
-            <div class="dropdown-menu" aria-labelledby="localeDropdown">
+            <!-- Locale dropdown -->
+            <li class="nav-item dropdown">
               <a
-                class="dropdown-item"
-                v-for="(locale, index) in locales"
-                :key="index"
-                @click="selectLocale(index)"
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="localeDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
-                <img class="locale-img" :src="'/images/' + locale.image" />
-                {{locale.name}}
+                <img class="locale-img-selected" :src="'/images/' + selectedLocale.image" />
+              </a>
+              <div class="dropdown-menu" aria-labelledby="localeDropdown">
+                <a
+                  class="dropdown-item"
+                  v-for="(locale, index) in locales"
+                  :key="index"
+                  @click="selectLocale(index)"
+                >
+                  <img class="locale-img" :src="'/images/' + locale.image" />
+                  {{locale.name}}
+                </a>
+              </div>
+            </li>
+
+            <!-- Social handlers -->
+            <div class="nav-item nav-link nav-item-social">
+              <a :href="navbarData.facebook" target="_blank">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a :href="navbarData.instagram" target="_blank">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a :href="navbarData.youtube" target="_blank">
+                <i class="fab fa-youtube"></i>
               </a>
             </div>
-          </li>
-
-          <!-- Social handlers -->
-          <div class="nav-item nav-link nav-item-social">
-            <a href="https://www.facebook.com/karkhana.asia" target="_blank">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://www.instagram.com/karkhana.asia/" target="_blank">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.youtube.com/user/karkhanalabs" target="_blank">
-              <i class="fab fa-youtube"></i>
-            </a>
           </div>
-
-          <!-- <template v-if="$auth.loggedIn">{{$auth.user.email}}</template> -->
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -127,6 +123,7 @@ export default {
   name: "Navbar",
   data() {
     return {
+      navbarData: null,
       selectedLocale: null,
       locales: [
         { name: "English(US)", image: "locale-en.svg", locale: "en" },
@@ -136,6 +133,14 @@ export default {
       opaqueByDefault: true
     };
   },
+
+  async fetch() {
+    this.navbarData = (
+      await this.$axios.get("/pages/landing")
+    ).data.data.header;
+    console.log(this.navbarData);
+  },
+  fetchOnServer: true,
 
   created() {
     this.selectLocale(0);

@@ -17,13 +17,12 @@
           </div>
         </div>
 
-        <div class="container-card mt-0">
+        <div class="container-card mt-0 page-form">
           <div v-if="productsData">
-
             <!-- Language -->
             <div class="language mb-4">
               <h5>Language</h5>
-              <select class="form-control" v-model="productsData.language">
+              <select class="form-control" v-model="selectedLanguage" @change="fetchData()">
                 <option
                   v-for="language in languages"
                   :value="language.code"
@@ -44,6 +43,7 @@
                     v-model="productsData.grade_label"
                   />
 
+                  <label>Type Label *</label>
                   <input
                     type="text"
                     class="form-control mb-1"
@@ -164,6 +164,7 @@ export default {
       saveLoading: false,
       languages: null,
       galleryImages: null,
+      selectedLanguage: "en",
       productsData: null
     };
   },
@@ -174,6 +175,8 @@ export default {
 
   methods: {
     fetchData() {
+      this.$axios.setHeader("Accept-Language", this.selectedLanguage);
+      this.productsData = null;
       this.$axios.get("/pages/products").then(response => {
         this.$axios.get("/languages").then(response2 => {
           this.$axios.get("/admin/media/about").then(response3 => {
@@ -200,6 +203,7 @@ export default {
     correctData() {
       delete this.productsData["header"];
       delete this.productsData["products"];
+      this.productsData.language = this.selectedLanguage;
     },
 
     generateResponse() {
