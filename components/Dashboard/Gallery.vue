@@ -8,12 +8,11 @@
         <FileUpload :pageCode="pageCode" @fileUploaded="handleFileUploaded" />
         <hr />
         <div class="d-flex flex-wrap" v-if="galleryImages">
-          <img
-            v-for="(image, index) in galleryImages"
-            :src="image.url"
-            :key="index"
-            class="gallery-image"
-          />
+          <div v-for="(image, index) in galleryImages" :key="index">
+            <img v-if="getType(image.url) === 'image'" :src="image.url" class="gallery-image" />
+
+            <div v-else class="file" :title="image.url">file</div>
+          </div>
         </div>
         <div v-else>Gallery images not found for {{pageCode}} page</div>
       </div>
@@ -55,10 +54,34 @@ export default {
     handleFileUploaded() {
       this.fetchGalleryImages();
       this.$emit("newImage");
+    },
+
+    getType(url) {
+      let ext = url.split(".").pop();
+      if (
+        ext === "jpg" ||
+        ext === "png" ||
+        ext === "jpeg" ||
+        ext === "gif" ||
+        ext === "svg"
+      )
+        return "image";
+      return "file";
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.file {
+  height: 50px;
+  width: 50px;
+  color: lightgray;
+  text-align: center;
+  line-height: 50px;
+  border: 1px solid #373737;
+  color: #373737;
+  cursor: pointer;
+  margin: 10px;
+}
 </style>

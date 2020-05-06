@@ -7,7 +7,7 @@
     >
       <div class="container">
         <nuxt-link :to="'/?lang='+ selectedLocale.locale" class="navbar-brand">
-          <img src="/images/logo-nav.png" class="logo-nav" />
+          <img :src="navbarData.logo" class="logo-nav" />
         </nuxt-link>
 
         <button

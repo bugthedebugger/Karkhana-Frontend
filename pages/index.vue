@@ -46,6 +46,8 @@ export default {
       const response = await $axios.get("/pages/landing");
       const landingData = response.data.data;
 
+      // fetch partners
+
       // set default values if null
       Object.keys(landingData).forEach(key => {
         if (!landingData[key] && DefaultValue.home[key])

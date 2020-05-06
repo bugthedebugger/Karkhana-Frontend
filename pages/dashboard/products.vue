@@ -94,7 +94,7 @@ export default {
 
     deleteProduct(id, index) {
       if (confirm("Are you sure you want to delete this product ?"))
-        this.$axios.delete(`/admin/product/delete/${id}`).then(response => {
+        this.$axios.delete(`/admin/product/${id}`).then(response => {
           this.products.splice(index, 1);
         });
     },

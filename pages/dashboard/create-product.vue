@@ -21,7 +21,7 @@
           <div class="product-input" v-if="value">
             <div class="language mb-4">
               <h5>Language</h5>
-              <select class="form-control" v-model="value.language">
+              <select class="form-control" v-model="language" @change="initProduct()">
                 <option
                   v-for="language in languages"
                   :value="language.code"
@@ -42,6 +42,7 @@
                       page_code="products"
                       :value="value.logo"
                       v-model="value.logo"
+                      :get_path="true"
                     />
                   </div>
                 </div>
@@ -57,6 +58,7 @@
                       page_code="products"
                       :value="value.featured_image"
                       v-model="value.featured_image"
+                      :get_path="true"
                     />
                   </div>
                 </div>
@@ -219,10 +221,18 @@
 
             <!-- Brochure -->
             <label>Brochure</label>
-            <input
+            <!-- <input
               type="text"
               class="form-control form-control-sm mb-4"
               placeholder="Brochure"
+              v-model="value.brochure"
+            />-->
+            <GalleryImageInput
+              ref="brochureFileInput"
+              id="brochure"
+              page_code="products"
+              :get_path="true"
+              :value="value.brochure"
               v-model="value.brochure"
             />
           </div>
@@ -254,6 +264,7 @@ export default {
   components: { GalleryImageInput, TextArea, Gallery, Loading, Spinner },
   data() {
     return {
+      language: "en",
       mode: false, //false: create, true: update
       value: null,
       languages: null,
@@ -262,18 +273,23 @@ export default {
   },
 
   created() {
-    let id = this.$route.query.id;
-    if (id === "new-product") {
-      this.mode = false;
-      this.value = this.initProduct();
-    } else {
-      this.mode = true;
-      this.fetchProduct(id);
-    }
+    this.initProduct();
   },
 
   methods: {
     initProduct() {
+      let id = this.$route.query.id;
+      this.value = null;
+      if (id === "new-product") {
+        this.mode = false;
+        this.value = this.emptyProduct();
+      } else {
+        this.mode = true;
+        this.fetchProduct(id);
+      }
+    },
+
+    emptyProduct() {
       return {
         language: "en",
         logo: null,
@@ -296,13 +312,14 @@ export default {
 
     fetchProduct(id) {
       this.$axios
-        .get("/admin/product/" + id + "?language=en")
+        .get("/admin/product/" + id + "?language=" + this.language)
         .then(response => {
           this.$axios.get("/languages").then(response2 => {
             this.languages = response2.data.data;
             this.value = response.data.data;
             this.value.logo = this.value.logo.path;
             this.value.featured_image = this.value.featured_image.path;
+            this.value.brochure = this.value.brochure.path;
             this.value.language = "en";
 
             if (!this.value.color) this.value.color = "#ffffff";
@@ -323,7 +340,7 @@ export default {
           });
         })
         .catch(error => {
-          this.$toast.show("Product not found");
+          this.$toast.show(error.response.data.message);
           this.$router.push({ path: "/dashboard/products" });
         });
     },
@@ -334,7 +351,7 @@ export default {
         this.$axios
           .post("/admin/product/update", {
             ...this.value,
-            product_id: this.$route.query.id,
+            product_id: this.$route.query.id
             // color: this.value.color + "FF",
             // secondary_color: this.value.secondary_color + "FF"
           })
@@ -349,7 +366,7 @@ export default {
       } else {
         this.$axios
           .post("/admin/product/create", {
-            ...this.value,
+            ...this.value
             // color: this.value.color + "FF",
             // secondary_color: this.value.secondary_color + "FF"
           })
@@ -373,6 +390,7 @@ export default {
       for (let i = 0; i < this.value.features.length; i++) {
         this.$refs["featureImageInput" + i].fetchGalleryImages();
       }
+      this.$refs.brochureFileInput.fetchGalleryImages();
     },
 
     addFact() {

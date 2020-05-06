@@ -11,10 +11,14 @@
                 <button class="btn btn-secondary btn-sm" @click="remove(i)">
                   <i class="fal fa-trash-alt"></i>
                 </button>
-                <button class="btn btn-secondary btn-sm">
+                <button class="btn btn-secondary btn-sm" @click="moveLeft(i)" :disabled="i===0">
                   <i class="fal fa-caret-left"></i>
                 </button>
-                <button class="btn btn-secondary btn-sm">
+                <button
+                  class="btn btn-secondary btn-sm"
+                  @click="moveRight(i)"
+                  :disabled="i=== sliderImages.length -1"
+                >
                   <i class="fal fa-caret-right"></i>
                 </button>
               </div>
@@ -24,8 +28,8 @@
               <GalleryImageInput
                 page_code="landing"
                 :id="'slider-image-' + i"
-                :value="sliderImages[i].path"
-                v-model="sliderImages[i].path"
+                :value="sliderImage.path"
+                v-model="sliderImage.path"
                 image_class="karkhana-building-image"
               />
             </div>
@@ -86,6 +90,7 @@
 <script>
 import TextArea from "~/components/core/TextArea";
 import GalleryImageInput from "~/components/Dashboard/GalleryImageInput";
+import Vue from "vue";
 
 export default {
   name: "SliderImageInput",
@@ -158,7 +163,22 @@ export default {
 
     emitUpdate() {
       this.$emit("sliderImageChanged", this.sliderImages);
-    }
+    },
+
+    moveRight(i) {
+      // swap i and i+1
+      // let temp = this.sliderImages[i];
+      // Vue.set(this.sliderImages, i, this.sliderImages[i + 1]);
+      // Vue.set(this.sliderImages, i + 1, temp);
+      // this.sliderImages[i] = this.sliderImages[i + 1];
+      // this.sliderImages[i + 1] = temp;
+
+      this.sliderImages[i].order++;
+      this.sliderImages[i + 1].order--;
+      this.sliderImages = this.sliderImages.sort((a, b) => a.order - b.order);
+    },
+
+    moveLeft() {}
   }
 };
 </script>

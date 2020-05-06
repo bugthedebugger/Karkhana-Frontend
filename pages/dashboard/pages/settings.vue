@@ -26,6 +26,7 @@
                     page_code="settings"
                     :value="settingsData.logo"
                     v-model="settingsData.logo"
+                    :get_path="true"
                   />
                 </div>
               </div>

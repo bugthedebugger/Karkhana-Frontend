@@ -2,7 +2,7 @@
   <div class="product-detail-intro">
     <div
       class="header-image d-none d-md-block"
-      :style="'background-image: url(' + product_info.product.featured_image.path + ')'"
+      :style="'background-image: url(' + product_info.product.featured_image.url + ')'"
     >
       <div class="overlay"></div>
     </div>

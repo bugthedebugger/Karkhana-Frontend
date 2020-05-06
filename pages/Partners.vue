@@ -15,9 +15,9 @@ export default {
   layout: "portfolio",
   auth: false,
   components: { PartnersMain, PartnersList, Footer },
-  async asyncData({ redirect }) {
-    // redirect("/");
-  }
+  // async asyncData({ redirect }) {
+  //   // redirect("/");
+  // }
 };
 </script>
 

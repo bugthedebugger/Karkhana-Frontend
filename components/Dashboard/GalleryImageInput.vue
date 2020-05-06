@@ -6,7 +6,7 @@
       :style="applyStyle()"
       data-toggle="modal"
       :data-target="'#galleryModal-' + id"
-    ></div>
+    >{{getType(selectedImageUrl) === 'file' ? selectedImageUrl : ''}}</div>
 
     <!-- Modal -->
     <div
@@ -30,11 +30,13 @@
               <template v-for="(image, index) in galleryImages">
                 <div class="d-flex flex-column" :key="index">
                   <img
+                    v-if="getType(image.url) === 'image'"
                     :src="image.url"
                     :ref="'gallery-image-' + index"
                     class="gallery-image mb-0"
                     @click="selectImage(image)"
                   />
+                  <div v-else class="file" :title="image.url" @click="selectImage(image)">file</div>
                   <label class="gallery-image-size">{{imageSize('gallery-image-' + index)}}</label>
                 </div>
               </template>
@@ -50,11 +52,20 @@
 export default {
   name: "GalleryImageInput",
   components: {},
-  props: ["id", "value", "image_class", "page_code", "width", "height"],
+  props: [
+    "id",
+    "value",
+    "image_class",
+    "page_code",
+    "width",
+    "height",
+    "get_path"
+  ],
   data() {
     return {
       galleryImages: null,
-      selectedImagePath: this.value || null
+      selectedImageUrl: this.value || null,
+      selectedImagePath: null
     };
   },
 
@@ -83,21 +94,41 @@ export default {
     },
 
     selectImage(image) {
-      this.selectedImagePath = image.url;
+      this.selectedImageUrl = image.url;
+      this.selectedImagePath = image.path;
       $("#galleryModal-" + this.id).modal("hide");
       this.emitUpdate();
     },
 
     emitUpdate() {
-      this.$emit("input", this.selectedImagePath);
+      this.$emit(
+        "input",
+        this.get_path ? this.selectedImagePath : this.selectedImageUrl
+      );
     },
 
-    applyStyle(){
+    applyStyle() {
       let style = "";
-      if(this.width) style += 'width: ' + this.width + 'px;'
-      if(this.height) style += 'height: ' + this.height + 'px;'
-      style += 'background-image: url(' + this.selectedImagePath + ');';
+      if (this.width) style += "width: " + this.width + "px;";
+      if (this.height) style += "height: " + this.height + "px;";
+
+      if (this.getType(this.selectedImageUrl) === "image")
+        style += "background-image: url(" + this.selectedImageUrl + ");";
       return style;
+    },
+
+    getType(url) {
+      if (!url) return;
+      let ext = url.split(".").pop();
+      if (
+        ext === "jpg" ||
+        ext === "png" ||
+        ext === "jpeg" ||
+        ext === "gif" ||
+        ext === "svg"
+      )
+        return "image";
+      return "file";
     }
   }
 };
@@ -112,5 +143,23 @@ export default {
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
+
+  padding: 0.5rem;
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 100px;
+}
+
+.file {
+  height: 50px;
+  width: 50px;
+  color: lightgray;
+  text-align: center;
+  line-height: 50px;
+  border: 1px solid #373737;
+  cursor: pointer;
+  margin: 10px;
 }
 </style>

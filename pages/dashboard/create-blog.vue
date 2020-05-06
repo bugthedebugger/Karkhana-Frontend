@@ -140,7 +140,7 @@
                 class="flex-fill"
                 v-model="inputTag"
                 @keyup="handleTagCreate"
-                placeholder="Add tag"
+                placeholder="Add tag (Separated by comma)"
               />
             </div>
             <div class="tags-container d-flex flex-wrap">
