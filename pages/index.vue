@@ -65,7 +65,7 @@ export default {
     return {};
   },
   created() {
-    this.$store.dispatch("home/fetchData");
+    // this.$store.dispatch("home/fetchData");
   },
 
   methods: {

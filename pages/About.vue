@@ -39,7 +39,7 @@ export default {
     Footer
   },
 
-  async asyncData({ $axios, query, error }) {
+  async asyncData({ $axios, query, error, redirect }) {
     if (!query.lang) redirect({ path: "/", query: { lang: "en" } });
     try {
       $axios.setHeader("Accept-Language", query.lang);

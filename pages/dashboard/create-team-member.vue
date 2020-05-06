@@ -26,7 +26,7 @@
                   <div>
                     <label>Photo *</label>
                     <GalleryImageInput
-                      ref="pgptpImageInput"
+                      ref="teamImageInput"
                       id="photo"
                       width="200"
                       height="200"
@@ -203,7 +203,7 @@ export default {
     },
 
     fetchGalleryImages() {
-      this.$refs.phptoImageInput.fetchGalleryImages();
+      this.$refs.teamImageInput.fetchGalleryImages();
     },
 
     valid() {

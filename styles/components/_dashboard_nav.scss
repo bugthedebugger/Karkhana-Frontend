@@ -6,20 +6,25 @@
   min-width: 280px;
   height: 100vh;
   overflow: auto;
+  transition: all 0.3s ease-in-out;
 
   .nav-logo {
     img {
       width: 130px;
+      transition: all 0.3s ease-in-out;
     }
+    transition: all 0.3s ease-in-out;
   }
 
   .nav-link-list {
+    transition: all 0.3s ease-in-out;
     .nav-link-list-item {
       margin-top: 40px;
       border-right: 4px solid white;
       padding-right: 20px;
       padding-top: 5px;
       padding-bottom: 5px;
+      transition: all 0.3s ease-in-out;
 
       a {
         display: inline-block;
@@ -32,6 +37,7 @@
           $font-poppins
         );
         text-decoration: none;
+        transition: all 0.3s ease-in-out;
       }
 
       i {
@@ -48,10 +54,10 @@
   }
 
   .user-profile-menu {
-    // position: absolute;
-    // bottom: 10px;
     margin-top: 40px;
     margin-bottom: 40px;
+    transition: all 0.3s ease-in-out;
+
     #user-profile-button {
       border-radius: 23px;
 
@@ -64,6 +70,10 @@
         height: 16px;
         border-radius: 50%;
       }
+
+      .username {
+        transition: all 0.3s ease-in-out;
+      }
     }
   }
 
@@ -73,13 +83,17 @@
     padding-top: 6px;
 
     .nav-logo {
-      display: none;
+      img {
+        // display: none;
+        width: 50px;
+        margin-left: -20px;
+      }
     }
 
     .nav-link-list {
       .nav-link-list-item {
         padding-right: 10px;
-        margin-top: 35px;
+        margin-top: 20px;
         a {
           i {
             margin-right: 5px;
@@ -92,7 +106,9 @@
     }
 
     .user-profile-menu {
-      display: none;
+      margin-left: -15px;
+      position: absolute;
+      bottom: 10px;
 
       .username {
         display: none;

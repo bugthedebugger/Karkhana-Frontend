@@ -150,7 +150,12 @@ export default {
   fetchOnServer: true,
 
   created() {
-    this.selectLocale(0);
+    let validLocale = this.locales.findIndex(
+      l => l.locale === this.$route.query.lang
+    );
+    if (validLocale) this.selectLocale(validLocale);
+    else this.selectLocale(0);
+
     this.opaque = this.$route.name !== "index";
     if (process.browser) {
       window.addEventListener("scroll", this.updateScroll);

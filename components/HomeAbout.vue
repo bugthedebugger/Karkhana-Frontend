@@ -9,7 +9,10 @@
             <span class="first-letter">{{ aboutData.text.charAt(0).toUpperCase() }}</span>
             {{aboutData.text.slice(0)}}
             <br />
-            <nuxt-link to="/about" class="learn-more text-uppercase">{{aboutData.button_label}}</nuxt-link>
+            <nuxt-link
+              :to="'/about?lang=' + $route.query.lang"
+              class="learn-more text-uppercase"
+            >{{aboutData.button_label}}</nuxt-link>
           </p>
 
           <div class="row">

@@ -1,7 +1,11 @@
 <template>
-  <aside class="dashboard-nav --minimized">
-    <div class="nav-logo">
-      <img src="/images/logo-nav.png" />
+  <aside class="dashboard-nav" :class="{'--minimized': mode}">
+    <div class="nav-logo d-flex justify-content-between">
+      <img src="/images/logo-nav.png" class="align-self-center" />
+
+      <button class="btn btn-default align-self-center pl-2 pr-2" @click="toggleDashNav()">
+        <i class="fal fa-bars"></i>
+      </button>
     </div>
     <ul class="no-bullets nav-link-list">
       <li
@@ -24,9 +28,10 @@
       </li>-->
     </ul>
 
-    <div class="dropdown user-profile-menu mt-auto">
+    <div class="dropdown user-profile-menu mt-auto" :class="{'btn-group dropright': mode}">
       <button
         class="btn btn-primary dropdown-toggle"
+        :class="{'pl-2 pr-2': mode}"
         type="button"
         id="user-profile-button"
         data-toggle="dropdown"
@@ -35,9 +40,9 @@
       >
         <img class="mr-1" :src="$auth.user.avatar" />
         <span class="username">{{$auth.user.name}}</span>
-        <i class="fal fa-angle-up ml-2"></i>
+        <i class="fal ml-2" :class="{'fa-angle-up': !mode, 'fa-angle-right': mode}"></i>
       </button>
-      <div class="dropdown-menu" aria-labelledby="user-profile-button">
+      <div class="dropdown-menu" aria-labelledby="user-profile-button" style="z-index: 1000">
         <a class="dropdown-item" href="#" @click="logout()">
           <Spinner :dark="true" v-if="logoutLoading" />
           <i v-else class="fal fa-sign-out"></i>
@@ -56,6 +61,7 @@ export default {
   components: { Spinner },
   data() {
     return {
+      mode: false,
       activeTab: null,
       minimized: false,
       links: [
@@ -136,6 +142,10 @@ export default {
   },
 
   methods: {
+    toggleDashNav() {
+      this.mode = !this.mode;
+    },
+
     checkActiveTab(routeName) {
       this.activeTab = this.links.find(tab => routeName === tab.name);
     },

@@ -6,10 +6,12 @@
           <h1 class="slide-title">{{slide.quote}}</h1>
           <div class="slide-image" :style="'background-image: url(' + slide.path + ')'"></div>
           <div class="overlay"></div>
-          <button
+          <a
+            :href="slide.button.action"
+            target="_blank"
             v-if="slide.button"
             class="btn btn-primary btn-cta slide-cta"
-          >{{slide.button.label}}</button>
+          >{{slide.button.label}}</a>
         </div>
       </VueSlickCarousel>
 
