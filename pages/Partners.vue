@@ -16,7 +16,7 @@ export default {
   auth: false,
   components: { PartnersMain, PartnersList, Footer },
   async asyncData({ redirect }) {
-    redirect("/");
+    // redirect("/");
   }
 };
 </script>
