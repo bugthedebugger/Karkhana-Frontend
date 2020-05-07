@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="slider-image-input-container d-flex flex-nowrap">
+    <div class="slider-image-input-container d-flex flex-nowrap" v-if="sliderImages">
       <div class="card mr-2" v-for="(sliderImage, i) in sliderImages" :key="i">
         <div class="card-body p-1">
           <div class="slider-image-input d-flex flex-column">
@@ -26,6 +26,7 @@
 
             <div class="ml-auto mr-auto mb-2">
               <GalleryImageInput
+                :ref="'slider-image-' + i"
                 page_code="landing"
                 :id="'slider-image-' + i"
                 :value="sliderImage.path"
@@ -166,16 +167,18 @@ export default {
     },
 
     moveRight(i) {
-      // swap i and i+1
-      // let temp = this.sliderImages[i];
-      // Vue.set(this.sliderImages, i, this.sliderImages[i + 1]);
-      // Vue.set(this.sliderImages, i + 1, temp);
-      // this.sliderImages[i] = this.sliderImages[i + 1];
-      // this.sliderImages[i + 1] = temp;
+      // this.sliderImages[i].order++;
+      // this.sliderImages[i + 1].order--;
 
-      this.sliderImages[i].order++;
-      this.sliderImages[i + 1].order--;
-      this.sliderImages = this.sliderImages.sort((a, b) => a.order - b.order);
+      // let t = this.sliderImages[i].path;
+      // this.sliderImages[i].path = this.sliderImages[i + 1].path;
+      this.sliderImages[i + 1].path = null;
+      this.$refs["slider-image-" + i].$forceUpdate();
+
+      // let cache = JSON.parse(JSON.stringify(this.sliderImages.sort((a, b) => a.order - b.order)));
+      // this.sliderImages = null;
+      // this.sliderImages = cache;
+      this.$forceUpdate();
     },
 
     moveLeft() {}

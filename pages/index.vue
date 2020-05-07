@@ -8,7 +8,7 @@
 
     <HomeEvents />
 
-    <HomePartners :partnersData="landingData.partners" />
+    <HomePartners :partnersData="landingData.partners" :partnersList="landingData.partnersList" />
 
     <HomeContact :phone="landingData.phone" :mobile="landingData.mobile" />
 
@@ -43,10 +43,11 @@ export default {
     if (!query.lang) redirect({ path: "/", query: { lang: "en" } });
     try {
       $axios.setHeader("Accept-Language", query.lang);
-      const response = await $axios.get("/pages/landing");
-      const landingData = response.data.data;
+      const landingData = (await $axios.get("/pages/landing")).data.data;
 
       // fetch partners
+      const partners = (await $axios.get("/pages/partners")).data.data;
+      landingData["partnersList"] = partners;
 
       // set default values if null
       Object.keys(landingData).forEach(key => {

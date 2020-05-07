@@ -12,7 +12,11 @@
         <!-- Product Item -->
         <div class="col-md-4">
           <div class="product-info-wrapper">
-            <ProductsItem :product_info="product_info.product" :show_key_value="true" />
+            <ProductsItem
+              :allData="product_info"
+              :product_info="product_info.product"
+              :show_key_value="true"
+            />
           </div>
         </div>
 

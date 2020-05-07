@@ -21,7 +21,7 @@
           <div class="product-input" v-if="value">
             <div class="language mb-4">
               <h5>Language</h5>
-              <select class="form-control" v-model="language" @change="initProduct()">
+              <select class="form-control" v-model="value.language">
                 <option
                   v-for="language in languages"
                   :value="language.code"
@@ -290,6 +290,10 @@ export default {
     },
 
     emptyProduct() {
+      this.$axios.get("/languages").then(response => {
+        this.languages = response.data.data;
+      });
+
       return {
         language: "en",
         logo: null,
@@ -312,7 +316,7 @@ export default {
 
     fetchProduct(id) {
       this.$axios
-        .get("/admin/product/" + id + "?language=" + this.language)
+        .get("/admin/product/" + id + "?language=" + value.language)
         .then(response => {
           this.$axios.get("/languages").then(response2 => {
             this.languages = response2.data.data;
@@ -320,7 +324,7 @@ export default {
             this.value.logo = this.value.logo.path;
             this.value.featured_image = this.value.featured_image.path;
             this.value.brochure = this.value.brochure.path;
-            this.value.language = "en";
+            // this.value.language = "en";
 
             if (!this.value.color) this.value.color = "#ffffff";
             if (!this.value.secondary_color)

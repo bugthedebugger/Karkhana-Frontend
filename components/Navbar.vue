@@ -232,6 +232,10 @@ export default {
     $route(to, from) {
       this.checkOpaqueByDefault(to.name);
       $("#navbar-links").collapse("hide");
+    },
+
+    watch: {
+      "$route.query.lang": "$fetch"
     }
   }
 };

@@ -87,7 +87,7 @@ export default {
 
     fetchProducts() {
       this.products = null;
-      this.$axios.get("/admin/product/all").then(response => {
+      this.$axios.get("/admin/product/all?lang=np").then(response => {
         this.products = response.data.data || [];
       });
     },

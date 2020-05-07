@@ -16,6 +16,7 @@
         </div>
         <div class="col-md-3">
           <ProductsItem
+            :allData="productsData"
             :product_info="vod(productsData.products[0], dv.products[0])"
             :show_key_value="showKeyValue"
             :mobile_display="mobileDisplay"
@@ -23,6 +24,7 @@
         </div>
         <div class="col-md-3">
           <ProductsItem
+            :allData="productsData"
             :product_info="vod(productsData.products[1], dv.products[1])"
             :show_key_value="showKeyValue"
             :mobile_display="mobileDisplay"
@@ -30,6 +32,7 @@
         </div>
         <div class="col-md-3">
           <ProductsItem
+            :allData="productsData"
             :product_info="vod(productsData.products[2], dv.products[2])"
             :show_key_value="showKeyValue"
             :mobile_display="mobileDisplay"

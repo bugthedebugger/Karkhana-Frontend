@@ -83,8 +83,20 @@ export default {
           name: "dashboard-tags",
           icon: "fal fa-tags",
           url: "/dashboard/tags"
-        },
+        }
+      ],
+      logoutLoading: false
+    };
+  },
 
+  created() {
+    if (
+      this.$auth.user.roles &&
+      this.$auth.user.roles.find(
+        role => role.name.toLowerCase() === "superadmin"
+      )
+    )
+      this.links.push(
         {
           title: "Pages",
           name: "dashboard-pages",
@@ -111,25 +123,15 @@ export default {
           name: "dashboard-team-members",
           icon: "fal fa-users-class",
           url: "/dashboard/team-members"
-        }
-      ],
-      logoutLoading: false
-    };
-  },
+        },
 
-  created() {
-    if (
-      this.$auth.user.roles &&
-      this.$auth.user.roles.find(
-        role => role.name.toLowerCase() === "superadmin"
-      )
-    )
-      this.links.push({
-        title: "User Settings",
-        name: "dashboard-user-settings",
-        icon: "fal fa-users-cog",
-        url: "/dashboard/user-settings"
-      });
+        {
+          title: "User Settings",
+          name: "dashboard-user-settings",
+          icon: "fal fa-users-cog",
+          url: "/dashboard/user-settings"
+        }
+      );
     else
       this.links.push({
         title: "Profile",

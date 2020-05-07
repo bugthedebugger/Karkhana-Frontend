@@ -4,8 +4,8 @@
       <div class="current-partners">
         <h2 class="title">Our Current Partners</h2>
         <div class="d-flex justify-content-center flex-wrap mb-4">
-          <div class="partners-list-item" v-for="(partner, index) in currentPartners" :key="index">
-            <img :src="partner" />
+          <div class="partners-list-item" v-for="(partner, index) in partners" :key="index">
+            <img :src="partner.logo.path" />
           </div>
         </div>
 
@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>-->
     </div>
   </section>
 </template>
@@ -37,37 +37,42 @@
 <script>
 export default {
   name: "PartnersList",
+  props: ["partners"],
+
+  created() {
+    console.log(this.partners);
+  },
+
   data() {
     return {
-      currentPartners: [
-        "/images/partners/partner-1.png",
-        "/images/partners/partner-2.png",
-        "/images/partners/partner-3.png",
-        "/images/partners/partner-4.png",
-        "/images/partners/partner-5.png",
-        "/images/partners/partner-6.png",
-        "/images/partners/partner-7.png",
-        "/images/partners/partner-8.png"
-      ],
-
-      clientSchools: {
-        2020: [
-          "/images/partners/school-1.png",
-          "/images/partners/school-2.png",
-          "/images/partners/school-3.png",
-          "/images/partners/school-4.png",
-          "/images/partners/school-5.png",
-          "/images/partners/school-6.png"
-        ],
-        2019: [
-          "/images/partners/school-1.png",
-          "/images/partners/school-2.png",
-          "/images/partners/school-3.png",
-          "/images/partners/school-4.png",
-          "/images/partners/school-5.png",
-          "/images/partners/school-6.png"
-        ]
-      }
+      // currentPartners: [
+      //   "/images/partners/partner-1.png",
+      //   "/images/partners/partner-2.png",
+      //   "/images/partners/partner-3.png",
+      //   "/images/partners/partner-4.png",
+      //   "/images/partners/partner-5.png",
+      //   "/images/partners/partner-6.png",
+      //   "/images/partners/partner-7.png",
+      //   "/images/partners/partner-8.png"
+      // ],
+      // clientSchools: {
+      //   2020: [
+      //     "/images/partners/school-1.png",
+      //     "/images/partners/school-2.png",
+      //     "/images/partners/school-3.png",
+      //     "/images/partners/school-4.png",
+      //     "/images/partners/school-5.png",
+      //     "/images/partners/school-6.png"
+      //   ],
+      //   2019: [
+      //     "/images/partners/school-1.png",
+      //     "/images/partners/school-2.png",
+      //     "/images/partners/school-3.png",
+      //     "/images/partners/school-4.png",
+      //     "/images/partners/school-5.png",
+      //     "/images/partners/school-6.png"
+      //   ]
+      // }
     };
   }
 };

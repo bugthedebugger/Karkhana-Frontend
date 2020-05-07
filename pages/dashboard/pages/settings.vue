@@ -3,7 +3,7 @@
     <div class="d-flex">
       <div class="dashboard-content flex-grow-1">
         <div class="toolbar d-flex mb-4 mt-4">
-          <h1 class="title mb-4">Settings Page</h1>
+          <h1 class="title mb-4">Site Settings</h1>
 
           <div class="ml-auto">
             <button class="btn btn-primary btn-sm mr-2" @click="save()" :disabled="saveLoading">

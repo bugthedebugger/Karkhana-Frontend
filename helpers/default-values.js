@@ -374,7 +374,7 @@ export default {
         school_services_label: "School Services",
         student_services_label: "Student Services",
         learn_more_label: "Learn More",
-        download_label: "Download",
+        download_label: "Download Brochure",
         products: [
             {
                 code: "science",

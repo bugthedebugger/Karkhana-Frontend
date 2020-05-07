@@ -3,6 +3,9 @@
 $text-color: #444444;
 
 section.our-partners {
+  padding-bottom: 150px;
+  padding-top: 50px;
+
   .logos {
     padding-right: 90px;
     @include media-breakpoint-down(md) {

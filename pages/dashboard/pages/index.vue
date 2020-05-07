@@ -7,7 +7,9 @@
         <table class="table table-borderless">
           <tr v-for="(page, index) in pages" :key="index">
             <td>
-              <nuxt-link :to="'/dashboard/pages/' + page.code">{{page.name}}</nuxt-link>
+              <nuxt-link
+                :to="'/dashboard/pages/' + page.code"
+              >{{page.name === "Settings page" ? 'Site Settings': page.name}}</nuxt-link>
             </td>
           </tr>
         </table>
