@@ -2,25 +2,29 @@
   <section class="home-slider">
     <div class="slides">
       <VueSlickCarousel v-bind="sliderSettings" ref="carousel">
-        <div class="slide" v-for="(slide, index) in sliderImages" :key="index">
-          <h1 class="slide-title">{{slide.quote}}</h1>
-          <div class="slide-image" :style="'background-image: url(' + slide.path + ')'"></div>
-          <div class="overlay"></div>
-          <a
-            :href="slide.button.action"
-            target="_blank"
-            v-if="slide.button"
-            class="btn btn-primary btn-cta slide-cta"
-          >{{slide.button.label}}</a>
-        </div>
+        <template v-for="(slide, index) in slidersToShow">
+          <div class="slide" :key="index" >
+            <h1 class="slide-title">{{slide.quote}}</h1>
+            <div class="slide-image" :style="'background-image: url(' + slide.path + ')'"></div>
+            <div class="overlay"></div>
+            <a
+              :href="slide.button.action"
+              target="_blank"
+              v-if="slide.button"
+              class="btn btn-primary btn-cta slide-cta"
+            >{{slide.button.label}}</a>
+          </div>
+        </template>
       </VueSlickCarousel>
 
       <!-- shown only from md -->
-      <div class="slider-arrow arrow-prev d-none d-md-block" @click="prev">
-        <i class="fas fa-chevron-left"></i>
-      </div>
-      <div class="slider-arrow arrow-next d-none d-md-block" @click="next">
-        <i class="fas fa-chevron-right"></i>
+      <div v-if="slidersToShow.length > 1">
+        <div class="slider-arrow arrow-prev d-none d-md-block" @click="prev">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="slider-arrow arrow-next d-none d-md-block" @click="next">
+          <i class="fas fa-chevron-right"></i>
+        </div>
       </div>
     </div>
   </section>
@@ -82,6 +86,12 @@ export default {
           }
         ]
       };
+    }
+  },
+
+  computed: {
+    slidersToShow() {
+      return this.sliderImages.filter(si => si.hidden === false);
     }
   }
 };

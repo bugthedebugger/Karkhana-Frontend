@@ -18,17 +18,17 @@
         </div>
 
         <div class="container-card mt-0">
-          <div class="product-input" v-if="value">
-            <!-- <div class="language mb-4"> -->
-            <!-- <h5>Language</h5>
-              <select class="form-control" v-model="value.language">
+          <div class="product-input" v-if="!loading">
+            <div class="language mb-4">
+              <h5>Language</h5>
+              <select class="form-control" v-model="value.language" @change="fetchProduct(true)">
                 <option
                   v-for="language in languages"
                   :value="language.code"
                   :key="language.code"
                 >{{language.name}}</option>
               </select>
-            </div>-->
+            </div>
 
             <!-- Logo -->
             <div class="row mb-4">
@@ -43,6 +43,7 @@
                       :value="value.logo"
                       v-model="value.logo"
                       :get_path="true"
+                      :preview="value.logo_preview"
                     />
                   </div>
                 </div>
@@ -59,6 +60,7 @@
                       :value="value.featured_image"
                       v-model="value.featured_image"
                       :get_path="true"
+                      :preview="value.featured_image_preview"
                     />
                   </div>
                 </div>
@@ -221,12 +223,6 @@
 
             <!-- Brochure -->
             <label>Brochure</label>
-            <!-- <input
-              type="text"
-              class="form-control form-control-sm mb-4"
-              placeholder="Brochure"
-              v-model="value.brochure"
-            />-->
             <GalleryImageInput
               ref="brochureFileInput"
               id="brochure"
@@ -264,11 +260,16 @@ export default {
   components: { GalleryImageInput, TextArea, Gallery, Loading, Spinner },
   data() {
     return {
+      loading: false,
       language: "en",
       mode: false, //false: create, true: update
       value: null,
       languages: null,
-      saveLoading: false
+      saveLoading: false,
+      mediaChanges: {
+        logo: false,
+        featured_image: false
+      }
     };
   },
 
@@ -286,21 +287,22 @@ export default {
         this.value = this.emptyProduct();
       } else {
         this.mode = true;
-        this.fetchProduct(id, language);
+        this.fetchProduct(false);
       }
     },
 
-    emptyProduct() {
+    emptyProduct(languageChange) {
       this.$axios.get("/languages").then(response => {
         this.languages = response.data.data;
       });
 
       return {
-        language: "en",
+        language: languageChange ? this.value.language : "en",
         logo: null,
-        color: null,
-        secondary_color: null,
-        code: null,
+        logo_preview: null,
+        color: languageChange ? this.value.color : null,
+        secondary_color: languageChange ? this.value.secondary_color : null,
+        code: languageChange ? this.value.code : null,
         name: null,
         tag: null,
         grade: null,
@@ -311,18 +313,25 @@ export default {
         facts: [],
         features: [],
         brochure: null,
-        featured_image: null
+        featured_image: null,
+        featured_image_preview: null
       };
     },
 
-    fetchProduct(id, language) {
+    fetchProduct(languageChange) {
+      this.loading = true;
+      let language = languageChange
+        ? this.value.language
+        : this.$route.query.language;
       this.$axios
-        .get("/admin/product/" + id + "?language=" + language)
+        .get("/admin/product/" + this.$route.query.id + "?language=" + language)
         .then(response => {
           this.$axios.get("/languages").then(response2 => {
             this.languages = response2.data.data;
             this.value = response.data.data;
+            this.value.logo_preview = this.value.logo.url;
             this.value.logo = this.value.logo.path;
+            this.value.featured_image_preview = this.value.featured_image.url;
             this.value.featured_image = this.value.featured_image.path;
             this.value.brochure = this.value.brochure.path;
             this.value.language = language;
@@ -331,34 +340,35 @@ export default {
             if (!this.value.secondary_color)
               this.value.secondary_color = "#ffffff";
 
-            if (this.value.color > 6)
-              this.value.color = this.value.color.substr(
-                0,
-                this.value.color.length - 2
-              );
-
-            if (this.value.secondary_color > 6)
-              this.value.secondary_color = this.value.secondary_color.substr(
-                0,
-                this.value.secondary_color.length - 2
-              );
+            this.loading = false;
           });
         })
         .catch(error => {
-          this.$toast.show(error.response.data.message);
-          this.$router.push({ path: "/dashboard/products" });
+          if (languageChange) {
+            if (
+              error.response.data.message ===
+              "No product data found for the specified language!"
+            ) {
+              this.value = this.emptyProduct(true);
+            }
+          } else {
+            this.$toast.show(error.response.data.message);
+            this.$router.push({ path: "/dashboard/products" });
+          }
+          this.loading = false;
         });
     },
 
     save() {
       this.saveLoading = true;
       if (this.mode) {
+        // if (!this.mediaChanges.logo) delete this.value.logo;
+        // if (!this.mediaChanges.featured_image) delete this.value.featured_image;
+
         this.$axios
           .post("/admin/product/update", {
             ...this.value,
             product_id: this.$route.query.id
-            // color: this.value.color + "FF",
-            // secondary_color: this.value.secondary_color + "FF"
           })
           .then(response => {
             this.$toast.show("Product Updated");
@@ -372,8 +382,6 @@ export default {
         this.$axios
           .post("/admin/product/create", {
             ...this.value
-            // color: this.value.color + "FF",
-            // secondary_color: this.value.secondary_color + "FF"
           })
           .then(response => {
             this.$router.push({
@@ -425,7 +433,6 @@ export default {
         this.value.description &&
         this.value.grade &&
         this.value.logo &&
-        this.value.featured_image &&
         this.value.name &&
         this.value.school_services &&
         this.value.secondary_color &&

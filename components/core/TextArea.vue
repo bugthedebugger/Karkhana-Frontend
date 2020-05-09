@@ -69,6 +69,13 @@ export default {
     updateValue() {
       this.$emit("input", this.val);
     }
+  },
+
+  watch: {
+    value: function(newVal, oldVal) {
+      // watch it
+      this.val = newVal;
+    }
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="slider-image-input-container d-flex flex-nowrap" v-if="sliderImages">
-      <div class="card mr-2" v-for="(sliderImage, i) in sliderImages" :key="i">
+      <div class="card mr-2" v-for="(sliderImage, i) in sortedList" :key="sliderImage.order">
         <div class="card-body p-1">
           <div class="slider-image-input d-flex flex-column">
             <div class="slider-image-input-toolbar d-flex justify-content-between mb-1">
@@ -167,21 +167,35 @@ export default {
     },
 
     moveRight(i) {
-      // this.sliderImages[i].order++;
+      this.sliderImages[i].order++;
+      this.sliderImages[i + 1].order--;
       // this.sliderImages[i + 1].order--;
 
-      // let t = this.sliderImages[i].path;
-      // this.sliderImages[i].path = this.sliderImages[i + 1].path;
-      this.sliderImages[i + 1].path = null;
-      this.$refs["slider-image-" + i].$forceUpdate();
+      // // let t = this.sliderImages[i].path;
+      // // this.sliderImages[i].path = this.sliderImages[i + 1].path;
 
-      // let cache = JSON.parse(JSON.stringify(this.sliderImages.sort((a, b) => a.order - b.order)));
+      // let cache = JSON.parse(
+      //   JSON.stringify(this.sliderImages.sort((a, b) => a.order > b.order))
+      // );
       // this.sliderImages = null;
       // this.sliderImages = cache;
-      this.$forceUpdate();
+      // this.$forceUpdate();
     },
 
-    moveLeft() {}
+    moveLeft(i) {
+      this.sliderImages[i].order--;
+      this.sliderImages[i - 1].order++;
+    }
+  },
+
+  computed: {
+    sortedList() {
+      return this.sliderImages.sort((a, b) => {
+        if (a.order >= b.order) return 1;
+        if (a.order <= b.order) return -1;
+        if (a.order === b.order) return 0;
+      });
+    }
   }
 };
 </script>

@@ -28,7 +28,7 @@ export default {
     $axios.setHeader("Accept-Language", query.lang);
     try {
       const response = await $axios.get(
-        "/pages/product-details?code=" + query.type + "&language=" + query.lang
+        "/pages/product-details?code=" + query.type
       );
       const productData = response.data.data;
       return { productData };

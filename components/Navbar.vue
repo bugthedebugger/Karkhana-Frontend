@@ -234,9 +234,7 @@ export default {
       $("#navbar-links").collapse("hide");
     },
 
-    watch: {
-      "$route.query.lang": "$fetch"
-    }
+    "$route.query.lang": "$fetch"
   }
 };
 </script>

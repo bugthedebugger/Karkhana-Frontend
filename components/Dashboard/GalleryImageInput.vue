@@ -59,17 +59,20 @@ export default {
     "page_code",
     "width",
     "height",
-    "get_path"
+    "get_path",
+    "preview"
   ],
   data() {
     return {
       galleryImages: null,
       selectedImageUrl: this.value || null,
+      _preview: null,
       selectedImagePath: null
     };
   },
 
   created() {
+    this._preview = this.preview;
     this.fetchGalleryImages();
   },
 
@@ -96,6 +99,7 @@ export default {
     selectImage(image) {
       this.selectedImageUrl = image.url;
       this.selectedImagePath = image.path;
+      this._preview = null;
       $("#galleryModal-" + this.id).modal("hide");
       this.emitUpdate();
     },
@@ -111,6 +115,11 @@ export default {
       let style = "";
       if (this.width) style += "width: " + this.width + "px;";
       if (this.height) style += "height: " + this.height + "px;";
+
+      if (this._preview) {
+        style += "background-image: url(" + this._preview + ");";
+        return style;
+      }
 
       if (this.getType(this.selectedImageUrl) === "image")
         style += "background-image: url(" + this.selectedImageUrl + ");";
@@ -129,6 +138,11 @@ export default {
       )
         return "image";
       return "file";
+    }
+  },
+  watch: {
+    value: function(newVal, oldVal) {
+      this.selectedImageUrl = newVal;
     }
   }
 };

@@ -67,6 +67,7 @@
                     :value="aboutData.sections.karkhana_building.path"
                     v-model="aboutData.sections.karkhana_building.path"
                     image_class="karkhana-building-image"
+                    :get_path="true"
                   />
                 </div>
               </div>
