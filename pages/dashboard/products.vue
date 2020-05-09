@@ -11,6 +11,18 @@
     </div>
 
     <div class="container-card">
+      <div v-if="languages">
+        <h5>Language</h5>
+        <select class="form-control" v-model="selectedLanguage" @change="fetchProducts()">
+          <option
+            v-for="language in languages"
+            :value="language.code"
+            :key="language.code"
+          >{{language.name}}</option>
+        </select>
+      </div>
+      <hr />
+
       <div v-if="products">
         <div v-if="products.length">
           <table class="table table-borderless product-list">
@@ -22,8 +34,12 @@
               <td>
                 <label class="checkbox title flex-fill">
                   <input type="checkbox" />
-                  {{product.code}}
+                  {{product.id}}
                 </label>
+              </td>
+
+              <td>
+                <label class="checkbox title flex-fill">{{product.code}}</label>
               </td>
               <td>
                 <label>{{product.name}}</label>
@@ -36,7 +52,9 @@
                     </nuxt-link>
                   </div>
                   <div class="btn-edit mr-2">
-                    <nuxt-link :to="'create-product?id=' + product.id">
+                    <nuxt-link
+                      :to="'create-product?id=' + product.id + '&language=' + selectedLanguage"
+                    >
                       <i class="fal fa-edit"></i>
                     </nuxt-link>
                   </div>
@@ -69,12 +87,18 @@ export default {
   components: { Loading },
   data() {
     return {
+      languages: null,
+      selectedLanguage: null,
       products: null
     };
   },
 
   created() {
-    this.fetchProducts();
+    this.$axios.get("/languages").then(response => {
+      this.languages = response.data.data;
+      this.selectedLanguage = this.languages[0].code;
+      this.fetchProducts();
+    });
   },
 
   methods: {
@@ -87,9 +111,11 @@ export default {
 
     fetchProducts() {
       this.products = null;
-      this.$axios.get("/admin/product/all?lang=np").then(response => {
-        this.products = response.data.data || [];
-      });
+      this.$axios
+        .get("/admin/product/all?lang=" + this.selectedLanguage)
+        .then(response => {
+          this.products = response.data.data || [];
+        });
     },
 
     deleteProduct(id, index) {

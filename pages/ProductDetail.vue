@@ -25,9 +25,10 @@ export default {
     //   error({ statusCode: 404 });
     // }
 
+    $axios.setHeader("Accept-Language", query.lang);
     try {
       const response = await $axios.get(
-        "/pages/product-details?code=" + query.type
+        "/pages/product-details?code=" + query.type + "&language=" + query.lang
       );
       const productData = response.data.data;
       return { productData };

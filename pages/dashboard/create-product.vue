@@ -19,8 +19,8 @@
 
         <div class="container-card mt-0">
           <div class="product-input" v-if="value">
-            <div class="language mb-4">
-              <h5>Language</h5>
+            <!-- <div class="language mb-4"> -->
+            <!-- <h5>Language</h5>
               <select class="form-control" v-model="value.language">
                 <option
                   v-for="language in languages"
@@ -28,7 +28,7 @@
                   :key="language.code"
                 >{{language.name}}</option>
               </select>
-            </div>
+            </div>-->
 
             <!-- Logo -->
             <div class="row mb-4">
@@ -279,13 +279,14 @@ export default {
   methods: {
     initProduct() {
       let id = this.$route.query.id;
+      let language = this.$route.query.language;
       this.value = null;
       if (id === "new-product") {
         this.mode = false;
         this.value = this.emptyProduct();
       } else {
         this.mode = true;
-        this.fetchProduct(id);
+        this.fetchProduct(id, language);
       }
     },
 
@@ -314,9 +315,9 @@ export default {
       };
     },
 
-    fetchProduct(id) {
+    fetchProduct(id, language) {
       this.$axios
-        .get("/admin/product/" + id + "?language=" + value.language)
+        .get("/admin/product/" + id + "?language=" + language)
         .then(response => {
           this.$axios.get("/languages").then(response2 => {
             this.languages = response2.data.data;
@@ -324,7 +325,7 @@ export default {
             this.value.logo = this.value.logo.path;
             this.value.featured_image = this.value.featured_image.path;
             this.value.brochure = this.value.brochure.path;
-            // this.value.language = "en";
+            this.value.language = language;
 
             if (!this.value.color) this.value.color = "#ffffff";
             if (!this.value.secondary_color)

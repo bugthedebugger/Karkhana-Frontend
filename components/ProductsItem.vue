@@ -61,7 +61,7 @@
                   v-if="mobile_display"
                   target="_black"
                   download
-                  :href="product_info.brocure"
+                  :href="product_info.brochure"
                   class="brochure-link"
                   :class="'brochure-link-' + product_info.code"
                 >
@@ -97,7 +97,7 @@
       <nuxt-link
         v-else
         class="btn-learn-more"
-        :to="'/productDetail?type=' + product_info.code"
+        :to="'/productDetail?type=' + product_info.code + '&lang=' + $route.query.lang"
         :style="'background-color:' + product_info.color"
       >{{vod(allData.learn_more_label, dv.learn_more_label)}}</nuxt-link>
     </div>
